@@ -22,11 +22,11 @@ RENDER_DPI = {"low": 72, "medium": 150, "high": 300}
 _RANGE = re.compile(r"^\s*(\d+)\s*(?:-\s*(\d*)\s*)?$")
 
 
-def open_pdf(path: Path) -> pikepdf.Pdf:
+def open_pdf(path: Path, password: str = "") -> pikepdf.Pdf:
     try:
-        pdf = pikepdf.open(path)
+        pdf = pikepdf.open(path, password=password)
     except pikepdf.PasswordError as exc:
-        raise ProcessingError("pdf_encrypted") from exc
+        raise ProcessingError("wrong_password" if password else "pdf_encrypted") from exc
     except (pikepdf.PdfError, OSError, ValueError) as exc:
         raise ProcessingError("corrupt_file") from exc
     if len(pdf.pages) > MAX_PAGES:
@@ -205,3 +205,12 @@ def pdf_to_images(inputs: list[InputFile], options: dict, workdir: Path) -> list
     finally:
         document.close()
     return outputs
+
+
+def unlock_pdf(inputs: list[InputFile], options: dict, workdir: Path) -> list[OutputFile]:
+    """Save a copy without encryption. Needs the password (the document's open password)."""
+    [src] = inputs
+    with open_pdf(src.path, options.get("password", "")) as doc:
+        out = workdir / "unlocked.pdf"
+        save_pdf(doc, out)  # pikepdf writes without encryption unless asked to keep it
+    return [OutputFile(path=out, name=f"{stem_of(src.name)}-unlocked.pdf", mime=PDF_MIME)]

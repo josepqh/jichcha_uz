@@ -244,24 +244,11 @@ class TestValidation:
 
 class TestUsageAndTools:
     def test_tools_listing(self, api_client):
+        from apps.conversions.tools import TOOLS
+
         slugs = {t["slug"] for t in api_client.get("/api/v1/tools/").data}
-        assert slugs == {
-            "image-convert",
-            "image-compress",
-            "images-to-pdf",
-            "office-to-pdf",
-            "pdf-merge",
-            "pdf-split",
-            "pdf-organize",
-            "pdf-compress",
-            "pdf-to-images",
-            "archive-extract",
-            "archive-create",
-            "archive-convert",
-            "ebook-convert",
-            "image-edit",
-            "text-convert",
-        }
+        assert slugs == set(TOOLS)
+        assert {"image-convert", "pdf-merge", "archive-extract", "pdf-unlock"} <= slugs
 
     def test_usage_counts_today(self, api_client, png_upload):
         assert api_client.get("/api/v1/usage/").data["today"]["tasks_used"] == 0

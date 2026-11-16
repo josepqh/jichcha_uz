@@ -110,8 +110,20 @@ class CreateArchiveOptions(serializers.Serializer):
     format = serializers.ChoiceField(choices=["zip", "7z"], default="zip")
 
 
+_PASSWORD = {"max_length": 256, "trim_whitespace": False, "write_only": True}
+
+
+class ExtractArchiveOptions(serializers.Serializer):
+    password = serializers.CharField(required=False, allow_blank=True, **_PASSWORD)
+
+
 class RepackArchiveOptions(serializers.Serializer):
     target = serializers.ChoiceField(choices=["zip", "7z"], default="zip")
+    password = serializers.CharField(required=False, allow_blank=True, **_PASSWORD)
+
+
+class UnlockPdfOptions(serializers.Serializer):
+    password = serializers.CharField(**_PASSWORD)
 
 
 class TextOptions(serializers.Serializer):
@@ -238,11 +250,20 @@ TOOLS: dict[str, Tool] = {
             time_limit=240,
         ),
         Tool(
+            slug="pdf-unlock",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=UnlockPdfOptions,
+            run=pdf.unlock_pdf,
+            max_files=1,
+        ),
+        Tool(
             slug="archive-extract",
             category="archive",
             accepts=ARCHIVE_INPUTS,
             outputs=(),
-            options=NoOptions,
+            options=ExtractArchiveOptions,
             run=archives.extract,
             max_files=1,
             time_limit=300,

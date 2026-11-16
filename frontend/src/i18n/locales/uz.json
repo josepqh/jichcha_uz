@@ -126,6 +126,11 @@
       "name": "Matn muharriri",
       "title": "TXT va Markdown matnni tahrirlash",
       "description": "Matn yoki Markdown yozing, koʻrinishini koʻring va TXT, MD, HTML, PDF, DOCX yoki EPUB qilib saqlang."
+    },
+    "pdf-unlock": {
+      "name": "PDF parolini olib tashlash",
+      "title": "PDF'dan parolni olib tashlash",
+      "description": "Parolini biladigan PDF'ingizdan parolsiz nusxa oling, keyin uni birlashtiring, siqing yoki boʻling."
     }
   },
   "conversion": {
@@ -244,6 +249,10 @@
         "zip": "Hamma joyda ochiladi",
         "7z": "Kichikroq hajm"
       }
+    },
+    "password": {
+      "label": "Parol",
+      "hint": "Parol faqat shu fayl uchun ishlatiladi va hech qayerda saqlanmaydi."
     }
   },
   "upload": {
@@ -286,7 +295,8 @@
     "archive-convert": "{{target}} qilish",
     "ebook-convert": "{{target}} qilish",
     "image-edit": "Tayyorlash",
-    "text-convert": "Saqlash"
+    "text-convert": "Saqlash",
+    "pdf-unlock": "Parolni olib tashlash"
   },
   "status": {
     "uploading": "Yuklanmoqda… {{percent}}%",
@@ -331,12 +341,12 @@
     "required": "Bu maydonni toʻldiring.",
     "invalid_email": "Email manzilini toʻgʻri yozing, masalan ali@example.com.",
     "too_few_files": "Kamida {{min_files}} ta fayl tanlang.",
-    "pdf_encrypted": "PDF parol bilan himoyalangan. Avval himoyani olib tashlang yoki parolsiz nusxasini yuklang.",
+    "pdf_encrypted": "PDF parol bilan himoyalangan. Avval «PDF parolini olib tashlash» vositasidan foydalaning.",
     "too_many_pages": "Hujjatda sahifalar juda koʻp. Uni avval boʻlib, qismlarga ajrating.",
     "invalid_page_range": "Sahifalarni “1-3, 5, 8-10” koʻrinishida va hujjatdagi sahifalar soni doirasida yozing.",
     "reauth_required": "Akkauntni oʻchirishdan oldin Google orqali tasdiqlang.",
     "google_account_mismatch": "Bu boshqa Google akkaunti. Shu akkaunt email manzili bilan tasdiqlang.",
-    "archive_encrypted": "Arxiv parol bilan himoyalangan. Parolli arxivlarni hozircha ocha olmaymiz.",
+    "archive_encrypted": "Arxiv parol bilan himoyalangan. Parolni kiriting va qayta urinib koʻring.",
     "archive_too_large": "Arxiv ochilganda juda katta hajm chiqadi. Kichikroq arxiv yuklang.",
     "archive_too_many_files": "Arxivda fayllar juda koʻp. 1000 tagacha faylli arxivni yuklang.",
     "archive_empty": "Arxiv ichida fayl yoʻq.",
@@ -347,7 +357,8 @@
     "cannot_block_self": "Oʻzingizni bloklay olmaysiz.",
     "cannot_block_staff": "Xodim akkauntini bu yerda bloklab boʻlmaydi.",
     "permission_denied": "Bu sahifaga ruxsatingiz yoʻq.",
-    "invalid_crop": "Kesish maydoni suratdan tashqarida. Uni qayta tanlang."
+    "invalid_crop": "Kesish maydoni suratdan tashqarida. Uni qayta tanlang.",
+    "wrong_password": "Parol notoʻgʻri. Qayta tekshirib koʻring."
   },
   "notFound": {
     "title": "Sahifa topilmadi",
@@ -710,6 +721,6 @@
     "empty": "Avval matn yozing."
   },
   "next": {
-    "title": "{{name}} bilan yana nima qilish mumkin"
+    "title": "Bu fayl bilan yana nima qilish mumkin"
   }
 }

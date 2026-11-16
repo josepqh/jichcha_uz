@@ -73,7 +73,7 @@ function NextSteps({ task }: { task: Task }) {
   return (
     <section aria-labelledby="next-steps" className="space-y-2">
       <h3 id="next-steps" className="text-sm font-semibold">
-        {t("next.title", { name: output.name })}
+        {t("next.title")}
       </h3>
       <ul className="flex flex-wrap gap-2">
         {tools.map(({ tool }) => (

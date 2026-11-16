@@ -126,6 +126,11 @@
       "name": "Text editor",
       "title": "Edit TXT and Markdown",
       "description": "Write plain text or Markdown, see the result, and save it as TXT, MD, HTML, PDF, DOCX or EPUB."
+    },
+    "pdf-unlock": {
+      "name": "Unlock PDF",
+      "title": "Remove a PDF password",
+      "description": "Get a copy of your PDF without its password (you need to know it), then merge, compress or split it."
     }
   },
   "conversion": {
@@ -244,6 +249,10 @@
         "zip": "Opens anywhere",
         "7z": "Smaller size"
       }
+    },
+    "password": {
+      "label": "Password",
+      "hint": "Used for this file only and never stored."
     }
   },
   "upload": {
@@ -286,7 +295,8 @@
     "archive-convert": "Convert to {{target}}",
     "ebook-convert": "Convert to {{target}}",
     "image-edit": "Apply",
-    "text-convert": "Save"
+    "text-convert": "Save",
+    "pdf-unlock": "Remove password"
   },
   "status": {
     "uploading": "Uploading… {{percent}}%",
@@ -331,12 +341,12 @@
     "required": "Fill in this field.",
     "invalid_email": "Enter a valid email, for example ali@example.com.",
     "too_few_files": "Choose at least {{min_files}} files.",
-    "pdf_encrypted": "This PDF is password-protected. Remove the protection or upload a copy without a password.",
+    "pdf_encrypted": "This PDF is password-protected. Use “Unlock PDF” first.",
     "too_many_pages": "The document has too many pages. Split it into parts first.",
     "invalid_page_range": "Write pages like “1-3, 5, 8-10”, within the document's page count.",
     "reauth_required": "Confirm with Google before deleting your account.",
     "google_account_mismatch": "That's a different Google account. Confirm with this account's address.",
-    "archive_encrypted": "This archive is password-protected. We can't open those yet.",
+    "archive_encrypted": "This archive is password-protected. Enter the password and try again.",
     "archive_too_large": "This archive unpacks to too much data. Try a smaller archive.",
     "archive_too_many_files": "This archive has too many files. Upload one with up to 1000 files.",
     "archive_empty": "There are no files in this archive.",
@@ -347,7 +357,8 @@
     "cannot_block_self": "You can't block yourself.",
     "cannot_block_staff": "Staff accounts can't be blocked here.",
     "permission_denied": "You don't have access to this page.",
-    "invalid_crop": "The crop area is outside the photo. Choose it again."
+    "invalid_crop": "The crop area is outside the photo. Choose it again.",
+    "wrong_password": "That password is wrong. Check it and try again."
   },
   "notFound": {
     "title": "Page not found",
@@ -710,6 +721,6 @@
     "empty": "Write some text first."
   },
   "next": {
-    "title": "More you can do with {{name}}"
+    "title": "More you can do with this file"
   }
 }

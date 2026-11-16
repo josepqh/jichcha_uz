@@ -131,6 +131,10 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
       setError(t("errors.too_few_files", { min_files: tool.minFiles }));
       return false;
     }
+    if (tool.slug === "pdf-unlock" && !options.password) {
+      setFieldErrors({ password: t("errors.required") });
+      return false;
+    }
     if (tool.slug === "pdf-split" && options.mode === "ranges" && !RANGES.test(options.ranges ?? "")) {
       setFieldErrors({ ranges: t("errors.invalid_page_range") });
       return false;

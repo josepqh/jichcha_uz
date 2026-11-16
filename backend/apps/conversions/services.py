@@ -141,6 +141,16 @@ def _consume_daily_quota(requester: Requester, policy: LimitPolicy, nbytes: int)
         )
 
 
+# Options that must never be stored (database, admin, logs): they travel only in the Celery message.
+SECRET_OPTIONS = frozenset({"password"})
+
+
+def split_secrets(options: dict) -> tuple[dict, dict]:
+    stored = {k: v for k, v in options.items() if k not in SECRET_OPTIONS}
+    secrets = {k: v for k, v in options.items() if k in SECRET_OPTIONS and v}
+    return stored, secrets
+
+
 def _server_options(policy: LimitPolicy) -> dict:
     """Limits the processor needs that depend on the caller's role. Clients cannot set these:
     option serializers drop unknown keys, and these are added after validation."""
@@ -152,13 +162,14 @@ def create_task(
 ) -> Task:
     from .tasks import run_conversion  # avoid import cycle at module load
 
+    stored_options, secrets = split_secrets(options)
     with transaction.atomic():
         _consume_daily_quota(requester, policy, sum(v.upload.size for v in uploads))
         task = Task.objects.create(
             user=requester.user,
             guest_key=requester.guest_key,
             tool=tool.slug,
-            options={**options, **_server_options(policy)},
+            options={**stored_options, **_server_options(policy)},
             source=requester.source,
             input_meta=[{"format": item.detected.fmt, "size": item.upload.size} for item in uploads],
             expires_at=timezone.now() + timedelta(hours=policy.retention_hours),
@@ -178,6 +189,7 @@ def create_task(
         transaction.on_commit(
             lambda: run_conversion.apply_async(
                 args=[str(task.pk)],
+                kwargs={"secrets": secrets} if secrets else {},
                 queue=tool.queue,
                 soft_time_limit=tool.time_limit,
                 time_limit=tool.time_limit + 30,
@@ -283,8 +295,11 @@ def _delete_files(task: Task, role: str | None = None) -> None:
     qs.delete()  # post_delete signal removes stored objects
 
 
-def process_task(task_id: str, workdir: Path) -> None:
-    """Run the tool for one task. Inputs are deleted as soon as processing ends."""
+def process_task(task_id: str, workdir: Path, secrets: dict | None = None) -> None:
+    """Run the tool for one task. Inputs are deleted as soon as processing ends.
+
+    `secrets` (e.g. a PDF or archive password) come from the queue message, never from the database.
+    """
     claimed = Task.objects.filter(pk=task_id, status=Task.Status.QUEUED).update(status=Task.Status.PROCESSING)
     if not claimed:
         return  # already processed, failed or removed
@@ -297,7 +312,7 @@ def process_task(task_id: str, workdir: Path) -> None:
             raise ProcessingError("tool_unavailable")
         inputs = _materialize_inputs(task, tool, workdir)
         _scan_inputs(task, inputs)
-        outputs = tool.run(inputs, task.options, workdir)
+        outputs = tool.run(inputs, {**task.options, **(secrets or {})}, workdir)
         # Not atomic on purpose: rows of partially stored outputs stay visible to the cleanup below.
         _store_outputs(task, outputs, workdir)
     except ProcessingError as exc:

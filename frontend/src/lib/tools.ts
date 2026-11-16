@@ -13,6 +13,7 @@ import {
   NotebookPen,
   Images,
   LayoutGrid,
+  LockOpen,
   Repeat,
   Scissors,
 } from "lucide-react";
@@ -28,6 +29,7 @@ export type ToolSlug =
   | "pdf-organize"
   | "pdf-compress"
   | "pdf-to-images"
+  | "pdf-unlock"
   | "archive-extract"
   | "archive-create"
   | "archive-convert"
@@ -47,6 +49,8 @@ export interface OptionField {
   choices?: readonly string[];
   /** Only shown (and sent) when another option has this value. */
   showWhen?: { field: string; value: string };
+  /** A password: masked input, and the backend keeps it out of storage. */
+  secret?: boolean;
 }
 
 export interface ToolDef {
@@ -164,6 +168,19 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
     ],
     defaults: { format: "jpg", quality: "medium" },
   },
+  "pdf-unlock": {
+    slug: "pdf-unlock",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: LockOpen,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [{ name: "password", secret: true }],
+    defaults: { password: "" },
+  },
   "images-to-pdf": {
     slug: "images-to-pdf",
     category: "pdf",
@@ -220,8 +237,8 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
     minFiles: 1,
     maxFiles: 1,
     reorder: false,
-    fields: [],
-    defaults: {},
+    fields: [{ name: "password", secret: true }],
+    defaults: { password: "" },
   },
   "archive-create": {
     slug: "archive-create",
@@ -311,11 +328,12 @@ export function isFieldVisible(field: OptionField, values: OptionValues): boolea
   return !field.showWhen || values[field.showWhen.field] === field.showWhen.value;
 }
 
-/** Only visible fields are sent, under their API names. */
+/** Only visible fields are sent, under their API names. An empty optional password is left out. */
 export function toApiOptions(tool: ToolDef, values: OptionValues): Record<string, string> {
   const out: Record<string, string> = {};
   for (const field of tool.fields) {
     const value = values[field.name];
+    if (field.secret && !value) continue;
     if (value !== undefined && isFieldVisible(field, values)) out[API_NAMES[field.name] ?? field.name] = value;
   }
   return out;

@@ -50,7 +50,7 @@ function RadioGroup({ field, values, disabled, onChange }: Omit<Props, "fields" 
 }
 
 export function ToolOptions({ fields, values, disabled, errors = {}, onChange }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const visible = fields.filter((field) => isFieldVisible(field, values));
   if (visible.length === 0) return null;
   return (
@@ -62,14 +62,18 @@ export function ToolOptions({ fields, values, disabled, errors = {}, onChange }:
           <TextField
             key={field.name}
             label={t(`options.${field.name}.label`)}
-            hint={t(`options.${field.name}.hint`)}
-            placeholder={t(`options.${field.name}.placeholder`)}
+            // Optional texts: a missing key must not show up as "options.x.hint".
+            hint={i18n.exists(`options.${field.name}.hint`) ? t(`options.${field.name}.hint`) : undefined}
+            placeholder={
+              i18n.exists(`options.${field.name}.placeholder`) ? t(`options.${field.name}.placeholder`) : undefined
+            }
             name={field.name}
+            type={field.secret ? "password" : "text"}
             value={values[field.name] ?? ""}
             onChange={(e) => onChange(field.name, e.target.value)}
             disabled={disabled}
             error={errors[field.name]}
-            autoComplete="off"
+            autoComplete={field.secret ? "new-password" : "off"}
             inputMode="text"
             spellCheck={false}
           />

@@ -68,7 +68,7 @@ class TestDetection:
     @pytest.mark.parametrize(
         ("data", "name", "fmt"),
         [
-            ("# Sarlavha\n\nmatn".encode(), "eslatma.md", "md"),
+            (b"# Sarlavha\n\nmatn", "eslatma.md", "md"),
             ("oʻzbek matni".encode(), "a.markdown", "md"),
             (b"plain text", "notes.txt", "txt"),
             (b"\x00\x01binary", "notes.txt", None),  # not text, whatever the name says

@@ -47,10 +47,10 @@ def _decode(name: str | bytes | None) -> str:
     return name.decode("utf-8", "replace")
 
 
-def _map_error(exc: Exception) -> ProcessingError:
+def _map_error(exc: Exception, password: str = "") -> ProcessingError:
     text = str(exc).lower()
     if "encrypt" in text or "passphrase" in text or "password" in text:
-        return ProcessingError("archive_encrypted")
+        return ProcessingError("wrong_password" if password else "archive_encrypted")
     return ProcessingError("corrupt_file")
 
 
@@ -60,7 +60,9 @@ def _stream_name(src: InputFile) -> str:
     return stem if stem and stem != src.name else "file"
 
 
-def extract_archive(src: InputFile, outdir: Path, max_unpacked_mb: int | None = None) -> list[Extracted]:
+def extract_archive(
+    src: InputFile, outdir: Path, max_unpacked_mb: int | None = None, password: str = ""
+) -> list[Extracted]:
     max_entries = settings.ARCHIVE_MAX_ENTRIES
     max_bytes = min(max_unpacked_mb or settings.ARCHIVE_MAX_UNPACKED_MB, settings.ARCHIVE_MAX_UNPACKED_MB) * MB
     outdir.mkdir(parents=True, exist_ok=True)
@@ -70,7 +72,7 @@ def extract_archive(src: InputFile, outdir: Path, max_unpacked_mb: int | None = 
 
     def read(format_name: str) -> None:
         nonlocal total, seen
-        with libarchive.file_reader(str(src.path), format_name=format_name) as archive:
+        with libarchive.file_reader(str(src.path), format_name=format_name, passphrase=password or None) as archive:
             for entry in archive:
                 # Folders and links count too: millions of empty entries would keep a worker busy.
                 seen += 1
@@ -101,7 +103,7 @@ def extract_archive(src: InputFile, outdir: Path, max_unpacked_mb: int | None = 
                 raise
             read("raw")
     except libarchive.ArchiveError as exc:
-        raise _map_error(exc) from exc
+        raise _map_error(exc, password) from exc
     if not files:
         raise ProcessingError("archive_empty")
     return files
@@ -151,7 +153,7 @@ def _mime(fmt: str) -> str:
 
 def extract(inputs: list[InputFile], options: dict, workdir: Path) -> list[OutputFile]:
     [src] = inputs
-    files = extract_archive(src, workdir / "x", options.get("_max_unpacked_mb"))
+    files = extract_archive(src, workdir / "x", options.get("_max_unpacked_mb"), options.get("password", ""))
     # Extracted files are served as downloads only, so they never get a type the browser would render.
     return [OutputFile(path=f.path, name=f.name, mime=OCTET) for f in files]
 
@@ -169,7 +171,9 @@ def repack(inputs: list[InputFile], options: dict, workdir: Path) -> list[Output
     fmt = options.get("target", "zip")
     outputs = []
     for i, src in enumerate(inputs):
-        files = _dedupe(extract_archive(src, workdir / f"x{i}", options.get("_max_unpacked_mb")))
+        files = _dedupe(
+            extract_archive(src, workdir / f"x{i}", options.get("_max_unpacked_mb"), options.get("password", ""))
+        )
         dest = workdir / f"out-{i}.{fmt}"
         _write_archive(files, dest, fmt)
         outputs.append(OutputFile(path=dest, name=f"{_archive_stem(src.name)}.{fmt}", mime=_mime(fmt)))

@@ -7,4 +7,7 @@ def scrub_event(event: dict, _hint: object) -> dict:
     for key in ("cookies", "headers", "data", "query_string", "env"):
         request.pop(key, None)
     event.pop("user", None)
+    # The Celery integration attaches task args/kwargs here; a kwarg can be a file password.
+    event.pop("extra", None)
+    (event.get("contexts") or {}).pop("celery-job", None)
     return event
