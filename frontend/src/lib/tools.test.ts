@@ -15,7 +15,7 @@ describe("toApiOptions", () => {
 
 describe("translations", () => {
   it("cover every tool, option choice and group in all languages", async () => {
-    const { GROUPS } = await import("./tools");
+    const { FAMILIES } = await import("./catalog");
     for (const lang of ["uz", "ru", "en"]) {
       const dict = (await import(`../i18n/locales/${lang}.json`)).default;
       for (const tool of Object.values(TOOLS)) {
@@ -27,7 +27,7 @@ describe("translations", () => {
           }
         }
       }
-      for (const group of GROUPS) expect(dict.home.groups[group], `${lang} group ${group}`).toBeTruthy();
+      for (const family of FAMILIES) expect(dict.home.groups[family], `${lang} section ${family}`).toBeTruthy();
     }
   });
 });

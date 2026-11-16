@@ -41,11 +41,13 @@
       }
     },
     "groups": {
-      "pdf": "PDF vositalari",
-      "office": "Hujjatlar",
+      "pdf": "PDF",
+      "word": "Word",
+      "excel": "Excel",
+      "powerpoint": "PowerPoint",
       "image": "Suratlar",
-      "archive": "Arxivlar",
-      "ebook": "E-kitoblar"
+      "ebook": "E-kitoblar",
+      "archive": "Arxivlar"
     }
   },
   "tools": {
@@ -523,5 +525,10 @@
         }
       ]
     }
+  },
+  "catalog": {
+    "conversionName": "{{from}} → {{to}}",
+    "conversionDescription": "{{from}} faylni bepul {{to}} formatiga oʻtkazing.",
+    "jump": "Boʻlimlar"
   }
 }

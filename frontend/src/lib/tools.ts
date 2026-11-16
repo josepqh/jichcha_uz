@@ -32,8 +32,8 @@ export type ToolSlug =
 
 /** Colour family of the icon. */
 export type Category = "image" | "compress" | "pdf" | "office" | "archive" | "ebook";
-/** Section on the home page. */
-export type Group = "pdf" | "office" | "ebook" | "image" | "archive";
+/** File family: home page sections are built per family (see catalog.ts). */
+export type Family = "pdf" | "word" | "excel" | "powerpoint" | "image" | "ebook" | "archive";
 
 export type OptionValues = Record<string, string>;
 
@@ -48,7 +48,12 @@ export interface OptionField {
 export interface ToolDef {
   slug: ToolSlug;
   category: Category;
-  group: Group;
+  /** Format keys the tool accepts (empty when any file is accepted). Decides its home page section. */
+  inputs: readonly string[];
+  /** Section for a tool whose inputs span several families; it shows there as a tool card. */
+  home?: Family;
+  /** Main output of a multi-family tool: other families get an "X → output" card for it. */
+  primaryOutput?: string;
   icon: LucideIcon;
   /** File picker hint. The server detects the real format from file content. */
   accept: string;
@@ -76,6 +81,11 @@ const ARCHIVE_FORMATS = "ZIP, RAR, 7Z, TAR, GZ, BZ2, XZ";
 const EBOOK_ACCEPT = ".epub,.mobi,.azw3,.fb2,.pdf,.docx";
 const EBOOK_FORMATS = "EPUB, MOBI, AZW3, FB2, PDF, DOCX";
 export const EBOOK_TARGETS = ["epub", "mobi", "azw3", "pdf"] as const;
+export const IMAGE_INPUTS = ["png", "jpg", "webp", "heic", "avif", "gif", "bmp", "tiff"] as const;
+export const OFFICE_INPUTS = ["docx", "doc", "odt", "rtf", "xlsx", "xls", "ods", "csv", "pptx", "ppt", "odp"] as const;
+export const ARCHIVE_INPUTS = ["zip", "rar", "7z", "tar", "gz", "bz2", "xz"] as const;
+const ARCHIVE_TARGETS = ["zip", "7z"] as const;
+export const EBOOK_INPUTS = ["epub", "mobi", "azw3", "fb2", "pdf", "docx"] as const;
 
 export const CONVERT_TARGETS = ["jpg", "png", "webp", "avif", "gif", "bmp", "tiff"] as const;
 const LEVELS = ["strong", "medium", "light"] as const;
@@ -84,7 +94,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "pdf-merge": {
     slug: "pdf-merge",
     category: "pdf",
-    group: "pdf",
+    inputs: ["pdf"],
     icon: Combine,
     accept: PDF_ACCEPT,
     formats: "PDF",
@@ -97,7 +107,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "pdf-split": {
     slug: "pdf-split",
     category: "pdf",
-    group: "pdf",
+    inputs: ["pdf"],
     icon: Scissors,
     accept: PDF_ACCEPT,
     formats: "PDF",
@@ -110,7 +120,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "pdf-organize": {
     slug: "pdf-organize",
     category: "pdf",
-    group: "pdf",
+    inputs: ["pdf"],
     icon: LayoutGrid,
     accept: PDF_ACCEPT,
     formats: "PDF",
@@ -124,7 +134,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "pdf-compress": {
     slug: "pdf-compress",
     category: "compress",
-    group: "pdf",
+    inputs: ["pdf"],
     icon: FileDown,
     accept: PDF_ACCEPT,
     formats: "PDF",
@@ -137,7 +147,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "pdf-to-images": {
     slug: "pdf-to-images",
     category: "pdf",
-    group: "pdf",
+    inputs: ["pdf"],
     icon: Images,
     accept: PDF_ACCEPT,
     formats: "PDF",
@@ -153,7 +163,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "images-to-pdf": {
     slug: "images-to-pdf",
     category: "pdf",
-    group: "pdf",
+    inputs: IMAGE_INPUTS,
     icon: FileStack,
     accept: IMAGE_ACCEPT,
     formats: IMAGE_FORMATS,
@@ -170,7 +180,8 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "office-to-pdf": {
     slug: "office-to-pdf",
     category: "office",
-    group: "office",
+    inputs: OFFICE_INPUTS,
+    primaryOutput: "pdf",
     icon: FileText,
     accept: OFFICE_ACCEPT,
     formats: OFFICE_FORMATS,
@@ -183,7 +194,9 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "ebook-convert": {
     slug: "ebook-convert",
     category: "ebook",
-    group: "ebook",
+    inputs: EBOOK_INPUTS,
+    home: "ebook",
+    primaryOutput: "epub",
     icon: BookOpen,
     accept: EBOOK_ACCEPT,
     formats: EBOOK_FORMATS,
@@ -196,7 +209,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "archive-extract": {
     slug: "archive-extract",
     category: "archive",
-    group: "archive",
+    inputs: ARCHIVE_INPUTS,
     icon: FolderOpen,
     accept: ARCHIVE_ACCEPT,
     formats: ARCHIVE_FORMATS,
@@ -209,7 +222,8 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "archive-create": {
     slug: "archive-create",
     category: "archive",
-    group: "archive",
+    inputs: [],
+    home: "archive",
     icon: FolderArchive,
     accept: "",
     formats: "",
@@ -221,7 +235,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "archive-convert": {
     slug: "archive-convert",
     category: "archive",
-    group: "archive",
+    inputs: ARCHIVE_INPUTS,
     icon: FileArchive,
     accept: ARCHIVE_ACCEPT,
     formats: ARCHIVE_FORMATS,
@@ -234,7 +248,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "image-convert": {
     slug: "image-convert",
     category: "image",
-    group: "image",
+    inputs: IMAGE_INPUTS,
     icon: Repeat,
     accept: IMAGE_ACCEPT,
     formats: IMAGE_FORMATS,
@@ -246,7 +260,7 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
   "image-compress": {
     slug: "image-compress",
     category: "compress",
-    group: "image",
+    inputs: IMAGE_INPUTS,
     icon: ImageDown,
     accept: IMAGE_ACCEPT,
     formats: IMAGE_FORMATS,
@@ -258,7 +272,6 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
 };
 
 export const TOOL_LIST: ToolDef[] = Object.values(TOOLS);
-export const GROUPS: Group[] = ["pdf", "office", "ebook", "image", "archive"];
 
 /** UI option names that differ from the API's (same API name, different choices and labels). */
 const API_NAMES: Record<string, string> = { pdfLevel: "level", archiveFormat: "format" };
@@ -281,11 +294,6 @@ export function isToolSlug(value: string | undefined): value is ToolSlug {
   return value !== undefined && value in TOOLS;
 }
 
-const IMAGE_INPUTS = ["png", "jpg", "webp", "heic", "avif", "gif", "bmp", "tiff"] as const;
-const OFFICE_INPUTS = ["docx", "doc", "odt", "rtf", "xlsx", "xls", "ods", "csv", "pptx", "ppt", "odp"] as const;
-const ARCHIVE_INPUTS = ["zip", "rar", "7z", "tar", "gz", "bz2", "xz"] as const;
-const ARCHIVE_TARGETS = ["zip", "7z"] as const;
-const EBOOK_INPUTS = ["epub", "mobi", "azw3", "fb2", "pdf", "docx"] as const;
 
 export interface Conversion {
   pair: string;

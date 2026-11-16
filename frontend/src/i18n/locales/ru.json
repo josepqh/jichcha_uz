@@ -41,11 +41,13 @@
       }
     },
     "groups": {
-      "pdf": "Инструменты PDF",
-      "office": "Документы",
+      "pdf": "PDF",
+      "word": "Word",
+      "excel": "Excel",
+      "powerpoint": "PowerPoint",
       "image": "Фото",
-      "archive": "Архивы",
-      "ebook": "Электронные книги"
+      "ebook": "Электронные книги",
+      "archive": "Архивы"
     }
   },
   "tools": {
@@ -525,5 +527,10 @@
         }
       ]
     }
+  },
+  "catalog": {
+    "conversionName": "{{from}} → {{to}}",
+    "conversionDescription": "Бесплатно конвертируйте файл {{from}} в {{to}}.",
+    "jump": "Разделы"
   }
 }

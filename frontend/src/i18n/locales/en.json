@@ -41,11 +41,13 @@
       }
     },
     "groups": {
-      "pdf": "PDF tools",
-      "office": "Documents",
+      "pdf": "PDF",
+      "word": "Word",
+      "excel": "Excel",
+      "powerpoint": "PowerPoint",
       "image": "Photos",
-      "archive": "Archives",
-      "ebook": "E-books"
+      "ebook": "E-books",
+      "archive": "Archives"
     }
   },
   "tools": {
@@ -523,5 +525,10 @@
         }
       ]
     }
+  },
+  "catalog": {
+    "conversionName": "{{from}} to {{to}}",
+    "conversionDescription": "Convert a {{from}} file to {{to}} for free.",
+    "jump": "Sections"
   }
 }

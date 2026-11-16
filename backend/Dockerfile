@@ -23,6 +23,13 @@ ENV PATH="/opt/venv/bin:$PATH" \
     TMPDIR=/data/work \
     LANG=C.UTF-8
 
+# Optional faster Debian mirror for slow networks (e.g. DEBIAN_MIRROR=http://mirror.yandex.ru/debian).
+# Security updates always come from Debian's own security archive.
+ARG DEBIAN_MIRROR=""
+RUN if [ -n "$DEBIAN_MIRROR" ]; then \
+        sed -i "s|URIs: http://deb.debian.org/debian$|URIs: ${DEBIAN_MIRROR}|" /etc/apt/sources.list.d/debian.sources; \
+    fi
+
 # libarchive: archive tools (zip, rar, 7z, tar...) through libarchive-c.
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
