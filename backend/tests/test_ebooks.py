@@ -120,3 +120,37 @@ def test_books_cannot_pull_in_server_files(tmp_path, calibre, attack, target):
     fmt, data = _attacks(tmp_path)[attack]
     out = convert(tmp_path, f"evil.{fmt}", data, fmt, target)
     assert "canary-7f3a9c" not in text_of(out)
+
+
+@needs_calibre
+class TestText:
+    def test_markdown_to_pdf(self, tmp_path, calibre):
+        md = "# Hisobot\n\nBu **muhim** matn: gʻoʻza.\n\n- birinchi\n- ikkinchi\n".encode()
+        src = tmp_path / "src-hisobot.md"
+        src.write_bytes(md)
+        [out] = ebooks.text_convert([InputFile(src, "hisobot.md", "md")], {"target": "pdf"}, tmp_path)
+        assert out.name == "hisobot.pdf"
+        assert "Bu muhim matn: gʻoʻza." in text_of(out.path)
+
+    def test_text_to_docx(self, tmp_path, calibre):
+        src = tmp_path / "src-eslatma.txt"
+        src.write_text("Salom, dunyo!\n\nIkkinchi xatboshi.", encoding="utf-8")
+        [out] = ebooks.text_convert([InputFile(src, "eslatma.txt", "txt")], {"target": "docx"}, tmp_path)
+        assert out.name == "eslatma.docx"
+        assert "Salom, dunyo!" in text_of(out.path)
+
+    @pytest.mark.parametrize("target", ["pdf", "docx", "epub"])
+    def test_markdown_cannot_pull_in_server_files(self, tmp_path, calibre, target):
+        secret = tmp_path / "secret.txt"
+        secret.write_text(SECRET)
+        escape = "../" * 12 + os.path.relpath(secret, "/")
+        md = (
+            f"# Doc\n\n![x]({secret.as_uri()})\n\n![y]({escape})\n\n"
+            f'<iframe src="{secret.as_uri()}"></iframe>\n<object data="{secret.as_uri()}"></object>\n'
+            f"<script>var r=new XMLHttpRequest();r.open('GET','{secret.as_uri()}',false);r.send();"
+            "document.body.appendChild(document.createTextNode(r.responseText));</script>\n"
+        )
+        src = tmp_path / "src-evil.md"
+        src.write_text(md, encoding="utf-8")
+        [out] = ebooks.text_convert([InputFile(src, "evil.md", "md")], {"target": target}, tmp_path)
+        assert "canary-7f3a9c" not in text_of(out.path)

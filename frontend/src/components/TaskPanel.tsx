@@ -1,8 +1,11 @@
 import { CircleCheck, CircleExclamationPoint, Download, FileArchive, LoaderCircle, RotateCcw, Trash } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
-import { useDeleteTask, useTask } from "@/hooks/useApi";
+import { useDeleteTask, useDisabledTools, useTask } from "@/hooks/useApi";
+import { useLang } from "@/hooks/useLang";
+import { buildCatalog, familyOf } from "@/lib/catalog";
 import type { Task } from "@/lib/api";
 import { errorMessage, taskErrorMessage } from "@/lib/errors";
 import { formatBytes, formatTime, savedPercent } from "@/lib/format";
@@ -50,6 +53,44 @@ function Savings({ task, inputBytes }: { task: Task; inputBytes: number }) {
     after: formatBytes(outputBytes, i18n.language),
   };
   return <p className="tabular-nums">{percent > 0 ? t("status.saved", params) : t("status.notSaved", params)}</p>;
+}
+
+const CATALOG = buildCatalog();
+
+/** Tools that take the result as input ("PDF made -> compress it"). One result only. */
+function NextSteps({ task }: { task: Task }) {
+  const { t } = useTranslation();
+  const lang = useLang();
+  const disabled = useDisabledTools();
+  const [output] = task.outputs;
+  if (task.outputs.length !== 1 || !output?.download_url) return null;
+  const ext = output.name.split(".").pop()?.toLowerCase() ?? "";
+  const family = familyOf(ext === "jpeg" ? "jpg" : ext);
+  const tools = (CATALOG.find((s) => s.family === family)?.entries ?? [])
+    .filter((e) => e.kind === "tool" && e.tool.slug !== task.tool && !disabled.has(e.tool.slug))
+    .slice(0, 4);
+  if (!tools.length) return null;
+  return (
+    <section aria-labelledby="next-steps" className="space-y-2">
+      <h3 id="next-steps" className="text-sm font-semibold">
+        {t("next.title", { name: output.name })}
+      </h3>
+      <ul className="flex flex-wrap gap-2">
+        {tools.map(({ tool }) => (
+          <li key={tool.slug}>
+            <Link
+              to={`/${lang}/tools/${tool.slug}`}
+              state={{ from: { url: output.download_url, name: output.name } }}
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border-strong bg-surface px-4 text-sm font-semibold transition-colors duration-150 hover:bg-surface-muted"
+            >
+              <tool.icon className="size-4" aria-hidden="true" />
+              {t(`tools.${tool.slug}.name`)}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
 
 /** An extracted archive can hold up to 1000 files; the rest stay one click away. */
@@ -115,6 +156,8 @@ function Done({ task, inputBytes, onReset }: { task: Task; inputBytes: number; o
           {t("status.showAll", { count: task.outputs.length })}
         </button>
       ) : null}
+
+      <NextSteps task={task} />
 
       <p className="text-sm text-muted">{t("status.expires", { time: formatTime(task.expires_at, i18n.language) })}</p>
       {del.isError ? (

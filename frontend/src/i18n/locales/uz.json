@@ -47,7 +47,8 @@
       "powerpoint": "PowerPoint",
       "image": "Suratlar",
       "ebook": "E-kitoblar",
-      "archive": "Arxivlar"
+      "archive": "Arxivlar",
+      "text": "Matn"
     }
   },
   "tools": {
@@ -120,6 +121,11 @@
       "name": "Suratni tahrirlash",
       "title": "Suratni kesish, burish va oʻlchamini oʻzgartirish",
       "description": "Suratni kesing (1:1, 4:5, 16:9, 3×4 hujjat surati), buring, oynadagidek aks ettiring va oʻlchamini oʻzgartiring."
+    },
+    "text-convert": {
+      "name": "Matn muharriri",
+      "title": "TXT va Markdown matnni tahrirlash",
+      "description": "Matn yoki Markdown yozing, koʻrinishini koʻring va TXT, MD, HTML, PDF, DOCX yoki EPUB qilib saqlang."
     }
   },
   "conversion": {
@@ -279,7 +285,8 @@
     "archive-create": "{{target}} yaratish",
     "archive-convert": "{{target}} qilish",
     "ebook-convert": "{{target}} qilish",
-    "image-edit": "Tayyorlash"
+    "image-edit": "Tayyorlash",
+    "text-convert": "Saqlash"
   },
   "status": {
     "uploading": "Yuklanmoqda… {{percent}}%",
@@ -679,5 +686,30 @@
     "format": "Format",
     "keepFormat": "Asl formatda",
     "needSize": "Kenglik yoki balandlikni kiriting."
+  },
+  "text": {
+    "editor": "Matn muharriri",
+    "open": "Fayl ochish",
+    "name": "Fayl nomi",
+    "mode": "Matn turi",
+    "modes": {
+      "markdown": "Markdown",
+      "plain": "Oddiy matn"
+    },
+    "views": {
+      "edit": "Tahrirlash",
+      "preview": "Koʻrinish"
+    },
+    "textLabel": "Matn",
+    "placeholder": "# Sarlavha\n\nMatnni shu yerga yozing yoki fayl oching.",
+    "stats": "{{words}} soʻz, {{chars}} belgi",
+    "draftNote": "Qoralama faqat shu brauzerda saqlanadi",
+    "save": "Saqlash",
+    "saveNote": "TXT, MD va HTML brauzerning oʻzida tayyorlanadi. PDF, DOCX va EPUB uchun matn serverga yuboriladi va ishlovdan keyin oʻchiriladi.",
+    "tooBig": "Fayl juda katta: muharrir 5 MB gacha matnni ochadi.",
+    "empty": "Avval matn yozing."
+  },
+  "next": {
+    "title": "{{name}} bilan yana nima qilish mumkin"
   }
 }

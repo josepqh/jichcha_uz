@@ -49,6 +49,8 @@ def test_every_family_has_a_web_fallback():
         ("IMG_1234.HEIC", "", "image"),
         ("photo", "image/jpeg", "image"),
         ("kitob.fb2", "", "ebook"),
+        ("eslatma.md", "", "text"),
+        ("notes.txt", "text/plain", "text"),
         ("arxiv.tar.gz", "", "archive"),
         ("noext", "application/pdf", "pdf"),
         ("dastur.exe", "application/x-msdownload", None),

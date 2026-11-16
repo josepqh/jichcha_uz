@@ -65,6 +65,20 @@ class TestDetection:
         detected = detect_file(io.BytesIO(data), "renamed.bin")
         assert detected is not None and detected.fmt == fmt
 
+    @pytest.mark.parametrize(
+        ("data", "name", "fmt"),
+        [
+            ("# Sarlavha\n\nmatn".encode(), "eslatma.md", "md"),
+            ("oʻzbek matni".encode(), "a.markdown", "md"),
+            (b"plain text", "notes.txt", "txt"),
+            (b"\x00\x01binary", "notes.txt", None),  # not text, whatever the name says
+            (b"plain text", "notes.bin", None),  # text needs a text name
+        ],
+    )
+    def test_text_files_by_name_and_content(self, data, name, fmt):
+        detected = detect_file(io.BytesIO(data), name)
+        assert (detected.fmt if detected else None) == fmt
+
     def test_mobi_and_azw3_share_a_container(self):
         mobi = b"\x00" * 60 + b"BOOKMOBI" + b"\x00" * 100
         assert detect_file(io.BytesIO(mobi), "a.mobi").fmt == "mobi"

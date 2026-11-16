@@ -15,6 +15,8 @@ from .formats import (
     IMAGE_OUTPUTS,
     OFFICE_INPUTS,
     PDF_INPUTS,
+    TEXT_INPUTS,
+    TEXT_OUTPUTS,
 )
 from .processors import archives, ebooks, images, office, pdf
 from .processors.base import InputFile, OutputFile
@@ -110,6 +112,10 @@ class CreateArchiveOptions(serializers.Serializer):
 
 class RepackArchiveOptions(serializers.Serializer):
     target = serializers.ChoiceField(choices=["zip", "7z"], default="zip")
+
+
+class TextOptions(serializers.Serializer):
+    target = serializers.ChoiceField(choices=TEXT_OUTPUTS, default="pdf")
 
 
 class EbookOptions(serializers.Serializer):
@@ -269,6 +275,17 @@ TOOLS: dict[str, Tool] = {
             outputs=EBOOK_OUTPUTS,
             options=EbookOptions,
             run=ebooks.ebook_convert,
+            max_files=5,
+            queue="ebook",
+            time_limit=300,
+        ),
+        Tool(
+            slug="text-convert",
+            category="text",
+            accepts=TEXT_INPUTS,
+            outputs=TEXT_OUTPUTS,
+            options=TextOptions,
+            run=ebooks.text_convert,
             max_files=5,
             queue="ebook",
             time_limit=300,

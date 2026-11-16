@@ -9,7 +9,7 @@
  * So the PDF section holds only work on PDF files, the Word section only work on Word files, etc.
  */
 import type { LucideIcon } from "lucide-react";
-import { BookOpen, FileArchive, FileImage, FileSpreadsheet, FileText, Presentation } from "lucide-react";
+import { BookOpen, FileArchive, FileImage, FileSpreadsheet, FileText, NotebookPen, Presentation } from "lucide-react";
 
 import {
   ARCHIVE_INPUTS,
@@ -21,13 +21,14 @@ import {
   type ToolDef,
 } from "./tools";
 
-export const FAMILIES: readonly Family[] = ["pdf", "word", "excel", "powerpoint", "image", "ebook", "archive"];
+export const FAMILIES: readonly Family[] = ["pdf", "word", "excel", "powerpoint", "text", "image", "ebook", "archive"];
 
 export const FAMILY_FORMATS: Record<Family, readonly string[]> = {
   pdf: ["pdf"],
   word: ["docx", "doc", "odt", "rtf"],
   excel: ["xlsx", "xls", "ods", "csv"],
   powerpoint: ["pptx", "ppt", "odp"],
+  text: ["txt", "md"],
   image: IMAGE_INPUTS,
   ebook: ["epub", "mobi", "azw3", "fb2"],
   archive: ARCHIVE_INPUTS,
@@ -39,6 +40,7 @@ const REPRESENTATIVE: Record<Family, string> = {
   word: "docx",
   excel: "xlsx",
   powerpoint: "pptx",
+  text: "md",
   image: "jpg",
   ebook: "epub",
   archive: "rar",
@@ -49,6 +51,7 @@ export const FAMILY_ICON: Record<Family, LucideIcon> = {
   word: FileText,
   excel: FileSpreadsheet,
   powerpoint: Presentation,
+  text: NotebookPen,
   image: FileImage,
   ebook: BookOpen,
   archive: FileArchive,

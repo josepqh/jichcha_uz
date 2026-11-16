@@ -12,6 +12,7 @@ FAMILY_FORMATS: dict[str, tuple[str, ...]] = {
     "word": ("docx", "doc", "odt", "rtf"),
     "excel": ("xlsx", "xls", "ods", "csv"),
     "powerpoint": ("pptx", "ppt", "odp"),
+    "text": ("txt", "md", "markdown"),
     "image": ("png", "jpg", "jpeg", "webp", "heic", "heif", "avif", "gif", "bmp", "tif", "tiff"),
     "ebook": ("epub", "mobi", "azw3", "fb2"),
     "archive": ("zip", "rar", "7z", "tar", "gz", "tgz", "bz2", "tbz2", "xz", "txz"),
@@ -24,6 +25,7 @@ WEB_TOOL = {
     "word": "convert/docx-to-pdf",
     "excel": "convert/xlsx-to-pdf",
     "powerpoint": "convert/pptx-to-pdf",
+    "text": "tools/text-convert",
     "image": "tools/image-compress",
     "ebook": "tools/ebook-convert",
     "archive": "tools/archive-extract",
@@ -57,6 +59,11 @@ ACTIONS: dict[str, tuple[Action, ...]] = {
     ),
     "excel": (Action("pdf", "office-to-pdf"),),
     "powerpoint": (Action("pdf", "office-to-pdf"),),
+    "text": (
+        Action("pdf", "text-convert", {"target": "pdf"}),
+        Action("docx", "text-convert", {"target": "docx"}),
+        Action("epub", "text-convert", {"target": "epub"}),
+    ),
     "ebook": (
         Action("epub", "ebook-convert", {"target": "epub"}),
         Action("pdf", "ebook-convert", {"target": "pdf"}),
@@ -108,6 +115,7 @@ ALBUM_ACTIONS: dict[str, tuple[Action, ...]] = {
     "word": (Action("pdf", "office-to-pdf"),),
     "excel": (Action("pdf", "office-to-pdf"),),
     "powerpoint": (Action("pdf", "office-to-pdf"),),
+    "text": (Action("pdf", "text-convert", {"target": "pdf"}),),
     "ebook": (
         Action("epub", "ebook-convert", {"target": "epub"}),
         Action("pdf", "ebook-convert", {"target": "pdf"}),

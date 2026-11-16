@@ -8,6 +8,7 @@ import { FileList, type PickedFile } from "@/components/FileList";
 import { editOptions, ImageEditor, initialEdit, type EditState } from "@/components/ImageEditor";
 import type { PageItem } from "@/components/PdfOrganizer";
 import { TaskPanel } from "@/components/TaskPanel";
+import { TextWorkspace } from "@/components/TextEditor";
 import { ToolOptions } from "@/components/ToolOptions";
 import { useDisabledTools, useUsage } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
@@ -47,6 +48,19 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
   const itemsRef = useRef(items);
   itemsRef.current = items;
   const abortRef = useRef<AbortController | null>(null);
+
+  // Arrived from a previous result ("next step"): fetch that file and start with it, no re-upload by hand.
+  const handedOver = (useLocation().state as { from?: { url: string; name: string } } | null)?.from;
+  const tookOver = useRef(false);
+  useEffect(() => {
+    if (!handedOver || tookOver.current) return;
+    tookOver.current = true;
+    void fetch(handedOver.url, { credentials: "same-origin" })
+      .then((res) => (res.ok ? res.blob() : Promise.reject(new Error(String(res.status)))))
+      .then((blob) => addFiles([new File([blob], handedOver.name, { type: blob.type })]))
+      .catch(() => setError(t("errors.file_expired")));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- once per arrival
+  }, [handedOver]);
 
   useEffect(
     () => () => {
@@ -199,6 +213,8 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
         <p role="status" className="rounded-lg border border-border-strong px-4 py-3">
           {t("errors.tool_disabled")}
         </p>
+      ) : tool.editor === "text" ? (
+        <TextWorkspace />
       ) : working ? (
         <TaskPanel taskId={taskId} uploadProgress={uploadProgress} inputBytes={inputBytes} onReset={reset} />
       ) : (

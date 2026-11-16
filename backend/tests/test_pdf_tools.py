@@ -40,7 +40,7 @@ class TestDetection:
         [
             (b"PK\x03\x04garbage", "a.docx"),
             (b"MZ\x90\x00", "setup.pdf"),
-            (b"a,b\n", "notes.txt"),
+            (b"a,b\n", "notes.log"),
             (b"\x00\x01", "a.csv"),
         ],
     )

@@ -47,7 +47,8 @@
       "powerpoint": "PowerPoint",
       "image": "Photos",
       "ebook": "E-books",
-      "archive": "Archives"
+      "archive": "Archives",
+      "text": "Text"
     }
   },
   "tools": {
@@ -120,6 +121,11 @@
       "name": "Edit photo",
       "title": "Crop, rotate and resize a photo",
       "description": "Crop a photo (1:1, 4:5, 16:9, 3×4 ID photo), rotate or mirror it, and change its size."
+    },
+    "text-convert": {
+      "name": "Text editor",
+      "title": "Edit TXT and Markdown",
+      "description": "Write plain text or Markdown, see the result, and save it as TXT, MD, HTML, PDF, DOCX or EPUB."
     }
   },
   "conversion": {
@@ -279,7 +285,8 @@
     "archive-create": "Create {{target}}",
     "archive-convert": "Convert to {{target}}",
     "ebook-convert": "Convert to {{target}}",
-    "image-edit": "Apply"
+    "image-edit": "Apply",
+    "text-convert": "Save"
   },
   "status": {
     "uploading": "Uploading… {{percent}}%",
@@ -679,5 +686,30 @@
     "format": "Format",
     "keepFormat": "Same as original",
     "needSize": "Enter a width or a height."
+  },
+  "text": {
+    "editor": "Text editor",
+    "open": "Open a file",
+    "name": "File name",
+    "mode": "Text type",
+    "modes": {
+      "markdown": "Markdown",
+      "plain": "Plain text"
+    },
+    "views": {
+      "edit": "Edit",
+      "preview": "Preview"
+    },
+    "textLabel": "Text",
+    "placeholder": "# Heading\n\nWrite here or open a file.",
+    "stats": "{{words}} words, {{chars}} characters",
+    "draftNote": "the draft is kept in this browser only",
+    "save": "Save as",
+    "saveNote": "TXT, MD and HTML are made right in your browser. For PDF, DOCX and EPUB the text goes to the server and is deleted after processing.",
+    "tooBig": "This file is too big: the editor opens text up to 5 MB.",
+    "empty": "Write some text first."
+  },
+  "next": {
+    "title": "More you can do with {{name}}"
   }
 }

@@ -38,28 +38,41 @@ def _env(workdir: Path) -> dict[str, str]:
     }
 
 
+def _convert(src: InputFile, index: int, target: str, extra: list[str], workdir: Path, env: dict) -> OutputFile:
+    binary = _binary()
+    # Calibre picks its reader from the extension, so give it the detected one.
+    typed = workdir / f"book-{index}.{DOC_FORMATS[src.fmt][1]}"
+    shutil.copyfile(src.path, typed)
+    result = workdir / f"book-{index}-out.{target}"
+    argv = [binary, str(typed), str(result), *extra]
+    if target == "pdf":
+        argv += ["--paper-size", "a4", "--pdf-page-numbers"]
+    try:
+        proc = subprocess.run(  # noqa: S603 - argv is fully controlled
+            argv, env=env, cwd=workdir, capture_output=True, timeout=settings.EBOOK_TIMEOUT, check=False
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise ProcessingError("timeout") from exc
+    if b"DRMError" in proc.stderr or b"DRMError" in proc.stdout:
+        raise ProcessingError("ebook_drm")
+    if proc.returncode != 0 or not result.exists() or result.stat().st_size == 0:
+        raise ProcessingError("corrupt_file")
+    return OutputFile(path=result, name=f"{stem_of(src.name)}.{target}", mime=DOC_FORMATS[target][0])
+
+
 def ebook_convert(inputs: list[InputFile], options: dict, workdir: Path) -> list[OutputFile]:
     target = options.get("target", "epub")
-    binary = _binary()
+    env = _env(workdir)
+    return [_convert(src, i, target, [], workdir, env) for i, src in enumerate(inputs)]
+
+
+def text_convert(inputs: list[InputFile], options: dict, workdir: Path) -> list[OutputFile]:
+    """TXT / Markdown -> PDF, DOCX or EPUB (the text editor's server-side exports)."""
+    target = options.get("target", "pdf")
     env = _env(workdir)
     outputs = []
     for i, src in enumerate(inputs):
-        # Calibre picks its reader from the extension, so give it the detected one.
-        typed = workdir / f"book-{i}.{DOC_FORMATS[src.fmt][1]}"
-        shutil.copyfile(src.path, typed)
-        result = workdir / f"book-{i}-out.{target}"
-        argv = [binary, str(typed), str(result)]
-        if target == "pdf":
-            argv += ["--paper-size", "a4", "--pdf-page-numbers"]
-        try:
-            proc = subprocess.run(  # noqa: S603 - argv is fully controlled
-                argv, env=env, cwd=workdir, capture_output=True, timeout=settings.EBOOK_TIMEOUT, check=False
-            )
-        except subprocess.TimeoutExpired as exc:
-            raise ProcessingError("timeout") from exc
-        if b"DRMError" in proc.stderr or b"DRMError" in proc.stdout:
-            raise ProcessingError("ebook_drm")
-        if proc.returncode != 0 or not result.exists() or result.stat().st_size == 0:
-            raise ProcessingError("corrupt_file")
-        outputs.append(OutputFile(path=result, name=f"{stem_of(src.name)}.{target}", mime=DOC_FORMATS[target][0]))
+        formatting = "markdown" if src.fmt == "md" else "plain"
+        extra = ["--formatting-type", formatting, "--input-encoding", "utf-8"]
+        outputs.append(_convert(src, i, target, extra, workdir, env))
     return outputs

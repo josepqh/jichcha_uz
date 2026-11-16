@@ -259,6 +259,8 @@ class TestUsageAndTools:
             "archive-create",
             "archive-convert",
             "ebook-convert",
+            "image-edit",
+            "text-convert",
         }
 
     def test_usage_counts_today(self, api_client, png_upload):
@@ -369,7 +371,8 @@ class TestTaskCreateThrottle:
 
 
 class TestHealth:
-    def test_ok(self, db, api_client):
+    def test_ok(self, db, api_client, settings):
+        settings.HEALTH_MIN_FREE_MB = 0  # don't depend on the test machine's disk
         resp = api_client.get("/api/v1/health/")
         assert resp.status_code == 200
         assert resp.data == {"status": "ok", "checks": {"database": True, "cache": True, "disk": True}}

@@ -10,6 +10,7 @@ import {
   FolderOpen,
   ImageDown,
   Crop,
+  NotebookPen,
   Images,
   LayoutGrid,
   Repeat,
@@ -30,12 +31,13 @@ export type ToolSlug =
   | "archive-extract"
   | "archive-create"
   | "archive-convert"
-  | "ebook-convert";
+  | "ebook-convert"
+  | "text-convert";
 
 /** Colour family of the icon. */
-export type Category = "image" | "compress" | "pdf" | "office" | "archive" | "ebook";
+export type Category = "image" | "compress" | "pdf" | "office" | "archive" | "ebook" | "text";
 /** File family: home page sections are built per family (see catalog.ts). */
-export type Family = "pdf" | "word" | "excel" | "powerpoint" | "image" | "ebook" | "archive";
+export type Family = "pdf" | "word" | "excel" | "powerpoint" | "image" | "ebook" | "archive" | "text";
 
 export type OptionValues = Record<string, string>;
 
@@ -67,7 +69,7 @@ export interface ToolDef {
   /** Page order matters for this tool: show move up/down controls. */
   reorder: boolean;
   /** Custom editor next to the file list: PDF page organizer, image crop/rotate/resize. */
-  editor?: "organize" | "image";
+  editor?: "organize" | "image" | "text";
   fields: readonly OptionField[];
   defaults: OptionValues;
 }
@@ -247,6 +249,20 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
     fields: [{ name: "target", choices: ["zip", "7z"] }],
     defaults: { target: "zip" },
   },
+  "text-convert": {
+    slug: "text-convert",
+    category: "text",
+    inputs: ["txt", "md"],
+    icon: NotebookPen,
+    accept: ".txt,.md,.markdown",
+    formats: "TXT, MD",
+    minFiles: 1,
+    maxFiles: 5,
+    reorder: false,
+    editor: "text",
+    fields: [],
+    defaults: {},
+  },
   "image-convert": {
     slug: "image-convert",
     category: "image",
@@ -370,4 +386,5 @@ export const CATEGORY_COLOR: Record<Category, string> = {
   office: "text-cat-office",
   archive: "text-cat-archive",
   ebook: "text-cat-ebook",
+  text: "text-cat-office",
 };

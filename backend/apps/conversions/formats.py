@@ -117,11 +117,17 @@ EBOOK_FORMATS: dict[str, tuple[str, str]] = {
 # Any other file, accepted only by tools that never parse content (packing into an archive).
 DOC_FORMATS["bin"] = ("application/octet-stream", "bin")
 DOC_FORMATS.update(ARCHIVE_FORMATS)
+DOC_FORMATS["txt"] = ("text/plain", "txt")
+DOC_FORMATS["md"] = ("text/markdown", "md")
 DOC_FORMATS.update(EBOOK_FORMATS)
 ARCHIVE_INPUTS = frozenset(ARCHIVE_FORMATS)
 # Calibre reads these; PDF and DOCX are also accepted for "make an e-book".
 EBOOK_INPUTS = frozenset({*EBOOK_FORMATS, "pdf", "docx"})
 EBOOK_OUTPUTS = ("epub", "mobi", "azw3", "pdf")
+# Plain text and Markdown, for the text editor's server-side exports. Text has no magic bytes,
+# so like CSV it is recognised by name plus a UTF-8 check.
+TEXT_INPUTS = frozenset({"txt", "md"})
+TEXT_OUTPUTS = ("pdf", "docx", "epub")
 
 _ZIP_MAGIC = b"PK\x03\x04"
 _OLE_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
@@ -247,8 +253,14 @@ def detect_document(fileobj: BinaryIO, filename: str = "") -> str | None:
             return "azw3" if filename.lower().endswith(".azw3") else "mobi"
         if b"<FictionBook" in head[:2048] and _looks_like_text(head):
             return "fb2"
-        if filename.lower().endswith(".csv") and head and _looks_like_text(head):
-            return "csv"
+        lower = filename.lower()
+        if head and _looks_like_text(head):
+            if lower.endswith(".csv"):
+                return "csv"
+            if lower.endswith((".md", ".markdown")):
+                return "md"
+            if lower.endswith(".txt"):
+                return "txt"
         return None
     finally:
         fileobj.seek(pos)
