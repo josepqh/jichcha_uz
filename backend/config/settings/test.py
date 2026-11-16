@@ -22,3 +22,5 @@ REST_FRAMEWORK = {
 
 # runserver/tests serve static files themselves; whitenoise is for production.
 MIDDLEWARE = [m for m in MIDDLEWARE if "whitenoise" not in m]  # noqa: F405
+
+TURNSTILE_SECRET_KEY = ""  # tests that need it switch it on

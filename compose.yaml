@@ -53,10 +53,19 @@ services:
       start_period: 10s
 
   db-backup:
-    image: postgres:18.1-alpine
+    build:
+      context: ./deploy
+      dockerfile: backup.Dockerfile
+    image: universe-backup:dev
+    pull_policy: build
     restart: unless-stopped
-    networks: [internal]
-    entrypoint: ["/bin/sh", "/backup.sh"]
+    # default network: it reaches Postgres there, and the internet for the off-site copy.
+    networks: [default]
+    # Off-site storage credentials (rclone RCLONE_CONFIG_* variables) live in their own file, so this
+    # container never sees the app's secrets. See README "Backups".
+    env_file:
+      - path: ./backup.env
+        required: false
     environment:
       PGHOST: db
       PGDATABASE: ${POSTGRES_DB:-universe}
@@ -64,7 +73,6 @@ services:
       PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
       BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-7}
     volumes:
-      - ./deploy/backup.sh:/backup.sh:ro
       - backups:/backups
     read_only: true
     cap_drop: [ALL]
@@ -186,6 +194,21 @@ services:
       clamav:
         condition: service_healthy
 
+  monitor:
+    # Alerts on Telegram (ALERT_TELEGRAM_CHAT_ID). On the default network: it needs the internet.
+    <<: *backend
+    command: ["python", "manage.py", "monitor", "--interval", "300"]
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    healthcheck:
+      disable: true
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      cache:
+        condition: service_healthy
+
   beat:
     <<: *backend
     networks: [internal]
@@ -232,6 +255,7 @@ services:
         VITE_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
         VITE_LEGAL_NAME: ${VITE_LEGAL_NAME:-}
         VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-}
+        VITE_TURNSTILE_SITE_KEY: ${VITE_TURNSTILE_SITE_KEY:-}
         SITE_URL: ${PUBLIC_ORIGIN:-http://localhost:8080}
     image: universe-web:dev
     restart: unless-stopped

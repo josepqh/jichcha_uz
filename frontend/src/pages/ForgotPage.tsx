@@ -1,6 +1,8 @@
 import { CircleCheck } from "lucide-react";
 import { useRef, useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Turnstile } from "@/components/Turnstile";
 import { Link } from "react-router";
 
 import { AuthCard } from "@/components/AuthCard";
@@ -16,6 +18,7 @@ export function ForgotPage() {
   const [error, setError] = useState<string | undefined>();
   const [formError, setFormError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [captcha, setCaptcha] = useState("");
   const [sentTo, setSentTo] = useState<string | null>(null);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -30,7 +33,7 @@ export function ForgotPage() {
     }
     setBusy(true);
     try {
-      await auth.requestReset(email, lang);
+      await auth.requestReset(email, lang, captcha);
       setSentTo(email);
     } catch (err) {
       setFormError(errorMessage(t, err));
@@ -67,6 +70,7 @@ export function ForgotPage() {
             autoCapitalize="none"
             error={error}
           />
+          <Turnstile lang={lang} onToken={setCaptcha} />
           <SubmitButton busy={busy} label={t("auth.forgot.submit")} busyLabel={t("auth.forgot.submitting")} />
         </form>
       )}

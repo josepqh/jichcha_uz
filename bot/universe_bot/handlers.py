@@ -244,9 +244,18 @@ def _escape(text: str) -> str:
     return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+async def chat_id(message: Message) -> None:
+    """Shows the chat id: put a group's id in ALERT_TELEGRAM_CHAT_ID to get server alerts there."""
+    await message.answer(f"Chat ID: <code>{message.chat.id}</code>")
+
+
 def make_router() -> Router:
     """A fresh router with every handler. Private chats only: in groups the bot stays silent."""
+    root = Router(name="universe-root")
+    # /id also answers in groups (that's where a team reads alerts); everything else is private-only.
+    root.message.register(chat_id, Command("id"))
     router = Router(name="universe")
+    root.include_router(router)
     router.message.filter(F.chat.type == ChatType.PRIVATE)
     router.callback_query.filter(F.message.chat.type == ChatType.PRIVATE)
 
@@ -258,4 +267,4 @@ def make_router() -> Router:
     router.message.register(single_file, F.document | F.photo)
     router.message.register(anything_else)
     router.callback_query.register(run_action, ActionCB.filter())
-    return router
+    return root

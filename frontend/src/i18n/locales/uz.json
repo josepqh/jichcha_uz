@@ -358,7 +358,9 @@
     "cannot_block_staff": "Xodim akkauntini bu yerda bloklab boʻlmaydi.",
     "permission_denied": "Bu sahifaga ruxsatingiz yoʻq.",
     "invalid_crop": "Kesish maydoni suratdan tashqarida. Uni qayta tanlang.",
-    "wrong_password": "Parol notoʻgʻri. Qayta tekshirib koʻring."
+    "wrong_password": "Parol notoʻgʻri. Qayta tekshirib koʻring.",
+    "captcha_required": "Robot emasligingizni tasdiqlang.",
+    "captcha_failed": "Robot tekshiruvidan oʻtilmadi. Qayta urinib koʻring."
   },
   "notFound": {
     "title": "Sahifa topilmadi",

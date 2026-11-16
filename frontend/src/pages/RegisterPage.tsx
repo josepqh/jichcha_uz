@@ -1,5 +1,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+
+import { Turnstile } from "@/components/Turnstile";
 import { Link, Navigate, useNavigate, useSearchParams } from "react-router";
 
 import { AuthCard } from "@/components/AuthCard";
@@ -22,6 +24,7 @@ export function RegisterPage() {
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [captcha, setCaptcha] = useState("");
 
   if (status === "authed" && !busy) return <Navigate to={next} replace />;
 
@@ -43,7 +46,7 @@ export function RegisterPage() {
     }
     setBusy(true);
     try {
-      await auth.register(email.trim(), password, lang);
+      await auth.register(email.trim(), password, lang, captcha);
       navigate(next, { replace: true });
     } catch (err) {
       setBusy(false);
@@ -96,6 +99,7 @@ export function RegisterPage() {
           hint={t("fields.passwordHint")}
           error={errors.password}
         />
+        <Turnstile lang={lang} onToken={setCaptcha} />
         <SubmitButton busy={busy} label={t("auth.register.submit")} busyLabel={t("auth.register.submitting")} />
       </form>
       {googleEnabled ? (

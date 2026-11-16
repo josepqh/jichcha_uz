@@ -358,7 +358,9 @@
     "cannot_block_staff": "Staff accounts can't be blocked here.",
     "permission_denied": "You don't have access to this page.",
     "invalid_crop": "The crop area is outside the photo. Choose it again.",
-    "wrong_password": "That password is wrong. Check it and try again."
+    "wrong_password": "That password is wrong. Check it and try again.",
+    "captcha_required": "Please confirm you're not a robot.",
+    "captcha_failed": "The robot check didn't pass. Please try again."
   },
   "notFound": {
     "title": "Page not found",

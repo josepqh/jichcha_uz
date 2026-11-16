@@ -161,3 +161,8 @@ async def test_file_names_are_escaped_in_html(h):
 async def test_job_roundtrip():
     job = Job(user_id=1, family="pdf", album=True, files=[FileRef("f", "a.pdf", 3)])
     assert Job.loads(job.dumps()) == job
+
+
+async def test_id_command_works_in_groups_too(h):
+    await h.send(chat_type="group", text="/id")
+    assert h.texts()[-1] == "Chat ID: <code>-500</code>"

@@ -241,6 +241,9 @@ ARCHIVE_MAX_UNPACKED_MB = env.int("ARCHIVE_MAX_UNPACKED_MB", default=1024)
 EBOOK_CONVERT_BINARY = env("EBOOK_CONVERT_BINARY", default="ebook-convert")
 EBOOK_TIMEOUT = env.int("EBOOK_TIMEOUT", default=240)
 
+# Cloudflare Turnstile on sign-up and password reset (optional). Site key goes to VITE_TURNSTILE_SITE_KEY.
+TURNSTILE_SECRET_KEY = env("TURNSTILE_SECRET_KEY", default="")
+
 # Shared secret of the Telegram bot (internal client). Empty = bot identity disabled.
 BOT_API_SECRET = env("BOT_API_SECRET", default="")
 
@@ -248,6 +251,13 @@ BOT_API_SECRET = env("BOT_API_SECRET", default="")
 CLAMAV_HOST = env("CLAMAV_HOST", default="")
 CLAMAV_PORT = env.int("CLAMAV_PORT", default=3310)
 CLAMAV_TIMEOUT = env.int("CLAMAV_TIMEOUT", default=120)
+
+# Alerts (`manage.py monitor`): a Telegram chat for the team. The token defaults to the bot's own.
+ALERT_TELEGRAM_TOKEN = env("ALERT_TELEGRAM_TOKEN", default=env("TELEGRAM_BOT_TOKEN", default=""))
+ALERT_TELEGRAM_CHAT_ID = env("ALERT_TELEGRAM_CHAT_ID", default="")
+ALERT_QUEUE_MAX = env.int("ALERT_QUEUE_MAX", default=100)
+ALERT_ERROR_RATE = env.float("ALERT_ERROR_RATE", default=0.3)
+ALERT_MIN_TASKS = env.int("ALERT_MIN_TASKS", default=10)
 
 # /api/v1/health/ reports "disk": false (HTTP 503) below this much free space on MEDIA_ROOT.
 HEALTH_MIN_FREE_MB = env.int("HEALTH_MIN_FREE_MB", default=2048)

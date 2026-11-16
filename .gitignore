@@ -29,3 +29,6 @@ frontend/dist-ssr/
 frontend/test-results/
 frontend/playwright-report/
 frontend/blob-report/
+
+# Off-site backup credentials
+backup.env

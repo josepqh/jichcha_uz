@@ -18,7 +18,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from apps.conversions.models import UsageCounter
 from apps.core.exceptions import AppError
 
-from . import google
+from . import google, turnstile
 from .models import User
 from .serializers import (
     DeleteAccountSerializer,
@@ -76,10 +76,16 @@ class PublicAuthView(APIView):
     throttle_classes = [AuthRateThrottle]
 
 
+def _client_ip(request: Request) -> str | None:
+    # Same client address the throttles use (respects NUM_PROXIES).
+    return AuthRateThrottle().get_ident(request)
+
+
 class RegisterView(PublicAuthView):
     def post(self, request: Request) -> Response:
         serializer = RegisterSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        turnstile.require(request.data.get("captcha"), _client_ip(request))
         user = serializer.save()
         return session_response(user, status.HTTP_201_CREATED)
 
@@ -193,6 +199,7 @@ class PasswordResetRequestView(PublicAuthView):
     def post(self, request: Request) -> Response:
         serializer = PasswordResetRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        turnstile.require(request.data.get("captcha"), _client_ip(request))
         email = serializer.validated_data["email"].strip().lower()
         user = User.objects.filter(email__iexact=email, is_active=True).first()
         if user is not None:

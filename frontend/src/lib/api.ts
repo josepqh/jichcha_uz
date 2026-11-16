@@ -147,14 +147,15 @@ const json = (body: unknown): RequestInit => ({ method: "POST", body: JSON.strin
 
 export const auth = {
   login: (email: string, password: string) => rawRequest<Session>("/auth/login/", json({ email, password })).then(startSession),
-  register: (email: string, password: string, language: string) =>
-    rawRequest<Session>("/auth/register/", json({ email, password, language })).then(startSession),
+  register: (email: string, password: string, language: string, captcha = "") =>
+    rawRequest<Session>("/auth/register/", json({ email, password, language, captcha })).then(startSession),
   google: (credential: string) => rawRequest<Session>("/auth/google/", json({ credential })).then(startSession),
   logout: async () => {
     await rawRequest<void>("/auth/logout/", { method: "POST" }).catch(() => undefined);
     useAuthStore.getState().clear();
   },
-  requestReset: (email: string, language: string) => rawRequest<void>("/auth/password/reset/", json({ email, language })),
+  requestReset: (email: string, language: string, captcha = "") =>
+    rawRequest<void>("/auth/password/reset/", json({ email, language, captcha })),
   confirmReset: (uid: string, token: string, newPassword: string) =>
     rawRequest<Session>("/auth/password/reset/confirm/", json({ uid, token, new_password: newPassword })).then(startSession),
 };
