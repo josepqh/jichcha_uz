@@ -240,6 +240,9 @@ ARCHIVE_MAX_UNPACKED_MB = env.int("ARCHIVE_MAX_UNPACKED_MB", default=1024)
 EBOOK_CONVERT_BINARY = env("EBOOK_CONVERT_BINARY", default="ebook-convert")
 EBOOK_TIMEOUT = env.int("EBOOK_TIMEOUT", default=240)
 
+# Shared secret of the Telegram bot (internal client). Empty = bot identity disabled.
+BOT_API_SECRET = env("BOT_API_SECRET", default="")
+
 # ClamAV daemon. Empty host = scanning off (local dev). In Docker it is the "clamav" service.
 CLAMAV_HOST = env("CLAMAV_HOST", default="")
 CLAMAV_PORT = env.int("CLAMAV_PORT", default=3310)

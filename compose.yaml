@@ -197,6 +197,34 @@ services:
       cache:
         condition: service_healthy
 
+  bot:
+    # Telegram bot. Opt-in: `docker compose --profile bot up -d` (needs TELEGRAM_BOT_TOKEN and BOT_API_SECRET).
+    profiles: ["bot"]
+    build: ./bot
+    image: universe-bot:dev
+    pull_policy: build
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      BOT_BACKEND_URL: http://backend:8000
+      BOT_REDIS_URL: redis://cache:6379/1
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:8080}
+    # default network only: it needs the internet (Telegram API) and the backend.
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+    depends_on:
+      backend:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+
   web:
     build:
       context: ./frontend

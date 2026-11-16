@@ -16,6 +16,10 @@ engine licence is decided (the best engine, pdf2docx/PyMuPDF, is AGPL).
 e-books (EPUB, FB2, MOBI, AZW3, PDF, DOCX → EPUB/MOBI/AZW3/PDF via Calibre). Production groundwork: ClamAV scanning,
 daily database backups, health check, optional Sentry, CI, hardened worker containers, privacy policy and terms.
 
+**Slice 5 (done):** Telegram bot (`bot/`, aiogram v3): send a file → action buttons that match the website's
+sections; an album of photos → one PDF, an album of PDFs → merge; uz/ru/en; files over 20 MB get a link to the
+website. Each Telegram user has their own limits and tasks.
+
 ## Stack
 
 - **Backend:** Python 3.14, Django 6.1, DRF, Celery + Redis, PostgreSQL 18, Pillow + pillow-heif, img2pdf,
@@ -110,6 +114,29 @@ Tools: `image-convert`, `image-compress`, `images-to-pdf`, `office-to-pdf`, `pdf
   check that EPUB manifest paths, embedded `file://` URLs and FB2 external entities cannot pull server files in.
 - Local development needs LibreOffice and Calibre (`brew install --cask libreoffice calibre`), with
   `SOFFICE_BINARY` and `EBOOK_CONVERT_BINARY` in `.env`. In Docker both are on `PATH`.
+
+## Telegram bot
+
+- Code in `bot/` (aiogram 3, aiohttp, Redis). It talks to the API as a trusted internal client: every request
+  carries `X-Bot-Secret` (`BOT_API_SECRET`) and `X-Telegram-User-Id`. The backend then treats each Telegram user as
+  a guest of their own (separate daily limits, throttles and task ownership); IP ceilings don't apply, since all
+  Telegram users arrive from the bot's address. nginx strips both headers from public traffic.
+- Private chats only; a button works only for the user it was shown to; one job per user at a time.
+- Telegram limits: the bot can fetch files up to 20 MB (bigger ones get a link to the right page of the website)
+  and send files up to 50 MB (bigger results are sent as a signed download link). More than 10 results arrive as
+  one zip.
+- Local run (long polling): set `TELEGRAM_BOT_TOKEN` and `BOT_API_SECRET` in `.env`, start the backend and a
+  worker, then:
+
+  ```bash
+  cd bot && python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
+  .venv/bin/python -m universe_bot
+  .venv/bin/pytest            # fake Telegram session and fake backend; no token needed
+  ```
+
+- Docker: `docker compose --profile bot up -d`. For production set `TELEGRAM_WEBHOOK_URL`
+  (`https://<domain>/telegram/webhook`) and `TELEGRAM_WEBHOOK_SECRET`; nginx forwards that path to the bot, and
+  updates without Telegram's secret header are rejected. Only one process may poll a token at a time.
 
 ## Operations
 

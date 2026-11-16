@@ -7,7 +7,7 @@ from dodging it by clearing cookies.
 
 from rest_framework.throttling import SimpleRateThrottle, UserRateThrottle
 
-from .identity import guest_key_from_cookie
+from .identity import guest_key_from_cookie, is_bot_request
 
 
 class TaskCreateThrottle(SimpleRateThrottle):
@@ -32,7 +32,8 @@ class GuestTaskCreateIPThrottle(SimpleRateThrottle):
     scope = "task_create_ip"
 
     def get_cache_key(self, request, view):
-        if request.user and request.user.is_authenticated:
+        # Signed-in users and the Telegram bot (every Telegram user arrives from its one IP) are exempt.
+        if (request.user and request.user.is_authenticated) or is_bot_request(request):
             return None
         return self.cache_format % {"scope": self.scope, "ident": self.get_ident(request)}
 
@@ -60,7 +61,8 @@ class AnonIPRateThrottle(SimpleRateThrottle):
     scope = "anon_ip"
 
     def get_cache_key(self, request, view):
-        if request.user and request.user.is_authenticated:
+        # Signed-in users and the Telegram bot (every Telegram user arrives from its one IP) are exempt.
+        if (request.user and request.user.is_authenticated) or is_bot_request(request):
             return None
         return self.cache_format % {"scope": self.scope, "ident": self.get_ident(request)}
 

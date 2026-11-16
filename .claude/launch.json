@@ -40,6 +40,15 @@
         "dev"
       ],
       "port": 5173
+    },
+    {
+      "name": "bot",
+      "runtimeExecutable": "bot/.venv/bin/python",
+      "runtimeArgs": [
+        "-c",
+        "import sys; sys.path.insert(0, 'bot'); from universe_bot.__main__ import main; main()"
+      ],
+      "port": 3001
     }
   ]
 }

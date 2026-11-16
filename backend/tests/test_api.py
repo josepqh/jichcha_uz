@@ -447,3 +447,9 @@ def test_user_rate_does_not_cap_guests_by_ip(db, settings):
     ):
         codes = [APIClient().get("/api/v1/usage/").status_code for _ in range(5)]
     assert codes == [200] * 5
+
+
+def test_missing_task_has_the_not_found_code(db, api_client):
+    resp = api_client.get("/api/v1/tasks/01a1e5a8-0000-7000-8000-000000000000/")
+    assert resp.status_code == 404
+    assert resp.data["error"]["code"] == "not_found"

@@ -58,6 +58,29 @@ jobs:
       # LibreOffice and Calibre tests skip here; they run in the Docker image job below.
       - run: pytest -q --cov --cov-report=term-missing:skip-covered
 
+  bot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: bot
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: bot/requirements*.txt
+      - run: pip install -r requirements-dev.txt
+      - name: Lint
+        run: |
+          ruff check .
+          ruff format --check .
+      # Fake Telegram session and fake backend: no token or network needed.
+      - run: pytest -q
+
   frontend:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -154,7 +177,7 @@ jobs:
   docker:
     runs-on: ubuntu-24.04
     timeout-minutes: 40
-    needs: [backend, frontend]
+    needs: [backend, frontend, bot]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -164,6 +187,7 @@ jobs:
           docker build --target runtime -t universe-backend:ci backend
           docker build --target runtime-office -t universe-backend-office:ci backend
           docker build -t universe-web:ci frontend
+          docker build -t universe-bot:ci bot
       # The office image has LibreOffice and Calibre, so the engine tests that skip elsewhere run here,
       # as the app user and with no network, like the worker in production.
       - name: Engine tests inside the office image

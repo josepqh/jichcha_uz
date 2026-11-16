@@ -1,6 +1,7 @@
 # Texnik topshiriq (TZ): Fayl konvertor va tahrirlash platformasi
 
 > Versiya: 0.2 (qoralama) · Sana: 2026-11-10 · Holat: buyurtmachi tomonidan tasdiqlangan (2026-11-10)
+> 5-qism (2026-11-17): Telegram bot ishlab chiqildi (F-65, F-66, F-68, F-69): fayl yuborilsa saytdagi boʻlimlarga mos amallar tugmalari, suratlar albomi → PDF, PDF albomi → birlashtirish, uch til, 20 MB dan katta faylga sayt havolasi. Har bir Telegram foydalanuvchisi alohida limit va vazifalarga ega. Botni web akkauntga ulash (F-67) 2-bosqichda.
 > 4-qism (2026-11-16): arxivlar (F-26–F-28: ochish, ZIP/7Z yaratish, formatni almashtirish; parolli arxiv F-30 hali yoʻq) va e-kitoblar (F-29, qoʻshimcha FB2) ishlab chiqildi. Ishga tushirishga tayyorgarlik: ClamAV tekshiruvi, kunlik DB zaxirasi, health check, Sentry (ixtiyoriy), CI, worker konteynerlarini cheklash, maxfiylik siyosati va foydalanish shartlari sahifalari.
 > 3-qism (2026-11-12): Office → PDF, PDF birlashtirish/boʻlish/tartiblash/siqish va PDF → surat ishlab chiqildi (F-18–F-20, F-22, F-35, F-37–F-39). PDF → Word (F-21) AGPL litsenziya masalasi hal boʻlguncha qoldirildi.
 > Tuzatishlar (2026-11-16): Google orqali kirgan (parolsiz) akkauntni oʻchirish uchun soʻnggi 10 daqiqadagi Google tasdigʻi talab qilinadi; konvertatsiya limiti endi akkaunt yoki mehmon brauzeri boʻyicha, IP boʻyicha esa faqat mehmonlar uchun umumiy chegara (CGNAT ortidagi foydalanuvchilar bir-birini toʻsmaydi); Docker image'lari (LibreOffice'li `worker-office` bilan) qayta yigʻildi.

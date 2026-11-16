@@ -3,9 +3,14 @@
 `code` is stable and machine-readable so the frontend can translate it.
 """
 
+from django.core.exceptions import PermissionDenied
+from django.http import Http404
 from rest_framework import status
 from rest_framework.exceptions import APIException
 from rest_framework.views import exception_handler
+
+# Django exceptions DRF turns into responses; they carry no DRF error code of their own.
+_DJANGO_CODES = {Http404: "not_found", PermissionDenied: "permission_denied"}
 
 
 class AppError(APIException):
@@ -30,7 +35,9 @@ def api_exception_handler(exc, context):
         code, message, details = exc.code, str(exc.detail), exc.details
     else:
         data = response.data
-        code = getattr(exc, "default_code", "error")
+        code = getattr(exc, "default_code", None) or next(
+            (c for cls, c in _DJANGO_CODES.items() if isinstance(exc, cls)), "error"
+        )
         if isinstance(data, dict) and set(data) == {"detail"}:
             message, details = str(data["detail"]), {}
         else:
