@@ -1,0 +1,222 @@
+import time
+
+from django.conf import settings
+from django.contrib.auth import authenticate
+from django.contrib.auth.tokens import default_token_generator
+from django.db import transaction
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
+from rest_framework import status
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.request import Request
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+from rest_framework_simplejwt.serializers import TokenRefreshSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from apps.conversions.models import UsageCounter
+from apps.core.exceptions import AppError
+
+from . import google
+from .models import User
+from .serializers import (
+    DeleteAccountSerializer,
+    GoogleSerializer,
+    LoginSerializer,
+    MeSerializer,
+    PasswordResetConfirmSerializer,
+    PasswordResetRequestSerializer,
+    RegisterSerializer,
+    check_password_strength,
+)
+from .tasks import send_password_reset
+from .throttles import AuthRateThrottle
+from .tokens import clear_refresh_cookie, issue_tokens, revoke_all_sessions, set_refresh_cookie
+
+
+def session_response(user: User, status_code: int = status.HTTP_200_OK) -> Response:
+    access, refresh = issue_tokens(user)
+    response = Response({"access": access, "user": MeSerializer(user).data}, status=status_code)
+    return set_refresh_cookie(response, refresh)
+
+
+# A Google sign-in used to confirm account deletion must be this recent (seconds).
+REAUTH_MAX_AGE = 600
+
+
+def _confirm_identity(user: User, data: dict) -> None:
+    """Destructive actions need proof beyond the access token: the password, or a fresh Google sign-in."""
+    if user.has_usable_password():
+        if not user.check_password(data.get("password", "")):
+            raise AppError("invalid_credentials", "Wrong password.", status.HTTP_403_FORBIDDEN)
+        return
+    credential = data.get("google_credential")
+    if not settings.GOOGLE_CLIENT_ID or not credential:
+        raise AppError("reauth_required", "Confirm with Google to continue.", status.HTTP_403_FORBIDDEN)
+    try:
+        identity = google.verify_credential(credential)
+    except google.GoogleTokenError:
+        raise AppError("google_failed", "Google sign-in failed.", status.HTTP_403_FORBIDDEN) from None
+    if identity.email != user.email.lower():
+        raise AppError("google_account_mismatch", "That Google account is not this one.", status.HTTP_403_FORBIDDEN)
+    if time.time() - identity.issued_at > REAUTH_MAX_AGE:
+        raise AppError("reauth_required", "Confirm with Google to continue.", status.HTTP_403_FORBIDDEN)
+
+
+def _session_expired() -> AppError:
+    return AppError("session_expired", "Please sign in again.", status.HTTP_401_UNAUTHORIZED)
+
+
+class PublicAuthView(APIView):
+    """Credential endpoints: no JWT needed, strict per-IP throttle."""
+
+    authentication_classes: list = []
+    permission_classes = [AllowAny]
+    throttle_classes = [AuthRateThrottle]
+
+
+class RegisterView(PublicAuthView):
+    def post(self, request: Request) -> Response:
+        serializer = RegisterSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return session_response(user, status.HTTP_201_CREATED)
+
+
+class LoginView(PublicAuthView):
+    def post(self, request: Request) -> Response:
+        serializer = LoginSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        # ModelBackend hashes a dummy password for unknown emails, so timing does not reveal accounts.
+        user = authenticate(
+            request,
+            username=serializer.validated_data["email"].strip().lower(),
+            password=serializer.validated_data["password"],
+        )
+        if user is None:
+            raise AppError("invalid_credentials", "Wrong email or password.", status.HTTP_401_UNAUTHORIZED)
+        return session_response(user)
+
+
+class GoogleLoginView(PublicAuthView):
+    def post(self, request: Request) -> Response:
+        if not settings.GOOGLE_CLIENT_ID:
+            raise AppError("google_disabled", "Google sign-in is not configured.", status.HTTP_404_NOT_FOUND)
+        serializer = GoogleSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        try:
+            identity = google.verify_credential(serializer.validated_data["credential"])
+        except google.GoogleTokenError:
+            raise AppError("google_failed", "Google sign-in failed.", status.HTTP_401_UNAUTHORIZED) from None
+
+        with transaction.atomic():
+            user = User.objects.select_for_update().filter(email__iexact=identity.email).first()
+            if user is None:
+                user = User.objects.create_user(email=identity.email, password=None, email_verified=True)
+            else:
+                if not user.is_active:
+                    raise AppError("account_disabled", "This account is disabled.", status.HTTP_403_FORBIDDEN)
+                if not user.email_verified:
+                    # Someone may have registered this address before its owner (pre-account takeover):
+                    # drop the unverified password and end all its sessions, then hand the account to Google's owner.
+                    if user.has_usable_password():
+                        user.set_unusable_password()
+                    revoke_all_sessions(user)
+                    user.email_verified = True
+                    user.save(update_fields=["password", "email_verified"])
+        return session_response(user)
+
+
+class RefreshView(APIView):
+    authentication_classes: list = []
+    permission_classes = [AllowAny]
+
+    def post(self, request: Request) -> Response:
+        raw = request.COOKIES.get(settings.AUTH_REFRESH_COOKIE)
+        if not raw:
+            raise _session_expired()
+        serializer = TokenRefreshSerializer(data={"refresh": raw})
+        try:
+            serializer.is_valid(raise_exception=True)
+            new_refresh = serializer.validated_data["refresh"]
+            user = User.objects.get(pk=RefreshToken(new_refresh)["user_id"], is_active=True)
+        except TokenError, InvalidToken, User.DoesNotExist, KeyError:
+            response = Response(
+                {"error": {"code": "session_expired", "message": "Please sign in again.", "details": {}}},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
+            return clear_refresh_cookie(response)
+        response = Response({"access": serializer.validated_data["access"], "user": MeSerializer(user).data})
+        return set_refresh_cookie(response, new_refresh)
+
+
+class LogoutView(APIView):
+    authentication_classes: list = []
+    permission_classes = [AllowAny]
+
+    def post(self, request: Request) -> Response:
+        raw = request.COOKIES.get(settings.AUTH_REFRESH_COOKIE)
+        if raw:
+            try:
+                RefreshToken(raw).blacklist()
+            except TokenError:
+                pass  # already invalid: nothing to revoke
+        return clear_refresh_cookie(Response(status=status.HTTP_204_NO_CONTENT))
+
+
+class MeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request: Request) -> Response:
+        return Response(MeSerializer(request.user).data)
+
+    def patch(self, request: Request) -> Response:
+        serializer = MeSerializer(request.user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+    def delete(self, request: Request) -> Response:
+        user: User = request.user
+        serializer = DeleteAccountSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        _confirm_identity(user, serializer.validated_data)
+        with transaction.atomic():
+            revoke_all_sessions(user)
+            UsageCounter.objects.filter(subject=f"u:{user.pk}").delete()
+            user.delete()  # cascades to tasks; stored files are removed by the TaskFile post_delete signal
+        return clear_refresh_cookie(Response(status=status.HTTP_204_NO_CONTENT))
+
+
+class PasswordResetRequestView(PublicAuthView):
+    def post(self, request: Request) -> Response:
+        serializer = PasswordResetRequestSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        email = serializer.validated_data["email"].strip().lower()
+        user = User.objects.filter(email__iexact=email, is_active=True).first()
+        if user is not None:
+            lang = serializer.validated_data["language"]
+            transaction.on_commit(lambda: send_password_reset.delay(str(user.pk), lang))
+        # Same answer whether or not the account exists.
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+
+class PasswordResetConfirmView(PublicAuthView):
+    def post(self, request: Request) -> Response:
+        serializer = PasswordResetConfirmSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+        try:
+            user = User.objects.get(pk=force_str(urlsafe_base64_decode(data["uid"])), is_active=True)
+        except ValueError, TypeError, OverflowError, User.DoesNotExist:
+            user = None
+        if user is None or not default_token_generator.check_token(user, data["token"]):
+            raise AppError("invalid_reset_link", "This link is invalid or has expired.")
+        check_password_strength(data["new_password"], user)
+        with transaction.atomic():
+            user.set_password(data["new_password"])
+            user.email_verified = True  # following the emailed link proves control of the address
+            user.save(update_fields=["password", "email_verified"])
+            revoke_all_sessions(user)
+        return session_response(user)

@@ -1,0 +1,170 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Read-only token; no job needs to write to the repository.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.14"
+  NODE_VERSION: "24"
+
+jobs:
+  backend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:18.1-alpine
+        env:
+          POSTGRES_DB: universe
+          POSTGRES_USER: universe
+          POSTGRES_PASSWORD: ci-only-password
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U universe" --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      DJANGO_SECRET_KEY: ci-only-not-a-secret
+      DATABASE_URL: postgres://universe:ci-only-password@localhost:5432/universe
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: backend/requirements/*.txt
+      - name: System libraries
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libarchive13t64
+      - run: pip install -r requirements/dev.txt
+      - name: Lint
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Migrations are up to date
+        run: python manage.py makemigrations --check --dry-run --settings=config.settings.test
+      # LibreOffice and Calibre tests skip here; they run in the Docker image job below.
+      - run: pytest -q --cov --cov-report=term-missing:skip-covered
+
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+
+  e2e:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    needs: [backend, frontend]
+    services:
+      postgres:
+        image: postgres:18.1-alpine
+        env:
+          POSTGRES_DB: universe
+          POSTGRES_USER: universe
+          POSTGRES_PASSWORD: ci-only-password
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U universe" --health-interval 5s --health-timeout 3s --health-retries 10
+      redis:
+        image: redis:8.2-alpine
+        ports: ["6379:6379"]
+    env:
+      DJANGO_SETTINGS_MODULE: config.settings.development
+      DJANGO_SECRET_KEY: ci-only-not-a-secret
+      DATABASE_URL: postgres://universe:ci-only-password@localhost:5432/universe
+      REDIS_URL: redis://localhost:6379/0
+      PUBLIC_ORIGIN: http://localhost:5173
+      # All E2E traffic comes from one IP.
+      THROTTLE_AUTH: 1000/15m
+      THROTTLE_TASK_CREATE: 1000/min
+      THROTTLE_TASK_CREATE_IP: 2000/min
+      THROTTLE_ANON: 5000/min
+      THROTTLE_ANON_IP: 10000/min
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: backend/requirements/*.txt
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: System libraries
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libarchive13t64
+      - name: Start backend and worker
+        working-directory: backend
+        run: |
+          pip install -r requirements/base.txt
+          python manage.py migrate --noinput
+          nohup python manage.py runserver 127.0.0.1:8000 > ../backend.log 2>&1 &
+          nohup python -m celery -A config worker -Q light,office,ebook,maintenance -c 2 > ../worker.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/api/v1/health/ && break; sleep 1; done
+      - name: Install browser
+        working-directory: frontend
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      # Office and e-book specs skip without LibreOffice/Calibre on the runner.
+      - run: npx playwright test
+        working-directory: frontend
+        env:
+          CI: "true"
+      - if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: e2e-report
+          path: |
+            frontend/playwright-report/
+            backend.log
+            worker.log
+          retention-days: 7
+
+  docker:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    needs: [backend, frontend]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build images
+        run: |
+          docker build --target runtime -t universe-backend:ci backend
+          docker build --target runtime-office -t universe-backend-office:ci backend
+          docker build -t universe-web:ci frontend
+      # The office image has LibreOffice and Calibre, so the engine tests that skip elsewhere run here,
+      # as the app user and with no network, like the worker in production.
+      - name: Engine tests inside the office image
+        run: bash deploy/test-office-image.sh universe-backend-office:ci

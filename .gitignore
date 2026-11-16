@@ -1,0 +1,30 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+backend/var/
+backend/staticfiles/
+
+# Node
+node_modules/
+frontend/dist/
+*.local
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Test artifacts
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/

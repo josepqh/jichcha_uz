@@ -1,0 +1,527 @@
+{
+  "meta": {
+    "siteName": "Universe",
+    "homeTitle": "Word, PDF, surat, e-kitob va arxivlarni bepul aylantirish | Universe",
+    "homeDescription": "Word va Excel'ni PDF qiling, PDF'ni birlashtiring va siqing, HEIC, EPUB, FB2, RAR fayllarni kerakli formatga oʻtkazing. Bepul, roʻyxatdan oʻtmasdan."
+  },
+  "nav": {
+    "skip": "Asosiy qismga oʻtish",
+    "home": "Bosh sahifa",
+    "language": "Til",
+    "theme": "Mavzu: {{mode}}",
+    "themeModes": {
+      "system": "tizimga mos",
+      "light": "yorugʻ",
+      "dark": "qorongʻi"
+    },
+    "login": "Kirish",
+    "account": "Kabinet"
+  },
+  "home": {
+    "title": "Fayllaringiz bilan oddiy ishlar, bepul",
+    "subtitle": "Word va Excel'ni PDF qiling, PDF'larni birlashtiring yoki siqing, suratlar, e-kitoblar va arxivlarni kerakli formatga oʻtkazing. Roʻyxatdan oʻtish shart emas.",
+    "searchLabel": "Vositani qidirish",
+    "searchPlaceholder": "Masalan: heic jpg…",
+    "toolsHeading": "Vositalar",
+    "popularHeading": "Koʻp ishlatiladigan aylantirishlar",
+    "noResults": "“{{query}}” boʻyicha vosita topilmadi. Boshqacha yozib koʻring, masalan “png pdf”.",
+    "benefitsHeading": "Nega Universe",
+    "benefits": {
+      "free": {
+        "title": "Akkaunt shart emas",
+        "text": "Faylni tashlang va natijani yuklab oling. Barcha vositalar bepul."
+      },
+      "deleted": {
+        "title": "Fayllar 1 soatda oʻchadi",
+        "text": "Yuklagan faylingiz ishlov tugashi bilan, natija esa 1 soatdan keyin serverdan oʻchiriladi. Xohlasangiz darhol oʻchiring."
+      },
+      "gps": {
+        "title": "Joylashuv maʼlumoti olib tashlanadi",
+        "text": "Telefon suratidagi GPS va kamera maʼlumotlari natijaga oʻtmaydi."
+      }
+    },
+    "groups": {
+      "pdf": "PDF vositalari",
+      "office": "Hujjatlar",
+      "image": "Suratlar",
+      "archive": "Arxivlar",
+      "ebook": "E-kitoblar"
+    }
+  },
+  "tools": {
+    "image-convert": {
+      "name": "Formatni oʻzgartirish",
+      "title": "Surat formatini oʻzgartirish",
+      "description": "PNG, JPG, WEBP, HEIC, AVIF, GIF, BMP va TIFF oʻrtasida aylantiring. Bir martada bir nechta surat."
+    },
+    "image-compress": {
+      "name": "Hajmni kichraytirish",
+      "title": "Surat hajmini kichraytirish",
+      "description": "Uch daraja: kuchli, oʻrtacha va yengil. Har bir surat uchun qancha joy tejalgani koʻrsatiladi."
+    },
+    "images-to-pdf": {
+      "name": "Suratlardan PDF",
+      "title": "Suratlardan PDF yasash",
+      "description": "Suratlarni kerakli tartibga qoʻying va A4 yoki Letter oʻlchamdagi bitta PDF faylga yigʻing."
+    },
+    "office-to-pdf": {
+      "name": "Word, Excel, PowerPoint → PDF",
+      "title": "Hujjatni PDF qilish",
+      "description": "Word, Excel, PowerPoint va OpenDocument fayllarini PDF qiling. Shrift va sahifa maketi saqlanadi."
+    },
+    "pdf-merge": {
+      "name": "PDF birlashtirish",
+      "title": "PDF fayllarni birlashtirish",
+      "description": "Bir nechta PDF'ni kerakli tartibda bitta faylga yigʻing."
+    },
+    "pdf-split": {
+      "name": "PDF boʻlish",
+      "title": "PDF faylni boʻlish",
+      "description": "Har bir sahifani alohida PDF qiling yoki kerakli sahifalarni ajratib oling."
+    },
+    "pdf-organize": {
+      "name": "Sahifalarni tartiblash",
+      "title": "PDF sahifalarini tartiblash",
+      "description": "Sahifalar oʻrnini almashtiring, aylantiring yoki keraksizlarini oʻchiring."
+    },
+    "pdf-compress": {
+      "name": "PDF siqish",
+      "title": "PDF hajmini kichraytirish",
+      "description": "Skanerlangan va rasmli PDF'larni pochta yoki portal limitiga sigʻadigan qiling."
+    },
+    "pdf-to-images": {
+      "name": "PDF → JPG, PNG",
+      "title": "PDF sahifalarini suratga aylantirish",
+      "description": "Har bir sahifani alohida JPG yoki PNG surat qiling."
+    },
+    "archive-extract": {
+      "name": "Arxivni ochish",
+      "title": "ZIP, RAR, 7Z arxivni onlayn ochish",
+      "description": "Arxiv ichidagi fayllarni koʻring va kerakligini alohida yuklab oling. ZIP, RAR, 7Z, TAR, GZ."
+    },
+    "archive-create": {
+      "name": "ZIP yaratish",
+      "title": "Fayllarni ZIP yoki 7Z arxivga yigʻish",
+      "description": "Bir nechta faylni bitta ZIP yoki 7Z arxivga joylang. Istalgan turdagi fayl boʻladi."
+    },
+    "archive-convert": {
+      "name": "Arxiv formatini oʻzgartirish",
+      "title": "RAR, 7Z, TAR arxivni ZIP qilish",
+      "description": "RAR, 7Z yoki TAR arxivni papkalar tuzilishini saqlagan holda ZIP yoki 7Z qiling."
+    },
+    "ebook-convert": {
+      "name": "E-kitob konvertori",
+      "title": "EPUB, FB2, MOBI kitoblarni aylantirish",
+      "description": "EPUB, FB2, MOBI va AZW3 kitoblarni Kindle, telefon yoki chop etish uchun kerakli formatga oʻtkazing."
+    }
+  },
+  "conversion": {
+    "short": "{{from}} → {{to}}",
+    "title": "{{from}} faylni {{to}} formatiga oʻtkazish",
+    "description": "{{from}} fayllarni {{to}} formatiga bepul oʻtkazing. Roʻyxatdan oʻtish shart emas, fayllar 1 soatda oʻchadi."
+  },
+  "options": {
+    "target": {
+      "label": "Qaysi formatga",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG",
+        "webp": "WEBP",
+        "avif": "AVIF",
+        "gif": "GIF",
+        "bmp": "BMP",
+        "tiff": "TIFF",
+        "zip": "ZIP",
+        "7z": "7Z",
+        "epub": "EPUB",
+        "mobi": "MOBI",
+        "azw3": "AZW3 (Kindle)",
+        "pdf": "PDF"
+      }
+    },
+    "level": {
+      "label": "Siqish darajasi",
+      "choices": {
+        "strong": "Kuchli",
+        "medium": "Oʻrtacha",
+        "light": "Yengil"
+      },
+      "hints": {
+        "strong": "Eng kichik hajm",
+        "medium": "Hajm va sifat muvozanati",
+        "light": "Sifat deyarli oʻzgarmaydi"
+      }
+    },
+    "page_size": {
+      "label": "Sahifa oʻlchami",
+      "choices": {
+        "a4": "A4",
+        "letter": "Letter",
+        "fit": "Surat oʻlchamida"
+      }
+    },
+    "orientation": {
+      "label": "Yoʻnalish",
+      "choices": {
+        "auto": "Avtomatik",
+        "portrait": "Tik",
+        "landscape": "Yotiq"
+      }
+    },
+    "margin": {
+      "label": "Chekka",
+      "choices": {
+        "none": "Yoʻq",
+        "small": "Kichik",
+        "large": "Katta"
+      }
+    },
+    "mode": {
+      "label": "Qanday boʻlinsin",
+      "choices": {
+        "each": "Har bir sahifa alohida",
+        "ranges": "Tanlangan sahifalar"
+      }
+    },
+    "ranges": {
+      "label": "Sahifalar",
+      "placeholder": "Masalan: 1-3, 5, 8-…",
+      "hint": "Har bir oraliq alohida PDF boʻladi. “8-” — 8-sahifadan oxirigacha."
+    },
+    "pdfLevel": {
+      "label": "Siqish darajasi",
+      "choices": {
+        "strong": "Kuchli",
+        "medium": "Oʻrtacha",
+        "light": "Yengil"
+      },
+      "hints": {
+        "strong": "Eng kichik hajm, rasmlar xiraroq",
+        "medium": "Ekranda oʻqish uchun",
+        "light": "Chop etish uchun"
+      }
+    },
+    "format": {
+      "label": "Surat formati",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG"
+      }
+    },
+    "quality": {
+      "label": "Sifat",
+      "choices": {
+        "low": "Past",
+        "medium": "Oʻrta",
+        "high": "Yuqori"
+      },
+      "hints": {
+        "low": "72 DPI, ekran uchun",
+        "medium": "150 DPI",
+        "high": "300 DPI, chop etish uchun"
+      }
+    },
+    "archiveFormat": {
+      "label": "Arxiv turi",
+      "choices": {
+        "zip": "ZIP",
+        "7z": "7Z"
+      },
+      "hints": {
+        "zip": "Hamma joyda ochiladi",
+        "7z": "Kichikroq hajm"
+      }
+    }
+  },
+  "upload": {
+    "drop": "Fayllarni shu yerga tashlang",
+    "or": "yoki",
+    "choose": "Fayl tanlash",
+    "addMore": "Yana qoʻshish",
+    "limits": "Har bir fayl {{maxFile}} MB gacha, bir martada {{maxBatch}} tagacha.",
+    "selected_one": "{{count}} ta fayl tanlandi",
+    "selected_other": "{{count}} ta fayl tanlandi",
+    "remove": "{{name}} faylini olib tashlash",
+    "moveUp": "{{name}} faylini yuqoriga surish",
+    "moveDown": "{{name}} faylini pastga surish",
+    "orderHint": {
+      "images-to-pdf": "PDF sahifalari shu tartibda boʻladi.",
+      "pdf-merge": "Fayllar shu tartibda birlashtiriladi."
+    },
+    "formats": "Formatlar: {{formats}}.",
+    "anyFormat": "Istalgan turdagi fayl."
+  },
+  "actions": {
+    "image-convert": "{{target}} qilish",
+    "image-compress": "Siqish",
+    "images-to-pdf": "PDF yasash",
+    "download": "Yuklab olish",
+    "downloadFile": "{{name}} faylini yuklab olish",
+    "downloadAll": "Hammasini ZIP qilib yuklab olish",
+    "deleteNow": "Serverdan hozir oʻchirish",
+    "deleteConfirm": "Fayllar serverdan butunlay oʻchiriladi. Davom etasizmi?",
+    "again": "Yangi fayllar bilan boshlash",
+    "retry": "Qayta urinish",
+    "office-to-pdf": "PDF qilish",
+    "pdf-merge": "Birlashtirish",
+    "pdf-split": "Boʻlish",
+    "pdf-organize": "Saqlash",
+    "pdf-compress": "Siqish",
+    "pdf-to-images": "{{target}} qilish",
+    "archive-extract": "Arxivni ochish",
+    "archive-create": "{{target}} yaratish",
+    "archive-convert": "{{target}} qilish",
+    "ebook-convert": "{{target}} qilish"
+  },
+  "status": {
+    "uploading": "Yuklanmoqda… {{percent}}%",
+    "queued": "Navbatda…",
+    "processing": "Ishlanmoqda…",
+    "done": "Tayyor",
+    "failed": "Bajarilmadi",
+    "expires": "Fayllar {{time}} da avtomatik oʻchiriladi.",
+    "deleted": "Fayllar serverdan oʻchirildi.",
+    "saved": "Hajm {{percent}}% kamaydi: {{before}} → {{after}}",
+    "notSaved": "Bu suratlarni bundan ortiq siqib boʻlmadi: {{before}} → {{after}}",
+    "showAll": "Hammasini koʻrsatish ({{count}})"
+  },
+  "errors": {
+    "no_files": "Avval kamida bitta fayl tanlang.",
+    "too_many_files": "Bir martada {{max_files}} tagacha fayl yuklash mumkin. Ortiqchasini olib tashlang.",
+    "file_too_large": "“{{name}}” fayli {{max_file_mb}} MB dan katta. Kichikroq fayl tanlang.",
+    "request_too_large": "Fayllar jami {{max_total_mb}} MB dan oshmasligi kerak. Bir nechtasini olib tashlang.",
+    "unsupported_format": "“{{name}}” bu vosita uchun mos fayl emas. Qabul qilinadigan formatlar yuklash maydonida koʻrsatilgan.",
+    "image_too_large": "Surat oʻlchami juda katta (100 megapikseldan ortiq). Kichikroq surat tanlang.",
+    "daily_limit_reached": "Bugungi limit tugadi: kuniga {{daily_tasks}} ta vazifa. Ertaga yana urinib koʻring.",
+    "throttled": "Juda koʻp soʻrov yuborildi. Bir daqiqadan keyin qayta urinib koʻring.",
+    "corrupt_file": "Faylni ochib boʻlmadi: u shikastlangan boʻlishi mumkin. Boshqa nusxasini yuklab koʻring.",
+    "timeout": "Ishlov juda uzoq davom etdi. Kamroq yoki kichikroq fayllar bilan qayta urinib koʻring.",
+    "files_deleted": "Fayllar ishlov tugashidan oldin oʻchirildi. Ularni qayta yuklang.",
+    "file_expired": "Bu fayl serverdan oʻchirilgan. Faylni qayta yuklang.",
+    "unknown_tool": "Bunday vosita yoʻq.",
+    "validation_error": "Sozlamalarda xato bor. Sahifani yangilab, qayta urinib koʻring.",
+    "network_error": "Serverga ulanib boʻlmadi. Internetni tekshirib, qayta urinib koʻring.",
+    "internal_error": "Serverda xato yuz berdi. Birozdan keyin qayta urinib koʻring.",
+    "tool_unavailable": "Bu vosita vaqtincha ishlamayapti.",
+    "not_found": "Vazifa topilmadi yoki muddati oʻtgan.",
+    "invalid_credentials": "Email yoki parol notoʻgʻri.",
+    "email_taken": "Bu email bilan akkaunt bor. Kiring yoki parolni tiklang.",
+    "weak_password": "Parol yetarlicha kuchli emas: {{reasons}}.",
+    "session_expired": "Sessiya tugadi. Qaytadan kiring.",
+    "invalid_reset_link": "Havola eskirgan yoki allaqachon ishlatilgan. Yangi havola soʻrang.",
+    "google_failed": "Google orqali kirib boʻlmadi. Qayta urinib koʻring yoki email bilan kiring.",
+    "google_disabled": "Google orqali kirish hozircha yoqilmagan.",
+    "account_disabled": "Bu akkaunt bloklangan.",
+    "auth_required": "Buning uchun akkauntga kiring.",
+    "required": "Bu maydonni toʻldiring.",
+    "invalid_email": "Email manzilini toʻgʻri yozing, masalan ali@example.com.",
+    "too_few_files": "Kamida {{min_files}} ta fayl tanlang.",
+    "pdf_encrypted": "PDF parol bilan himoyalangan. Avval himoyani olib tashlang yoki parolsiz nusxasini yuklang.",
+    "too_many_pages": "Hujjatda sahifalar juda koʻp. Uni avval boʻlib, qismlarga ajrating.",
+    "invalid_page_range": "Sahifalarni “1-3, 5, 8-10” koʻrinishida va hujjatdagi sahifalar soni doirasida yozing.",
+    "reauth_required": "Akkauntni oʻchirishdan oldin Google orqali tasdiqlang.",
+    "google_account_mismatch": "Bu boshqa Google akkaunti. Shu akkaunt email manzili bilan tasdiqlang.",
+    "archive_encrypted": "Arxiv parol bilan himoyalangan. Parolli arxivlarni hozircha ocha olmaymiz.",
+    "archive_too_large": "Arxiv ochilganda juda katta hajm chiqadi. Kichikroq arxiv yuklang.",
+    "archive_too_many_files": "Arxivda fayllar juda koʻp. 1000 tagacha faylli arxivni yuklang.",
+    "archive_empty": "Arxiv ichida fayl yoʻq.",
+    "ebook_drm": "Kitob DRM bilan himoyalangan, uni aylantirib boʻlmaydi.",
+    "malware_detected": "Faylda zararli dastur topildi, shuning uchun u qayta ishlanmadi va oʻchirildi.",
+    "scan_unavailable": "Faylni viruslarga tekshirib boʻlmadi. Birozdan keyin qayta urinib koʻring."
+  },
+  "notFound": {
+    "title": "Sahifa topilmadi",
+    "text": "Havola eskirgan yoki notoʻgʻri yozilgan boʻlishi mumkin.",
+    "back": "Bosh sahifaga qaytish"
+  },
+  "footer": {
+    "privacy": "Fayllaringiz faqat aylantirish uchun ishlatiladi va avtomatik oʻchiriladi.",
+    "privacyLink": "Maxfiylik siyosati",
+    "termsLink": "Foydalanish shartlari",
+    "legalNav": "Huquqiy maʼlumotlar"
+  },
+  "fields": {
+    "email": "Email",
+    "password": "Parol",
+    "newPassword": "Yangi parol",
+    "show": "Parolni koʻrsatish",
+    "hide": "Parolni yashirish",
+    "passwordHint": "Kamida 8 belgi. Juda oddiy yoki faqat raqamdan iborat parol qabul qilinmaydi."
+  },
+  "auth": {
+    "benefits": "Akkaunt bilan 200 MB gacha fayl yuklaysiz, kuniga 100 ta vazifa bajarasiz va tarix 30 kun saqlanadi.",
+    "or": "yoki",
+    "login": {
+      "title": "Kirish",
+      "submit": "Kirish",
+      "submitting": "Kirilmoqda…",
+      "forgot": "Parolni unutdingizmi?",
+      "noAccount": "Akkauntingiz yoʻqmi?",
+      "toRegister": "Roʻyxatdan oʻting"
+    },
+    "register": {
+      "title": "Roʻyxatdan oʻtish",
+      "submit": "Akkaunt yaratish",
+      "submitting": "Yaratilmoqda…",
+      "hasAccount": "Akkauntingiz bormi?",
+      "toLogin": "Kiring"
+    },
+    "forgot": {
+      "title": "Parolni tiklash",
+      "text": "Emailingizni yozing, parolni tiklash havolasini yuboramiz.",
+      "submit": "Havolani yuborish",
+      "submitting": "Yuborilmoqda…",
+      "sent": "Agar {{email}} bilan akkaunt boʻlsa, unga havola yuborildi. “Spam” papkasini ham tekshiring.",
+      "back": "Kirish sahifasiga qaytish"
+    },
+    "reset": {
+      "title": "Yangi parol oʻrnatish",
+      "submit": "Parolni saqlash",
+      "submitting": "Saqlanmoqda…",
+      "requestNew": "Yangi havola soʻrash"
+    },
+    "google": "Google orqali kirish"
+  },
+  "account": {
+    "title": "Kabinet",
+    "profile": "Profil",
+    "verified": "Email tasdiqlangan",
+    "unverified": "Email hali tasdiqlanmagan",
+    "language": "Interfeys tili",
+    "saved": "Saqlandi",
+    "usage": "Bugungi limit",
+    "usageText": "{{used}} / {{total}} ta vazifa ishlatildi. Har bir fayl {{maxFile}} MB gacha.",
+    "history": "Soʻnggi 30 kun",
+    "empty": "Hali vazifa yoʻq. Birinchi faylingizni aylantirib koʻring.",
+    "toTools": "Vositalarga oʻtish",
+    "filesDeleted": "Fayllar oʻchirilgan",
+    "more": "Yana koʻrsatish",
+    "logout": "Chiqish",
+    "deleteTitle": "Akkauntni oʻchirish",
+    "deleteText": "Akkaunt, tarix va barcha fayllaringiz butunlay oʻchiriladi. Buni qaytarib boʻlmaydi.",
+    "deletePassword": "Tasdiqlash uchun parolingiz",
+    "deleteSubmit": "Akkauntni butunlay oʻchirish",
+    "deleteConfirm": "Akkaunt va barcha fayllar butunlay oʻchiriladi. Davom etasizmi?",
+    "deleteGoogle": "Tasdiqlash uchun shu akkaunt bilan Google orqali qayta kiring. Kirgandan keyin akkaunt oʻchiriladi.",
+    "deleteNoGoogle": "Bu akkauntda parol yoʻq. Uni oʻchirish uchun avval parol oʻrnating."
+  },
+  "weak": {
+    "password_too_short": "kamida 8 ta belgi boʻlsin",
+    "password_too_common": "bu parol juda keng tarqalgan",
+    "password_entirely_numeric": "faqat raqamlardan iborat boʻlmasin",
+    "password_too_similar": "emailingizga juda oʻxshash",
+    "invalid": "talablarga mos emas"
+  },
+  "organize": {
+    "loading": "Sahifalar yuklanmoqda…",
+    "count": "{{count}} / {{total}} sahifa",
+    "reset": "Asl holatiga qaytarish",
+    "listLabel": "PDF sahifalari",
+    "page": "{{n}}-sahifa",
+    "moveBack": "{{page}}ni oldinga surish",
+    "moveForward": "{{page}}ni orqaga surish",
+    "rotate": "{{page}}ni 90° aylantirish",
+    "remove": "{{page}}ni oʻchirish",
+    "empty": "Kamida bitta sahifa qolishi kerak."
+  },
+  "legal": {
+    "updated": "Soʻnggi tahrir: {{date}}",
+    "operator": "Xizmat egasi: {{name}}.",
+    "contact": "Savollar va soʻrovlar uchun: ",
+    "noContact": "Aloqa manzili hali koʻrsatilmagan.",
+    "privacy": {
+      "title": "Maxfiylik siyosati",
+      "intro": "Bu sahifa Universe qanday maʼlumotlarni olishi, ularni nima uchun ishlatishi va qachon oʻchirishini tushuntiradi. Maʼlumotlarga Oʻzbekiston Respublikasining “Shaxsga doir maʼlumotlar toʻgʻrisida”gi Qonuniga muvofiq ishlov beriladi.",
+      "sections": [
+        {
+          "h": "Yuklagan fayllaringiz",
+          "p": [
+            "Fayllar faqat siz tanlagan amalni bajarish uchun ishlatiladi. Biz ularning mazmunini oʻqimaymiz, sotmaymiz va boshqalarga bermaymiz.",
+            "Asl fayl ishlov tugashi bilan oʻchiriladi. Natija mehmonlar uchun 1 soatdan, akkaunt egalari uchun 6 soatdan keyin avtomatik oʻchadi. “Serverdan hozir oʻchirish” tugmasi bilan uni darhol oʻchirishingiz mumkin. Fayllarning zaxira nusxasi olinmaydi.",
+            "Har bir fayl ishlovdan oldin viruslarga tekshiriladi. Telefon suratlaridagi GPS va kamera maʼlumotlari natijaga oʻtkazilmaydi."
+          ]
+        },
+        {
+          "h": "Akkaunt",
+          "p": [
+            "Akkaunt ochsangiz, email manzilingiz, parolingizning qaytarib boʻlmaydigan xeshi (Argon2) va interfeys tili saqlanadi. Google orqali kirsangiz, Google bizga faqat email manzilingiz tasdiqlanganini bildiradi.",
+            "Tarix boʻlimida vosita nomi, fayl nomlari, hajmi va vaqti 30 kun saqlanadi. Fayllarning oʻzi yuqoridagi muddatda oʻchadi.",
+            "Akkaunt sahifasidagi “Akkauntni butunlay oʻchirish” tugmasi akkaunt, tarix va barcha fayllarni darhol oʻchiradi."
+          ]
+        },
+        {
+          "h": "Cookie va brauzer xotirasi",
+          "p": [
+            "uv_guest: akkauntsiz ishlaganda natijalaringizni shu brauzerda koʻrsatish uchun. Unda tasodifiy belgi saqlanadi, serverda esa faqat uning xeshi turadi.",
+            "uv_refresh: akkauntga kirgan holatni 7 kun saqlash uchun.",
+            "Brauzer xotirasida (localStorage) faqat tanlangan mavzu (yorugʻ yoki qorongʻi) saqlanadi.",
+            "Reklama, kuzatuv yoki analitika cookie'lari ishlatilmaydi."
+          ]
+        },
+        {
+          "h": "Texnik maʼlumotlar",
+          "p": [
+            "IP manzil suiisteʼmolga qarshi limitlar uchun ishlatiladi va bir necha daqiqa xotirada turadi. Xavfsizlik va nosozliklarni aniqlash uchun server jurnallari cheklangan muddat saqlanadi."
+          ]
+        },
+        {
+          "h": "Uchinchi tomon xizmatlari",
+          "p": [
+            "Google: faqat “Google orqali kirish” tugmasini bossangiz.",
+            "Google Fonts: sahifa shrifti Google serveridan yuklanadi, bunda brauzeringiz IP manzilini Google koʻradi.",
+            "Xatolar haqida hisobot xizmati: dasturdagi xatolar shaxsga doir maʼlumotlarsiz (cookie, IP va fayl mazmunisiz) yuboriladi."
+          ]
+        },
+        {
+          "h": "Huquqlaringiz",
+          "p": [
+            "Siz oʻzingiz haqingizdagi maʼlumotlarni bilish, tuzatish va oʻchirishni talab qilishingiz mumkin. Akkaunt va fayllarni sayt orqali oʻzingiz oʻchira olasiz. Boshqa soʻrovlar uchun quyidagi manzilga yozing."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Foydalanish shartlari",
+      "intro": "Universe'dan foydalanish orqali siz quyidagi shartlarga rozilik bildirasiz.",
+      "sections": [
+        {
+          "h": "Xizmat",
+          "p": [
+            "Universe fayllarni aylantirish, siqish va tahrirlash uchun bepul xizmat. Kunlik limitlar va fayl hajmi chegaralari xizmatni suiisteʼmoldan himoya qiladi va oʻzgarishi mumkin."
+          ]
+        },
+        {
+          "h": "Siz yuklaydigan fayllar",
+          "p": [
+            "Faqat foydalanishga huquqingiz bor fayllarni yuklang. Fayl mazmuni va undan foydalanish uchun siz javobgarsiz.",
+            "DRM bilan himoyalangan kitoblar va parolli arxivlar qayta ishlanmaydi."
+          ]
+        },
+        {
+          "h": "Taqiqlanadi",
+          "p": [
+            "Zararli dasturlar yuklash, limitlarni chetlab oʻtish, xizmatni avtomatlashtirilgan tarzda ommaviy ishlatish, unga hujum qilish yoki ishini buzish, qonunga zid kontentni tarqatish. Bunday holatda fayllar oʻchiriladi va akkaunt bloklanishi mumkin."
+          ]
+        },
+        {
+          "h": "Natijalar va javobgarlik",
+          "p": [
+            "Xizmat “boricha” taqdim etiladi. Biz har bir fayl aniq aylanishiga kafolat bera olmaymiz, shuning uchun asl nusxani saqlab qoling. Natijani oʻchish muddatidan oldin yuklab oling: fayllarning zaxira nusxasi yoʻq."
+          ]
+        },
+        {
+          "h": "Akkaunt",
+          "p": [
+            "Parolingizni sir saqlang. Shartlarni buzgan akkaunt oʻchirilishi yoki bloklanishi mumkin. Akkauntni istalgan vaqtda oʻzingiz oʻchira olasiz."
+          ]
+        },
+        {
+          "h": "Qonunchilik va oʻzgarishlar",
+          "p": [
+            "Bu shartlarga Oʻzbekiston Respublikasi qonunchiligi tatbiq etiladi. Shartlar oʻzgarsa, yangi tahrir shu sahifada sanasi bilan eʼlon qilinadi."
+          ]
+        }
+      ]
+    }
+  }
+}

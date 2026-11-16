@@ -1,0 +1,527 @@
+{
+  "meta": {
+    "siteName": "Universe",
+    "homeTitle": "Free Word, PDF, photo, e-book and archive converter | Universe",
+    "homeDescription": "Turn Word and Excel into PDF, merge and compress PDFs, convert HEIC, EPUB, FB2 and RAR files. Free, no sign-up."
+  },
+  "nav": {
+    "skip": "Skip to main content",
+    "home": "Home",
+    "language": "Language",
+    "theme": "Theme: {{mode}}",
+    "themeModes": {
+      "system": "system",
+      "light": "light",
+      "dark": "dark"
+    },
+    "login": "Sign in",
+    "account": "Account"
+  },
+  "home": {
+    "title": "Everyday file tasks, free",
+    "subtitle": "Turn Word and Excel into PDF, merge or compress PDFs, and convert photos, e-books and archives. No sign-up required.",
+    "searchLabel": "Search tools",
+    "searchPlaceholder": "For example: heic jpg…",
+    "toolsHeading": "Tools",
+    "popularHeading": "Popular conversions",
+    "noResults": "No tool matches “{{query}}”. Try something like “png pdf”.",
+    "benefitsHeading": "Why Universe",
+    "benefits": {
+      "free": {
+        "title": "No account needed",
+        "text": "Drop a file and download the result. Every tool is free."
+      },
+      "deleted": {
+        "title": "Files are deleted within an hour",
+        "text": "Your upload is deleted as soon as processing ends, and the result after 1 hour. You can delete it sooner."
+      },
+      "gps": {
+        "title": "Location data is removed",
+        "text": "GPS and camera details from phone photos are not copied into the result."
+      }
+    },
+    "groups": {
+      "pdf": "PDF tools",
+      "office": "Documents",
+      "image": "Photos",
+      "archive": "Archives",
+      "ebook": "E-books"
+    }
+  },
+  "tools": {
+    "image-convert": {
+      "name": "Change format",
+      "title": "Image format converter",
+      "description": "Convert between PNG, JPG, WEBP, HEIC, AVIF, GIF, BMP and TIFF. Several photos at once."
+    },
+    "image-compress": {
+      "name": "Shrink file size",
+      "title": "Compress images",
+      "description": "Three levels: strong, medium and light. See how much space each photo saved."
+    },
+    "images-to-pdf": {
+      "name": "Photos to PDF",
+      "title": "Make a PDF from photos",
+      "description": "Put your photos in order and combine them into one A4 or Letter PDF."
+    },
+    "office-to-pdf": {
+      "name": "Word, Excel, PowerPoint → PDF",
+      "title": "Convert documents to PDF",
+      "description": "Turn Word, Excel, PowerPoint and OpenDocument files into PDF with fonts and layout kept."
+    },
+    "pdf-merge": {
+      "name": "Merge PDF",
+      "title": "Merge PDF files",
+      "description": "Combine several PDFs into one file in the order you choose."
+    },
+    "pdf-split": {
+      "name": "Split PDF",
+      "title": "Split a PDF",
+      "description": "Save every page as its own PDF or pull out the pages you need."
+    },
+    "pdf-organize": {
+      "name": "Organize pages",
+      "title": "Organize PDF pages",
+      "description": "Reorder, rotate or delete pages."
+    },
+    "pdf-compress": {
+      "name": "Compress PDF",
+      "title": "Reduce PDF file size",
+      "description": "Shrink scans and image-heavy PDFs so they fit email or upload limits."
+    },
+    "pdf-to-images": {
+      "name": "PDF → JPG, PNG",
+      "title": "Convert PDF pages to images",
+      "description": "Save each page as a separate JPG or PNG image."
+    },
+    "archive-extract": {
+      "name": "Extract archive",
+      "title": "Open ZIP, RAR and 7Z archives online",
+      "description": "See what's inside an archive and download the files you need one by one. ZIP, RAR, 7Z, TAR, GZ."
+    },
+    "archive-create": {
+      "name": "Create ZIP",
+      "title": "Pack files into a ZIP or 7Z archive",
+      "description": "Put several files into one ZIP or 7Z archive. Any file type works."
+    },
+    "archive-convert": {
+      "name": "Change archive format",
+      "title": "Convert RAR, 7Z and TAR to ZIP",
+      "description": "Repack RAR, 7Z or TAR as ZIP or 7Z, keeping the folder structure."
+    },
+    "ebook-convert": {
+      "name": "E-book converter",
+      "title": "Convert EPUB, FB2 and MOBI books",
+      "description": "Convert EPUB, FB2, MOBI and AZW3 books for Kindle, your phone or printing."
+    }
+  },
+  "conversion": {
+    "short": "{{from}} → {{to}}",
+    "title": "Convert {{from}} to {{to}}",
+    "description": "Convert {{from}} files to {{to}} for free. No sign-up, files are deleted within an hour."
+  },
+  "options": {
+    "target": {
+      "label": "Convert to",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG",
+        "webp": "WEBP",
+        "avif": "AVIF",
+        "gif": "GIF",
+        "bmp": "BMP",
+        "tiff": "TIFF",
+        "zip": "ZIP",
+        "7z": "7Z",
+        "epub": "EPUB",
+        "mobi": "MOBI",
+        "azw3": "AZW3 (Kindle)",
+        "pdf": "PDF"
+      }
+    },
+    "level": {
+      "label": "Compression level",
+      "choices": {
+        "strong": "Strong",
+        "medium": "Medium",
+        "light": "Light"
+      },
+      "hints": {
+        "strong": "Smallest file",
+        "medium": "Balance of size and quality",
+        "light": "Quality barely changes"
+      }
+    },
+    "page_size": {
+      "label": "Page size",
+      "choices": {
+        "a4": "A4",
+        "letter": "Letter",
+        "fit": "Same as photo"
+      }
+    },
+    "orientation": {
+      "label": "Orientation",
+      "choices": {
+        "auto": "Automatic",
+        "portrait": "Portrait",
+        "landscape": "Landscape"
+      }
+    },
+    "margin": {
+      "label": "Margin",
+      "choices": {
+        "none": "None",
+        "small": "Small",
+        "large": "Large"
+      }
+    },
+    "mode": {
+      "label": "How to split",
+      "choices": {
+        "each": "Every page separately",
+        "ranges": "Selected pages"
+      }
+    },
+    "ranges": {
+      "label": "Pages",
+      "placeholder": "For example: 1-3, 5, 8-…",
+      "hint": "Each range becomes its own PDF. “8-” means page 8 to the end."
+    },
+    "pdfLevel": {
+      "label": "Compression level",
+      "choices": {
+        "strong": "Strong",
+        "medium": "Medium",
+        "light": "Light"
+      },
+      "hints": {
+        "strong": "Smallest file, softer images",
+        "medium": "For reading on screen",
+        "light": "For printing"
+      }
+    },
+    "format": {
+      "label": "Image format",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG"
+      }
+    },
+    "quality": {
+      "label": "Quality",
+      "choices": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "hints": {
+        "low": "72 DPI, for screens",
+        "medium": "150 DPI",
+        "high": "300 DPI, for printing"
+      }
+    },
+    "archiveFormat": {
+      "label": "Archive type",
+      "choices": {
+        "zip": "ZIP",
+        "7z": "7Z"
+      },
+      "hints": {
+        "zip": "Opens anywhere",
+        "7z": "Smaller size"
+      }
+    }
+  },
+  "upload": {
+    "drop": "Drop files here",
+    "or": "or",
+    "choose": "Choose files",
+    "addMore": "Add more",
+    "limits": "Up to {{maxFile}} MB per file, {{maxBatch}} files at a time.",
+    "selected_one": "{{count}} file selected",
+    "selected_other": "{{count}} files selected",
+    "remove": "Remove {{name}}",
+    "moveUp": "Move {{name}} up",
+    "moveDown": "Move {{name}} down",
+    "orderHint": {
+      "images-to-pdf": "PDF pages will follow this order.",
+      "pdf-merge": "Files will be merged in this order."
+    },
+    "formats": "Formats: {{formats}}.",
+    "anyFormat": "Any file type."
+  },
+  "actions": {
+    "image-convert": "Convert to {{target}}",
+    "image-compress": "Compress",
+    "images-to-pdf": "Create PDF",
+    "download": "Download",
+    "downloadFile": "Download {{name}}",
+    "downloadAll": "Download all as ZIP",
+    "deleteNow": "Delete from server now",
+    "deleteConfirm": "The files will be permanently deleted from the server. Continue?",
+    "again": "Start over with new files",
+    "retry": "Try again",
+    "office-to-pdf": "Convert to PDF",
+    "pdf-merge": "Merge",
+    "pdf-split": "Split",
+    "pdf-organize": "Save",
+    "pdf-compress": "Compress",
+    "pdf-to-images": "Convert to {{target}}",
+    "archive-extract": "Extract",
+    "archive-create": "Create {{target}}",
+    "archive-convert": "Convert to {{target}}",
+    "ebook-convert": "Convert to {{target}}"
+  },
+  "status": {
+    "uploading": "Uploading… {{percent}}%",
+    "queued": "Queued…",
+    "processing": "Processing…",
+    "done": "Done",
+    "failed": "Failed",
+    "expires": "Files will be deleted automatically at {{time}}.",
+    "deleted": "Files were deleted from the server.",
+    "saved": "{{percent}}% smaller: {{before}} → {{after}}",
+    "notSaved": "These photos can't be compressed further: {{before}} → {{after}}",
+    "showAll": "Show all ({{count}})"
+  },
+  "errors": {
+    "no_files": "Choose at least one file first.",
+    "too_many_files": "You can upload up to {{max_files}} files at a time. Remove the extra ones.",
+    "file_too_large": "“{{name}}” is larger than {{max_file_mb}} MB. Choose a smaller file.",
+    "request_too_large": "Files must add up to {{max_total_mb}} MB or less. Remove some of them.",
+    "unsupported_format": "“{{name}}” isn't a file this tool accepts. Supported formats are listed in the upload area.",
+    "image_too_large": "The image resolution is too large (over 100 megapixels). Choose a smaller image.",
+    "daily_limit_reached": "Daily limit reached: {{daily_tasks}} tasks per day. Try again tomorrow.",
+    "throttled": "Too many requests. Try again in a minute.",
+    "corrupt_file": "The file couldn't be opened and may be damaged. Try another copy.",
+    "timeout": "Processing took too long. Try fewer or smaller files.",
+    "files_deleted": "The files were deleted before processing finished. Upload them again.",
+    "file_expired": "This file has been deleted from the server. Upload it again.",
+    "unknown_tool": "This tool doesn't exist.",
+    "validation_error": "Something is wrong with the settings. Reload the page and try again.",
+    "network_error": "Can't reach the server. Check your connection and try again.",
+    "internal_error": "Something went wrong on our side. Try again shortly.",
+    "tool_unavailable": "This tool is temporarily unavailable.",
+    "not_found": "Task not found, or it has expired.",
+    "invalid_credentials": "Wrong email or password.",
+    "email_taken": "An account with this email already exists. Sign in or reset your password.",
+    "weak_password": "The password isn't strong enough: {{reasons}}.",
+    "session_expired": "Your session has ended. Sign in again.",
+    "invalid_reset_link": "This link has expired or was already used. Request a new one.",
+    "google_failed": "Google sign-in didn't work. Try again or sign in with email.",
+    "google_disabled": "Google sign-in isn't enabled yet.",
+    "account_disabled": "This account is disabled.",
+    "auth_required": "Sign in to do this.",
+    "required": "Fill in this field.",
+    "invalid_email": "Enter a valid email, for example ali@example.com.",
+    "too_few_files": "Choose at least {{min_files}} files.",
+    "pdf_encrypted": "This PDF is password-protected. Remove the protection or upload a copy without a password.",
+    "too_many_pages": "The document has too many pages. Split it into parts first.",
+    "invalid_page_range": "Write pages like “1-3, 5, 8-10”, within the document's page count.",
+    "reauth_required": "Confirm with Google before deleting your account.",
+    "google_account_mismatch": "That's a different Google account. Confirm with this account's address.",
+    "archive_encrypted": "This archive is password-protected. We can't open those yet.",
+    "archive_too_large": "This archive unpacks to too much data. Try a smaller archive.",
+    "archive_too_many_files": "This archive has too many files. Upload one with up to 1000 files.",
+    "archive_empty": "There are no files in this archive.",
+    "ebook_drm": "This book is DRM-protected and can't be converted.",
+    "malware_detected": "Malware was found in this file, so it wasn't processed and has been deleted.",
+    "scan_unavailable": "We couldn't scan this file for viruses. Please try again in a moment."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The link may be outdated or mistyped.",
+    "back": "Back to home"
+  },
+  "footer": {
+    "privacy": "Your files are used only for conversion and are deleted automatically.",
+    "privacyLink": "Privacy policy",
+    "termsLink": "Terms of use",
+    "legalNav": "Legal"
+  },
+  "fields": {
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "New password",
+    "show": "Show password",
+    "hide": "Hide password",
+    "passwordHint": "At least 8 characters. Very common or numbers-only passwords are not accepted."
+  },
+  "auth": {
+    "benefits": "With an account you can upload files up to 200 MB, run 100 tasks a day, and keep 30 days of history.",
+    "or": "or",
+    "login": {
+      "title": "Sign in",
+      "submit": "Sign in",
+      "submitting": "Signing in…",
+      "forgot": "Forgot your password?",
+      "noAccount": "No account yet?",
+      "toRegister": "Create one"
+    },
+    "register": {
+      "title": "Create an account",
+      "submit": "Create account",
+      "submitting": "Creating…",
+      "hasAccount": "Already have an account?",
+      "toLogin": "Sign in"
+    },
+    "forgot": {
+      "title": "Reset your password",
+      "text": "Enter your email and we'll send you a link to reset your password.",
+      "submit": "Send reset link",
+      "submitting": "Sending…",
+      "sent": "If an account exists for {{email}}, we've sent it a link. Check your spam folder too.",
+      "back": "Back to sign in"
+    },
+    "reset": {
+      "title": "Set a new password",
+      "submit": "Save password",
+      "submitting": "Saving…",
+      "requestNew": "Request a new link"
+    },
+    "google": "Sign in with Google"
+  },
+  "account": {
+    "title": "Account",
+    "profile": "Profile",
+    "verified": "Email verified",
+    "unverified": "Email not verified yet",
+    "language": "Interface language",
+    "saved": "Saved",
+    "usage": "Today's limit",
+    "usageText": "{{used}} of {{total}} tasks used. Up to {{maxFile}} MB per file.",
+    "history": "Last 30 days",
+    "empty": "No tasks yet. Convert your first file to see it here.",
+    "toTools": "Go to tools",
+    "filesDeleted": "Files deleted",
+    "more": "Show more",
+    "logout": "Sign out",
+    "deleteTitle": "Delete account",
+    "deleteText": "Your account, history and all your files will be permanently deleted. This can't be undone.",
+    "deletePassword": "Your password, to confirm",
+    "deleteSubmit": "Delete account permanently",
+    "deleteConfirm": "Your account and all files will be permanently deleted. Continue?",
+    "deleteGoogle": "To confirm, sign in with Google again using this account. The account is deleted right after.",
+    "deleteNoGoogle": "This account has no password. To delete it, set a password first."
+  },
+  "weak": {
+    "password_too_short": "use at least 8 characters",
+    "password_too_common": "this password is too common",
+    "password_entirely_numeric": "don't use only numbers",
+    "password_too_similar": "it's too similar to your email",
+    "invalid": "it doesn't meet the requirements"
+  },
+  "organize": {
+    "loading": "Loading pages…",
+    "count": "{{count}} of {{total}} pages",
+    "reset": "Undo all changes",
+    "listLabel": "PDF pages",
+    "page": "Page {{n}}",
+    "moveBack": "Move {{page}} earlier",
+    "moveForward": "Move {{page}} later",
+    "rotate": "Rotate {{page}} by 90°",
+    "remove": "Delete {{page}}",
+    "empty": "Keep at least one page."
+  },
+  "legal": {
+    "updated": "Last updated: {{date}}",
+    "operator": "Operated by {{name}}.",
+    "contact": "Questions and requests: ",
+    "noContact": "No contact address has been set yet.",
+    "privacy": {
+      "title": "Privacy policy",
+      "intro": "This page explains what data Universe receives, why, and when it is deleted. Data is processed under the Law of the Republic of Uzbekistan “On Personal Data”.",
+      "sections": [
+        {
+          "h": "Files you upload",
+          "p": [
+            "Files are used only for the task you choose. We don't read, sell or share their contents.",
+            "The original is deleted as soon as processing ends. Results are deleted automatically after 1 hour for guests and 6 hours for account holders, or right away with “Delete from server now”. Files are never backed up.",
+            "Every file is scanned for viruses before processing. GPS and camera details from phone photos are not copied into results."
+          ]
+        },
+        {
+          "h": "Your account",
+          "p": [
+            "For an account we keep your email, a one-way hash of your password (Argon2) and your interface language. With Google sign-in, Google only tells us your verified email.",
+            "History keeps the tool name, file names, sizes and times for 30 days. The files themselves are deleted on the schedule above.",
+            "“Delete account permanently” on the account page removes your account, history and files immediately."
+          ]
+        },
+        {
+          "h": "Cookies and browser storage",
+          "p": [
+            "uv_guest: shows your results in this browser when you're not signed in. It holds a random token; the server stores only its hash.",
+            "uv_refresh: keeps you signed in for 7 days.",
+            "Browser storage (localStorage) keeps only your theme choice (light or dark).",
+            "No advertising, tracking or analytics cookies are used."
+          ]
+        },
+        {
+          "h": "Technical data",
+          "p": [
+            "Your IP address is used for anti-abuse limits and held in memory for a few minutes. Server logs are kept for a limited time for security and troubleshooting."
+          ]
+        },
+        {
+          "h": "Third-party services",
+          "p": [
+            "Google: only if you press “Continue with Google”.",
+            "Google Fonts: the page font loads from Google's servers, so Google sees your browser's IP address.",
+            "Error reporting: application errors are sent without personal data (no cookies, IP addresses or file contents)."
+          ]
+        },
+        {
+          "h": "Your rights",
+          "p": [
+            "You can ask to see, correct or delete data about you. You can delete your account and files yourself on the site. For anything else, write to the address below."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of use",
+      "intro": "By using Universe you agree to these terms.",
+      "sections": [
+        {
+          "h": "The service",
+          "p": [
+            "Universe is a free service for converting, compressing and editing files. Daily limits and size caps protect it from abuse and may change."
+          ]
+        },
+        {
+          "h": "Your files",
+          "p": [
+            "Upload only files you have the right to use. You are responsible for their contents and for how you use the results.",
+            "DRM-protected books and password-protected archives are not processed."
+          ]
+        },
+        {
+          "h": "Not allowed",
+          "p": [
+            "Uploading malware, getting around limits, automated bulk use, attacking or disrupting the service, or spreading illegal content. If this happens, files are deleted and the account may be blocked."
+          ]
+        },
+        {
+          "h": "Results and liability",
+          "p": [
+            "The service is provided “as is”. We can't guarantee every file converts perfectly, so keep your original. Download results before they expire: there are no backups of files."
+          ]
+        },
+        {
+          "h": "Your account",
+          "p": [
+            "Keep your password secret. Accounts that break these terms may be removed or blocked. You can delete your account at any time."
+          ]
+        },
+        {
+          "h": "Law and changes",
+          "p": [
+            "These terms are governed by the laws of the Republic of Uzbekistan. If they change, the new version is published on this page with its date."
+          ]
+        }
+      ]
+    }
+  }
+}
