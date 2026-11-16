@@ -157,7 +157,7 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": [
         "apps.conversions.throttles.GuestRateThrottle",
         "apps.conversions.throttles.AnonIPRateThrottle",
-        "rest_framework.throttling.UserRateThrottle",
+        "apps.conversions.throttles.SignedInUserRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {
         # Guests: per browser (cookie), plus a ceiling per IP shared by everyone behind it.

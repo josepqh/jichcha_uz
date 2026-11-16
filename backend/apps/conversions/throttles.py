@@ -5,7 +5,7 @@ limit follows the account or the guest cookie. A looser per-IP ceiling for guest
 from dodging it by clearing cookies.
 """
 
-from rest_framework.throttling import SimpleRateThrottle
+from rest_framework.throttling import SimpleRateThrottle, UserRateThrottle
 
 from .identity import guest_key_from_cookie
 
@@ -63,3 +63,16 @@ class AnonIPRateThrottle(SimpleRateThrottle):
         if request.user and request.user.is_authenticated:
             return None
         return self.cache_format % {"scope": self.scope, "ident": self.get_ident(request)}
+
+
+class SignedInUserRateThrottle(UserRateThrottle):
+    """DRF's UserRateThrottle, minus its per-IP fallback for anonymous requests.
+
+    The stock class keys anonymous requests by IP, which would put one shared cap on every guest
+    behind a CGNAT address; guests are covered by GuestRateThrottle and AnonIPRateThrottle instead.
+    """
+
+    def get_cache_key(self, request, view):
+        if not (request.user and request.user.is_authenticated):
+            return None
+        return super().get_cache_key(request, view)

@@ -116,6 +116,8 @@ services:
     <<: *backend
     build:
       context: ./backend
+      # The last Dockerfile stage is the heavy office image; the API and light worker need only this.
+      target: runtime
       args:
         DEBIAN_MIRROR: ${DEBIAN_MIRROR:-}
     pull_policy: build

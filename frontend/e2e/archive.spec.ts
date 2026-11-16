@@ -51,6 +51,8 @@ test.describe("Archives", () => {
 
 test.describe("E-books", () => {
   test.skip(!hasCalibre, "Calibre is not installed");
+  // Calibre's first PDF render starts a browser engine; in a cold container that takes a while.
+  test.setTimeout(90_000);
 
   test("converts EPUB to PDF", async ({ page }) => {
     await page.goto("/en/convert/epub-to-pdf");

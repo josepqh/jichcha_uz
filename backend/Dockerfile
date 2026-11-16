@@ -57,7 +57,9 @@ USER 1001:1001
 EXPOSE 8000
 HEALTHCHECK --interval=15s --timeout=3s --start-period=20s --retries=3 \
     CMD ["python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/v1/tools/', timeout=2).status == 200 else 1)"]
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--timeout", "120", "--access-logfile", "-"]
+# Threads: an upload streamed through nginx (no request buffering) occupies its handler for the whole
+# transfer; with plain sync workers three slow uploads would stall every other request.
+CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--worker-class", "gthread", "--threads", "8", "--timeout", "120", "--access-logfile", "-"]
 
 # ---- runtime-office: heavy engines, LibreOffice (office -> PDF) and Calibre (e-books) ----
 FROM runtime AS runtime-office

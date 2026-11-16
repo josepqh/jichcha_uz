@@ -41,6 +41,9 @@ Open http://localhost:8080. Create an admin account with
 Postgres and Redis run in Docker on ports **15432** and **16379** (the default ports are often taken
 by other projects on this machine). The `.env` URLs already point there.
 
+Don't run the host Celery worker while the full Docker stack is up: both read the same Redis queues, and a
+task picked up by the host worker can't find its files (they are in the Docker volume).
+
 ```bash
 docker compose up -d --wait db cache
 

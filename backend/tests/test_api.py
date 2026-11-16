@@ -431,3 +431,19 @@ class TestGeneralGuestThrottle:
     def test_signed_in_users_are_not_counted_as_guests(self, user_client, rates):
         rates("1/min", "1/min")
         assert [user_client.get("/api/v1/usage/").status_code for _ in range(3)] == [200, 200, 200]
+
+
+def test_user_rate_does_not_cap_guests_by_ip(db, settings):
+    """The per-user limit must not fall back to one shared per-IP bucket for guests (CGNAT)."""
+    from unittest import mock
+
+    from apps.conversions.throttles import AnonIPRateThrottle, GuestRateThrottle, SignedInUserRateThrottle
+
+    rates = {"user": "2/min", "anon": "100/min", "anon_ip": "100/min"}
+    with (
+        mock.patch.object(SignedInUserRateThrottle, "THROTTLE_RATES", rates),
+        mock.patch.object(GuestRateThrottle, "THROTTLE_RATES", rates),
+        mock.patch.object(AnonIPRateThrottle, "THROTTLE_RATES", rates),
+    ):
+        codes = [APIClient().get("/api/v1/usage/").status_code for _ in range(5)]
+    assert codes == [200] * 5

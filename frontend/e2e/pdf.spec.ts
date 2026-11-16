@@ -79,6 +79,7 @@ test.describe("PDF tools", () => {
 
 test.describe("Office to PDF", () => {
   test.skip(!hasLibreOffice, "LibreOffice is not installed on this machine");
+  test.setTimeout(90_000);
 
   test("converts a DOCX with Uzbek text to PDF", async ({ page }) => {
     await page.goto("/uz/convert/docx-to-pdf");
