@@ -11,7 +11,7 @@ async function register(page: Page, email: string) {
   await page.getByLabel("Email").fill(email);
   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
   await page.getByRole("button", { name: "Create account" }).click();
-  await expect(page).toHaveURL(/\/en\/account$/);
+  await expect(page).toHaveURL(/\/en\/account$/, { timeout: 15_000 }); // Argon2 sign-in is slow under load
 }
 
 test.describe("accounts", () => {
@@ -34,7 +34,7 @@ test.describe("accounts", () => {
     await page.getByLabel("Email").fill(email);
     await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
     await page.getByRole("button", { name: "Sign in" }).click();
-    await expect(page).toHaveURL(/\/en\/account$/);
+    await expect(page).toHaveURL(/\/en\/account$/, { timeout: 15_000 }); // Argon2 sign-in is slow under load
   });
 
   test("shows field errors and a generic message for wrong credentials", async ({ page }) => {

@@ -5,6 +5,7 @@ import { Link, useLocation, useParams } from "react-router";
 
 import { Dropzone } from "@/components/Dropzone";
 import { FileList, type PickedFile } from "@/components/FileList";
+import { editOptions, ImageEditor, initialEdit, type EditState } from "@/components/ImageEditor";
 import type { PageItem } from "@/components/PdfOrganizer";
 import { TaskPanel } from "@/components/TaskPanel";
 import { ToolOptions } from "@/components/ToolOptions";
@@ -35,6 +36,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
   const [items, setItems] = useState<PickedFile[]>([]);
   const [options, setOptions] = useState<OptionValues>(() => ({ ...tool.defaults, ...conversion?.options }));
   const [pages, setPages] = useState<PageItem[]>([]);
+  const [edit, setEdit] = useState<EditState>(initialEdit);
   const [error, setError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string | undefined>>({});
   const [working, setWorking] = useState(false);
@@ -74,6 +76,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
 
   const remove = (id: string) => {
     setPages([]);
+    setEdit((prev) => ({ ...prev, crop: initialEdit.crop }));
     setItems((prev) => {
       const gone = prev.find((i) => i.id === id);
       if (gone) URL.revokeObjectURL(gone.preview);
@@ -97,6 +100,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
     for (const item of items) URL.revokeObjectURL(item.preview);
     setItems([]);
     setPages([]);
+    setEdit(initialEdit);
     setError(null);
     setFieldErrors({});
     setWorking(false);
@@ -115,6 +119,10 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
     }
     if (tool.slug === "pdf-split" && options.mode === "ranges" && !RANGES.test(options.ranges ?? "")) {
       setFieldErrors({ ranges: t("errors.invalid_page_range") });
+      return false;
+    }
+    if (tool.editor === "image" && edit.resize === "pixels" && !edit.width && !edit.height) {
+      setError(t("edit.needSize"));
       return false;
     }
     if (tool.editor === "organize" && pages.length === 0) {
@@ -136,7 +144,9 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
     const apiOptions =
       tool.editor === "organize"
         ? { pages: pages.map(({ page, rotate }) => ({ page, rotate })) }
-        : toApiOptions(tool, options);
+        : tool.editor === "image"
+          ? editOptions(edit, items.length === 1)
+          : toApiOptions(tool, options);
     try {
       const task = await createTask({
         tool: tool.slug,
@@ -228,6 +238,12 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
                   onError={(code) => setError(t(`errors.${code}`))}
                 />
               </Suspense>
+            </section>
+          ) : null}
+
+          {tool.editor === "image" && items[0] ? (
+            <section className={`${card} p-5 sm:p-6`} aria-label={t("edit.title")}>
+              <ImageEditor file={items[0].file} multiple={items.length > 1} state={edit} onChange={setEdit} />
             </section>
           ) : null}
 

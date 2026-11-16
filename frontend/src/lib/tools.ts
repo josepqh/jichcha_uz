@@ -9,6 +9,7 @@ import {
   FolderArchive,
   FolderOpen,
   ImageDown,
+  Crop,
   Images,
   LayoutGrid,
   Repeat,
@@ -17,6 +18,7 @@ import {
 
 export type ToolSlug =
   | "image-convert"
+  | "image-edit"
   | "image-compress"
   | "images-to-pdf"
   | "office-to-pdf"
@@ -64,8 +66,8 @@ export interface ToolDef {
   maxFiles?: number;
   /** Page order matters for this tool: show move up/down controls. */
   reorder: boolean;
-  /** Custom editor instead of the file list (page organizer). */
-  editor?: "organize";
+  /** Custom editor next to the file list: PDF page organizer, image crop/rotate/resize. */
+  editor?: "organize" | "image";
   fields: readonly OptionField[];
   defaults: OptionValues;
 }
@@ -256,6 +258,19 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
     reorder: false,
     fields: [{ name: "target", choices: CONVERT_TARGETS }],
     defaults: { target: "jpg" },
+  },
+  "image-edit": {
+    slug: "image-edit",
+    category: "image",
+    inputs: IMAGE_INPUTS,
+    icon: Crop,
+    accept: IMAGE_ACCEPT,
+    formats: IMAGE_FORMATS,
+    minFiles: 1,
+    reorder: false,
+    editor: "image",
+    fields: [],
+    defaults: {},
   },
   "image-compress": {
     slug: "image-compress",

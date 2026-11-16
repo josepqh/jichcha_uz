@@ -193,3 +193,84 @@ def images_to_pdf(inputs: list[InputFile], options: dict, workdir: Path) -> list
     except (img2pdf.ImageOpenError, ValueError) as exc:
         raise ProcessingError("corrupt_file") from exc
     return [OutputFile(path=out, name=f"{stem_of(inputs[0].name)}.pdf", mime=PDF_MIME)]
+
+
+# --- Edit: crop, rotate, flip, resize (F-47 - F-49) ------------------------------------------------
+
+ASPECTS = {"free": None, "1:1": (1, 1), "4:5": (4, 5), "16:9": (16, 9), "3:4": (3, 4)}
+EDIT_FORMATS = ("keep", "jpg", "png", "webp")
+MAX_EDGE = 10_000
+
+
+def _crop_box(size: tuple[int, int], options: dict) -> tuple[int, int, int, int] | None:
+    """Pixel box from a fractional crop (one image, chosen in the UI) or a centred aspect crop (batches)."""
+    width, height = size
+    if crop := options.get("crop"):
+        left, top = round(crop["x"] * width), round(crop["y"] * height)
+        right, bottom = round((crop["x"] + crop["w"]) * width), round((crop["y"] + crop["h"]) * height)
+    elif ratio := ASPECTS.get(options.get("aspect", "free")):
+        target = ratio[0] / ratio[1]
+        if width / height > target:  # too wide: trim the sides
+            new_w = round(height * target)
+            left, top, right, bottom = (width - new_w) // 2, 0, (width - new_w) // 2 + new_w, height
+        else:  # too tall: trim top and bottom
+            new_h = round(width / target)
+            left, top, right, bottom = 0, (height - new_h) // 2, width, (height - new_h) // 2 + new_h
+    else:
+        return None
+    right, bottom = min(right, width), min(bottom, height)
+    if right - left < 1 or bottom - top < 1:
+        raise ProcessingError("invalid_crop")
+    return left, top, right, bottom
+
+
+def _resized_size(size: tuple[int, int], options: dict) -> tuple[int, int] | None:
+    width, height = size
+    mode = options.get("resize", "none")
+    if mode == "percent":
+        factor = options.get("percent", 100) / 100
+        new = (round(width * factor), round(height * factor))
+    elif mode == "pixels":
+        w, h = options.get("width"), options.get("height")
+        if w and h:
+            new = (w, h)
+        elif w:
+            new = (w, round(height * w / width))
+        else:
+            new = (round(width * h / height), h)
+    else:
+        return None
+    new = (max(1, new[0]), max(1, new[1]))
+    if max(new) > MAX_EDGE or new[0] * new[1] > settings.IMAGE_MAX_PIXELS:
+        raise ProcessingError("image_too_large")
+    return new
+
+
+def edit_image(img: Image.Image, options: dict) -> Image.Image:
+    if box := _crop_box(img.size, options):
+        img = img.crop(box)
+    if rotate := options.get("rotate", 0):
+        # Pillow rotates counter-clockwise; the UI and API speak clockwise.
+        img = img.rotate(-rotate, expand=True)
+    flip = options.get("flip", "none")
+    if flip == "horizontal":
+        img = ImageOps.mirror(img)
+    elif flip == "vertical":
+        img = ImageOps.flip(img)
+    if size := _resized_size(img.size, options):
+        img = img.resize(size, Image.Resampling.LANCZOS, reducing_gap=3.0)
+    return img
+
+
+def edit_images(inputs: list[InputFile], options: dict, workdir: Path) -> list[OutputFile]:
+    wanted = options.get("format", "keep")
+    outputs = []
+    for i, src in enumerate(inputs):
+        with open_image(src.path) as original:
+            fmt = wanted if wanted != "keep" else compress_target_format(src.fmt, has_alpha(original))
+            img = edit_image(original, options)
+            out = _out_path(workdir, i, fmt)
+            save_image(prepare_for(img, fmt), out, fmt)
+        name = f"{stem_of(src.name)}-edited.{IMAGE_FORMATS[fmt][2]}"
+        outputs.append(OutputFile(path=out, name=name, mime=IMAGE_FORMATS[fmt][1]))
+    return outputs

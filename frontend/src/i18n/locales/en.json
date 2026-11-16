@@ -115,6 +115,11 @@
       "name": "E-book converter",
       "title": "Convert EPUB, FB2 and MOBI books",
       "description": "Convert EPUB, FB2, MOBI and AZW3 books for Kindle, your phone or printing."
+    },
+    "image-edit": {
+      "name": "Edit photo",
+      "title": "Crop, rotate and resize a photo",
+      "description": "Crop a photo (1:1, 4:5, 16:9, 3×4 ID photo), rotate or mirror it, and change its size."
     }
   },
   "conversion": {
@@ -273,7 +278,8 @@
     "archive-extract": "Extract",
     "archive-create": "Create {{target}}",
     "archive-convert": "Convert to {{target}}",
-    "ebook-convert": "Convert to {{target}}"
+    "ebook-convert": "Convert to {{target}}",
+    "image-edit": "Apply"
   },
   "status": {
     "uploading": "Uploading… {{percent}}%",
@@ -333,7 +339,8 @@
     "tool_disabled": "This tool is turned off for now. Please try again later.",
     "cannot_block_self": "You can't block yourself.",
     "cannot_block_staff": "Staff accounts can't be blocked here.",
-    "permission_denied": "You don't have access to this page."
+    "permission_denied": "You don't have access to this page.",
+    "invalid_crop": "The crop area is outside the photo. Choose it again."
   },
   "notFound": {
     "title": "Page not found",
@@ -636,5 +643,41 @@
       "hint": "A tool that is off accepts no new tasks, on the website or in the bot.",
       "toggle": "{{name}} on"
     }
+  },
+  "edit": {
+    "title": "Editing",
+    "crop": "Crop",
+    "aspects": {
+      "free": "Free",
+      "square": "1:1 square",
+      "portrait": "4:5",
+      "wide": "16:9",
+      "id": "3×4 ID photo"
+    },
+    "cropArea": "Crop area",
+    "cropValue": "{{x}}% from the left, {{y}}% from the top, {{w}}% wide, {{h}}% high",
+    "cropHint": "Drag the area with a mouse or finger; drag the corner dot to resize. Keyboard: arrows move it, Shift + arrows resize it.",
+    "batchCrop": "Several photos: each one is cropped from the centre to the chosen shape.",
+    "noPreview": "Your browser can't show this photo. Pick a shape and it will be cropped from the centre.",
+    "turn": "Rotate and mirror",
+    "rotateLeft": "Rotate left",
+    "rotateRight": "Rotate right",
+    "flipH": "Mirror horizontally",
+    "flipV": "Mirror vertically",
+    "rotation": "Rotation: {{deg}}°",
+    "preview": "Preview of the result",
+    "resize": "Size",
+    "resizeModes": {
+      "none": "Keep",
+      "percent": "By percent",
+      "pixels": "In pixels"
+    },
+    "percent": "Percent of the original size",
+    "width": "Width, px",
+    "height": "Height, px",
+    "pixelsHint": "Enter one and the other follows the original proportions.",
+    "format": "Format",
+    "keepFormat": "Same as original",
+    "needSize": "Enter a width or a height."
   }
 }

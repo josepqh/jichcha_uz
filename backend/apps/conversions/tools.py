@@ -73,6 +73,37 @@ class PdfToImagesOptions(serializers.Serializer):
     quality = serializers.ChoiceField(choices=list(pdf.RENDER_DPI), default="medium")
 
 
+class CropBox(serializers.Serializer):
+    """A crop as fractions of the (EXIF-upright) image, so it doesn't depend on preview size."""
+
+    x = serializers.FloatField(min_value=0, max_value=1)
+    y = serializers.FloatField(min_value=0, max_value=1)
+    w = serializers.FloatField(min_value=0.005, max_value=1)
+    h = serializers.FloatField(min_value=0.005, max_value=1)
+
+    def validate(self, attrs: dict) -> dict:
+        if attrs["x"] + attrs["w"] > 1.001 or attrs["y"] + attrs["h"] > 1.001:
+            raise serializers.ValidationError("The crop must stay inside the image.")
+        return attrs
+
+
+class EditImageOptions(serializers.Serializer):
+    crop = CropBox(required=False)
+    aspect = serializers.ChoiceField(choices=list(images.ASPECTS), default="free")
+    rotate = serializers.ChoiceField(choices=[0, 90, 180, 270], default=0)
+    flip = serializers.ChoiceField(choices=["none", "horizontal", "vertical"], default="none")
+    resize = serializers.ChoiceField(choices=["none", "percent", "pixels"], default="none")
+    percent = serializers.IntegerField(min_value=1, max_value=400, default=100)
+    width = serializers.IntegerField(min_value=1, max_value=images.MAX_EDGE, required=False, allow_null=True)
+    height = serializers.IntegerField(min_value=1, max_value=images.MAX_EDGE, required=False, allow_null=True)
+    format = serializers.ChoiceField(choices=list(images.EDIT_FORMATS), default="keep")
+
+    def validate(self, attrs: dict) -> dict:
+        if attrs["resize"] == "pixels" and not (attrs.get("width") or attrs.get("height")):
+            raise serializers.ValidationError({"width": ["Give a width, a height or both."]})
+        return attrs
+
+
 class CreateArchiveOptions(serializers.Serializer):
     format = serializers.ChoiceField(choices=["zip", "7z"], default="zip")
 
@@ -116,6 +147,14 @@ TOOLS: dict[str, Tool] = {
             outputs=IMAGE_OUTPUTS,
             options=ConvertImageOptions,
             run=images.convert_images,
+        ),
+        Tool(
+            slug="image-edit",
+            category="image",
+            accepts=IMAGE_INPUTS,
+            outputs=("jpg", "png", "webp", "avif", "gif"),
+            options=EditImageOptions,
+            run=images.edit_images,
         ),
         Tool(
             slug="image-compress",

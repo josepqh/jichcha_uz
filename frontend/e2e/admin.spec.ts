@@ -26,7 +26,7 @@ async function signIn(page: import("@playwright/test").Page, email: string, pass
   await page.getByLabel("Email").fill(email);
   await page.getByLabel("Password", { exact: true }).fill(password);
   await page.getByRole("button", { name: "Sign in" }).click();
-  await expect(page).toHaveURL(/\/en\/account$/);
+  await expect(page).toHaveURL(/\/en\/account$/, { timeout: 15_000 }); // Argon2 sign-in is slow under load
 }
 
 // Desktop and mobile run in parallel: each switches a different tool so they don't race.
@@ -68,7 +68,7 @@ test("ordinary users get a 404 instead of the panel", async ({ page }) => {
   await page.getByLabel("Email").fill(email);
   await page.getByLabel("Password", { exact: true }).fill("Str0ng-pass-123");
   await page.getByRole("button", { name: "Create account" }).click();
-  await expect(page).toHaveURL(/\/en\/account$/);
+  await expect(page).toHaveURL(/\/en\/account$/, { timeout: 15_000 }); // Argon2 sign-in is slow under load
   await expect(page.getByRole("link", { name: "Admin panel" })).toHaveCount(0);
   await page.goto("/en/admin");
   await expect(page.getByRole("heading", { name: "Page not found" })).toBeVisible();

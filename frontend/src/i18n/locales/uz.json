@@ -115,6 +115,11 @@
       "name": "E-kitob konvertori",
       "title": "EPUB, FB2, MOBI kitoblarni aylantirish",
       "description": "EPUB, FB2, MOBI va AZW3 kitoblarni Kindle, telefon yoki chop etish uchun kerakli formatga oʻtkazing."
+    },
+    "image-edit": {
+      "name": "Suratni tahrirlash",
+      "title": "Suratni kesish, burish va oʻlchamini oʻzgartirish",
+      "description": "Suratni kesing (1:1, 4:5, 16:9, 3×4 hujjat surati), buring, oynadagidek aks ettiring va oʻlchamini oʻzgartiring."
     }
   },
   "conversion": {
@@ -273,7 +278,8 @@
     "archive-extract": "Arxivni ochish",
     "archive-create": "{{target}} yaratish",
     "archive-convert": "{{target}} qilish",
-    "ebook-convert": "{{target}} qilish"
+    "ebook-convert": "{{target}} qilish",
+    "image-edit": "Tayyorlash"
   },
   "status": {
     "uploading": "Yuklanmoqda… {{percent}}%",
@@ -333,7 +339,8 @@
     "tool_disabled": "Bu vosita vaqtincha oʻchirilgan. Keyinroq urinib koʻring.",
     "cannot_block_self": "Oʻzingizni bloklay olmaysiz.",
     "cannot_block_staff": "Xodim akkauntini bu yerda bloklab boʻlmaydi.",
-    "permission_denied": "Bu sahifaga ruxsatingiz yoʻq."
+    "permission_denied": "Bu sahifaga ruxsatingiz yoʻq.",
+    "invalid_crop": "Kesish maydoni suratdan tashqarida. Uni qayta tanlang."
   },
   "notFound": {
     "title": "Sahifa topilmadi",
@@ -636,5 +643,41 @@
       "hint": "Oʻchirilgan vosita saytda ham, botda ham yangi vazifa qabul qilmaydi.",
       "toggle": "{{name}} yoqilgan"
     }
+  },
+  "edit": {
+    "title": "Tahrirlash",
+    "crop": "Kesish",
+    "aspects": {
+      "free": "Erkin",
+      "square": "1:1 kvadrat",
+      "portrait": "4:5",
+      "wide": "16:9",
+      "id": "3×4 hujjat"
+    },
+    "cropArea": "Kesish maydoni",
+    "cropValue": "Chapdan {{x}}%, yuqoridan {{y}}%, kengligi {{w}}%, balandligi {{h}}%",
+    "cropHint": "Maydonni sichqoncha yoki barmoq bilan suring, burchakdagi nuqtadan kattalashtiring. Klaviatura: strelkalar suradi, Shift + strelkalar oʻlchamini oʻzgartiradi.",
+    "batchCrop": "Bir nechta surat: har biri tanlangan nisbatda markazidan kesiladi.",
+    "noPreview": "Brauzer bu suratni koʻrsata olmaydi. Nisbatni tanlang, surat markazidan kesiladi.",
+    "turn": "Burish va aks",
+    "rotateLeft": "Chapga burish",
+    "rotateRight": "Oʻngga burish",
+    "flipH": "Gorizontal aks",
+    "flipV": "Vertikal aks",
+    "rotation": "Burilish: {{deg}}°",
+    "preview": "Natija koʻrinishi",
+    "resize": "Oʻlcham",
+    "resizeModes": {
+      "none": "Oʻzgartirmaslik",
+      "percent": "Foizda",
+      "pixels": "Pikselda"
+    },
+    "percent": "Asl oʻlchamning necha foizi",
+    "width": "Kengligi, px",
+    "height": "Balandligi, px",
+    "pixelsHint": "Bittasini kiritsangiz, ikkinchisi nisbatni saqlagan holda hisoblanadi.",
+    "format": "Format",
+    "keepFormat": "Asl formatda",
+    "needSize": "Kenglik yoki balandlikni kiriting."
   }
 }

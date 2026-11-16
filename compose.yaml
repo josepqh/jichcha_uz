@@ -232,6 +232,7 @@ services:
         VITE_GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
         VITE_LEGAL_NAME: ${VITE_LEGAL_NAME:-}
         VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-}
+        SITE_URL: ${PUBLIC_ORIGIN:-http://localhost:8080}
     image: universe-web:dev
     restart: unless-stopped
     ports:

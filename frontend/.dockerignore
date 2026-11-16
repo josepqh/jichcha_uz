@@ -6,3 +6,4 @@ e2e/
 .env
 .env.*
 *.md
+dist-ssr/

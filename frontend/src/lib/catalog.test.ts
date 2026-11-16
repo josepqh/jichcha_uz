@@ -12,7 +12,7 @@ describe("buildCatalog", () => {
     expect(keysOf("word")).toEqual(["docx-to-pdf", "docx-to-epub"]);
     expect(keysOf("excel")).toEqual(["xlsx-to-pdf"]);
     expect(keysOf("powerpoint")).toEqual(["pptx-to-pdf"]);
-    expect(keysOf("image")).toEqual(["images-to-pdf", "image-convert", "image-compress"]);
+    expect(keysOf("image")).toEqual(["images-to-pdf", "image-convert", "image-edit", "image-compress"]);
     expect(keysOf("ebook")).toEqual(["ebook-convert"]);
     expect(keysOf("archive")).toEqual(["archive-extract", "archive-create", "archive-convert"]);
   });

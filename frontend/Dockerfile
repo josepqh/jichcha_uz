@@ -11,9 +11,12 @@ COPY . .
 ARG VITE_GOOGLE_CLIENT_ID=""
 ARG VITE_LEGAL_NAME=""
 ARG VITE_CONTACT_EMAIL=""
+# Absolute links in prerendered pages, sitemap.xml and robots.txt.
+ARG SITE_URL="http://localhost:8080"
 ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID \
     VITE_LEGAL_NAME=$VITE_LEGAL_NAME \
-    VITE_CONTACT_EMAIL=$VITE_CONTACT_EMAIL
+    VITE_CONTACT_EMAIL=$VITE_CONTACT_EMAIL \
+    SITE_URL=$SITE_URL
 RUN npm run build
 
 # ---- runtime: unprivileged nginx serves files and proxies the API ----
