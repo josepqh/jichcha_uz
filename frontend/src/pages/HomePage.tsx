@@ -3,6 +3,7 @@ import { useDeferredValue, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
+import { useDisabledTools } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
 import { buildCatalog, FAMILY_ICON, type CatalogEntry } from "@/lib/catalog";
 import { CATEGORY_COLOR, POPULAR_CONVERSIONS, resolveConversion } from "@/lib/tools";
@@ -28,6 +29,7 @@ export function HomePage() {
   const [query, setQuery] = useState("");
   const deferred = useDeferredValue(query.trim());
 
+  const disabled = useDisabledTools();
   const familyName = (family: string) => t(`home.groups.${family}`);
   const entryText = (entry: CatalogEntry) =>
     entry.kind === "tool"
@@ -44,6 +46,7 @@ export function HomePage() {
   const sections = CATALOG.map((section) => ({
     ...section,
     entries: section.entries.filter((entry) => {
+      if (disabled.has(entry.tool.slug)) return false;
       const { name, description } = entryText(entry);
       return matches(`${entry.key} ${familyName(section.family)} ${name} ${description}`, deferred);
     }),

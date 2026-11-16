@@ -329,7 +329,11 @@
     "archive_empty": "There are no files in this archive.",
     "ebook_drm": "This book is DRM-protected and can't be converted.",
     "malware_detected": "Malware was found in this file, so it wasn't processed and has been deleted.",
-    "scan_unavailable": "We couldn't scan this file for viruses. Please try again in a moment."
+    "scan_unavailable": "We couldn't scan this file for viruses. Please try again in a moment.",
+    "tool_disabled": "This tool is turned off for now. Please try again later.",
+    "cannot_block_self": "You can't block yourself.",
+    "cannot_block_staff": "Staff accounts can't be blocked here.",
+    "permission_denied": "You don't have access to this page."
   },
   "notFound": {
     "title": "Page not found",
@@ -405,7 +409,8 @@
     "deleteSubmit": "Delete account permanently",
     "deleteConfirm": "Your account and all files will be permanently deleted. Continue?",
     "deleteGoogle": "To confirm, sign in with Google again using this account. The account is deleted right after.",
-    "deleteNoGoogle": "This account has no password. To delete it, set a password first."
+    "deleteNoGoogle": "This account has no password. To delete it, set a password first.",
+    "adminLink": "Admin panel"
   },
   "weak": {
     "password_too_short": "use at least 8 characters",
@@ -530,5 +535,106 @@
     "conversionName": "{{from}} to {{to}}",
     "conversionDescription": "Convert a {{from}} file to {{to}} for free.",
     "jump": "Sections"
+  },
+  "admin": {
+    "title": "Admin panel",
+    "tabs": {
+      "dashboard": "Overview",
+      "users": "Users",
+      "failures": "Errors",
+      "load": "Load",
+      "limits": "Limits",
+      "tools": "Tools"
+    },
+    "dashboard": {
+      "period7": "7 days",
+      "period30": "30 days",
+      "period": "Period",
+      "tasks": "Tasks",
+      "errorRate": "Error rate",
+      "failedOf": "{{failed}} failed",
+      "active": "Active people",
+      "telegram": "Telegram users",
+      "newUsers": "New accounts",
+      "newUsersOf": "{{total}} in total",
+      "sourceSplit": "Website: {{web}} · Telegram: {{tg}}",
+      "chartTitle": "Tasks per day",
+      "ok": "Succeeded",
+      "failed": "Failed",
+      "barLabel": "{{date}}: {{tasks}} tasks, {{failed}} failed",
+      "tableView": "Table view",
+      "date": "Date",
+      "topTools": "Most used tools",
+      "tool": "Tool",
+      "count": "Count",
+      "empty": "No tasks in this period."
+    },
+    "users": {
+      "search": "Search by email",
+      "blockedOnly": "Blocked only",
+      "email": "Email",
+      "joined": "Joined",
+      "lastLogin": "Last sign-in",
+      "tasks30": "Tasks in 30 days",
+      "status": "Status",
+      "active": "Active",
+      "blocked": "Blocked",
+      "staff": "Staff",
+      "never": "—",
+      "block": "Block",
+      "unblock": "Unblock",
+      "blockConfirm": "Block {{email}}? They'll be signed out on every device.",
+      "none": "No users found."
+    },
+    "pager": {
+      "prev": "Previous",
+      "next": "Next",
+      "page": "Page {{page}} of {{count}} results"
+    },
+    "failures": {
+      "summary": "Most common errors (30 days)",
+      "all": "All",
+      "when": "Time",
+      "tool": "Tool",
+      "source": "Source",
+      "code": "Error",
+      "inputs": "Input files",
+      "duration": "Duration",
+      "web": "Website",
+      "telegram": "Telegram",
+      "none": "No failed tasks."
+    },
+    "load": {
+      "queues": "Queues",
+      "queue": "Queue",
+      "waiting": "Waiting",
+      "unknown": "unknown",
+      "workers": "Workers",
+      "noWorkers": "No worker answered.",
+      "workerOk": "Running",
+      "workerBad": "Not answering",
+      "tasksNow": "Tasks right now",
+      "queued": "Queued",
+      "processing": "Processing",
+      "storage": "Disk",
+      "files": "Stored files",
+      "diskFree": "Free: {{free}} of {{total}}",
+      "refreshed": "Refreshes every 10 seconds."
+    },
+    "limits": {
+      "guest": "Guest",
+      "registered": "Registered",
+      "max_file_mb": "One file, MB",
+      "max_total_mb": "Whole request, MB",
+      "daily_tasks": "Tasks per day",
+      "max_batch": "Files at once",
+      "retention_hours": "Keep results, hours",
+      "save": "Save",
+      "saved": "Saved."
+    },
+    "tools": {
+      "hint": "A tool that is off accepts no new tasks, on the website or in the bot.",
+      "toggle": "{{name}} on"
+    }
   }
 }

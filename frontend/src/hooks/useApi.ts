@@ -29,3 +29,9 @@ export function useDeleteTask() {
     onSuccess: (_data, id) => client.invalidateQueries({ queryKey: ["task", id] }),
   });
 }
+
+/** Tools an admin switched off. Until the list loads, everything counts as on. */
+export function useDisabledTools(): Set<string> {
+  const query = useQuery({ queryKey: ["tools"], queryFn: api.tools, staleTime: 60_000 });
+  return new Set((query.data ?? []).filter((t) => !t.enabled).map((t) => t.slug));
+}

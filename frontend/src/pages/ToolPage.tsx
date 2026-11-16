@@ -8,7 +8,7 @@ import { FileList, type PickedFile } from "@/components/FileList";
 import type { PageItem } from "@/components/PdfOrganizer";
 import { TaskPanel } from "@/components/TaskPanel";
 import { ToolOptions } from "@/components/ToolOptions";
-import { useUsage } from "@/hooks/useApi";
+import { useDisabledTools, useUsage } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
 import { createTask } from "@/lib/api";
 import { errorMessage } from "@/lib/errors";
@@ -30,6 +30,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
   const lang = useLang();
   const { pathname } = useLocation();
   const isGuest = useAuthStore((s) => s.status === "anon");
+  const disabled = useDisabledTools().has(tool.slug);
 
   const [items, setItems] = useState<PickedFile[]>([]);
   const [options, setOptions] = useState<OptionValues>(() => ({ ...tool.defaults, ...conversion?.options }));
@@ -184,7 +185,11 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
         <p className="text-muted text-pretty">{description}</p>
       </header>
 
-      {working ? (
+      {disabled ? (
+        <p role="status" className="rounded-lg border border-border-strong px-4 py-3">
+          {t("errors.tool_disabled")}
+        </p>
+      ) : working ? (
         <TaskPanel taskId={taskId} uploadProgress={uploadProgress} inputBytes={inputBytes} onReset={reset} />
       ) : (
         <>

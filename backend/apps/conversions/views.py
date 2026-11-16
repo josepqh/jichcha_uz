@@ -25,6 +25,7 @@ from .tools import TOOLS, get_tool
 
 class ToolListView(APIView):
     def get(self, request: Request) -> Response:
+        disabled = services.disabled_tools()
         data = [
             {
                 "slug": t.slug,
@@ -34,6 +35,7 @@ class ToolListView(APIView):
                 "outputs": list(t.outputs),
                 "max_files": t.max_files,
                 "min_files": t.min_files,
+                "enabled": t.slug not in disabled,
             }
             for t in TOOLS.values()
         ]
@@ -88,6 +90,8 @@ class TaskCreateView(APIView):
         tool = get_tool(request.data.get("tool", ""))
         if tool is None:
             raise AppError("unknown_tool", "Unknown tool.", details={"tool": ["Unknown tool."]})
+        if tool.slug in services.disabled_tools():
+            raise AppError("tool_disabled", "This tool is turned off for now.", status.HTTP_503_SERVICE_UNAVAILABLE)
         try:
             raw_options = json.loads(request.data.get("options") or "{}")
         except json.JSONDecodeError:

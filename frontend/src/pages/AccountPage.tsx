@@ -324,10 +324,17 @@ export function AccountPage() {
       <meta name="robots" content="noindex" />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("account.title")}</h1>
-        <button type="button" className={btn.secondary} onClick={() => void logout()}>
-          <LogOut className="size-4" aria-hidden="true" />
-          {t("account.logout")}
-        </button>
+        <div className="flex flex-wrap gap-2">
+          {user.is_staff ? (
+            <Link to={`/${lang}/admin`} className={btn.secondary}>
+              {t("account.adminLink")}
+            </Link>
+          ) : null}
+          <button type="button" className={btn.secondary} onClick={() => void logout()}>
+            <LogOut className="size-4" aria-hidden="true" />
+            {t("account.logout")}
+          </button>
+        </div>
       </div>
       <Profile user={user} />
       <Usage />

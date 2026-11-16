@@ -66,6 +66,7 @@ TEXTS: dict[str, dict[str, str]] = {
         "err.ebook_drm": "Kitob DRM bilan himoyalangan, uni aylantirib boʻlmaydi.",
         "err.too_many_pages": "PDF'da sahifalar juda koʻp.",
         "err.image_too_large": "Surat oʻlchami juda katta.",
+        "err.tool_disabled": "Bu amal vaqtincha oʻchirilgan. Keyinroq urinib koʻring.",
         "err.generic": "Xatolik yuz berdi. Birozdan keyin qayta urinib koʻring.",
     },
     "ru": {
@@ -130,6 +131,7 @@ TEXTS: dict[str, dict[str, str]] = {
         "err.ebook_drm": "Книга защищена DRM, её нельзя конвертировать.",
         "err.too_many_pages": "В PDF слишком много страниц.",
         "err.image_too_large": "Слишком большое разрешение изображения.",
+        "err.tool_disabled": "Эта операция временно выключена. Попробуйте позже.",
         "err.generic": "Что-то пошло не так. Попробуйте чуть позже.",
     },
     "en": {
@@ -194,6 +196,7 @@ TEXTS: dict[str, dict[str, str]] = {
         "err.ebook_drm": "This book is DRM-protected and can't be converted.",
         "err.too_many_pages": "The PDF has too many pages.",
         "err.image_too_large": "The image dimensions are too large.",
+        "err.tool_disabled": "This action is turned off for now. Please try again later.",
         "err.generic": "Something went wrong. Please try again in a moment.",
     },
 }

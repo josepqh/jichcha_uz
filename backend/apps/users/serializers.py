@@ -24,8 +24,8 @@ class MeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "language", "email_verified", "has_password", "date_joined"]
-        read_only_fields = ["id", "email", "email_verified", "has_password", "date_joined"]
+        fields = ["id", "email", "language", "email_verified", "has_password", "date_joined", "is_staff"]
+        read_only_fields = ["id", "email", "email_verified", "has_password", "date_joined", "is_staff"]
 
     def get_has_password(self, obj: User) -> bool:
         return obj.has_usable_password()

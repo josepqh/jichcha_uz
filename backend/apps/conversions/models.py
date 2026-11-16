@@ -48,6 +48,10 @@ class TaskQuerySet(models.QuerySet["Task"]):
 
 
 class Task(models.Model):
+    class Source(models.TextChoices):
+        WEB = "web", "Website"
+        TELEGRAM = "telegram", "Telegram bot"
+
     class Status(models.TextChoices):
         QUEUED = "queued", "Queued"
         PROCESSING = "processing", "Processing"
@@ -61,7 +65,10 @@ class Task(models.Model):
     # SHA-256 of the guest cookie token; empty for registered users.
     guest_key = models.CharField(max_length=64, blank=True, default="")
     tool = models.CharField(max_length=64)
+    source = models.CharField(max_length=16, choices=Source.choices, default=Source.WEB)
     options = models.JSONField(default=dict, blank=True)
+    # Format and size of each input, kept after the files are deleted (admin error log, stats). No names.
+    input_meta = models.JSONField(default=list, blank=True)
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.QUEUED)
     error_code = models.CharField(max_length=64, blank=True, default="")
     duration_ms = models.PositiveIntegerField(null=True, blank=True)
@@ -84,12 +91,15 @@ class Task(models.Model):
             ),
             models.Index(fields=["expires_at"], name="tasks_expiring_idx", condition=Q(files_purged_at__isnull=True)),
             models.Index(fields=["created_at"], name="tasks_failed_idx", condition=Q(status="failed")),
+            # Admin dashboard: everything in the last N days.
+            models.Index(fields=["created_at"], name="tasks_created_idx"),
         ]
         constraints = [
             models.CheckConstraint(condition=Q(user__isnull=False) | ~Q(guest_key=""), name="tasks_has_owner"),
             models.CheckConstraint(
                 condition=Q(status__in=["queued", "processing", "done", "failed"]), name="tasks_status_valid"
             ),
+            models.CheckConstraint(condition=Q(source__in=["web", "telegram"]), name="tasks_source_valid"),
         ]
 
     def __str__(self) -> str:
@@ -144,3 +154,17 @@ class UsageCounter(models.Model):
 
     def __str__(self) -> str:
         return f"{self.subject} {self.day}: {self.tasks_count}"
+
+
+class ToolSetting(models.Model):
+    """Admin switch per tool (F-75). A tool without a row is enabled."""
+
+    slug = models.CharField(max_length=64, primary_key=True)
+    enabled = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "tool_settings"
+
+    def __str__(self) -> str:
+        return f"{self.slug}: {'on' if self.enabled else 'off'}"

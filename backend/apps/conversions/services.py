@@ -21,13 +21,18 @@ from apps.core.exceptions import AppError
 from . import antivirus
 from .formats import ZIP_MIME, DetectedFile, ImageTooLargeError, detect_file
 from .identity import Requester
-from .models import LimitPolicy, Task, TaskFile, UsageCounter
+from .models import LimitPolicy, Task, TaskFile, ToolSetting, UsageCounter
 from .processors.base import InputFile, OutputFile, ProcessingError, safe_name, safe_relpath
 from .tools import Tool, get_tool
 
 logger = logging.getLogger(__name__)
 
 MB = 1024 * 1024
+
+
+def disabled_tools() -> set[str]:
+    """Tools an admin switched off (F-75). One small query; the table has a row per changed tool."""
+    return set(ToolSetting.objects.filter(enabled=False).values_list("slug", flat=True))
 
 
 def get_policy(role: str) -> LimitPolicy:
@@ -154,6 +159,8 @@ def create_task(
             guest_key=requester.guest_key,
             tool=tool.slug,
             options={**options, **_server_options(policy)},
+            source=requester.source,
+            input_meta=[{"format": item.detected.fmt, "size": item.upload.size} for item in uploads],
             expires_at=timezone.now() + timedelta(hours=policy.retention_hours),
         )
         for position, item in enumerate(uploads):

@@ -6,6 +6,7 @@ from apps.core.health import HealthView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/health/", HealthView.as_view(), name="health"),
+    path("api/v1/admin/", include("apps.staff.urls")),
     path("api/v1/", include("apps.conversions.urls")),
     path("api/v1/", include("apps.users.urls")),
 ]

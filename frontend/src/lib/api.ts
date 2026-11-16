@@ -50,6 +50,7 @@ export interface Me {
   email_verified: boolean;
   has_password: boolean;
   date_joined: string;
+  is_staff: boolean;
 }
 
 export interface Session {
@@ -160,6 +161,7 @@ export const auth = {
 
 export const api = {
   usage: () => request<Usage>("/usage/"),
+  tools: () => request<{ slug: string; enabled: boolean }[]>("/tools/"),
   task: (id: string) => request<Task>(`/tasks/${encodeURIComponent(id)}/`),
   deleteTask: (id: string) => request<void>(`/tasks/${encodeURIComponent(id)}/`, { method: "DELETE" }),
   history: (page: number) => request<Page<Task>>(`/tasks/history/?page=${page}`),
@@ -226,3 +228,85 @@ export async function createTask(params: UploadParams): Promise<Task> {
     return uploadOnce(params, useAuthStore.getState().accessToken);
   }
 }
+
+
+// --- Admin panel (staff only) -------------------------------------------------------------------
+
+export interface DashboardStats {
+  days: number;
+  per_day: { date: string; tasks: number; failed: number; active: number }[];
+  top_tools: { tool: string; count: number; failed: number }[];
+  totals: {
+    tasks: number;
+    failed: number;
+    active: number;
+    telegram_users: number;
+    web_tasks: number;
+    telegram_tasks: number;
+    error_rate: number;
+    registered_users: number;
+    new_users: number;
+  };
+}
+
+export interface StaffUser {
+  id: string;
+  email: string;
+  date_joined: string;
+  last_login: string | null;
+  is_active: boolean;
+  is_staff: boolean;
+  email_verified: boolean;
+  language: string;
+  has_password: boolean;
+  tasks_30d: number;
+}
+
+export interface FailedTask {
+  id: string;
+  tool: string;
+  source: "web" | "telegram";
+  error_code: string;
+  created_at: string;
+  duration_ms: number | null;
+  input_meta: { format: string; size: number }[];
+}
+
+export interface LoadSnapshot {
+  queues: Record<string, number | null>;
+  workers: { name: string; ok: boolean }[];
+  tasks: { queued: number; processing: number };
+  storage: { files_bytes: number; disk_total: number | null; disk_free: number | null };
+}
+
+export interface LimitPolicy {
+  role: "guest" | "registered";
+  max_file_mb: number;
+  max_total_mb: number;
+  daily_tasks: number;
+  max_batch: number;
+  retention_hours: number;
+}
+
+const patch = (body: unknown): RequestInit => ({ method: "PATCH", body: JSON.stringify(body) });
+
+export const adminApi = {
+  dashboard: (days: 7 | 30) => request<DashboardStats>(`/admin/dashboard/?days=${days}`),
+  load: () => request<LoadSnapshot>("/admin/load/"),
+  users: (params: { q: string; blocked: boolean; page: number }) =>
+    request<Page<StaffUser>>(
+      `/admin/users/?${new URLSearchParams({ q: params.q, page: String(params.page), ...(params.blocked ? { blocked: "1" } : {}) })}`,
+    ),
+  block: (id: string) => request<StaffUser>(`/admin/users/${encodeURIComponent(id)}/block/`, { method: "POST" }),
+  unblock: (id: string) => request<StaffUser>(`/admin/users/${encodeURIComponent(id)}/block/`, { method: "DELETE" }),
+  failures: (params: { tool: string; code: string; page: number }) =>
+    request<Page<FailedTask> & { summary: { tool: string; error_code: string; count: number }[] }>(
+      `/admin/failures/?${new URLSearchParams({ tool: params.tool, code: params.code, page: String(params.page) })}`,
+    ),
+  limits: () => request<LimitPolicy[]>("/admin/limits/"),
+  saveLimits: (role: string, values: Partial<LimitPolicy>) =>
+    request<LimitPolicy>(`/admin/limits/${encodeURIComponent(role)}/`, patch(values)),
+  tools: () => request<{ slug: string; enabled: boolean }[]>("/admin/tools/"),
+  setTool: (slug: string, enabled: boolean) =>
+    request<{ slug: string; enabled: boolean }>(`/admin/tools/${encodeURIComponent(slug)}/`, patch({ enabled })),
+};

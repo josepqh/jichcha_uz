@@ -26,6 +26,9 @@
   --cat-office: #6d28d9;
   --cat-archive: #b45309; /* 5.0:1 on surface */
   --cat-ebook: #0f766e; /* 5.5:1 on surface */
+  /* Admin chart series, validated (CVD, contrast) against the light surface. */
+  --chart-ok: #2563eb;
+  --chart-failed: #dc2626;
 }
 
 .dark {
@@ -48,6 +51,9 @@
   --cat-office: #c4b5fd;
   --cat-archive: #fcd34d;
   --cat-ebook: #5eead4;
+  /* Validated against the dark surface #262321. */
+  --chart-ok: #3b82f6;
+  --chart-failed: #ef4444;
 }
 
 @theme inline {
@@ -70,6 +76,8 @@
   --color-cat-office: var(--cat-office);
   --color-cat-archive: var(--cat-archive);
   --color-cat-ebook: var(--cat-ebook);
+  --color-chart-ok: var(--chart-ok);
+  --color-chart-failed: var(--chart-failed);
   --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 

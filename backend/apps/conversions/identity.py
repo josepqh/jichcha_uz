@@ -34,6 +34,7 @@ class Requester:
     user: object | None
     guest_key: str
     new_guest_token: str | None = None
+    source: str = "web"  # "telegram" for the bot
 
     @property
     def is_registered(self) -> bool:
@@ -85,7 +86,7 @@ def resolve_requester(request: HttpRequest, *, create_guest: bool = False) -> Re
         return Requester(user=user, guest_key="")
     tg_id = telegram_user_id(request)
     if tg_id is not None:
-        return Requester(user=None, guest_key=_hash(f"tg:{tg_id}"))
+        return Requester(user=None, guest_key=_hash(f"tg:{tg_id}"), source="telegram")
     token = request.get_signed_cookie(settings.GUEST_COOKIE_NAME, default=None, salt=_SALT)
     if token:
         return Requester(user=None, guest_key=_hash(token))

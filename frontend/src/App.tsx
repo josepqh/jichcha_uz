@@ -5,6 +5,7 @@ import { Layout } from "@/components/Layout";
 import { DEFAULT_LANGUAGE, isLanguage, type Language } from "@/i18n";
 import { refreshSession } from "@/lib/api";
 import { AccountPage } from "@/pages/AccountPage";
+import { AdminPage } from "@/pages/AdminPage";
 import { ForgotPage } from "@/pages/ForgotPage";
 import { HomePage } from "@/pages/HomePage";
 import { LegalPage } from "@/pages/LegalPage";
@@ -45,6 +46,8 @@ export function App() {
         <Route path="forgot" element={<LangGuard><ForgotPage /></LangGuard>} />
         <Route path="reset/:uid/:token" element={<LangGuard><ResetPage /></LangGuard>} />
         <Route path="account" element={<LangGuard><AccountPage /></LangGuard>} />
+        <Route path="admin" element={<LangGuard><AdminPage /></LangGuard>} />
+        <Route path="admin/:tab" element={<LangGuard><AdminPage /></LangGuard>} />
         <Route path="privacy" element={<LangGuard><LegalPage key="privacy" doc="privacy" /></LangGuard>} />
         <Route path="terms" element={<LangGuard><LegalPage key="terms" doc="terms" /></LangGuard>} />
         <Route path="*" element={<NotFoundPage />} />

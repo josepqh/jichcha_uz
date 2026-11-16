@@ -329,7 +329,11 @@
     "archive_empty": "Arxiv ichida fayl yoʻq.",
     "ebook_drm": "Kitob DRM bilan himoyalangan, uni aylantirib boʻlmaydi.",
     "malware_detected": "Faylda zararli dastur topildi, shuning uchun u qayta ishlanmadi va oʻchirildi.",
-    "scan_unavailable": "Faylni viruslarga tekshirib boʻlmadi. Birozdan keyin qayta urinib koʻring."
+    "scan_unavailable": "Faylni viruslarga tekshirib boʻlmadi. Birozdan keyin qayta urinib koʻring.",
+    "tool_disabled": "Bu vosita vaqtincha oʻchirilgan. Keyinroq urinib koʻring.",
+    "cannot_block_self": "Oʻzingizni bloklay olmaysiz.",
+    "cannot_block_staff": "Xodim akkauntini bu yerda bloklab boʻlmaydi.",
+    "permission_denied": "Bu sahifaga ruxsatingiz yoʻq."
   },
   "notFound": {
     "title": "Sahifa topilmadi",
@@ -405,7 +409,8 @@
     "deleteSubmit": "Akkauntni butunlay oʻchirish",
     "deleteConfirm": "Akkaunt va barcha fayllar butunlay oʻchiriladi. Davom etasizmi?",
     "deleteGoogle": "Tasdiqlash uchun shu akkaunt bilan Google orqali qayta kiring. Kirgandan keyin akkaunt oʻchiriladi.",
-    "deleteNoGoogle": "Bu akkauntda parol yoʻq. Uni oʻchirish uchun avval parol oʻrnating."
+    "deleteNoGoogle": "Bu akkauntda parol yoʻq. Uni oʻchirish uchun avval parol oʻrnating.",
+    "adminLink": "Admin panel"
   },
   "weak": {
     "password_too_short": "kamida 8 ta belgi boʻlsin",
@@ -530,5 +535,106 @@
     "conversionName": "{{from}} → {{to}}",
     "conversionDescription": "{{from}} faylni bepul {{to}} formatiga oʻtkazing.",
     "jump": "Boʻlimlar"
+  },
+  "admin": {
+    "title": "Admin panel",
+    "tabs": {
+      "dashboard": "Umumiy",
+      "users": "Foydalanuvchilar",
+      "failures": "Xatolar",
+      "load": "Yuklama",
+      "limits": "Limitlar",
+      "tools": "Vositalar"
+    },
+    "dashboard": {
+      "period7": "7 kun",
+      "period30": "30 kun",
+      "period": "Davr",
+      "tasks": "Vazifalar",
+      "errorRate": "Xatolar ulushi",
+      "failedOf": "{{failed}} ta xato",
+      "active": "Faol odamlar",
+      "telegram": "Telegram foydalanuvchilari",
+      "newUsers": "Yangi akkauntlar",
+      "newUsersOf": "jami {{total}}",
+      "sourceSplit": "Sayt: {{web}} · Telegram: {{tg}}",
+      "chartTitle": "Kunlar boʻyicha vazifalar",
+      "ok": "Muvaffaqiyatli",
+      "failed": "Xato",
+      "barLabel": "{{date}}: {{tasks}} ta vazifa, {{failed}} ta xato",
+      "tableView": "Jadval koʻrinishi",
+      "date": "Sana",
+      "topTools": "Eng koʻp ishlatilgan vositalar",
+      "tool": "Vosita",
+      "count": "Soni",
+      "empty": "Bu davrda vazifa yoʻq."
+    },
+    "users": {
+      "search": "Email boʻyicha qidirish",
+      "blockedOnly": "Faqat bloklanganlar",
+      "email": "Email",
+      "joined": "Roʻyxatdan oʻtgan",
+      "lastLogin": "Oxirgi kirish",
+      "tasks30": "30 kunda vazifalar",
+      "status": "Holat",
+      "active": "Faol",
+      "blocked": "Bloklangan",
+      "staff": "Xodim",
+      "never": "—",
+      "block": "Bloklash",
+      "unblock": "Blokdan chiqarish",
+      "blockConfirm": "{{email}} bloklansinmi? U barcha qurilmalardan chiqariladi.",
+      "none": "Foydalanuvchi topilmadi."
+    },
+    "pager": {
+      "prev": "Oldingi",
+      "next": "Keyingi",
+      "page": "{{page}}-sahifa, jami {{count}}"
+    },
+    "failures": {
+      "summary": "Eng koʻp uchragan xatolar (30 kun)",
+      "all": "Hammasi",
+      "when": "Vaqt",
+      "tool": "Vosita",
+      "source": "Manba",
+      "code": "Xato",
+      "inputs": "Kirish fayllari",
+      "duration": "Davomiyligi",
+      "web": "Sayt",
+      "telegram": "Telegram",
+      "none": "Xato bergan vazifa yoʻq."
+    },
+    "load": {
+      "queues": "Navbatlar",
+      "queue": "Navbat",
+      "waiting": "Kutmoqda",
+      "unknown": "nomaʼlum",
+      "workers": "Workerlar",
+      "noWorkers": "Birorta worker javob bermadi.",
+      "workerOk": "Ishlayapti",
+      "workerBad": "Javob bermadi",
+      "tasksNow": "Vazifalar hozir",
+      "queued": "Navbatda",
+      "processing": "Ishlanmoqda",
+      "storage": "Disk",
+      "files": "Saqlangan fayllar",
+      "diskFree": "Boʻsh joy: {{free}} / {{total}}",
+      "refreshed": "Har 10 soniyada yangilanadi."
+    },
+    "limits": {
+      "guest": "Mehmon",
+      "registered": "Roʻyxatdan oʻtgan",
+      "max_file_mb": "Bitta fayl, MB",
+      "max_total_mb": "Bir soʻrov jami, MB",
+      "daily_tasks": "Kunlik vazifalar",
+      "max_batch": "Bir martada fayllar",
+      "retention_hours": "Natija saqlanishi, soat",
+      "save": "Saqlash",
+      "saved": "Saqlandi."
+    },
+    "tools": {
+      "hint": "Oʻchirilgan vosita saytda ham, botda ham yangi vazifa qabul qilmaydi.",
+      "toggle": "{{name}} yoqilgan"
+    }
   }
 }
