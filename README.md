@@ -73,6 +73,15 @@ cd frontend && E2E_BASE_URL=http://localhost:8080 npx playwright test   # E2E ag
 deploy/test-office-image.sh                           # LibreOffice + Calibre tests inside the worker image, offline
 ```
 
+Accessibility: `e2e/a11y.spec.ts` runs axe-core (WCAG 2.2 AA) on the main pages in light and dark themes;
+serious or critical findings fail the run.
+
+Load test (no extra tools): `python deploy/loadtest/run.py http://127.0.0.1:8001` against gunicorn with production
+settings (over plain HTTP add `GUEST_COOKIE_SECURE=false`). On a laptop (Apple M-series, 3 gunicorn workers ×
+8 threads, 2 Celery workers): `GET /api/v1/tools/` ~1170 req/s at p95 67 ms with 50 clients; 60 guests uploading a
+photo at once: all accepted (p95 320 ms) and converted (p95 0.6 s). A shared IP is capped by the guest ceilings, so
+a single-IP test of `/health/` hits 429 by design.
+
 CI (`.github/workflows/ci.yml`) runs lint, backend and frontend tests, E2E and the Docker builds on every push and
 pull request. Actions are pinned to commit SHAs and the token is read-only.
 

@@ -110,7 +110,10 @@ export function Layout() {
       </a>
       <header className="border-b border-border bg-surface/80 backdrop-blur supports-[backdrop-filter]:bg-surface/70">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-2 px-4">
-          <Link to={`/${lang}`} className="flex min-h-11 items-center gap-2 rounded-lg font-bold" aria-label={t("nav.home")}>
+          <Link to={`/${lang}`} className="flex min-h-11 items-center gap-2 rounded-lg font-bold"
+            // The visible name comes first so voice control ("click Universe") works (WCAG 2.5.3).
+            aria-label={`${t("meta.siteName")}, ${t("nav.home")}`}
+          >
             <img src="/favicon.svg" alt="" width={28} height={28} />
             {/* Below 400px the name would push the menu off-screen; the logo and aria-label remain. */}
             <span className="text-lg max-[399px]:sr-only" translate="no">
