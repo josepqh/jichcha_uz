@@ -23,7 +23,6 @@ const PAGES = [
   "/ru/convert/docx-to-pdf",
   "/en/tools/pdf-merge",
   "/en/tools/image-edit",
-  "/en/tools/text-convert",
   "/uz/login",
   "/uz/register",
   "/en/privacy",

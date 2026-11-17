@@ -29,9 +29,7 @@ describe("resolveConversion", () => {
   it("maps documents and PDF pages", () => {
     expect(resolveConversion("docx-to-pdf")?.tool).toBe("office-to-pdf");
     expect(resolveConversion("rar-to-zip")).toMatchObject({ tool: "archive-convert", options: { target: "zip" } });
-    expect(resolveConversion("epub-to-pdf")).toMatchObject({ tool: "ebook-convert", options: { target: "pdf" } });
-    expect(resolveConversion("docx-to-epub")?.tool).toBe("ebook-convert");
-    expect(resolveConversion("pdf-to-epub")?.tool).toBe("ebook-convert");
+    expect(resolveConversion("epub-to-pdf")).toBeNull(); // e-books are not offered
     expect(resolveConversion("zip-to-zip")).toBeNull();
     expect(resolveConversion("rar-to-pdf")).toBeNull();
     expect(resolveConversion("pdf-to-png")).toMatchObject({ tool: "pdf-to-images", options: { format: "png" } });

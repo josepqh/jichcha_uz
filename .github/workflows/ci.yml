@@ -55,7 +55,7 @@ jobs:
           ruff format --check .
       - name: Migrations are up to date
         run: python manage.py makemigrations --check --dry-run --settings=config.settings.test
-      # LibreOffice and Calibre tests skip here; they run in the Docker image job below.
+      # LibreOffice tests skip here; they run in the Docker image job below.
       - run: pytest -q --cov --cov-report=term-missing:skip-covered
 
   bot:
@@ -152,14 +152,14 @@ jobs:
           pip install -r requirements/base.txt
           python manage.py migrate --noinput
           nohup python manage.py runserver 127.0.0.1:8000 > ../backend.log 2>&1 &
-          nohup python -m celery -A config worker -Q light,office,ebook,maintenance -c 2 > ../worker.log 2>&1 &
+          nohup python -m celery -A config worker -Q light,office,maintenance -c 2 > ../worker.log 2>&1 &
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/api/v1/health/ && break; sleep 1; done
       - name: Install browser
         working-directory: frontend
         run: |
           npm ci
           npx playwright install --with-deps chromium
-      # Office and e-book specs skip without LibreOffice/Calibre on the runner.
+      # Office specs skip without LibreOffice on the runner.
       - run: npx playwright test
         working-directory: frontend
         env:
@@ -188,7 +188,7 @@ jobs:
           docker build --target runtime-office -t universe-backend-office:ci backend
           docker build -t universe-web:ci frontend
           docker build -t universe-bot:ci bot
-      # The office image has LibreOffice and Calibre, so the engine tests that skip elsewhere run here,
+      # The office image has LibreOffice, so the engine tests that skip elsewhere run here,
       # as the app user and with no network, like the worker in production.
       - name: Engine tests inside the office image
         run: bash deploy/test-office-image.sh universe-backend-office:ci

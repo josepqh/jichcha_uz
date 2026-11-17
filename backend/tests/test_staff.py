@@ -130,7 +130,7 @@ class TestFailures:
     def test_metadata_only_with_summary_and_filters(self, admin_client):
         make_task(tool="pdf-merge", status="failed", code="corrupt_file")
         make_task(tool="pdf-merge", status="failed", code="corrupt_file")
-        make_task(tool="ebook-convert", status="failed", code="timeout")
+        make_task(tool="office-to-pdf", status="failed", code="timeout")
         make_task(status="done")
         data = admin_client.get(f"{BASE}/failures/").data
         assert data["count"] == 3
@@ -188,7 +188,7 @@ def test_load_snapshot(admin_client):
         mock.patch("config.celery.app.control.inspect", return_value=inspector),
     ):
         data = admin_client.get(f"{BASE}/load/").data
-    assert data["queues"] == {"light": 3, "office": 3, "ebook": 3, "maintenance": 3}
+    assert data["queues"] == {"light": 3, "office": 3, "maintenance": 3}
     assert data["workers"] == [{"name": "celery@w1", "ok": True}]
     assert data["tasks"]["queued"] == 1
     assert data["storage"]["disk_free"] > 0

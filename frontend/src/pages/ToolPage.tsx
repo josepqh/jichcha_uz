@@ -8,7 +8,6 @@ import { FileList, type PickedFile } from "@/components/FileList";
 import { editOptions, ImageEditor, initialEdit, type EditState } from "@/components/ImageEditor";
 import type { PageItem } from "@/components/PdfOrganizer";
 import { TaskPanel } from "@/components/TaskPanel";
-import { TextWorkspace } from "@/components/TextEditor";
 import { ToolOptions } from "@/components/ToolOptions";
 import { useDisabledTools, useUsage } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
@@ -217,8 +216,6 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
         <p role="status" className="rounded-lg border border-border-strong px-4 py-3">
           {t("errors.tool_disabled")}
         </p>
-      ) : tool.editor === "text" ? (
-        <TextWorkspace />
       ) : working ? (
         <TaskPanel taskId={taskId} uploadProgress={uploadProgress} inputBytes={inputBytes} onReset={reset} />
       ) : (

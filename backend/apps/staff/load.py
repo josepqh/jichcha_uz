@@ -11,7 +11,7 @@ from django.db.models import Sum
 from apps.conversions.models import Task, TaskFile
 
 logger = logging.getLogger(__name__)
-QUEUES = ("light", "office", "ebook", "maintenance")
+QUEUES = ("light", "office", "maintenance")
 
 
 def queue_lengths() -> dict[str, int | None]:

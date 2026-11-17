@@ -1,6 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  BookOpen,
   Combine,
   FileArchive,
   FileDown,
@@ -10,7 +9,6 @@ import {
   FolderOpen,
   ImageDown,
   Crop,
-  NotebookPen,
   Images,
   LayoutGrid,
   LockOpen,
@@ -32,14 +30,12 @@ export type ToolSlug =
   | "pdf-unlock"
   | "archive-extract"
   | "archive-create"
-  | "archive-convert"
-  | "ebook-convert"
-  | "text-convert";
+  | "archive-convert";
 
 /** Colour family of the icon. */
-export type Category = "image" | "compress" | "pdf" | "office" | "archive" | "ebook" | "text";
+export type Category = "image" | "compress" | "pdf" | "office" | "archive";
 /** File family: home page sections are built per family (see catalog.ts). */
-export type Family = "pdf" | "word" | "excel" | "powerpoint" | "image" | "ebook" | "archive" | "text";
+export type Family = "pdf" | "word" | "excel" | "powerpoint" | "image" | "archive";
 
 export type OptionValues = Record<string, string>;
 
@@ -73,7 +69,7 @@ export interface ToolDef {
   /** Page order matters for this tool: show move up/down controls. */
   reorder: boolean;
   /** Custom editor next to the file list: PDF page organizer, image crop/rotate/resize. */
-  editor?: "organize" | "image" | "text";
+  editor?: "organize" | "image";
   fields: readonly OptionField[];
   defaults: OptionValues;
 }
@@ -86,14 +82,10 @@ const OFFICE_ACCEPT = ".doc,.docx,.odt,.rtf,.xls,.xlsx,.ods,.csv,.ppt,.pptx,.odp
 const OFFICE_FORMATS = "DOCX, DOC, ODT, RTF, XLSX, XLS, ODS, CSV, PPTX, PPT, ODP";
 const ARCHIVE_ACCEPT = ".zip,.rar,.7z,.tar,.gz,.tgz,.bz2,.tbz2,.xz,.txz";
 const ARCHIVE_FORMATS = "ZIP, RAR, 7Z, TAR, GZ, BZ2, XZ";
-const EBOOK_ACCEPT = ".epub,.mobi,.azw3,.fb2,.pdf,.docx";
-const EBOOK_FORMATS = "EPUB, MOBI, AZW3, FB2, PDF, DOCX";
-export const EBOOK_TARGETS = ["epub", "mobi", "azw3", "pdf"] as const;
 export const IMAGE_INPUTS = ["png", "jpg", "webp", "heic", "avif", "gif", "bmp", "tiff"] as const;
 export const OFFICE_INPUTS = ["docx", "doc", "odt", "rtf", "xlsx", "xls", "ods", "csv", "pptx", "ppt", "odp"] as const;
 export const ARCHIVE_INPUTS = ["zip", "rar", "7z", "tar", "gz", "bz2", "xz"] as const;
 const ARCHIVE_TARGETS = ["zip", "7z"] as const;
-export const EBOOK_INPUTS = ["epub", "mobi", "azw3", "fb2", "pdf", "docx"] as const;
 
 export const CONVERT_TARGETS = ["jpg", "png", "webp", "avif", "gif", "bmp", "tiff"] as const;
 const LEVELS = ["strong", "medium", "light"] as const;
@@ -212,21 +204,6 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
     fields: [],
     defaults: {},
   },
-  "ebook-convert": {
-    slug: "ebook-convert",
-    category: "ebook",
-    inputs: EBOOK_INPUTS,
-    home: "ebook",
-    primaryOutput: "epub",
-    icon: BookOpen,
-    accept: EBOOK_ACCEPT,
-    formats: EBOOK_FORMATS,
-    minFiles: 1,
-    maxFiles: 5,
-    reorder: false,
-    fields: [{ name: "target", choices: EBOOK_TARGETS }],
-    defaults: { target: "epub" },
-  },
   "archive-extract": {
     slug: "archive-extract",
     category: "archive",
@@ -265,20 +242,6 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
     reorder: false,
     fields: [{ name: "target", choices: ["zip", "7z"] }],
     defaults: { target: "zip" },
-  },
-  "text-convert": {
-    slug: "text-convert",
-    category: "text",
-    inputs: ["txt", "md"],
-    icon: NotebookPen,
-    accept: ".txt,.md,.markdown",
-    formats: "TXT, MD",
-    minFiles: 1,
-    maxFiles: 5,
-    reorder: false,
-    editor: "text",
-    fields: [],
-    defaults: {},
   },
   "image-convert": {
     slug: "image-convert",
@@ -354,7 +317,7 @@ export interface Conversion {
 
 const includes = (list: readonly string[], value: string) => list.includes(value);
 
-/** Parses SEO pairs like "heic-to-jpg", "docx-to-pdf", "pdf-to-png", "rar-to-zip" or "epub-to-pdf". */
+/** Parses SEO pairs like "heic-to-jpg", "docx-to-pdf", "pdf-to-png" or "rar-to-zip". */
 export function resolveConversion(pair: string | undefined): Conversion | null {
   const match = /^([a-z0-9]+)-to-([a-z0-9]+)$/.exec(pair ?? "");
   if (!match) return null;
@@ -372,9 +335,6 @@ export function resolveConversion(pair: string | undefined): Conversion | null {
   if (includes(ARCHIVE_INPUTS, from) && includes(ARCHIVE_TARGETS, to)) {
     return { ...base, tool: "archive-convert", options: { target: to } };
   }
-  if (includes(EBOOK_INPUTS, from) && includes(EBOOK_TARGETS, to)) {
-    return { ...base, tool: "ebook-convert", options: { target: to } };
-  }
   return null;
 }
 
@@ -391,9 +351,6 @@ export const POPULAR_CONVERSIONS = [
   "png-to-pdf",
   "heic-to-pdf",
   "pdf-to-png",
-  "epub-to-pdf",
-  "fb2-to-epub",
-  "epub-to-mobi",
   "rar-to-zip",
 ] as const;
 
@@ -403,6 +360,4 @@ export const CATEGORY_COLOR: Record<Category, string> = {
   pdf: "text-cat-pdf",
   office: "text-cat-office",
   archive: "text-cat-archive",
-  ebook: "text-cat-ebook",
-  text: "text-cat-office",
 };

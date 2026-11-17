@@ -25,7 +25,7 @@ def test_tool_list_marks_any_file_tools(api_client):
     assert tools["archive-create"]["accepts_any"] is True
     assert tools["archive-extract"]["accepts_any"] is False
     assert "rar" in tools["archive-extract"]["accepts"]
-    assert {"epub", "fb2", "mobi", "pdf", "docx"} <= set(tools["ebook-convert"]["accepts"])
+    assert "ebook-convert" not in tools and "text-convert" not in tools
 
 
 def test_extract_rejects_non_archives(api_client, png_upload):

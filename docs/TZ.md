@@ -1,6 +1,7 @@
 # Texnik topshiriq (TZ): Fayl konvertor va tahrirlash platformasi
 
 > Versiya: 0.2 (qoralama) · Sana: 2026-11-10 · Holat: buyurtmachi tomonidan tasdiqlangan (2026-11-10)
+> Oʻzgarish (2026-11-17, buyurtmachi qarori): e-kitob konvertatsiyasi (F-29) va matn muharriri (F-53) loyiha doirasidan chiqarildi; ular bilan birga Calibre ham olib tashlandi.
 > 6-qism (2026-11-17): admin panel (F-70–F-75), SEO prerender va sitemap (F-76), surat muharriri (F-47–F-49), matn muharriri (F-53), natijadan keyingi amal, parolli PDF va arxivlar (F-30), Telegram'ga ogohlantirishlar, Turnstile, tashqi zaxira, accessibility auditi, yuklama sinovi va ishga tushirish yoʻriqnomasi (docs/DEPLOY.md).
 > 5-qism (2026-11-17): Telegram bot ishlab chiqildi (F-65, F-66, F-68, F-69): fayl yuborilsa saytdagi boʻlimlarga mos amallar tugmalari, suratlar albomi → PDF, PDF albomi → birlashtirish, uch til, 20 MB dan katta faylga sayt havolasi. Har bir Telegram foydalanuvchisi alohida limit va vazifalarga ega. Botni web akkauntga ulash (F-67) 2-bosqichda.
 > 4-qism (2026-11-16): arxivlar (F-26–F-28: ochish, ZIP/7Z yaratish, formatni almashtirish; parolli arxiv F-30 hali yoʻq) va e-kitoblar (F-29, qoʻshimcha FB2) ishlab chiqildi. Ishga tushirishga tayyorgarlik: ClamAV tekshiruvi, kunlik DB zaxirasi, health check, Sentry (ixtiyoriy), CI, worker konteynerlarini cheklash, maxfiylik siyosati va foydalanish shartlari sahifalari.

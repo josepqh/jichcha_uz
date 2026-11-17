@@ -237,9 +237,6 @@ OFFICE_TIMEOUT = env.int("OFFICE_TIMEOUT", default=120)
 ARCHIVE_MAX_ENTRIES = env.int("ARCHIVE_MAX_ENTRIES", default=1000)
 ARCHIVE_MAX_UNPACKED_MB = env.int("ARCHIVE_MAX_UNPACKED_MB", default=1024)
 
-# Calibre's converter (Docker image: ebook-convert; macOS: /Applications/calibre.app/Contents/MacOS/ebook-convert).
-EBOOK_CONVERT_BINARY = env("EBOOK_CONVERT_BINARY", default="ebook-convert")
-EBOOK_TIMEOUT = env.int("EBOOK_TIMEOUT", default=240)
 
 # Cloudflare Turnstile on sign-up and password reset (optional). Site key goes to VITE_TURNSTILE_SITE_KEY.
 TURNSTILE_SECRET_KEY = env("TURNSTILE_SECRET_KEY", default="")

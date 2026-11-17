@@ -108,32 +108,15 @@ ARCHIVE_FORMATS: dict[str, tuple[str, str]] = {
     "bz2": ("application/x-bzip2", "bz2"),
     "xz": ("application/x-xz", "xz"),
 }
-EBOOK_FORMATS: dict[str, tuple[str, str]] = {
-    "epub": ("application/epub+zip", "epub"),
-    "mobi": ("application/x-mobipocket-ebook", "mobi"),
-    "azw3": ("application/vnd.amazon.ebook", "azw3"),
-    "fb2": ("application/x-fictionbook+xml", "fb2"),
-}
 # Any other file, accepted only by tools that never parse content (packing into an archive).
 DOC_FORMATS["bin"] = ("application/octet-stream", "bin")
 DOC_FORMATS.update(ARCHIVE_FORMATS)
-DOC_FORMATS["txt"] = ("text/plain", "txt")
-DOC_FORMATS["md"] = ("text/markdown", "md")
-DOC_FORMATS.update(EBOOK_FORMATS)
 ARCHIVE_INPUTS = frozenset(ARCHIVE_FORMATS)
-# Calibre reads these; PDF and DOCX are also accepted for "make an e-book".
-EBOOK_INPUTS = frozenset({*EBOOK_FORMATS, "pdf", "docx"})
-EBOOK_OUTPUTS = ("epub", "mobi", "azw3", "pdf")
-# Plain text and Markdown, for the text editor's server-side exports. Text has no magic bytes,
-# so like CSV it is recognised by name plus a UTF-8 check.
-TEXT_INPUTS = frozenset({"txt", "md"})
-TEXT_OUTPUTS = ("pdf", "docx", "epub")
 
 _ZIP_MAGIC = b"PK\x03\x04"
 _OLE_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
 _OOXML_PARTS = {"word/document.xml": "docx", "xl/workbook.xml": "xlsx", "ppt/presentation.xml": "pptx"}
 _ZIP_MIMETYPES = {
-    b"application/epub+zip": "epub",
     b"application/vnd.oasis.opendocument.text": "odt",
     b"application/vnd.oasis.opendocument.spreadsheet": "ods",
     b"application/vnd.oasis.opendocument.presentation": "odp",
@@ -166,7 +149,7 @@ class DetectedFile:
 
 
 def _detect_zip(fileobj: BinaryIO) -> str | None:
-    """OOXML / ODF / EPUB by their marker entries; any other readable zip is a plain "zip"."""
+    """OOXML / ODF by their marker entries; any other readable zip (an EPUB too) is a plain "zip"."""
     import zipfile
 
     try:
@@ -231,7 +214,7 @@ def _detect_archive(head: bytes) -> str | None:
 
 
 def detect_document(fileobj: BinaryIO, filename: str = "") -> str | None:
-    """Identify documents, archives and e-books by content. CSV is plain text, so it also needs the .csv name."""
+    """Identify documents and archives by content. CSV is plain text, so it also needs the .csv name."""
     pos = fileobj.tell()
     try:
         head = fileobj.read(8192)
@@ -248,19 +231,8 @@ def detect_document(fileobj: BinaryIO, filename: str = "") -> str | None:
             return "pdf"
         if head.lstrip(b"\xef\xbb\xbf").startswith(b"{\\rtf"):
             return "rtf"
-        if head[60:68] == b"BOOKMOBI":
-            # MOBI and AZW3 share the container; the name only tells Calibre which reader to prefer.
-            return "azw3" if filename.lower().endswith(".azw3") else "mobi"
-        if b"<FictionBook" in head[:2048] and _looks_like_text(head):
-            return "fb2"
-        lower = filename.lower()
-        if head and _looks_like_text(head):
-            if lower.endswith(".csv"):
-                return "csv"
-            if lower.endswith((".md", ".markdown")):
-                return "md"
-            if lower.endswith(".txt"):
-                return "txt"
+        if filename.lower().endswith(".csv") and head and _looks_like_text(head):
+            return "csv"
         return None
     finally:
         fileobj.seek(pos)

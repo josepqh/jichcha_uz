@@ -9,16 +9,12 @@ from rest_framework import serializers
 
 from .formats import (
     ARCHIVE_INPUTS,
-    EBOOK_INPUTS,
-    EBOOK_OUTPUTS,
     IMAGE_INPUTS,
     IMAGE_OUTPUTS,
     OFFICE_INPUTS,
     PDF_INPUTS,
-    TEXT_INPUTS,
-    TEXT_OUTPUTS,
 )
-from .processors import archives, ebooks, images, office, pdf
+from .processors import archives, images, office, pdf
 from .processors.base import InputFile, OutputFile
 
 Processor = Callable[[list[InputFile], dict, Path], list[OutputFile]]
@@ -124,14 +120,6 @@ class RepackArchiveOptions(serializers.Serializer):
 
 class UnlockPdfOptions(serializers.Serializer):
     password = serializers.CharField(**_PASSWORD)
-
-
-class TextOptions(serializers.Serializer):
-    target = serializers.ChoiceField(choices=TEXT_OUTPUTS, default="pdf")
-
-
-class EbookOptions(serializers.Serializer):
-    target = serializers.ChoiceField(choices=EBOOK_OUTPUTS, default="epub")
 
 
 @dataclass(frozen=True)
@@ -287,28 +275,6 @@ TOOLS: dict[str, Tool] = {
             options=RepackArchiveOptions,
             run=archives.repack,
             max_files=5,
-            time_limit=300,
-        ),
-        Tool(
-            slug="ebook-convert",
-            category="ebook",
-            accepts=EBOOK_INPUTS,
-            outputs=EBOOK_OUTPUTS,
-            options=EbookOptions,
-            run=ebooks.ebook_convert,
-            max_files=5,
-            queue="ebook",
-            time_limit=300,
-        ),
-        Tool(
-            slug="text-convert",
-            category="text",
-            accepts=TEXT_INPUTS,
-            outputs=TEXT_OUTPUTS,
-            options=TextOptions,
-            run=ebooks.text_convert,
-            max_files=5,
-            queue="ebook",
             time_limit=300,
         ),
     )

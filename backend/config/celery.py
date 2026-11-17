@@ -17,7 +17,7 @@ _PR_SET_DUMPABLE = 4
 def make_undumpable() -> bool:
     """Hide this process's /proc/<pid>/environ and memory from same-user processes (Linux only).
 
-    Converters (LibreOffice, Calibre) run as the same user as the worker. A crafted document that
+    Converters (LibreOffice) run as the same user as the worker. A crafted document that
     makes them read local files must not be able to read the worker's environment, which holds
     the database URL and the secret key. Non-dumpable processes have their /proc files owned by root.
     """

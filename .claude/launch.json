@@ -23,7 +23,7 @@
         "config",
         "worker",
         "-Q",
-        "light,office,ebook,maintenance",
+        "light,office,maintenance",
         "-c",
         "2",
         "-l",

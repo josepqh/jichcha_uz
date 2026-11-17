@@ -28,12 +28,13 @@ async def test_lang_command_remembers_the_choice(h):
 async def test_word_file_gets_word_actions(h):
     await h.send(**document("referat.docx"))
     assert h.texts()[-1] == "<b>referat.docx</b>\nNima qilamiz?"
-    assert [text for text, _ in h.buttons()] == ["📄 PDF qilish", "📚 EPUB"]
+    assert [text for text, _ in h.buttons()] == ["📄 PDF qilish"]
 
 
-async def test_epub_is_not_offered_epub_again(h):
-    await h.send(**document("kitob.epub"))
-    assert [text for text, _ in h.buttons()] == ["📄 PDF qilish", "📚 MOBI", "📚 AZW3 (Kindle)"]
+async def test_jpg_is_not_offered_jpg_again(h):
+    await h.send(**document("rasm.jpg", mime="image/jpeg"))
+    labels = [text for text, _ in h.buttons()]
+    assert "🖼 JPG" not in labels and "🖼 PNG" in labels
 
 
 async def test_pressing_a_button_converts_and_sends_the_result(h):

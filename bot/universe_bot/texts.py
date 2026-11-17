@@ -7,7 +7,7 @@ TEXTS: dict[str, dict[str, str]] = {
     "uz": {
         "start": (
             "Salom! Men <b>Universe</b> botiman.\n\n"
-            "Menga fayl yuboring: Word, Excel, PDF, surat, e-kitob yoki arxiv. "
+            "Menga fayl yuboring: Word, Excel, PowerPoint, PDF, surat yoki arxiv. "
             "Nima qilish mumkinligini tugmalar bilan taklif qilaman.\n\n"
             "Bir nechta suratni bitta albom qilib yuborsangiz, ulardan PDF yasayman."
         ),
@@ -16,7 +16,6 @@ TEXTS: dict[str, dict[str, str]] = {
             "• Word, Excel, PowerPoint → PDF\n"
             "• PDF: siqish, rasmlarga yoki sahifalarga ajratish, birlashtirish\n"
             "• Suratlar: JPG/PNG/WEBP, siqish, PDF qilish\n"
-            "• E-kitoblar: EPUB, FB2, MOBI, AZW3 ↔ PDF\n"
             "• Arxivlar: ochish, ZIP qilish\n\n"
             "Fayl {max_mb} MB gacha. Kattaroq fayllar uchun saytdan foydalaning: {site}\n"
             "Fayllar ishlovdan keyin serverdan oʻchiriladi.\n\n"
@@ -26,7 +25,7 @@ TEXTS: dict[str, dict[str, str]] = {
         "lang_set": "Til oʻzgartirildi: Oʻzbekcha.",
         "choose": "<b>{name}</b>\nNima qilamiz?",
         "choose_album": "{count} ta fayl. Nima qilamiz?",
-        "unsupported": "Bu turdagi faylni hozircha qayta ishlay olmayman. Word, Excel, PDF, surat, e-kitob yoki arxiv yuboring.",
+        "unsupported": "Bu turdagi faylni hozircha qayta ishlay olmayman. Word, Excel, PowerPoint, PDF, surat yoki arxiv yuboring.",
         "mixed_album": "Albomda turli xil fayllar bor. Bir xil turdagi fayllarni yuboring, masalan, faqat suratlar.",
         "too_big": (
             "Fayl {size} MB, Telegram esa botlarga {max_mb} MB gacha faylni ochishga ruxsat beradi.\n"
@@ -45,10 +44,6 @@ TEXTS: dict[str, dict[str, str]] = {
         "act.shrink": "🗜 Hajmini kichraytirish",
         "act.split": "✂️ Sahifalarga boʻlish",
         "act.merge": "🔗 Birlashtirish",
-        "act.epub": "📚 EPUB",
-        "act.docx": "📝 DOCX (Word)",
-        "act.mobi": "📚 MOBI",
-        "act.azw3": "📚 AZW3 (Kindle)",
         "act.extract": "📂 Arxivni ochish",
         "act.zip": "🗂 ZIP qilish",
         "err.unsupported_format": "Fayl turi bu amalga mos kelmadi. Fayl kengaytmasi uning ichidagiga toʻgʻri kelmasligi mumkin.",
@@ -65,7 +60,6 @@ TEXTS: dict[str, dict[str, str]] = {
         "err.archive_too_large": "Arxiv ochilganda juda katta hajm chiqadi.",
         "err.archive_too_many_files": "Arxivda fayllar juda koʻp.",
         "err.archive_empty": "Arxiv ichida fayl yoʻq.",
-        "err.ebook_drm": "Kitob DRM bilan himoyalangan, uni aylantirib boʻlmaydi.",
         "err.too_many_pages": "PDF'da sahifalar juda koʻp.",
         "err.image_too_large": "Surat oʻlchami juda katta.",
         "err.tool_disabled": "Bu amal vaqtincha oʻchirilgan. Keyinroq urinib koʻring.",
@@ -74,7 +68,7 @@ TEXTS: dict[str, dict[str, str]] = {
     "ru": {
         "start": (
             "Здравствуйте! Я бот <b>Universe</b>.\n\n"
-            "Пришлите файл: Word, Excel, PDF, фото, электронную книгу или архив. "
+            "Пришлите файл: Word, Excel, PowerPoint, PDF, фото или архив. "
             "Я предложу кнопками, что с ним можно сделать.\n\n"
             "Если отправить несколько фото одним альбомом, я соберу из них PDF."
         ),
@@ -83,7 +77,6 @@ TEXTS: dict[str, dict[str, str]] = {
             "• Word, Excel, PowerPoint → PDF\n"
             "• PDF: сжать, разбить на картинки или страницы, объединить\n"
             "• Фото: JPG/PNG/WEBP, сжатие, PDF\n"
-            "• Книги: EPUB, FB2, MOBI, AZW3 ↔ PDF\n"
             "• Архивы: распаковать, перепаковать в ZIP\n\n"
             "Файлы до {max_mb} МБ. Для больших файлов используйте сайт: {site}\n"
             "После обработки файлы удаляются с сервера.\n\n"
@@ -93,7 +86,7 @@ TEXTS: dict[str, dict[str, str]] = {
         "lang_set": "Язык изменён: Русский.",
         "choose": "<b>{name}</b>\nЧто сделать?",
         "choose_album": "Файлов: {count}. Что сделать?",
-        "unsupported": "Такой файл я пока не обрабатываю. Пришлите Word, Excel, PDF, фото, книгу или архив.",
+        "unsupported": "Такой файл я пока не обрабатываю. Пришлите Word, Excel, PowerPoint, PDF, фото или архив.",
         "mixed_album": "В альбоме файлы разных типов. Пришлите файлы одного типа, например только фото.",
         "too_big": (
             "Файл {size} МБ, а Telegram даёт ботам открывать файлы только до {max_mb} МБ.\n"
@@ -112,10 +105,6 @@ TEXTS: dict[str, dict[str, str]] = {
         "act.shrink": "🗜 Сжать",
         "act.split": "✂️ Разбить на страницы",
         "act.merge": "🔗 Объединить",
-        "act.epub": "📚 EPUB",
-        "act.docx": "📝 DOCX (Word)",
-        "act.mobi": "📚 MOBI",
-        "act.azw3": "📚 AZW3 (Kindle)",
         "act.extract": "📂 Распаковать",
         "act.zip": "🗂 В ZIP",
         "err.unsupported_format": "Тип файла не подходит для этой операции. Возможно, расширение не совпадает с содержимым.",
@@ -132,7 +121,6 @@ TEXTS: dict[str, dict[str, str]] = {
         "err.archive_too_large": "После распаковки архив получается слишком большим.",
         "err.archive_too_many_files": "В архиве слишком много файлов.",
         "err.archive_empty": "В архиве нет файлов.",
-        "err.ebook_drm": "Книга защищена DRM, её нельзя конвертировать.",
         "err.too_many_pages": "В PDF слишком много страниц.",
         "err.image_too_large": "Слишком большое разрешение изображения.",
         "err.tool_disabled": "Эта операция временно выключена. Попробуйте позже.",
@@ -141,7 +129,7 @@ TEXTS: dict[str, dict[str, str]] = {
     "en": {
         "start": (
             "Hi! I'm the <b>Universe</b> bot.\n\n"
-            "Send me a file: Word, Excel, PDF, a photo, an e-book or an archive. "
+            "Send me a file: Word, Excel, PowerPoint, PDF, a photo or an archive. "
             "I'll offer what I can do with it as buttons.\n\n"
             "Send several photos as one album and I'll turn them into a PDF."
         ),
@@ -150,7 +138,6 @@ TEXTS: dict[str, dict[str, str]] = {
             "• Word, Excel, PowerPoint → PDF\n"
             "• PDF: compress, split into images or pages, merge\n"
             "• Photos: JPG/PNG/WEBP, compress, make a PDF\n"
-            "• E-books: EPUB, FB2, MOBI, AZW3 ↔ PDF\n"
             "• Archives: extract, repack as ZIP\n\n"
             "Files up to {max_mb} MB. For bigger files use the website: {site}\n"
             "Files are deleted from the server after processing.\n\n"
@@ -160,7 +147,7 @@ TEXTS: dict[str, dict[str, str]] = {
         "lang_set": "Language changed: English.",
         "choose": "<b>{name}</b>\nWhat should I do?",
         "choose_album": "{count} files. What should I do?",
-        "unsupported": "I can't process this kind of file yet. Send Word, Excel, PDF, a photo, an e-book or an archive.",
+        "unsupported": "I can't process this kind of file yet. Send Word, Excel, PowerPoint, PDF, a photo or an archive.",
         "mixed_album": "This album mixes file types. Send files of one kind, for example only photos.",
         "too_big": (
             "This file is {size} MB, and Telegram lets bots open files only up to {max_mb} MB.\n"
@@ -179,10 +166,6 @@ TEXTS: dict[str, dict[str, str]] = {
         "act.shrink": "🗜 Compress",
         "act.split": "✂️ Split into pages",
         "act.merge": "🔗 Merge",
-        "act.epub": "📚 EPUB",
-        "act.docx": "📝 DOCX (Word)",
-        "act.mobi": "📚 MOBI",
-        "act.azw3": "📚 AZW3 (Kindle)",
         "act.extract": "📂 Extract",
         "act.zip": "🗂 Repack as ZIP",
         "err.unsupported_format": "This file doesn't fit that action. Its extension may not match its contents.",
@@ -199,7 +182,6 @@ TEXTS: dict[str, dict[str, str]] = {
         "err.archive_too_large": "This archive unpacks to too much data.",
         "err.archive_too_many_files": "This archive has too many files.",
         "err.archive_empty": "There are no files in this archive.",
-        "err.ebook_drm": "This book is DRM-protected and can't be converted.",
         "err.too_many_pages": "The PDF has too many pages.",
         "err.image_too_large": "The image dimensions are too large.",
         "err.tool_disabled": "This action is turned off for now. Please try again later.",

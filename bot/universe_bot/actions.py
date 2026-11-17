@@ -12,12 +12,10 @@ FAMILY_FORMATS: dict[str, tuple[str, ...]] = {
     "word": ("docx", "doc", "odt", "rtf"),
     "excel": ("xlsx", "xls", "ods", "csv"),
     "powerpoint": ("pptx", "ppt", "odp"),
-    "text": ("txt", "md", "markdown"),
     "image": ("png", "jpg", "jpeg", "webp", "heic", "heif", "avif", "gif", "bmp", "tif", "tiff"),
-    "ebook": ("epub", "mobi", "azw3", "fb2"),
     "archive": ("zip", "rar", "7z", "tar", "gz", "tgz", "bz2", "tbz2", "xz", "txz"),
 }
-_MIME_FAMILY = {"application/pdf": "pdf", "application/epub+zip": "ebook", "application/zip": "archive"}
+_MIME_FAMILY = {"application/pdf": "pdf", "application/zip": "archive"}
 
 # Web pages for files too large for the bot (Telegram lets bots download only up to 20 MB).
 WEB_TOOL = {
@@ -25,9 +23,7 @@ WEB_TOOL = {
     "word": "convert/docx-to-pdf",
     "excel": "convert/xlsx-to-pdf",
     "powerpoint": "convert/pptx-to-pdf",
-    "text": "tools/text-convert",
     "image": "tools/image-compress",
-    "ebook": "tools/ebook-convert",
     "archive": "tools/archive-extract",
 }
 
@@ -51,25 +47,10 @@ ACTIONS: dict[str, tuple[Action, ...]] = {
         Action("shrink", "pdf-compress", {"level": "medium"}),
         Action("jpg", "pdf-to-images", {"format": "jpg", "quality": "medium"}),
         Action("split", "pdf-split", {"mode": "each"}),
-        Action("epub", "ebook-convert", {"target": "epub"}),
     ),
-    "word": (
-        Action("pdf", "office-to-pdf"),
-        Action("epub", "ebook-convert", {"target": "epub"}),
-    ),
+    "word": (Action("pdf", "office-to-pdf"),),
     "excel": (Action("pdf", "office-to-pdf"),),
     "powerpoint": (Action("pdf", "office-to-pdf"),),
-    "text": (
-        Action("pdf", "text-convert", {"target": "pdf"}),
-        Action("docx", "text-convert", {"target": "docx"}),
-        Action("epub", "text-convert", {"target": "epub"}),
-    ),
-    "ebook": (
-        Action("epub", "ebook-convert", {"target": "epub"}),
-        Action("pdf", "ebook-convert", {"target": "pdf"}),
-        Action("mobi", "ebook-convert", {"target": "mobi"}),
-        Action("azw3", "ebook-convert", {"target": "azw3"}),
-    ),
     "archive": (
         Action("extract", "archive-extract"),
         Action("zip", "archive-convert", {"target": "zip"}),
@@ -92,7 +73,7 @@ def family_of(name: str, mime: str = "") -> str | None:
 
 
 def actions_for(family: str, name: str = "") -> tuple[Action, ...]:
-    """Actions for one file. Converting a format to itself is not offered (EPUB -> EPUB)."""
+    """Actions for one file. Converting a format to itself is not offered (JPG -> JPG)."""
     ext = extension(name)
     same = {"jpeg": "jpg"}.get(ext, ext)
     return tuple(a for a in ACTIONS.get(family, ()) if a.key != same)
@@ -115,11 +96,6 @@ ALBUM_ACTIONS: dict[str, tuple[Action, ...]] = {
     "word": (Action("pdf", "office-to-pdf"),),
     "excel": (Action("pdf", "office-to-pdf"),),
     "powerpoint": (Action("pdf", "office-to-pdf"),),
-    "text": (Action("pdf", "text-convert", {"target": "pdf"}),),
-    "ebook": (
-        Action("epub", "ebook-convert", {"target": "epub"}),
-        Action("pdf", "ebook-convert", {"target": "pdf"}),
-    ),
     "archive": (Action("zip", "archive-convert", {"target": "zip"}),),
 }
 

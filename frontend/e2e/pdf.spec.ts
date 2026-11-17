@@ -91,3 +91,15 @@ test.describe("Office to PDF", () => {
     expect((await download).suggestedFilename()).toBe("referat.pdf");
   });
 });
+
+test("a result can go straight into the next tool", async ({ page }) => {
+  await page.goto("/en/tools/images-to-pdf");
+  await page.getByTestId("file-input").setInputFiles(fixture("photo.png"));
+  await page.getByRole("button", { name: "Create PDF" }).click();
+  await expect(page.getByText("Done")).toBeVisible({ timeout: 20_000 });
+  await page.getByRole("link", { name: "Compress PDF" }).click();
+  await expect(page).toHaveURL(/\/en\/tools\/pdf-compress$/);
+  await expect(page.getByText("photo.pdf")).toBeVisible();
+  await page.getByRole("button", { name: "Compress" }).click();
+  await expect(page.getByText("Done")).toBeVisible({ timeout: 20_000 });
+});

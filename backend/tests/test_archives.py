@@ -11,8 +11,6 @@ from apps.conversions.formats import detect_file
 from apps.conversions.processors import archives
 from apps.conversions.processors.base import InputFile, ProcessingError, safe_relpath
 from tests.docs import (
-    epub_bytes,
-    fb2_bytes,
     libarchive_bytes,
     pdf_bytes,
     rar4_bytes,
@@ -57,8 +55,8 @@ class TestDetection:
             (gzip.compress(b"hello"), "gz"),
             (bz2.compress(b"hello"), "bz2"),
             (lzma.compress(b"hello"), "xz"),
-            (epub_bytes([("Bob", "Matn")]), "epub"),
-            (fb2_bytes("Matn"), "fb2"),
+            # E-books are not a tool family any more: an EPUB is just a zip.
+            (zip_bytes({"mimetype": b"application/epub+zip", "OEBPS/a.xhtml": b"x"}, zipfile.ZIP_STORED), "zip"),
         ],
     )
     def test_formats_by_content(self, data, fmt):
@@ -66,23 +64,16 @@ class TestDetection:
         assert detected is not None and detected.fmt == fmt
 
     @pytest.mark.parametrize(
-        ("data", "name", "fmt"),
+        ("data", "name"),
         [
-            (b"# Sarlavha\n\nmatn", "eslatma.md", "md"),
-            ("oʻzbek matni".encode(), "a.markdown", "md"),
-            (b"plain text", "notes.txt", "txt"),
-            (b"\x00\x01binary", "notes.txt", None),  # not text, whatever the name says
-            (b"plain text", "notes.bin", None),  # text needs a text name
+            (b"# Sarlavha", "eslatma.md"),
+            (b"plain text", "notes.txt"),
+            (b"\x00" * 60 + b"BOOKMOBI" + b"\x00" * 100, "a.mobi"),
+            (b'<?xml version="1.0"?><FictionBook>x</FictionBook>', "a.fb2"),
         ],
     )
-    def test_text_files_by_name_and_content(self, data, name, fmt):
-        detected = detect_file(io.BytesIO(data), name)
-        assert (detected.fmt if detected else None) == fmt
-
-    def test_mobi_and_azw3_share_a_container(self):
-        mobi = b"\x00" * 60 + b"BOOKMOBI" + b"\x00" * 100
-        assert detect_file(io.BytesIO(mobi), "a.mobi").fmt == "mobi"
-        assert detect_file(io.BytesIO(mobi), "a.azw3").fmt == "azw3"
+    def test_text_and_ebook_files_are_not_supported(self, data, name):
+        assert detect_file(io.BytesIO(data), name) is None
 
 
 class TestSafeRelpath:

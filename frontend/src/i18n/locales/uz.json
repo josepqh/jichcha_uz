@@ -1,8 +1,8 @@
 {
   "meta": {
     "siteName": "Universe",
-    "homeTitle": "Word, PDF, surat, e-kitob va arxivlarni bepul aylantirish | Universe",
-    "homeDescription": "Word va Excel'ni PDF qiling, PDF'ni birlashtiring va siqing, HEIC, EPUB, FB2, RAR fayllarni kerakli formatga oʻtkazing. Bepul, roʻyxatdan oʻtmasdan."
+    "homeTitle": "Word, PDF, surat va arxivlarni bepul aylantirish | Universe",
+    "homeDescription": "Word va Excel'ni PDF qiling, PDF'ni birlashtiring va siqing, HEIC, PNG, RAR fayllarni kerakli formatga oʻtkazing. Bepul, roʻyxatdan oʻtmasdan."
   },
   "nav": {
     "skip": "Asosiy qismga oʻtish",
@@ -19,7 +19,7 @@
   },
   "home": {
     "title": "Fayllaringiz bilan oddiy ishlar, bepul",
-    "subtitle": "Word va Excel'ni PDF qiling, PDF'larni birlashtiring yoki siqing, suratlar, e-kitoblar va arxivlarni kerakli formatga oʻtkazing. Roʻyxatdan oʻtish shart emas.",
+    "subtitle": "Word va Excel'ni PDF qiling, PDF'larni birlashtiring yoki siqing, suratlar va arxivlarni kerakli formatga oʻtkazing. Roʻyxatdan oʻtish shart emas.",
     "searchLabel": "Vositani qidirish",
     "searchPlaceholder": "Masalan: heic jpg…",
     "toolsHeading": "Vositalar",
@@ -46,9 +46,7 @@
       "excel": "Excel",
       "powerpoint": "PowerPoint",
       "image": "Suratlar",
-      "ebook": "E-kitoblar",
-      "archive": "Arxivlar",
-      "text": "Matn"
+      "archive": "Arxivlar"
     }
   },
   "tools": {
@@ -112,20 +110,10 @@
       "title": "RAR, 7Z, TAR arxivni ZIP qilish",
       "description": "RAR, 7Z yoki TAR arxivni papkalar tuzilishini saqlagan holda ZIP yoki 7Z qiling."
     },
-    "ebook-convert": {
-      "name": "E-kitob konvertori",
-      "title": "EPUB, FB2, MOBI kitoblarni aylantirish",
-      "description": "EPUB, FB2, MOBI va AZW3 kitoblarni Kindle, telefon yoki chop etish uchun kerakli formatga oʻtkazing."
-    },
     "image-edit": {
       "name": "Suratni tahrirlash",
       "title": "Suratni kesish, burish va oʻlchamini oʻzgartirish",
       "description": "Suratni kesing (1:1, 4:5, 16:9, 3×4 hujjat surati), buring, oynadagidek aks ettiring va oʻlchamini oʻzgartiring."
-    },
-    "text-convert": {
-      "name": "Matn muharriri",
-      "title": "TXT va Markdown matnni tahrirlash",
-      "description": "Matn yoki Markdown yozing, koʻrinishini koʻring va TXT, MD, HTML, PDF, DOCX yoki EPUB qilib saqlang."
     },
     "pdf-unlock": {
       "name": "PDF parolini olib tashlash",
@@ -151,9 +139,6 @@
         "tiff": "TIFF",
         "zip": "ZIP",
         "7z": "7Z",
-        "epub": "EPUB",
-        "mobi": "MOBI",
-        "azw3": "AZW3 (Kindle)",
         "pdf": "PDF"
       }
     },
@@ -293,9 +278,7 @@
     "archive-extract": "Arxivni ochish",
     "archive-create": "{{target}} yaratish",
     "archive-convert": "{{target}} qilish",
-    "ebook-convert": "{{target}} qilish",
     "image-edit": "Tayyorlash",
-    "text-convert": "Saqlash",
     "pdf-unlock": "Parolni olib tashlash"
   },
   "status": {
@@ -350,7 +333,6 @@
     "archive_too_large": "Arxiv ochilganda juda katta hajm chiqadi. Kichikroq arxiv yuklang.",
     "archive_too_many_files": "Arxivda fayllar juda koʻp. 1000 tagacha faylli arxivni yuklang.",
     "archive_empty": "Arxiv ichida fayl yoʻq.",
-    "ebook_drm": "Kitob DRM bilan himoyalangan, uni aylantirib boʻlmaydi.",
     "malware_detected": "Faylda zararli dastur topildi, shuning uchun u qayta ishlanmadi va oʻchirildi.",
     "scan_unavailable": "Faylni viruslarga tekshirib boʻlmadi. Birozdan keyin qayta urinib koʻring.",
     "tool_disabled": "Bu vosita vaqtincha oʻchirilgan. Keyinroq urinib koʻring.",
@@ -528,7 +510,7 @@
           "h": "Siz yuklaydigan fayllar",
           "p": [
             "Faqat foydalanishga huquqingiz bor fayllarni yuklang. Fayl mazmuni va undan foydalanish uchun siz javobgarsiz.",
-            "DRM bilan himoyalangan kitoblar va parolli arxivlar qayta ishlanmaydi."
+            "Parol bilan himoyalangan faylni faqat parolini bilsangiz ochish mumkin. Parol faqat shu fayl uchun ishlatiladi va saqlanmaydi."
           ]
         },
         {
@@ -699,28 +681,6 @@
     "format": "Format",
     "keepFormat": "Asl formatda",
     "needSize": "Kenglik yoki balandlikni kiriting."
-  },
-  "text": {
-    "editor": "Matn muharriri",
-    "open": "Fayl ochish",
-    "name": "Fayl nomi",
-    "mode": "Matn turi",
-    "modes": {
-      "markdown": "Markdown",
-      "plain": "Oddiy matn"
-    },
-    "views": {
-      "edit": "Tahrirlash",
-      "preview": "Koʻrinish"
-    },
-    "textLabel": "Matn",
-    "placeholder": "# Sarlavha\n\nMatnni shu yerga yozing yoki fayl oching.",
-    "stats": "{{words}} soʻz, {{chars}} belgi",
-    "draftNote": "Qoralama faqat shu brauzerda saqlanadi",
-    "save": "Saqlash",
-    "saveNote": "TXT, MD va HTML brauzerning oʻzida tayyorlanadi. PDF, DOCX va EPUB uchun matn serverga yuboriladi va ishlovdan keyin oʻchiriladi.",
-    "tooBig": "Fayl juda katta: muharrir 5 MB gacha matnni ochadi.",
-    "empty": "Avval matn yozing."
   },
   "next": {
     "title": "Bu fayl bilan yana nima qilish mumkin"

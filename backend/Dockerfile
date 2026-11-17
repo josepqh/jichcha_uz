@@ -61,7 +61,7 @@ HEALTHCHECK --interval=15s --timeout=3s --start-period=20s --retries=3 \
 # transfer; with plain sync workers three slow uploads would stall every other request.
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3", "--worker-class", "gthread", "--threads", "8", "--timeout", "120", "--access-logfile", "-"]
 
-# ---- runtime-office: heavy engines, LibreOffice (office -> PDF) and Calibre (e-books) ----
+# ---- runtime-office: adds LibreOffice and fonts for office -> PDF (separate, larger image) ----
 FROM runtime AS runtime-office
 USER root
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -70,15 +70,8 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         libreoffice-writer-nogui libreoffice-calc-nogui libreoffice-impress-nogui \
-        fonts-dejavu-core fonts-liberation2 fonts-noto-core fonts-crosextra-carlito fonts-crosextra-caladea \
-        calibre
+        fonts-dejavu-core fonts-liberation2 fonts-noto-core fonts-crosextra-carlito fonts-crosextra-caladea
 USER 1001:1001
-# Calibre renders PDFs with Qt WebEngine. Chromium's own sandbox needs user namespaces, which
-# Docker's default seccomp profile blocks; the container (non-root, no network, read-only root,
-# no capabilities) is the sandbox instead.
-ENV SOFFICE_BINARY=soffice \
-    EBOOK_CONVERT_BINARY=ebook-convert \
-    QT_QPA_PLATFORM=offscreen \
-    QTWEBENGINE_CHROMIUM_FLAGS=--no-sandbox
+ENV SOFFICE_BINARY=soffice
 HEALTHCHECK NONE
-CMD ["celery", "-A", "config", "worker", "-Q", "office,ebook", "--concurrency", "2", "--loglevel", "info"]
+CMD ["celery", "-A", "config", "worker", "-Q", "office", "--concurrency", "2", "--loglevel", "info"]

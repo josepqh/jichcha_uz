@@ -48,9 +48,8 @@ def test_every_family_has_a_web_fallback():
         ("scan.pdf", "", "pdf"),
         ("IMG_1234.HEIC", "", "image"),
         ("photo", "image/jpeg", "image"),
-        ("kitob.fb2", "", "ebook"),
-        ("eslatma.md", "", "text"),
-        ("notes.txt", "text/plain", "text"),
+        ("kitob.fb2", "", None),  # e-books are not offered
+        ("eslatma.md", "", None),
         ("arxiv.tar.gz", "", "archive"),
         ("noext", "application/pdf", "pdf"),
         ("dastur.exe", "application/x-msdownload", None),
@@ -62,7 +61,7 @@ def test_family_of(name, mime, family):
 
 def test_no_same_format_conversion():
     assert "jpg" not in [a.key for a in actions_for("image", "photo.jpeg")]
-    assert "epub" not in [a.key for a in actions_for("ebook", "kitob.epub")]
+    assert "png" not in [a.key for a in actions_for("image", "rasm.png")]
 
 
 def test_language_and_errors():

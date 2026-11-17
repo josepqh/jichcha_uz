@@ -12,8 +12,7 @@ password reset by email, account page with 30-day history, language preference a
 (reorder/rotate/delete with pdf.js thumbnails), PDF compression, PDF → JPG/PNG. PDF → Word is postponed until the
 engine licence is decided (the best engine, pdf2docx/PyMuPDF, is AGPL).
 
-**Slice 4 (done):** archives (extract ZIP/RAR/7Z/TAR/GZ/BZ2/XZ, pack any files into ZIP/7Z, RAR/7Z/TAR → ZIP/7Z) and
-e-books (EPUB, FB2, MOBI, AZW3, PDF, DOCX → EPUB/MOBI/AZW3/PDF via Calibre). Production groundwork: ClamAV scanning,
+**Slice 4 (done):** archives (extract ZIP/RAR/7Z/TAR/GZ/BZ2/XZ, pack any files into ZIP/7Z, RAR/7Z/TAR → ZIP/7Z). Production groundwork: ClamAV scanning,
 daily database backups, health check, optional Sentry, CI, hardened worker containers, privacy policy and terms.
 
 **Slice 5 (done):** Telegram bot (`bot/`, aiogram v3): send a file → action buttons that match the website's
@@ -23,8 +22,7 @@ website. Each Telegram user has their own limits and tasks.
 ## Stack
 
 - **Backend:** Python 3.14, Django 6.1, DRF, Celery + Redis, PostgreSQL 18, Pillow + pillow-heif, img2pdf,
-  pikepdf (MPL), pypdfium2 (BSD/Apache), LibreOffice headless (MPL), libarchive (BSD), Calibre (GPL, run as a
-  separate process) — no AGPL engines
+  pikepdf (MPL), pypdfium2 (BSD/Apache), LibreOffice headless (MPL), libarchive (BSD) — no AGPL engines
 - **Frontend:** React 19, TypeScript, Vite, Tailwind CSS 4, TanStack Query, Zustand, react-i18next
 - **Runtime:** Docker Compose (nginx → gunicorn, Celery workers + beat, ClamAV, Postgres backups)
 
@@ -60,10 +58,10 @@ docker compose up -d --wait db cache
 
 cd backend
 python3 -m venv .venv && .venv/bin/pip install -r requirements/dev.txt
-brew install --cask libreoffice calibre       # optional: office -> PDF and e-books
+brew install --cask libreoffice               # optional: office -> PDF
 .venv/bin/python manage.py migrate
 .venv/bin/python manage.py runserver            # API on :8000
-.venv/bin/python -m celery -A config worker -Q light,office,ebook,maintenance -l info
+.venv/bin/python -m celery -A config worker -Q light,office,maintenance -l info
 
 cd ../frontend
 npm ci --ignore-scripts
@@ -77,7 +75,7 @@ cd backend && .venv/bin/pytest --cov                 # unit + API tests
 cd frontend && npm test                              # unit tests
 cd frontend && npx playwright test                   # E2E against :5173 (needs backend + worker)
 cd frontend && E2E_BASE_URL=http://localhost:8080 npx playwright test   # E2E against Docker stack
-deploy/test-office-image.sh                           # LibreOffice + Calibre tests inside the worker image, offline
+deploy/test-office-image.sh                           # LibreOffice tests inside the worker image, offline
 ```
 
 Accessibility: `e2e/a11y.spec.ts` runs axe-core (WCAG 2.2 AA) on the main pages in light and dark themes;
@@ -110,13 +108,14 @@ pull request. Actions are pinned to commit SHAs and the token is read-only.
 | GET | `/api/v1/health/` | 200/503 with pass/fail for database, cache and free disk; for monitors |
 
 Tools: `image-convert`, `image-compress`, `images-to-pdf`, `office-to-pdf`, `pdf-merge`, `pdf-split`,
-`pdf-organize`, `pdf-compress`, `pdf-to-images`, `archive-extract`, `archive-create` (any file type),
-`archive-convert`, `ebook-convert`.
+`pdf-organize`, `pdf-compress`, `pdf-to-images`, `pdf-unlock`, `image-edit`, `archive-extract`,
+`archive-create` (any file type), `archive-convert`. E-book conversion and the text editor were removed on
+2026-11-17 by product decision.
 
 ## Conversion workers
 
-- Queues: `light` (images, PDF, archives), `office` (LibreOffice) and `ebook` (Calibre). In Docker they run in
-  separate containers (`worker`; `worker-office` for office + ebook) on an `internal` network with no internet
+- Queues: `light` (images, PDF, archives) and `office` (LibreOffice). In Docker they run in
+  separate containers (`worker`, `worker-office`) on an `internal` network with no internet
   access (only Postgres, Redis and ClamAV are reachable), as a non-root user with a read-only root filesystem, no
   Linux capabilities, `no-new-privileges`, and CPU/memory/process limits. Scratch files live in `/data/work`.
 - Worker processes mark themselves non-dumpable, so a converter tricked into reading local files cannot read the
@@ -126,10 +125,8 @@ Tools: `image-convert`, `image-compress`, `images-to-pdf`, `office-to-pdf`, `pdf
   links and devices are skipped, and nested archives are not opened. Password-protected archives are refused.
 - Each office conversion uses a fresh LibreOffice profile that blocks link/field updates on load, macros, OLE and
   DDE, so a document cannot pull server files (e.g. an `INCLUDETEXT` field) or URLs into its PDF.
-- Calibre runs with its own throwaway home/config directory and a minimal environment, like LibreOffice. Tests
-  check that EPUB manifest paths, embedded `file://` URLs and FB2 external entities cannot pull server files in.
-- Local development needs LibreOffice and Calibre (`brew install --cask libreoffice calibre`), with
-  `SOFFICE_BINARY` and `EBOOK_CONVERT_BINARY` in `.env`. In Docker both are on `PATH`.
+- Local development needs LibreOffice (`brew install --cask libreoffice`) with `SOFFICE_BINARY` in `.env`. In
+  Docker it is on `PATH`.
 
 ## Telegram bot
 

@@ -1,8 +1,8 @@
 {
   "meta": {
     "siteName": "Universe",
-    "homeTitle": "Free Word, PDF, photo, e-book and archive converter | Universe",
-    "homeDescription": "Turn Word and Excel into PDF, merge and compress PDFs, convert HEIC, EPUB, FB2 and RAR files. Free, no sign-up."
+    "homeTitle": "Free Word, PDF, photo and archive converter | Universe",
+    "homeDescription": "Turn Word and Excel into PDF, merge and compress PDFs, convert HEIC, PNG and RAR files. Free, no sign-up."
   },
   "nav": {
     "skip": "Skip to main content",
@@ -19,7 +19,7 @@
   },
   "home": {
     "title": "Everyday file tasks, free",
-    "subtitle": "Turn Word and Excel into PDF, merge or compress PDFs, and convert photos, e-books and archives. No sign-up required.",
+    "subtitle": "Turn Word and Excel into PDF, merge or compress PDFs, and convert photos and archives. No sign-up required.",
     "searchLabel": "Search tools",
     "searchPlaceholder": "For example: heic jpg…",
     "toolsHeading": "Tools",
@@ -46,9 +46,7 @@
       "excel": "Excel",
       "powerpoint": "PowerPoint",
       "image": "Photos",
-      "ebook": "E-books",
-      "archive": "Archives",
-      "text": "Text"
+      "archive": "Archives"
     }
   },
   "tools": {
@@ -112,20 +110,10 @@
       "title": "Convert RAR, 7Z and TAR to ZIP",
       "description": "Repack RAR, 7Z or TAR as ZIP or 7Z, keeping the folder structure."
     },
-    "ebook-convert": {
-      "name": "E-book converter",
-      "title": "Convert EPUB, FB2 and MOBI books",
-      "description": "Convert EPUB, FB2, MOBI and AZW3 books for Kindle, your phone or printing."
-    },
     "image-edit": {
       "name": "Edit photo",
       "title": "Crop, rotate and resize a photo",
       "description": "Crop a photo (1:1, 4:5, 16:9, 3×4 ID photo), rotate or mirror it, and change its size."
-    },
-    "text-convert": {
-      "name": "Text editor",
-      "title": "Edit TXT and Markdown",
-      "description": "Write plain text or Markdown, see the result, and save it as TXT, MD, HTML, PDF, DOCX or EPUB."
     },
     "pdf-unlock": {
       "name": "Unlock PDF",
@@ -151,9 +139,6 @@
         "tiff": "TIFF",
         "zip": "ZIP",
         "7z": "7Z",
-        "epub": "EPUB",
-        "mobi": "MOBI",
-        "azw3": "AZW3 (Kindle)",
         "pdf": "PDF"
       }
     },
@@ -293,9 +278,7 @@
     "archive-extract": "Extract",
     "archive-create": "Create {{target}}",
     "archive-convert": "Convert to {{target}}",
-    "ebook-convert": "Convert to {{target}}",
     "image-edit": "Apply",
-    "text-convert": "Save",
     "pdf-unlock": "Remove password"
   },
   "status": {
@@ -350,7 +333,6 @@
     "archive_too_large": "This archive unpacks to too much data. Try a smaller archive.",
     "archive_too_many_files": "This archive has too many files. Upload one with up to 1000 files.",
     "archive_empty": "There are no files in this archive.",
-    "ebook_drm": "This book is DRM-protected and can't be converted.",
     "malware_detected": "Malware was found in this file, so it wasn't processed and has been deleted.",
     "scan_unavailable": "We couldn't scan this file for viruses. Please try again in a moment.",
     "tool_disabled": "This tool is turned off for now. Please try again later.",
@@ -528,7 +510,7 @@
           "h": "Your files",
           "p": [
             "Upload only files you have the right to use. You are responsible for their contents and for how you use the results.",
-            "DRM-protected books and password-protected archives are not processed."
+            "A password-protected file can be opened only with its password, which is used for that file alone and never stored."
           ]
         },
         {
@@ -699,28 +681,6 @@
     "format": "Format",
     "keepFormat": "Same as original",
     "needSize": "Enter a width or a height."
-  },
-  "text": {
-    "editor": "Text editor",
-    "open": "Open a file",
-    "name": "File name",
-    "mode": "Text type",
-    "modes": {
-      "markdown": "Markdown",
-      "plain": "Plain text"
-    },
-    "views": {
-      "edit": "Edit",
-      "preview": "Preview"
-    },
-    "textLabel": "Text",
-    "placeholder": "# Heading\n\nWrite here or open a file.",
-    "stats": "{{words}} words, {{chars}} characters",
-    "draftNote": "the draft is kept in this browser only",
-    "save": "Save as",
-    "saveNote": "TXT, MD and HTML are made right in your browser. For PDF, DOCX and EPUB the text goes to the server and is deleted after processing.",
-    "tooBig": "This file is too big: the editor opens text up to 5 MB.",
-    "empty": "Write some text first."
   },
   "next": {
     "title": "More you can do with this file"

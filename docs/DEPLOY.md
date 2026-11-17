@@ -8,7 +8,7 @@ Buyruqlar Ubuntu 24.04 / Debian 13 uchun yozilgan.
 | Masala | Nima qilish kerak |
 |---|---|
 | **Server qayerda** | "Shaxsga doir maʼlumotlar toʻgʻrisida"gi Qonunga koʻra Oʻzbekiston fuqarolarining shaxsiy maʼlumotlari (email, akkaunt) Oʻzbekistondagi serverlarda saqlanishi talab qilinadi. Hostingni shuni hisobga olib tanlang va yurist bilan tasdiqlang. |
-| **Server quvvati** | Kamida 4 vCPU, 8 GB RAM, 80 GB SSD. ClamAV ~1,5 GB, LibreOffice va Calibre ishlayotganda 1–2 GB xotira oladi. |
+| **Server quvvati** | Kamida 4 vCPU, 8 GB RAM, 80 GB SSD. ClamAV ~1,5 GB, LibreOffice ishlayotganda 1–2 GB xotira oladi. |
 | **Domen** | `universe.uz` kabi domen va uning DNS'ida serverga qaratilgan `A` (va `AAAA`) yozuv. `www` ham kerak boʻlsa, unga ham yozuv qoʻshing. |
 | **Email (SMTP)** | Parolni tiklash xatlari uchun SMTP xizmati (masalan, korporativ pochta yoki tranzaksion email xizmati). |
 | **Huquqiy maʼlumot** | Xizmat egasining nomi va aloqa emaili (`VITE_LEGAL_NAME`, `VITE_CONTACT_EMAIL`). Maxfiylik siyosati va shartlar matnini yurist koʻrib chiqsin. |

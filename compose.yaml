@@ -17,7 +17,6 @@ x-backend: &backend
     MEDIA_ROOT: /data/media
     # .env holds host paths for local dev (macOS app bundles); inside the images these are on PATH.
     SOFFICE_BINARY: soffice
-    EBOOK_CONVERT_BINARY: ebook-convert
     CLAMAV_HOST: clamav
   volumes:
     - media:/data/media
@@ -170,7 +169,7 @@ services:
       args:
         DEBIAN_MIRROR: ${DEBIAN_MIRROR:-}
     pull_policy: build
-    command: ["celery", "-A", "config", "worker", "-Q", "office,ebook", "--concurrency", "2", "--loglevel", "info"]
+    command: ["celery", "-A", "config", "worker", "-Q", "office", "--concurrency", "2", "--loglevel", "info"]
     volumes:
       - media:/data/media
       - work-office:/data/work

@@ -1,11 +1,9 @@
-import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { expect, test } from "@playwright/test";
 
 const fixture = (name: string) => path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures", name);
-const hasCalibre = process.env.E2E_EBOOK === "1" || existsSync("/Applications/calibre.app/Contents/MacOS/ebook-convert");
 
 test.describe("Archives", () => {
   test("extracts a RAR and keeps folders in the file names", async ({ page }) => {
@@ -46,27 +44,5 @@ test.describe("Archives", () => {
     await page.getByTestId("file-input").setInputFiles(fixture("photo.png"));
     await page.getByRole("button", { name: "Extract" }).click();
     await expect(page.getByRole("alert")).toContainText("photo.png");
-  });
-});
-
-test.describe("E-books", () => {
-  test.skip(!hasCalibre, "Calibre is not installed");
-  // Calibre's first PDF render starts a browser engine; in a cold container that takes a while.
-  test.setTimeout(90_000);
-
-  test("converts EPUB to PDF", async ({ page }) => {
-    await page.goto("/en/convert/epub-to-pdf");
-    await page.getByTestId("file-input").setInputFiles(fixture("kitob.epub"));
-    await page.getByRole("button", { name: "Convert to PDF" }).click();
-    await expect(page.getByText("Done")).toBeVisible({ timeout: 60_000 });
-    await expect(page.getByText("kitob.pdf")).toBeVisible();
-  });
-
-  test("converts FB2 to an e-book for Kindle", async ({ page }) => {
-    await page.goto("/uz/tools/ebook-convert");
-    await page.getByTestId("file-input").setInputFiles(fixture("ertak.fb2"));
-    await page.getByText("AZW3 (Kindle)", { exact: true }).click();
-    await page.getByRole("button", { name: "AZW3 qilish" }).click();
-    await expect(page.getByText("ertak.azw3")).toBeVisible({ timeout: 60_000 });
   });
 });

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Runs the LibreOffice and Calibre tests inside the office worker image, offline, as uid 1001.
+# Runs the LibreOffice tests inside the office worker image, offline, as uid 1001.
 # Usage: deploy/test-office-image.sh [image]   (default: universe-backend-office:dev)
 set -euo pipefail
 
@@ -24,4 +24,4 @@ docker run --rm --network none -u 1001:1001 \
     -v "$ROOT/backend/tests:/app/tests:ro" \
     -v "$ROOT/backend/pyproject.toml:/app/pyproject.toml:ro" \
     --entrypoint python "$IMAGE" \
-    -m pytest -q -p no:cacheprovider tests/test_pdf_tools.py tests/test_ebooks.py tests/test_archives.py
+    -m pytest -q -p no:cacheprovider tests/test_pdf_tools.py tests/test_archives.py
