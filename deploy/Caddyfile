@@ -1,0 +1,24 @@
+# TLS in front of the web container. Caddy gets and renews Let's Encrypt certificates by itself:
+# point the domain's A/AAAA records at the server and open ports 80 and 443.
+{$DOMAIN} {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		-Server
+	}
+	# Uploads up to 520 MB (registered users' per-request limit is 500 MB).
+	request_body {
+		max_size 520MB
+	}
+	reverse_proxy web:8080 {
+		transport http {
+			read_timeout 300s
+			write_timeout 300s
+		}
+	}
+}
+
+# www -> apex
+www.{$DOMAIN} {
+	redir https://{$DOMAIN}{uri} permanent
+}

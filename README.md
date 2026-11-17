@@ -28,6 +28,13 @@ website. Each Telegram user has their own limits and tasks.
 - **Frontend:** React 19, TypeScript, Vite, Tailwind CSS 4, TanStack Query, Zustand, react-i18next
 - **Runtime:** Docker Compose (nginx → gunicorn, Celery workers + beat, ClamAV, Postgres backups)
 
+## Production
+
+Step-by-step guide (in Uzbek): [docs/DEPLOY.md](docs/DEPLOY.md). In short: fill `.env` (plus `DOMAIN`), check it with
+`python3 deploy/check_env.py`, then
+`docker compose -f compose.yaml -f compose.prod.yaml --profile bot up -d --build --wait`. Caddy terminates HTTPS
+(Let's Encrypt) in front of nginx; only ports 80/443 are published.
+
 ## Run everything in Docker
 
 ```bash

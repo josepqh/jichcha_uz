@@ -1,0 +1,60 @@
+# Production overrides: HTTPS through Caddy, nothing else published.
+#   docker compose -f compose.yaml -f compose.prod.yaml --profile bot up -d --build --wait
+# See docs/DEPLOY.md.
+x-prod-backend: &prod
+  environment:
+    DJANGO_SETTINGS_MODULE: config.settings.production
+    SECURE_SSL_REDIRECT: "true"
+    # Caddy -> nginx -> gunicorn: the client is the second-to-last X-Forwarded-For entry.
+    NUM_PROXIES: "2"
+    DJANGO_ALLOWED_HOSTS: ${DOMAIN:?set DOMAIN in .env},backend,localhost
+    PUBLIC_ORIGIN: https://${DOMAIN}
+    CSRF_TRUSTED_ORIGINS: https://${DOMAIN}
+    CORS_ALLOWED_ORIGINS: https://${DOMAIN}
+
+services:
+  backend: *prod
+  worker: *prod
+  worker-office: *prod
+  beat: *prod
+  monitor: *prod
+  migrate: *prod
+
+  bot:
+    environment:
+      PUBLIC_ORIGIN: https://${DOMAIN}
+      TELEGRAM_WEBHOOK_URL: https://${DOMAIN}/telegram/webhook
+
+  web:
+    # Not published: only Caddy talks to it.
+    ports: !reset []
+    build:
+      args:
+        SITE_URL: https://${DOMAIN}
+
+  # No database or Redis ports on the host in production (compose.override.yaml is for development).
+  db:
+    ports: !reset []
+  cache:
+    ports: !reset []
+
+  caddy:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      web:
+        condition: service_healthy
+
+volumes:
+  caddy-data:
+  caddy-config:
