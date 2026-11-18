@@ -1,0 +1,21 @@
+# Weekly update PRs. Grouped so one ecosystem gives one PR, not twenty.
+version: 2
+updates:
+  - package-ecosystem: pip
+    directories: ["/backend/requirements", "/bot"]
+    schedule: { interval: weekly, day: monday }
+    groups:
+      python: { patterns: ["*"] }
+  - package-ecosystem: npm
+    directory: /frontend
+    schedule: { interval: weekly, day: monday }
+    groups:
+      npm-minor: { update-types: [minor, patch] }
+  - package-ecosystem: docker
+    directories: ["/backend", "/bot", "/frontend", "/deploy"]
+    schedule: { interval: weekly, day: monday }
+  - package-ecosystem: github-actions
+    directory: /
+    schedule: { interval: weekly, day: monday }
+    groups:
+      actions: { patterns: ["*"] }

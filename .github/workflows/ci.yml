@@ -101,6 +101,29 @@ jobs:
       - run: npm test
       - run: npm run build
 
+  audit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Python packages (backend and bot)
+        run: |
+          pip install pip-audit==2.10.1
+          pip-audit -r backend/requirements/base.txt --progress-spinner off
+          pip-audit -r bot/requirements.txt --progress-spinner off
+      # Only what ships to browsers; build tools run on our own files.
+      - name: npm packages shipped to the browser
+        working-directory: frontend
+        run: npm audit --omit=dev --audit-level=high
+
   e2e:
     runs-on: ubuntu-24.04
     timeout-minutes: 25
@@ -130,6 +153,7 @@ jobs:
       THROTTLE_TASK_CREATE_IP: 2000/min
       THROTTLE_ANON: 5000/min
       THROTTLE_ANON_IP: 10000/min
+      E2E_MANAGE: python backend/manage.py
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:

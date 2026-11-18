@@ -1,23 +1,19 @@
-import { execSync } from "node:child_process";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
 import { expect, test } from "@playwright/test";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-// How to run manage.py for the stack under test (Docker: "docker compose exec -T backend python manage.py").
-const MANAGE = process.env.E2E_MANAGE ?? `${ROOT}/backend/.venv/bin/python ${ROOT}/backend/manage.py`;
+import { manage } from "./manage";
+
 const ADMIN = { email: "e2e-admin@example.com", password: "E2e-admin-pass-917" };
 
 test.beforeAll(() => {
   try {
-    execSync(`${MANAGE} createsuperuser --noinput --email ${ADMIN.email}`, {
-      cwd: ROOT,
-      env: { ...process.env, DJANGO_SUPERUSER_PASSWORD: ADMIN.password, DJANGO_SUPERUSER_EMAIL: ADMIN.email },
-      stdio: "pipe",
+    manage(`createsuperuser --noinput --email ${ADMIN.email}`, {
+      DJANGO_SUPERUSER_PASSWORD: ADMIN.password,
+      DJANGO_SUPERUSER_EMAIL: ADMIN.email,
     });
-  } catch {
-    // Already exists from an earlier run.
+  } catch (error) {
+    // An earlier run already created the account; anything else (no Python, bad settings) must fail loudly.
+    const stderr = String((error as { stderr?: Buffer }).stderr ?? "");
+    if (!/already (taken|exists)/i.test(stderr)) throw error;
   }
 });
 
