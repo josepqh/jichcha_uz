@@ -293,6 +293,8 @@ export function ImageEditor({ file, multiple, state, onChange }: Props) {
   useEffect(() => {
     let cancelled = false;
     const url = URL.createObjectURL(file);
+    // Syncing with an external resource (object URL + image probe), revoked in the cleanup.
+    // oxlint-disable-next-line react/set-state-in-effect
     setSrc(url);
     setPreviewable(true);
     const probe = new Image();

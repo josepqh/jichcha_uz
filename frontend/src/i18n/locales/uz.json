@@ -640,7 +640,8 @@
       "block": "Bloklash",
       "unblock": "Blokdan chiqarish",
       "blockConfirm": "{{email}} bloklansinmi? U barcha qurilmalardan chiqariladi.",
-      "none": "Foydalanuvchi topilmadi."
+      "none": "Foydalanuvchi topilmadi.",
+      "actions": "Amallar"
     },
     "pager": {
       "prev": "Oldingi",

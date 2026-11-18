@@ -35,7 +35,9 @@ function loadScript(): Promise<void> {
 export function Turnstile({ lang, onToken }: { lang: string; onToken: (token: string) => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const callback = useRef(onToken);
-  callback.current = onToken;
+  useEffect(() => {
+    callback.current = onToken;
+  });
 
   useEffect(() => {
     if (!turnstileEnabled) return;

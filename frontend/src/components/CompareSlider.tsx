@@ -16,6 +16,8 @@ export function CompareSlider({ before, afterUrl }: { before: File; afterUrl: st
 
   useEffect(() => {
     const url = URL.createObjectURL(before);
+    // Syncing with an external resource: the object URL must be revoked when the file changes.
+    // oxlint-disable-next-line react/set-state-in-effect
     setBeforeUrl(url);
     return () => URL.revokeObjectURL(url);
   }, [before]);

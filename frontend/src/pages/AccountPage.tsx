@@ -367,6 +367,8 @@ function HistoryItem({ task }: { task: Task }) {
   const { t, i18n } = useTranslation();
   const toolName = isToolSlug(task.tool) ? t(`tools.${task.tool}.name`) : task.tool;
   const when = formatDate(task.created_at, i18n.language, true);
+  // Reading the clock at render is fine here: the list re-renders on every refetch.
+  // oxlint-disable-next-line react/purity
   const expired = task.files_deleted || new Date(task.expires_at) <= new Date();
   const files = task.bundle ? [task.bundle] : task.outputs;
 

@@ -79,9 +79,11 @@ export function PdfOrganizer({ file, pages, disabled, onChange, onError }: Props
   const [doc, setDoc] = useState<PDFDocumentProxy | null>(null);
   const [total, setTotal] = useState(0);
   const onChangeRef = useRef(onChange);
-  onChangeRef.current = onChange;
   const onErrorRef = useRef(onError);
-  onErrorRef.current = onError;
+  useEffect(() => {
+    onChangeRef.current = onChange;
+    onErrorRef.current = onError;
+  });
 
   useEffect(() => {
     let cancelled = false;

@@ -22,5 +22,13 @@ export default defineConfig({
     environment: "jsdom",
     include: ["src/**/*.test.{ts,tsx}"],
     setupFiles: ["./src/test/setup.ts"],
+    // Unit tests cover the pure logic in src/lib; pages and components are covered by the Playwright suite.
+    coverage: {
+      provider: "v8",
+      include: ["src/lib/**/*.ts"],
+      exclude: ["src/lib/**/*.test.ts", "src/lib/api.ts"],
+      reporter: ["text-summary"],
+      thresholds: { lines: 80, functions: 80, branches: 70 },
+    },
   },
 });

@@ -22,7 +22,7 @@ export function publicPaths(): string[] {
   return [
     "",
     ...TOOL_LIST.map((tool) => `tools/${tool.slug}`),
-    ...[...conversions].sort().map((pair) => `convert/${pair}`),
+    ...[...conversions].toSorted().map((pair) => `convert/${pair}`),
     "faq",
     "privacy",
     "terms",

@@ -95,9 +95,11 @@ export function Layout() {
   }, [i18n, lang]);
 
   // Move focus to the page content after client-side navigation (screen readers).
+  // Runs on purpose on every path change, though the body doesn't read pathname.
   useEffect(() => {
     document.getElementById("main")?.focus({ preventScroll: true });
     window.scrollTo(0, 0);
+    // oxlint-disable-next-line react/exhaustive-effect-dependencies
   }, [pathname]);
 
   return (

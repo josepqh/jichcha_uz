@@ -640,7 +640,8 @@
       "block": "Block",
       "unblock": "Unblock",
       "blockConfirm": "Block {{email}}? They'll be signed out on every device.",
-      "none": "No users found."
+      "none": "No users found.",
+      "actions": "Actions"
     },
     "pager": {
       "prev": "Previous",

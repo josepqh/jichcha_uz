@@ -13,6 +13,10 @@ filterwarnings = ["ignore::DeprecationWarning:celery.*"]
 source = ["apps"]
 omit = ["*/migrations/*"]
 
+[tool.coverage.report]
+# CI fails if coverage drops below this (currently ~93%).
+fail_under = 90
+
 [tool.ruff]
 line-length = 120
 target-version = "py314"

@@ -116,8 +116,10 @@ function DayChart({ data }: { data: DashboardStats }) {
           <div className="flex h-48 items-end gap-0.5 border-b border-border" onMouseLeave={() => setHover(null)}>
             {data.per_day.map((d, i) => (
               // Each day is focusable, so the tooltip line also works from the keyboard.
+              // oxlint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
               <div
                 key={d.date}
+                // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                 tabIndex={0}
                 role="img"
                 aria-label={label(d)}
@@ -323,7 +325,9 @@ function Users() {
                 <th className="py-2 font-normal">{t("admin.users.lastLogin")}</th>
                 <th className="py-2 text-right font-normal">{t("admin.users.tasks30")}</th>
                 <th className="py-2 font-normal">{t("admin.users.status")}</th>
-                <th className="py-2" />
+                <th className="py-2">
+                  <span className="sr-only">{t("admin.users.actions")}</span>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -677,6 +681,7 @@ function Tools() {
                 type="checkbox"
                 role="switch"
                 checked={tool.enabled}
+                aria-checked={tool.enabled}
                 aria-label={t("admin.tools.toggle", { name: toolName(t, tool.slug) })}
                 onChange={(e) => toggle.mutate({ slug: tool.slug, enabled: e.target.checked })}
                 className="size-5 accent-primary"

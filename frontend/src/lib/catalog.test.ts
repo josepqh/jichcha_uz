@@ -30,7 +30,7 @@ describe("buildCatalog", () => {
 
   it("reaches every tool and lists nothing twice in a section", () => {
     const reached = new Set(catalog.flatMap((s) => s.entries.map((e) => e.tool.slug)));
-    expect([...reached].sort()).toEqual(TOOL_LIST.map((t) => t.slug).sort());
+    expect([...reached].toSorted()).toEqual(TOOL_LIST.map((t) => t.slug).toSorted());
     for (const { entries } of catalog) expect(new Set(entries.map((e) => e.key)).size).toBe(entries.length);
   });
 

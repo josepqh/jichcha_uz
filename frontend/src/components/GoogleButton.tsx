@@ -35,7 +35,9 @@ export const googleEnabled = CLIENT_ID !== "";
 export function GoogleButton({ lang, onCredential }: { lang: string; onCredential: (credential: string) => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const callback = useRef(onCredential);
-  callback.current = onCredential;
+  useEffect(() => {
+    callback.current = onCredential;
+  });
 
   useEffect(() => {
     if (!googleEnabled) return;

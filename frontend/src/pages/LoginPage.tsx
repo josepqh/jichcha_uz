@@ -109,6 +109,8 @@ export function LoginPage() {
         <meta name="robots" content="noindex" />
         <form ref={formRef} noValidate onSubmit={(e) => void onOtp(e)} className="space-y-4">
           <FormAlert message={formError} />
+          {/* The code step has a single field and replaces the form the person just submitted. */}
+          {/* oxlint-disable-next-line jsx-a11y/no-autofocus */}
           <OtpField label={t("fields.otp")} name="otp" hint={t("fields.otpHint")} error={otpError} autoFocus />
           <SubmitButton busy={busy} label={t("auth.otp.submit")} busyLabel={t("auth.login.submitting")} />
         </form>
