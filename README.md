@@ -73,6 +73,7 @@ npm run dev                                      # UI on :5173, proxies /api to 
 ```bash
 cd backend && .venv/bin/pytest --cov                 # unit + API tests
 cd frontend && npm test                              # unit tests
+cd frontend && npm run lint && npm run test:coverage # oxlint; coverage floor on src/lib
 cd frontend && npx playwright test                   # E2E against :5173 (needs backend + worker)
 cd frontend && E2E_BASE_URL=http://localhost:8080 npx playwright test   # E2E against Docker stack
 deploy/test-office-image.sh                           # LibreOffice tests inside the worker image, offline
