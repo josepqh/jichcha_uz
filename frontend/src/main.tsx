@@ -1,3 +1,5 @@
+// Self-hosted (latin + cyrillic subsets load on demand): no request to Google on page load.
+import "@fontsource-variable/inter";
 import "./index.css";
 import "./i18n";
 
