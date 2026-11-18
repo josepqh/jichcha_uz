@@ -1,24 +1,24 @@
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
-import { BadgeCheck, CircleExclamationPoint, Download, LoaderCircle, LogOut, Trash } from "lucide-react";
+import { BadgeCheck, CircleExclamationPoint, Download, LoaderCircle, LogOut, ShieldCheck, Trash } from "lucide-react";
 import { useId, useRef, useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, Navigate, useLocation, useNavigate } from "react-router";
 
-import { FormAlert, PasswordField, focusFirstInvalid } from "@/components/forms";
+import { FormAlert, OtpField, PasswordField, cleanOtp, focusFirstInvalid } from "@/components/forms";
 import { GoogleButton, googleEnabled } from "@/components/GoogleButton";
 import { useUsage } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
 import { LANGUAGE_NAMES, LANGUAGES, type Language } from "@/i18n";
-import { api, auth, type Me, type Task } from "@/lib/api";
+import { ApiError, api, auth, type Me, type Task, type TwoFactorSetup } from "@/lib/api";
 import { errorMessage } from "@/lib/errors";
 import { formatBytes, formatDate } from "@/lib/format";
 import { isToolSlug } from "@/lib/tools";
 import { btn, card } from "@/lib/ui";
 import { useAuthStore } from "@/stores/auth";
 
-function Section({ title, children, id }: { title: string; children: React.ReactNode; id: string }) {
+function Section({ title, children, id, anchor }: { title: string; children: React.ReactNode; id: string; anchor?: string }) {
   return (
-    <section aria-labelledby={id} className={`${card} space-y-4 p-5 sm:p-6`}>
+    <section id={anchor} aria-labelledby={id} className={`${card} scroll-mt-24 space-y-4 p-5 sm:p-6`}>
       <h2 id={id} className="text-lg font-semibold">
         {title}
       </h2>
@@ -59,6 +59,7 @@ function Profile({ user }: { user: Me }) {
           )}
           {user.email_verified ? t("account.verified") : t("account.unverified")}
         </p>
+        {user.email_verified ? null : <ResendVerification />}
       </div>
       <div className="space-y-1.5">
         <label htmlFor={selectId} className="block text-sm font-semibold">
@@ -79,6 +80,258 @@ function Profile({ user }: { user: Me }) {
         </select>
       </div>
       <FormAlert message={error} />
+    </Section>
+  );
+}
+
+function ResendVerification() {
+  const { t } = useTranslation();
+  const lang = useLang();
+  const [state, setState] = useState<"idle" | "busy" | "sent">("idle");
+  const [error, setError] = useState<string | null>(null);
+
+  const resend = async () => {
+    setState("busy");
+    setError(null);
+    try {
+      await api.resendVerification(lang);
+      setState("sent");
+    } catch (err) {
+      setState("idle");
+      setError(errorMessage(t, err));
+    }
+  };
+
+  return (
+    <div className="space-y-2 pt-1 text-sm">
+      {state === "sent" ? (
+        <p role="status">{t("account.resent")}</p>
+      ) : (
+        <p>
+          {t("account.verifyText")}{" "}
+          <button
+            type="button"
+            className="inline-flex min-h-11 items-center font-semibold text-primary underline-offset-4 hover:underline disabled:opacity-60"
+            disabled={state === "busy"}
+            onClick={() => void resend()}
+          >
+            {t("account.resend")}
+          </button>
+        </p>
+      )}
+      <FormAlert message={error} />
+    </div>
+  );
+}
+
+function ChangePassword({ user }: { user: Me }) {
+  const { t } = useTranslation();
+  const lang = useLang();
+  const queryClient = useQueryClient();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [errors, setErrors] = useState<{ current?: string; next?: string }>({});
+  const [formError, setFormError] = useState<string | null>(null);
+  const [saved, setSaved] = useState(false);
+  const [busy, setBusy] = useState(false);
+
+  if (!user.has_password) {
+    return (
+      <p className="text-sm text-muted">
+        {t("account.passwordNone")}{" "}
+        <Link to={`/${lang}/forgot`} className="font-semibold text-primary underline-offset-4 hover:underline">
+          {t("auth.login.forgot")}
+        </Link>
+      </p>
+    );
+  }
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const current = String(data.get("current_password") ?? "");
+    const next = String(data.get("new_password") ?? "");
+    const problems = {
+      current: current ? undefined : t("errors.required"),
+      next: !next ? t("errors.required") : next.length < 8 ? t("errors.weak_password", { reasons: t("weak.password_too_short") }) : undefined,
+    };
+    setErrors(problems);
+    setFormError(null);
+    setSaved(false);
+    if (problems.current || problems.next) {
+      focusFirstInvalid(formRef.current);
+      return;
+    }
+    setBusy(true);
+    try {
+      await api.changePassword(current, next);
+      await queryClient.invalidateQueries();
+      form.reset();
+      setSaved(true);
+    } catch (err) {
+      if (err instanceof ApiError && err.code === "weak_password") setErrors({ next: errorMessage(t, err) });
+      else if (err instanceof ApiError && err.code === "invalid_credentials") setErrors({ current: t("errors.wrong_password") });
+      else setFormError(errorMessage(t, err));
+      focusFirstInvalid(formRef.current);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <form ref={formRef} noValidate onSubmit={(e) => void onSubmit(e)} className="space-y-4">
+      <h3 className="font-semibold">{t("account.passwordTitle")}</h3>
+      <FormAlert message={formError} />
+      <PasswordField label={t("fields.currentPassword")} name="current_password" autoComplete="current-password" error={errors.current} />
+      <PasswordField
+        label={t("fields.newPassword")}
+        name="new_password"
+        autoComplete="new-password"
+        hint={t("fields.passwordHint")}
+        error={errors.next}
+      />
+      {saved ? (
+        <p role="status" className="flex items-center gap-1.5 text-sm">
+          <BadgeCheck className="size-4 text-success" aria-hidden="true" />
+          {t("account.passwordSaved")}
+        </p>
+      ) : null}
+      <button type="submit" className={btn.secondary} disabled={busy} aria-busy={busy}>
+        {busy ? <LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> : null}
+        {t("account.passwordSubmit")}
+      </button>
+    </form>
+  );
+}
+
+function TwoFactor({ user }: { user: Me }) {
+  const { t } = useTranslation();
+  const lang = useLang();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [setup, setSetup] = useState<TwoFactorSetup | null>(null);
+  const [disabling, setDisabling] = useState(false);
+  const [errors, setErrors] = useState<{ code?: string; password?: string }>({});
+  const [formError, setFormError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  const reset = () => {
+    setSetup(null);
+    setDisabling(false);
+    setErrors({});
+    setFormError(null);
+  };
+
+  const run = async (action: () => Promise<unknown>) => {
+    setBusy(true);
+    setFormError(null);
+    try {
+      await action();
+      return true;
+    } catch (err) {
+      if (err instanceof ApiError && (err.code === "otp_invalid" || err.code === "otp_required")) setErrors({ code: errorMessage(t, err) });
+      else if (err instanceof ApiError && err.code === "invalid_credentials") setErrors({ password: t("errors.wrong_password") });
+      else setFormError(errorMessage(t, err));
+      focusFirstInvalid(formRef.current);
+      return false;
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const start = () => void run(async () => setSetup(await api.twoFactorSetup()));
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const code = cleanOtp(data.get("code"));
+    const password = String(data.get("password") ?? "");
+    const problems = {
+      code: code.length === 6 ? undefined : t("errors.otp_required"),
+      password: disabling && user.has_password && !password ? t("errors.required") : undefined,
+    };
+    setErrors(problems);
+    if (problems.code || problems.password) {
+      focusFirstInvalid(formRef.current);
+      return;
+    }
+    const ok = await run(() => (disabling ? api.twoFactorDisable({ password, code }) : api.twoFactorEnable(code)));
+    if (ok) reset();
+  };
+
+  const status = (
+    <p className="flex items-center gap-1.5 text-sm">
+      {user.totp_enabled ? <ShieldCheck className="size-4 text-success" aria-hidden="true" /> : null}
+      {user.totp_enabled ? t("account.twoFactorOn") : t("account.twoFactorOff")}
+    </p>
+  );
+
+  return (
+    <div className="space-y-4">
+      <h3 className="font-semibold">{t("account.twoFactor")}</h3>
+      {status}
+      <FormAlert message={formError} />
+      {setup || disabling ? (
+        <form ref={formRef} noValidate onSubmit={(e) => void onSubmit(e)} className="space-y-4">
+          {setup ? (
+            <>
+              <p className="text-sm">{t("account.twoFactorScan")}</p>
+              <img src={setup.qr} alt={t("account.twoFactorQr")} width={200} height={200} className="size-50 rounded-lg bg-white p-1" />
+              <p className="text-sm text-muted">
+                {t("account.twoFactorManual")}{" "}
+                <code className="font-mono text-fg [overflow-wrap:anywhere] select-all">{setup.secret}</code>
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-sm">{t("account.twoFactorDisableText")}</p>
+              {user.has_password ? (
+                <PasswordField label={t("fields.password")} name="password" autoComplete="current-password" error={errors.password} />
+              ) : null}
+            </>
+          )}
+          <OtpField label={t("fields.otp")} name="code" hint={t("fields.otpHint")} error={errors.code} />
+          <div className="flex flex-wrap gap-2">
+            <button type="submit" className={disabling ? btn.danger : btn.primary} disabled={busy} aria-busy={busy}>
+              {busy ? <LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> : null}
+              {disabling ? t("account.twoFactorDisable") : t("account.twoFactorConfirm")}
+            </button>
+            <button type="button" className={btn.secondary} onClick={reset}>
+              {t("account.twoFactorCancel")}
+            </button>
+          </div>
+        </form>
+      ) : user.totp_enabled ? (
+        user.has_password ? (
+          <button type="button" className={btn.secondary} onClick={() => setDisabling(true)}>
+            {t("account.twoFactorDisable")}
+          </button>
+        ) : (
+          <p className="text-sm text-muted">
+            {t("account.twoFactorNoPassword")}{" "}
+            <Link to={`/${lang}/forgot`} className="font-semibold text-primary underline-offset-4 hover:underline">
+              {t("auth.login.forgot")}
+            </Link>
+          </p>
+        )
+      ) : user.email_verified ? (
+        <button type="button" className={btn.primary} disabled={busy} onClick={start}>
+          {busy ? <LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> : <ShieldCheck className="size-4" aria-hidden="true" />}
+          {t("account.twoFactorStart")}
+        </button>
+      ) : (
+        <p className="text-sm text-muted">{t("account.twoFactorNeedsEmail")}</p>
+      )}
+    </div>
+  );
+}
+
+function Security({ user }: { user: Me }) {
+  const { t } = useTranslation();
+  return (
+    <Section title={t("account.security")} id="security-heading" anchor="security">
+      <ChangePassword user={user} />
+      <hr className="border-border" />
+      <TwoFactor user={user} />
     </Section>
   );
 }
@@ -337,6 +590,7 @@ export function AccountPage() {
         </div>
       </div>
       <Profile user={user} />
+      <Security user={user} />
       <Usage />
       <History />
       <DangerZone user={user} />

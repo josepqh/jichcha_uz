@@ -3,6 +3,7 @@
 import logging
 from datetime import timedelta
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.db.models import Count, Q
@@ -27,8 +28,21 @@ logger = logging.getLogger("apps.staff.audit")
 User = get_user_model()
 
 
+class IsStaffWithTwoFactor(IsAdminUser):
+    """Staff only, and (where STAFF_REQUIRE_2FA is on) only with two-step sign-in turned on."""
+
+    def has_permission(self, request, view) -> bool:
+        if not super().has_permission(request, view):
+            return False
+        if settings.STAFF_REQUIRE_2FA and not request.user.totp_enabled:
+            raise AppError(
+                "staff_2fa_required", "Turn on two-step sign-in to use the admin panel.", status.HTTP_403_FORBIDDEN
+            )
+        return True
+
+
 class StaffView(APIView):
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsStaffWithTwoFactor]
 
 
 class Pagination(PageNumberPagination):

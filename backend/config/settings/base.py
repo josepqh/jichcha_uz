@@ -202,6 +202,12 @@ AUTH_COOKIE_SECURE = env.bool("AUTH_COOKIE_SECURE", default=True)
 # Public origin of the SPA, used for links in emails.
 PUBLIC_ORIGIN = env("PUBLIC_ORIGIN", default="http://localhost:5173")
 
+# Staff must turn on two-step sign-in before the admin panel API answers them.
+STAFF_REQUIRE_2FA = env.bool("STAFF_REQUIRE_2FA", default=True)
+# Django's own /admin/ has no two-step sign-in, so it is off unless a path is set. Keep the
+# "admin/" prefix (nginx routes it) and add something hard to guess, e.g. "admin/k3x9-panel/".
+DJANGO_ADMIN_URL = env("DJANGO_ADMIN_URL", default="")
+
 # Google Identity Services. Sign-in with Google is disabled while this is empty.
 GOOGLE_CLIENT_ID = env("GOOGLE_CLIENT_ID", default="")
 

@@ -24,3 +24,6 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [m for m in MIDDLEWARE if "whitenoise" not in m]  # noqa: F405
 
 TURNSTILE_SECRET_KEY = ""  # tests that need it switch it on
+
+STAFF_REQUIRE_2FA = False  # tests that need it switch it on
+DJANGO_ADMIN_URL = "admin/"

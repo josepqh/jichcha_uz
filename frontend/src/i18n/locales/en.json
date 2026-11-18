@@ -342,7 +342,17 @@
     "invalid_crop": "The crop area is outside the photo. Choose it again.",
     "wrong_password": "That password is wrong. Check it and try again.",
     "captcha_required": "Please confirm you're not a robot.",
-    "captcha_failed": "The robot check didn't pass. Please try again."
+    "captcha_failed": "The robot check didn't pass. Please try again.",
+    "otp_required": "Enter the 6-digit code from your authenticator app.",
+    "otp_invalid": "That code is not right, or it was already used. Wait for the next code and try again.",
+    "otp_locked": "Too many wrong codes. Wait 15 minutes and try again.",
+    "otp_already_enabled": "Two-step sign-in is already on.",
+    "otp_not_started": "Start the setup again.",
+    "otp_not_enabled": "Two-step sign-in is already off.",
+    "email_unverified": "Confirm your email first.",
+    "invalid_verify_link": "This confirmation link is invalid or has expired. Send a new one from your account page.",
+    "already_verified": "Your email is already confirmed.",
+    "staff_2fa_required": "The admin panel needs two-step sign-in. Turn it on in your account first."
   },
   "notFound": {
     "title": "Page not found",
@@ -361,7 +371,10 @@
     "newPassword": "New password",
     "show": "Show password",
     "hide": "Hide password",
-    "passwordHint": "At least 8 characters. Very common or numbers-only passwords are not accepted."
+    "passwordHint": "At least 8 characters. Very common or numbers-only passwords are not accepted.",
+    "otp": "Code from the app",
+    "otpHint": "6 digits from Google Authenticator, Authy or a similar app.",
+    "currentPassword": "Current password"
   },
   "auth": {
     "benefits": "With an account you can upload files up to 200 MB, run 100 tasks a day, and keep 30 days of history.",
@@ -395,7 +408,19 @@
       "submitting": "Saving…",
       "requestNew": "Request a new link"
     },
-    "google": "Sign in with Google"
+    "google": "Sign in with Google",
+    "otp": {
+      "text": "Two-step sign-in is on for this account. Enter the code from your authenticator app.",
+      "submit": "Confirm",
+      "back": "Start over"
+    },
+    "verify": {
+      "title": "Confirm your email",
+      "checking": "Confirming your email…",
+      "done": "Your email is confirmed. Thank you!",
+      "toAccount": "Go to your account",
+      "toHome": "Go to the home page"
+    }
   },
   "account": {
     "title": "Account",
@@ -419,7 +444,28 @@
     "deleteConfirm": "Your account and all files will be permanently deleted. Continue?",
     "deleteGoogle": "To confirm, sign in with Google again using this account. The account is deleted right after.",
     "deleteNoGoogle": "This account has no password. To delete it, set a password first.",
-    "adminLink": "Admin panel"
+    "adminLink": "Admin panel",
+    "verifyText": "We sent a confirmation link to your email. Didn't get it?",
+    "resend": "Send again",
+    "resent": "Sent. Check your inbox and the spam folder.",
+    "security": "Security",
+    "passwordTitle": "Change password",
+    "passwordSubmit": "Change password",
+    "passwordSaved": "Password changed. You were signed out on other devices.",
+    "passwordNone": "You sign in with Google, so this account has no password. To add one, use “Forgot your password?” on the sign-in page.",
+    "twoFactor": "Two-step sign-in",
+    "twoFactorOff": "Off. When on, every sign-in also asks for a code from an app on your phone.",
+    "twoFactorOn": "On. Every sign-in asks for a code from your authenticator app.",
+    "twoFactorStart": "Turn on",
+    "twoFactorScan": "Scan this QR code with Google Authenticator, Authy or another authenticator app, then enter the 6-digit code it shows.",
+    "twoFactorQr": "QR code for the authenticator app",
+    "twoFactorManual": "Can't scan it? Enter this key by hand:",
+    "twoFactorConfirm": "Confirm and turn on",
+    "twoFactorCancel": "Cancel",
+    "twoFactorDisable": "Turn off",
+    "twoFactorDisableText": "To turn it off, enter your password and a current code.",
+    "twoFactorNeedsEmail": "Confirm your email first, then you can turn on two-step sign-in.",
+    "twoFactorNoPassword": "To turn it off, first add a password with “Forgot your password?”."
   },
   "weak": {
     "password_too_short": "use at least 8 characters",
@@ -644,7 +690,9 @@
     "tools": {
       "hint": "A tool that is off accepts no new tasks, on the website or in the bot.",
       "toggle": "{{name}} on"
-    }
+    },
+    "need2fa": "The admin panel needs two-step sign-in. Turn it on in your account, then come back.",
+    "to2fa": "Open account security"
   },
   "edit": {
     "title": "Editing",

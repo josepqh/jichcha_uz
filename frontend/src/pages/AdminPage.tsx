@@ -26,6 +26,23 @@ function toolName(t: (key: string) => string, slug: string) {
   return isToolSlug(slug) ? t(`tools.${slug}.name`) : slug;
 }
 
+/** Panel errors; staff without two-step sign-in get a way to turn it on instead of a dead end. */
+function AdminError({ error }: { error: unknown }) {
+  const { t } = useTranslation();
+  const lang = useLang();
+  if (error instanceof ApiError && error.code === "staff_2fa_required") {
+    return (
+      <div role="alert" className={`${card} space-y-3 p-5`}>
+        <p>{t("admin.need2fa")}</p>
+        <Link to={`/${lang}/account#security`} className={btn.primary}>
+          {t("admin.to2fa")}
+        </Link>
+      </div>
+    );
+  }
+  return <FormAlert message={errorMessage(t, error)} />;
+}
+
 function Loading() {
   const { t } = useTranslation();
   return (
@@ -178,7 +195,7 @@ function Dashboard() {
       {query.isPending ? (
         <Loading />
       ) : query.isError ? (
-        <FormAlert message={errorMessage(t, query.error)} />
+        <AdminError error={query.error} />
       ) : (
         <>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -293,7 +310,7 @@ function Users() {
       {query.isPending ? (
         <Loading />
       ) : query.isError ? (
-        <FormAlert message={errorMessage(t, query.error)} />
+        <AdminError error={query.error} />
       ) : query.data.results.length === 0 ? (
         <p className="text-muted">{t("admin.users.none")}</p>
       ) : (
@@ -362,7 +379,7 @@ function Failures() {
   const codeLabel = (code: string) => t(`errors.${code}`, { defaultValue: code });
 
   if (query.isPending) return <Loading />;
-  if (query.isError) return <FormAlert message={errorMessage(t, query.error)} />;
+  if (query.isError) return <AdminError error={query.error} />;
   const data = query.data;
 
   return (
@@ -455,7 +472,7 @@ function Load() {
   const n = useNumber();
   const query = useQuery({ queryKey: ["admin", "load"], queryFn: adminApi.load, refetchInterval: 10_000 });
   if (query.isPending) return <Loading />;
-  if (query.isError) return <FormAlert message={errorMessage(t, query.error)} />;
+  if (query.isError) return <AdminError error={query.error} />;
   const { queues, workers, tasks, storage } = query.data;
   const used = storage.disk_total && storage.disk_free !== null ? 1 - storage.disk_free / storage.disk_total : null;
 
@@ -610,10 +627,9 @@ function LimitForm({ policy }: { policy: LimitPolicy }) {
 }
 
 function Limits() {
-  const { t } = useTranslation();
   const query = useQuery({ queryKey: ["admin", "limits"], queryFn: adminApi.limits });
   if (query.isPending) return <Loading />;
-  if (query.isError) return <FormAlert message={errorMessage(t, query.error)} />;
+  if (query.isError) return <AdminError error={query.error} />;
   return (
     <div className="grid gap-4 lg:grid-cols-2">
       {query.data.map((policy) => (
@@ -646,7 +662,7 @@ function Tools() {
     },
   });
   if (query.isPending) return <Loading />;
-  if (query.isError) return <FormAlert message={errorMessage(t, query.error)} />;
+  if (query.isError) return <AdminError error={query.error} />;
 
   return (
     <div className="space-y-3">

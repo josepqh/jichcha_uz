@@ -49,6 +49,7 @@ export interface Me {
   language: "uz" | "ru" | "en";
   email_verified: boolean;
   has_password: boolean;
+  totp_enabled: boolean;
   date_joined: string;
   is_staff: boolean;
 }
@@ -100,9 +101,18 @@ async function rawRequest<T>(path: string, init: RequestInit = {}, token: string
 
 let refreshing: Promise<boolean> | null = null;
 
+/**
+ * Tabs share one refresh cookie, and each refresh rotates it. A Web Lock makes tabs take turns, so a
+ * tab never sends a cookie another tab has just rotated away (the server also allows a short grace).
+ */
+function withRefreshLock<T>(run: () => Promise<T>): Promise<T> {
+  const locks = typeof navigator === "undefined" ? undefined : navigator.locks;
+  return locks ? locks.request("universe-auth-refresh", run) : run();
+}
+
 /** Exchanges the httpOnly refresh cookie for a new access token. Concurrent callers share one request. */
 export function refreshSession(): Promise<boolean> {
-  refreshing ??= rawRequest<Session>("/auth/refresh/", { method: "POST" })
+  refreshing ??= withRefreshLock(() => rawRequest<Session>("/auth/refresh/", { method: "POST" }))
     .then((session) => {
       useAuthStore.getState().setSession(session.access, session.user);
       return true;
@@ -145,19 +155,29 @@ function startSession(session: Session): Me {
 
 const json = (body: unknown): RequestInit => ({ method: "POST", body: JSON.stringify(body) });
 
+export interface TwoFactorSetup {
+  secret: string;
+  otpauth_uri: string;
+  /** SVG QR code as a data: URI. */
+  qr: string;
+}
+
 export const auth = {
-  login: (email: string, password: string) => rawRequest<Session>("/auth/login/", json({ email, password })).then(startSession),
+  /** `otp` is the authenticator code, sent on the second try when the server answers otp_required. */
+  login: (email: string, password: string, otp = "") =>
+    rawRequest<Session>("/auth/login/", json({ email, password, otp })).then(startSession),
   register: (email: string, password: string, language: string, captcha = "") =>
     rawRequest<Session>("/auth/register/", json({ email, password, language, captcha })).then(startSession),
-  google: (credential: string) => rawRequest<Session>("/auth/google/", json({ credential })).then(startSession),
+  google: (credential: string, otp = "") => rawRequest<Session>("/auth/google/", json({ credential, otp })).then(startSession),
   logout: async () => {
     await rawRequest<void>("/auth/logout/", { method: "POST" }).catch(() => undefined);
     useAuthStore.getState().clear();
   },
   requestReset: (email: string, language: string, captcha = "") =>
     rawRequest<void>("/auth/password/reset/", json({ email, language, captcha })),
-  confirmReset: (uid: string, token: string, newPassword: string) =>
-    rawRequest<Session>("/auth/password/reset/confirm/", json({ uid, token, new_password: newPassword })).then(startSession),
+  confirmReset: (uid: string, token: string, newPassword: string, otp = "") =>
+    rawRequest<Session>("/auth/password/reset/confirm/", json({ uid, token, new_password: newPassword, otp })).then(startSession),
+  verifyEmail: (token: string) => rawRequest<{ email_verified: boolean }>("/auth/email/verify/", json({ token })),
 };
 
 export const api = {
@@ -169,6 +189,21 @@ export const api = {
   me: () => request<Me>("/me/"),
   updateMe: (patch: Partial<Pick<Me, "language">>) =>
     request<Me>("/me/", { method: "PATCH", body: JSON.stringify(patch) }).then((me) => {
+      useAuthStore.getState().setUser(me);
+      return me;
+    }),
+  /** Ends the other sessions; this tab gets a fresh one. */
+  changePassword: (currentPassword: string, newPassword: string) =>
+    request<Session>("/me/password/", json({ current_password: currentPassword, new_password: newPassword })).then(startSession),
+  resendVerification: (language: string) => request<void>("/me/email/verify/", json({ language })),
+  twoFactorSetup: () => request<TwoFactorSetup>("/me/2fa/setup/", { method: "POST" }),
+  twoFactorEnable: (code: string) =>
+    request<Me>("/me/2fa/enable/", json({ code })).then((me) => {
+      useAuthStore.getState().setUser(me);
+      return me;
+    }),
+  twoFactorDisable: (proof: ({ password: string } | { google_credential: string }) & { code: string }) =>
+    request<Me>("/me/2fa/disable/", json(proof)).then((me) => {
       useAuthStore.getState().setUser(me);
       return me;
     }),

@@ -3,6 +3,7 @@ import time
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth.tokens import default_token_generator
+from django.core.cache import cache
 from django.db import transaction
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
@@ -11,28 +12,34 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenBackendError, TokenError
 from rest_framework_simplejwt.serializers import TokenRefreshSerializer
+from rest_framework_simplejwt.state import token_backend
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.conversions.models import UsageCounter
 from apps.core.exceptions import AppError
 
-from . import google, turnstile
+from . import google, totp, turnstile
 from .models import User
 from .serializers import (
     DeleteAccountSerializer,
+    EmailVerifySerializer,
     GoogleSerializer,
     LoginSerializer,
     MeSerializer,
+    OtpCodeSerializer,
+    PasswordChangeSerializer,
     PasswordResetConfirmSerializer,
     PasswordResetRequestSerializer,
     RegisterSerializer,
+    TwoFactorDisableSerializer,
     check_password_strength,
 )
-from .tasks import send_password_reset
+from .tasks import send_email_verification, send_password_reset
 from .throttles import AuthRateThrottle
 from .tokens import clear_refresh_cookie, issue_tokens, revoke_all_sessions, set_refresh_cookie
+from .verification import user_for_token
 
 
 def session_response(user: User, status_code: int = status.HTTP_200_OK) -> Response:
@@ -87,6 +94,8 @@ class RegisterView(PublicAuthView):
         serializer.is_valid(raise_exception=True)
         turnstile.require(request.data.get("captcha"), _client_ip(request))
         user = serializer.save()
+        lang = serializer.validated_data["language"]
+        transaction.on_commit(lambda: send_email_verification.delay(str(user.pk), lang))
         return session_response(user, status.HTTP_201_CREATED)
 
 
@@ -102,6 +111,7 @@ class LoginView(PublicAuthView):
         )
         if user is None:
             raise AppError("invalid_credentials", "Wrong email or password.", status.HTTP_401_UNAUTHORIZED)
+        totp.require_for(user, serializer.validated_data.get("otp"))
         return session_response(user)
 
 
@@ -126,12 +136,33 @@ class GoogleLoginView(PublicAuthView):
                 if not user.email_verified:
                     # Someone may have registered this address before its owner (pre-account takeover):
                     # drop the unverified password and end all its sessions, then hand the account to Google's owner.
+                    # The squatter's authenticator goes too, or it could lock the real owner out.
                     if user.has_usable_password():
                         user.set_unusable_password()
                     revoke_all_sessions(user)
                     user.email_verified = True
-                    user.save(update_fields=["password", "email_verified"])
+                    user.totp_secret, user.totp_enabled = "", False
+                    user.save(update_fields=["password", "email_verified", "totp_secret", "totp_enabled"])
+        totp.require_for(user, serializer.validated_data.get("otp"))
         return session_response(user)
+
+
+# A rotated refresh token still works for this many seconds and yields the same successor. Covers a
+# reload that aborts the refresh response before the browser stores the new cookie, and two tabs
+# refreshing at once. Logout and "sign out everywhere" blacklist the successor too, so they still win.
+REFRESH_GRACE_SECONDS = 30
+
+
+def _grace_key(jti: str) -> str:
+    return f"auth:rotated:{jti}"
+
+
+def _rotated_jti(raw: str) -> str | None:
+    """jti of a correctly signed, unexpired token, ignoring the blacklist."""
+    try:
+        return token_backend.decode(raw, verify=True).get("jti")
+    except TokenBackendError:
+        return None
 
 
 class RefreshView(APIView):
@@ -144,8 +175,18 @@ class RefreshView(APIView):
             raise _session_expired()
         serializer = TokenRefreshSerializer(data={"refresh": raw})
         try:
-            serializer.is_valid(raise_exception=True)
-            new_refresh = serializer.validated_data["refresh"]
+            try:
+                serializer.is_valid(raise_exception=True)
+                new_refresh = serializer.validated_data["refresh"]
+                access = serializer.validated_data["access"]
+                if jti := _rotated_jti(raw):
+                    cache.set(_grace_key(jti), new_refresh, REFRESH_GRACE_SECONDS)
+            except (TokenError, InvalidToken) as error:
+                jti = _rotated_jti(raw)
+                new_refresh = cache.get(_grace_key(jti)) if jti else None
+                if not new_refresh:
+                    raise error
+                access = str(RefreshToken(new_refresh).access_token)  # raises if the successor was revoked
             user = User.objects.get(pk=RefreshToken(new_refresh)["user_id"], is_active=True)
         except TokenError, InvalidToken, User.DoesNotExist, KeyError:
             response = Response(
@@ -153,7 +194,7 @@ class RefreshView(APIView):
                 status=status.HTTP_401_UNAUTHORIZED,
             )
             return clear_refresh_cookie(response)
-        response = Response({"access": serializer.validated_data["access"], "user": MeSerializer(user).data})
+        response = Response({"access": access, "user": MeSerializer(user).data})
         return set_refresh_cookie(response, new_refresh)
 
 
@@ -221,9 +262,114 @@ class PasswordResetConfirmView(PublicAuthView):
         if user is None or not default_token_generator.check_token(user, data["token"]):
             raise AppError("invalid_reset_link", "This link is invalid or has expired.")
         check_password_strength(data["new_password"], user)
+        # The emailed link alone must not get past two-step sign-in.
+        totp.require_for(user, data.get("otp"))
         with transaction.atomic():
             user.set_password(data["new_password"])
             user.email_verified = True  # following the emailed link proves control of the address
             user.save(update_fields=["password", "email_verified"])
             revoke_all_sessions(user)
         return session_response(user)
+
+
+class PasswordChangeView(APIView):
+    """Change the password while signed in. Ends every other session and starts a fresh one here."""
+
+    permission_classes = [IsAuthenticated]
+    throttle_classes = [AuthRateThrottle]
+
+    def post(self, request: Request) -> Response:
+        user: User = request.user
+        serializer = PasswordChangeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+        if not user.has_usable_password() or not user.check_password(data["current_password"]):
+            raise AppError("invalid_credentials", "Wrong password.", status.HTTP_403_FORBIDDEN)
+        check_password_strength(data["new_password"], user)
+        with transaction.atomic():
+            user.set_password(data["new_password"])
+            user.save(update_fields=["password"])
+            revoke_all_sessions(user)
+        return session_response(user)
+
+
+class TwoFactorSetupView(APIView):
+    """Start (or restart) setup: a new secret that only counts once a code confirms it."""
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request: Request) -> Response:
+        user: User = request.user
+        if user.totp_enabled:
+            raise AppError("otp_already_enabled", "Two-step sign-in is already on.", status.HTTP_409_CONFLICT)
+        if not user.email_verified:
+            # Otherwise someone who registered another person's address could lock its owner out.
+            raise AppError("email_unverified", "Confirm your email first.", status.HTTP_403_FORBIDDEN)
+        user.totp_secret = totp.new_secret()
+        user.totp_last_step = 0
+        user.save(update_fields=["totp_secret", "totp_last_step"])
+        uri = totp.provisioning_uri(user.totp_secret, user.email)
+        return Response({"secret": user.totp_secret, "otpauth_uri": uri, "qr": totp.qr_data_uri(uri)})
+
+
+class TwoFactorEnableView(APIView):
+    permission_classes = [IsAuthenticated]
+    throttle_classes = [AuthRateThrottle]
+
+    def post(self, request: Request) -> Response:
+        user: User = request.user
+        if user.totp_enabled:
+            raise AppError("otp_already_enabled", "Two-step sign-in is already on.", status.HTTP_409_CONFLICT)
+        if not user.totp_secret:
+            raise AppError("otp_not_started", "Start the setup first.", status.HTTP_400_BAD_REQUEST)
+        serializer = OtpCodeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        totp.check_code(user, serializer.validated_data["code"])
+        user.totp_enabled = True
+        user.save(update_fields=["totp_enabled"])
+        return Response(MeSerializer(user).data)
+
+
+class TwoFactorDisableView(APIView):
+    """Turning it off needs both the password (or a fresh Google sign-in) and a current code."""
+
+    permission_classes = [IsAuthenticated]
+    throttle_classes = [AuthRateThrottle]
+
+    def post(self, request: Request) -> Response:
+        user: User = request.user
+        if not user.totp_enabled:
+            raise AppError("otp_not_enabled", "Two-step sign-in is off.", status.HTTP_409_CONFLICT)
+        serializer = TwoFactorDisableSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        _confirm_identity(user, serializer.validated_data)
+        totp.check_code(user, serializer.validated_data["code"])
+        user.totp_enabled, user.totp_secret = False, ""
+        user.save(update_fields=["totp_enabled", "totp_secret"])
+        return Response(MeSerializer(user).data)
+
+
+class EmailVerifyView(PublicAuthView):
+    def post(self, request: Request) -> Response:
+        serializer = EmailVerifySerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = user_for_token(serializer.validated_data["token"])
+        if user is None:
+            raise AppError("invalid_verify_link", "This link is invalid or has expired.")
+        if not user.email_verified:
+            user.email_verified = True
+            user.save(update_fields=["email_verified"])
+        return Response({"email_verified": True})
+
+
+class EmailVerifyResendView(APIView):
+    permission_classes = [IsAuthenticated]
+    throttle_classes = [AuthRateThrottle]
+
+    def post(self, request: Request) -> Response:
+        user: User = request.user
+        if user.email_verified:
+            raise AppError("already_verified", "This email is already confirmed.", status.HTTP_409_CONFLICT)
+        lang = request.data.get("language") if request.data.get("language") in User.Language.values else user.language
+        transaction.on_commit(lambda: send_email_verification.delay(str(user.pk), lang))
+        return Response(status=status.HTTP_202_ACCEPTED)

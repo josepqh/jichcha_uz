@@ -41,6 +41,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     language = models.CharField(max_length=2, choices=Language.choices, default=Language.UZ)
     # True once the person proved control of the address (Google sign-in or a password reset link).
     email_verified = models.BooleanField(default=False)
+    # Two-step sign-in with an authenticator app (RFC 6238). The secret is set at setup and only
+    # takes effect once a first code confirms it; last_step stops a code from being used twice.
+    totp_secret = models.CharField(max_length=64, blank=True, default="")
+    totp_enabled = models.BooleanField(default=False)
+    totp_last_step = models.BigIntegerField(default=0)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)

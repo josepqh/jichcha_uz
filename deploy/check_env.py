@@ -88,6 +88,13 @@ def check(env: dict[str, str], root: Path) -> tuple[list[str], list[str]]:
         errors.append(
             "Turnstile: set both TURNSTILE_SECRET_KEY and VITE_TURNSTILE_SITE_KEY, or neither."
         )
+    if get("STAFF_REQUIRE_2FA", "").lower() in ("0", "false", "no"):
+        errors.append("STAFF_REQUIRE_2FA=false: remove it; staff must use two-step sign-in in production.")
+    admin_url = get("DJANGO_ADMIN_URL", "")
+    if admin_url and (not admin_url.startswith("admin/") or admin_url.strip("/") == "admin"):
+        errors.append(
+            "DJANGO_ADMIN_URL: leave empty (off), or use admin/<something hard to guess>/ (nginx routes admin/)."
+        )
     if not get("SENTRY_DSN"):
         warnings.append("SENTRY_DSN empty: errors are not collected anywhere but logs.")
     if not (root / "backup.env").is_file():

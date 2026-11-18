@@ -102,3 +102,23 @@ export function validateEmail(value: string): "required" | "invalid_email" | nul
 export function focusFirstInvalid(form: HTMLFormElement | null) {
   requestAnimationFrame(() => form?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus());
 }
+
+/** Six-digit authenticator code: numeric keyboard on phones, and iOS/Android can autofill it. */
+export function OtpField(props: Omit<FieldProps, "type" | "inputMode" | "autoComplete">) {
+  return (
+    <TextField
+      {...props}
+      type="text"
+      inputMode="numeric"
+      autoComplete="one-time-code"
+      maxLength={8}
+      spellCheck={false}
+      className="font-mono tracking-[0.3em] tabular-nums"
+    />
+  );
+}
+
+/** Digits only, so "123 456" from a copy-paste still works. */
+export function cleanOtp(value: FormDataEntryValue | null): string {
+  return String(value ?? "").replace(/\D/g, "");
+}

@@ -62,7 +62,12 @@ docker compose -f compose.yaml -f compose.prod.yaml exec backend python manage.p
 
 - Birinchi start bir necha daqiqa davom etadi: ClamAV virus bazasini yuklaydi, Caddy HTTPS sertifikatini oladi.
 - Bot kerak boʻlmasa `--profile bot`ni olib tashlang.
-- Admin panel: `https://DOMAIN/uz/admin` (yaratilgan superuser bilan kiring). Django admin: `https://DOMAIN/admin/`.
+- Admin panel: `https://DOMAIN/uz/admin`. Yaratilgan superuser bilan kiring, keyin:
+  1. Akkaunt sahifasida emailni tasdiqlang (xat keladi, SMTP sozlangan boʻlishi kerak).
+  2. "Xavfsizlik" boʻlimida ikki bosqichli kirishni yoqing (Google Authenticator, Authy va hokazo).
+  Usiz admin panel ochilmaydi (`STAFF_REQUIRE_2FA`).
+- Django'ning oʻz `/admin/` sahifasi productionda oʻchiq: unda ikki bosqichli kirish yoʻq. Kerak boʻlsa,
+  `.env`da `DJANGO_ADMIN_URL=admin/<topib boʻlmaydigan-nom>/` qiling va ishingiz tugagach yana boʻshating.
 
 Tekshirish:
 

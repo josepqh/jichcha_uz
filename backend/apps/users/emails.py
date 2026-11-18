@@ -40,3 +40,31 @@ def password_reset_message(user: User, lang: str) -> tuple[str, str]:
     link = f"{settings.PUBLIC_ORIGIN.rstrip('/')}/{lang}/reset/{uid}/{token}"
     subject, body = RESET[lang]
     return subject, body.format(link=link)
+
+
+VERIFY = {
+    "uz": (
+        "Universe: emailingizni tasdiqlang",
+        "Salom!\n\nUniverse akkauntingiz uchun shu emailni tasdiqlang. Havolani oching:\n\n"
+        "{link}\n\nHavola 3 kun amal qiladi. Agar akkauntni siz ochmagan boʻlsangiz, xatni eʼtiborsiz qoldiring.\n",
+    ),
+    "ru": (
+        "Universe: подтвердите email",
+        "Здравствуйте!\n\nПодтвердите этот email для аккаунта Universe. Откройте ссылку:\n\n"
+        "{link}\n\nСсылка действует 3 дня. Если вы не создавали аккаунт, просто проигнорируйте письмо.\n",
+    ),
+    "en": (
+        "Universe: confirm your email",
+        "Hi,\n\nPlease confirm this email address for your Universe account. Open this link:\n\n"
+        "{link}\n\nThe link expires in 3 days. If you didn't create an account, ignore this email.\n",
+    ),
+}
+
+
+def email_verification_message(user: User, lang: str) -> tuple[str, str]:
+    from .verification import make_token
+
+    lang = lang if lang in VERIFY else user.language
+    link = f"{settings.PUBLIC_ORIGIN.rstrip('/')}/{lang}/verify-email/{make_token(user)}"
+    subject, body = VERIFY[lang]
+    return subject, body.format(link=link)

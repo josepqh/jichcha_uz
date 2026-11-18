@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate, useParams } from "react-router";
 
 import { AuthCard } from "@/components/AuthCard";
-import { FormAlert, PasswordField, SubmitButton, focusFirstInvalid } from "@/components/forms";
+import { FormAlert, OtpField, PasswordField, SubmitButton, cleanOtp, focusFirstInvalid } from "@/components/forms";
 import { useLang } from "@/hooks/useLang";
 import { ApiError, auth } from "@/lib/api";
 import { errorMessage } from "@/lib/errors";
@@ -18,10 +18,15 @@ export function ResetPage() {
   const [formError, setFormError] = useState<string | null>(null);
   const [linkInvalid, setLinkInvalid] = useState(false);
   const [busy, setBusy] = useState(false);
+  // Accounts with two-step sign-in also need a code; the field appears once the server asks.
+  const [askOtp, setAskOtp] = useState(false);
+  const [otpError, setOtpError] = useState<string | undefined>();
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const password = String(new FormData(e.currentTarget).get("password") ?? "");
+    const data = new FormData(e.currentTarget);
+    const password = String(data.get("password") ?? "");
+    const otp = cleanOtp(data.get("otp"));
     const problem = !password ? t("errors.required") : password.length < 8 ? t("errors.weak_password", { reasons: t("weak.password_too_short") }) : undefined;
     setError(problem);
     setFormError(null);
@@ -31,11 +36,16 @@ export function ResetPage() {
     }
     setBusy(true);
     try {
-      await auth.confirmReset(uid, token, password);
+      await auth.confirmReset(uid, token, password, otp);
       navigate(`/${lang}/account`, { replace: true });
     } catch (err) {
       setBusy(false);
-      if (err instanceof ApiError && err.code === "weak_password") {
+      setOtpError(undefined);
+      if (err instanceof ApiError && (err.code === "otp_required" || err.code === "otp_invalid")) {
+        setAskOtp(true);
+        setOtpError(errorMessage(t, err));
+        focusFirstInvalid(formRef.current);
+      } else if (err instanceof ApiError && err.code === "weak_password") {
         setError(errorMessage(t, err));
         focusFirstInvalid(formRef.current);
       } else {
@@ -67,6 +77,7 @@ export function ResetPage() {
           hint={t("fields.passwordHint")}
           error={error}
         />
+        {askOtp ? <OtpField label={t("fields.otp")} name="otp" hint={t("fields.otpHint")} error={otpError} /> : null}
         <SubmitButton busy={busy} label={t("auth.reset.submit")} busyLabel={t("auth.reset.submitting")} />
       </form>
     </AuthCard>

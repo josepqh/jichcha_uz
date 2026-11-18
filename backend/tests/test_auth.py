@@ -5,6 +5,7 @@ from unittest import mock
 
 import pytest
 from django.core import mail
+from django.core.cache import cache
 from rest_framework.test import APIClient
 
 from apps.conversions.models import Task, UsageCounter
@@ -90,7 +91,7 @@ class TestRegisterAndLogin:
 
 
 class TestSessions:
-    def test_refresh_rotates_and_old_token_is_dead(self):
+    def test_refresh_rotates_and_old_token_dies_after_the_grace_period(self):
         client = APIClient()
         register(client)
         old = client.cookies[COOKIE].value
@@ -99,14 +100,39 @@ class TestSessions:
         assert resp.status_code == 200
         assert resp.data["access"]
         assert resp.data["user"]["email"] == "ali@example.com"
-        assert client.cookies[COOKIE].value != old
+        successor = client.cookies[COOKIE].value
+        assert successor != old
 
+        # A reload that lost the response: the old cookie still gets the same successor for a moment.
+        retry = APIClient()
+        retry.cookies[COOKIE] = old
+        resp = retry.post("/api/v1/auth/refresh/")
+        assert resp.status_code == 200
+        assert retry.cookies[COOKIE].value == successor
+
+        cache.clear()  # grace period over
         replay = APIClient()
         replay.cookies[COOKIE] = old
         resp = replay.post("/api/v1/auth/refresh/")
         assert resp.status_code == 401
         assert resp.data["error"]["code"] == "session_expired"
         assert resp.cookies[COOKIE].value == ""  # cookie cleared
+
+    def test_grace_period_does_not_survive_logout(self):
+        client = APIClient()
+        register(client)
+        old = client.cookies[COOKIE].value
+        client.post("/api/v1/auth/refresh/")
+        assert client.post("/api/v1/auth/logout/").status_code == 204
+
+        replay = APIClient()
+        replay.cookies[COOKIE] = old
+        assert replay.post("/api/v1/auth/refresh/").status_code == 401
+
+    def test_forged_token_gets_no_grace(self):
+        replay = APIClient()
+        replay.cookies[COOKIE] = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJ4In0.bad"
+        assert replay.post("/api/v1/auth/refresh/").status_code == 401
 
     def test_refresh_without_cookie(self, api_client):
         resp = api_client.post("/api/v1/auth/refresh/")

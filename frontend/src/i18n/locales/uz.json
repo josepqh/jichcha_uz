@@ -342,7 +342,17 @@
     "invalid_crop": "Kesish maydoni suratdan tashqarida. Uni qayta tanlang.",
     "wrong_password": "Parol notoʻgʻri. Qayta tekshirib koʻring.",
     "captcha_required": "Robot emasligingizni tasdiqlang.",
-    "captcha_failed": "Robot tekshiruvidan oʻtilmadi. Qayta urinib koʻring."
+    "captcha_failed": "Robot tekshiruvidan oʻtilmadi. Qayta urinib koʻring.",
+    "otp_required": "Ilovadagi 6 xonali kodni kiriting.",
+    "otp_invalid": "Kod notoʻgʻri yoki allaqachon ishlatilgan. Keyingi kodni kutib, qayta urinib koʻring.",
+    "otp_locked": "Notoʻgʻri kod koʻp marta kiritildi. 15 daqiqadan keyin urinib koʻring.",
+    "otp_already_enabled": "Ikki bosqichli kirish allaqachon yoqilgan.",
+    "otp_not_started": "Sozlashni qaytadan boshlang.",
+    "otp_not_enabled": "Ikki bosqichli kirish allaqachon oʻchirilgan.",
+    "email_unverified": "Avval emailingizni tasdiqlang.",
+    "invalid_verify_link": "Tasdiqlash havolasi notoʻgʻri yoki muddati oʻtgan. Akkaunt sahifasidan yangisini yuboring.",
+    "already_verified": "Emailingiz allaqachon tasdiqlangan.",
+    "staff_2fa_required": "Admin panel uchun ikki bosqichli kirish kerak. Avval uni akkauntingizda yoqing."
   },
   "notFound": {
     "title": "Sahifa topilmadi",
@@ -361,7 +371,10 @@
     "newPassword": "Yangi parol",
     "show": "Parolni koʻrsatish",
     "hide": "Parolni yashirish",
-    "passwordHint": "Kamida 8 belgi. Juda oddiy yoki faqat raqamdan iborat parol qabul qilinmaydi."
+    "passwordHint": "Kamida 8 belgi. Juda oddiy yoki faqat raqamdan iborat parol qabul qilinmaydi.",
+    "otp": "Ilovadagi kod",
+    "otpHint": "Google Authenticator, Authy yoki shunga oʻxshash ilovadagi 6 ta raqam.",
+    "currentPassword": "Joriy parol"
   },
   "auth": {
     "benefits": "Akkaunt bilan 200 MB gacha fayl yuklaysiz, kuniga 100 ta vazifa bajarasiz va tarix 30 kun saqlanadi.",
@@ -395,7 +408,19 @@
       "submitting": "Saqlanmoqda…",
       "requestNew": "Yangi havola soʻrash"
     },
-    "google": "Google orqali kirish"
+    "google": "Google orqali kirish",
+    "otp": {
+      "text": "Bu akkauntda ikki bosqichli kirish yoqilgan. Autentifikator ilovadagi kodni kiriting.",
+      "submit": "Tasdiqlash",
+      "back": "Boshidan boshlash"
+    },
+    "verify": {
+      "title": "Emailni tasdiqlash",
+      "checking": "Email tasdiqlanmoqda…",
+      "done": "Emailingiz tasdiqlandi. Rahmat!",
+      "toAccount": "Akkauntga oʻtish",
+      "toHome": "Bosh sahifaga oʻtish"
+    }
   },
   "account": {
     "title": "Kabinet",
@@ -419,7 +444,28 @@
     "deleteConfirm": "Akkaunt va barcha fayllar butunlay oʻchiriladi. Davom etasizmi?",
     "deleteGoogle": "Tasdiqlash uchun shu akkaunt bilan Google orqali qayta kiring. Kirgandan keyin akkaunt oʻchiriladi.",
     "deleteNoGoogle": "Bu akkauntda parol yoʻq. Uni oʻchirish uchun avval parol oʻrnating.",
-    "adminLink": "Admin panel"
+    "adminLink": "Admin panel",
+    "verifyText": "Emailingizga tasdiqlash havolasi yubordik. Kelmadimi?",
+    "resend": "Qayta yuborish",
+    "resent": "Yuborildi. Kiruvchi xatlar va spam papkasini tekshiring.",
+    "security": "Xavfsizlik",
+    "passwordTitle": "Parolni oʻzgartirish",
+    "passwordSubmit": "Parolni oʻzgartirish",
+    "passwordSaved": "Parol oʻzgartirildi. Boshqa qurilmalardagi sessiyalar yopildi.",
+    "passwordNone": "Siz Google orqali kirasiz, shuning uchun bu akkauntda parol yoʻq. Parol qoʻshish uchun kirish sahifasidagi “Parolni unutdingizmi?” havolasidan foydalaning.",
+    "twoFactor": "Ikki bosqichli kirish",
+    "twoFactorOff": "Oʻchirilgan. Yoqilsa, har safar kirishda telefoningizdagi ilovadan kod ham soʻraladi.",
+    "twoFactorOn": "Yoqilgan. Har safar kirishda autentifikator ilovadagi kod soʻraladi.",
+    "twoFactorStart": "Yoqish",
+    "twoFactorScan": "Bu QR kodni Google Authenticator, Authy yoki boshqa autentifikator ilova bilan skanerlang, soʻng u koʻrsatgan 6 xonali kodni kiriting.",
+    "twoFactorQr": "Autentifikator ilova uchun QR kod",
+    "twoFactorManual": "Skanerlab boʻlmadimi? Bu kalitni qoʻlda kiriting:",
+    "twoFactorConfirm": "Tasdiqlash va yoqish",
+    "twoFactorCancel": "Bekor qilish",
+    "twoFactorDisable": "Oʻchirish",
+    "twoFactorDisableText": "Oʻchirish uchun parolingizni va joriy kodni kiriting.",
+    "twoFactorNeedsEmail": "Avval emailingizni tasdiqlang, keyin ikki bosqichli kirishni yoqishingiz mumkin.",
+    "twoFactorNoPassword": "Oʻchirish uchun avval “Parolni unutdingizmi?” orqali parol qoʻshing."
   },
   "weak": {
     "password_too_short": "kamida 8 ta belgi boʻlsin",
@@ -644,7 +690,9 @@
     "tools": {
       "hint": "Oʻchirilgan vosita saytda ham, botda ham yangi vazifa qabul qilmaydi.",
       "toggle": "{{name}} yoqilgan"
-    }
+    },
+    "need2fa": "Admin panel uchun ikki bosqichli kirish kerak. Uni akkauntingizda yoqing va qayting.",
+    "to2fa": "Akkaunt xavfsizligini ochish"
   },
   "edit": {
     "title": "Tahrirlash",

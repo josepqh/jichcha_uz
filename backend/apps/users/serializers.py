@@ -24,8 +24,17 @@ class MeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "language", "email_verified", "has_password", "date_joined", "is_staff"]
-        read_only_fields = ["id", "email", "email_verified", "has_password", "date_joined", "is_staff"]
+        fields = [
+            "id",
+            "email",
+            "language",
+            "email_verified",
+            "has_password",
+            "totp_enabled",
+            "date_joined",
+            "is_staff",
+        ]
+        read_only_fields = ["id", "email", "email_verified", "has_password", "totp_enabled", "date_joined", "is_staff"]
 
     def get_has_password(self, obj: User) -> bool:
         return obj.has_usable_password()
@@ -58,10 +67,12 @@ class RegisterSerializer(serializers.Serializer):
 class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=254)
     password = serializers.CharField(write_only=True, max_length=128, trim_whitespace=False)
+    otp = serializers.CharField(max_length=16, required=False, allow_blank=True, trim_whitespace=True)
 
 
 class GoogleSerializer(serializers.Serializer):
     credential = serializers.CharField(max_length=4096)
+    otp = serializers.CharField(max_length=16, required=False, allow_blank=True, trim_whitespace=True)
 
 
 class PasswordResetRequestSerializer(serializers.Serializer):
@@ -73,9 +84,27 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
     uid = serializers.CharField(max_length=64)
     token = serializers.CharField(max_length=128)
     new_password = serializers.CharField(write_only=True, max_length=128, trim_whitespace=False)
+    otp = serializers.CharField(max_length=16, required=False, allow_blank=True, trim_whitespace=True)
+
+
+class PasswordChangeSerializer(serializers.Serializer):
+    current_password = serializers.CharField(write_only=True, max_length=128, trim_whitespace=False)
+    new_password = serializers.CharField(write_only=True, max_length=128, trim_whitespace=False)
+
+
+class OtpCodeSerializer(serializers.Serializer):
+    code = serializers.CharField(max_length=16)
+
+
+class EmailVerifySerializer(serializers.Serializer):
+    token = serializers.CharField(max_length=512)
 
 
 class DeleteAccountSerializer(serializers.Serializer):
     password = serializers.CharField(write_only=True, max_length=128, trim_whitespace=False, required=False)
     # Accounts without a password confirm with a fresh Google sign-in instead.
     google_credential = serializers.CharField(write_only=True, max_length=4096, required=False)
+
+
+class TwoFactorDisableSerializer(DeleteAccountSerializer):
+    code = serializers.CharField(max_length=16)

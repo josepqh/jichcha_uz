@@ -13,6 +13,7 @@ import { LoginPage } from "@/pages/LoginPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { RegisterPage } from "@/pages/RegisterPage";
 import { ResetPage } from "@/pages/ResetPage";
+import { VerifyEmailPage } from "@/pages/VerifyEmailPage";
 import { ToolPage } from "@/pages/ToolPage";
 
 function LangGuard({ children }: { children: React.ReactNode }) {
@@ -45,6 +46,7 @@ export function App() {
         <Route path="register" element={<LangGuard><RegisterPage /></LangGuard>} />
         <Route path="forgot" element={<LangGuard><ForgotPage /></LangGuard>} />
         <Route path="reset/:uid/:token" element={<LangGuard><ResetPage /></LangGuard>} />
+        <Route path="verify-email/:token" element={<LangGuard><VerifyEmailPage /></LangGuard>} />
         <Route path="account" element={<LangGuard><AccountPage /></LangGuard>} />
         <Route path="admin" element={<LangGuard><AdminPage /></LangGuard>} />
         <Route path="admin/:tab" element={<LangGuard><AdminPage /></LangGuard>} />

@@ -35,3 +35,11 @@ def test_bot_and_turnstile_pairs(tmp_path):
     errors, _ = check_env.check({**GOOD, "TELEGRAM_BOT_TOKEN": "1:x", "TURNSTILE_SECRET_KEY": "s"}, tmp_path)
     text = " ".join(errors)
     assert "BOT_API_SECRET" in text and "TELEGRAM_WEBHOOK_SECRET" in text and "Turnstile" in text
+
+
+def test_admin_security_overrides(tmp_path):
+    errors, _ = check_env.check({**GOOD, "STAFF_REQUIRE_2FA": "false", "DJANGO_ADMIN_URL": "admin/"}, tmp_path)
+    assert any("STAFF_REQUIRE_2FA" in e for e in errors)
+    assert any("DJANGO_ADMIN_URL" in e for e in errors)
+    errors, _ = check_env.check({**GOOD, "DJANGO_ADMIN_URL": "admin/k3x9-console/"}, tmp_path)
+    assert not any("DJANGO_ADMIN_URL" in e for e in errors)
