@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
+import { CompareSlider, PREVIEWABLE } from "@/components/CompareSlider";
 import { useDeleteTask, useDisabledTools, useTask } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
 import { buildCatalog, familyOf } from "@/lib/catalog";
@@ -15,6 +16,8 @@ interface Props {
   taskId: string | null;
   uploadProgress: number | null;
   inputBytes: number;
+  /** The single original photo of an image-compress task, for the before/after view. */
+  source?: File | null;
   onReset: () => void;
 }
 
@@ -96,7 +99,7 @@ function NextSteps({ task }: { task: Task }) {
 /** An extracted archive can hold up to 1000 files; the rest stay one click away. */
 const VISIBLE_OUTPUTS = 20;
 
-function Done({ task, inputBytes, onReset }: { task: Task; inputBytes: number; onReset: () => void }) {
+function Done({ task, inputBytes, source, onReset }: { task: Task; inputBytes: number; source?: File | null; onReset: () => void }) {
   const { t, i18n } = useTranslation();
   const del = useDeleteTask();
   const [showAll, setShowAll] = useState(false);
@@ -120,6 +123,9 @@ function Done({ task, inputBytes, onReset }: { task: Task; inputBytes: number; o
         <span>{t("status.done")}</span>
       </div>
       <Savings task={task} inputBytes={inputBytes} />
+      {task.tool === "image-compress" && source && PREVIEWABLE.has(source.type) && task.outputs.length === 1 && task.outputs[0]?.download_url ? (
+        <CompareSlider before={source} afterUrl={task.outputs[0].download_url} />
+      ) : null}
 
       {task.bundle?.download_url ? (
         <a href={task.bundle.download_url} download className={`${btn.primary} w-full sm:w-auto`}>
@@ -205,7 +211,7 @@ function Failed({ message, onReset }: { message: string; onReset: () => void }) 
   );
 }
 
-export function TaskPanel({ taskId, uploadProgress, inputBytes, onReset }: Props) {
+export function TaskPanel({ taskId, uploadProgress, inputBytes, source, onReset }: Props) {
   const { t } = useTranslation();
   const query = useTask(taskId);
   const task = query.data;
@@ -220,7 +226,7 @@ export function TaskPanel({ taskId, uploadProgress, inputBytes, onReset }: Props
   } else if (task.status === "failed") {
     body = <Failed message={taskErrorMessage(t, task.error_code)} onReset={onReset} />;
   } else {
-    body = <Done task={task} inputBytes={inputBytes} onReset={onReset} />;
+    body = <Done task={task} inputBytes={inputBytes} source={source} onReset={onReset} />;
   }
 
   return (

@@ -363,7 +363,8 @@
     "privacy": "Fayllaringiz faqat aylantirish uchun ishlatiladi va avtomatik oʻchiriladi.",
     "privacyLink": "Maxfiylik siyosati",
     "termsLink": "Foydalanish shartlari",
-    "legalNav": "Huquqiy maʼlumotlar"
+    "legalNav": "Huquqiy maʼlumotlar",
+    "faqLink": "Savollar"
   },
   "fields": {
     "email": "Email",
@@ -732,5 +733,60 @@
   },
   "next": {
     "title": "Bu fayl bilan yana nima qilish mumkin"
+  },
+  "faq": {
+    "title": "Koʻp beriladigan savollar",
+    "description": "Universe haqida javoblar: narxi, fayl limitlari, fayllar qancha saqlanishi, qoʻllab-quvvatlanadigan formatlar va Telegram bot.",
+    "intro": "Eng koʻp soʻraladigan savollarga qisqa javoblar. Savolingizni topmadingizmi? Maxfiylik siyosati oxiridagi aloqa orqali yozing.",
+    "botLink": "Botni Telegramda ochish",
+    "items": [
+      {
+        "q": "Universe bepulmi?",
+        "a": "Ha. Barcha vositalar bepul, suv belgisi va sinov muddati yoʻq. Akkaunt ham bepul: u faqat limitlarni oshiradi."
+      },
+      {
+        "q": "Akkaunt ochish shartmi?",
+        "a": "Yoʻq. Akkauntsiz {{guestMb}} MB gacha fayl yuklash, kuniga {{guestTasks}} ta vazifa bajarish va bir yoʻla {{guestBatch}} tagacha fayl ishlash mumkin. Bepul akkaunt bilan bu {{userMb}} MB, kuniga {{userTasks}} ta vazifa va {{userBatch}} ta faylgacha oshadi, vazifalaringiz tarixi esa 30 kun saqlanadi."
+      },
+      {
+        "q": "Fayllarim bilan nima boʻladi?",
+        "a": "Ular faqat siz soʻragan amalni bajarish uchun ishlatiladi. Har bir fayl viruslarga tekshiriladi va avtomatik oʻchiriladi: akkauntsiz {{guestHours}} soatdan, akkaunt bilan {{userHours}} soatdan keyin. Natijani oʻzingiz darhol oʻchirib yuborishingiz ham mumkin."
+      },
+      {
+        "q": "Qaysi formatlar qoʻllab-quvvatlanadi?",
+        "a": "PDF: birlashtirish, ajratish, sahifalar tartibini oʻzgartirish, siqish, paroldan ochish, sahifalarni JPG yoki PNG qilish. Word, Excel, PowerPoint, OpenDocument, RTF va CSV fayllarni PDF qilish. Suratlar: JPG, PNG, WEBP, AVIF, HEIC, GIF, BMP va TIFF — aylantirish, siqish, kesish, burish, oʻlchamini oʻzgartirish yoki bitta PDF qilish. Arxivlar: ZIP, RAR, 7Z, TAR, GZ, BZ2 va XZ ni ochish, ZIP yoki 7Z yaratish, bir arxiv turini boshqasiga oʻtkazish."
+      },
+      {
+        "q": "Nega Word fayl PDF boʻlganda biroz boshqacha koʻrinadi?",
+        "a": "Hujjatlar LibreOffice yordamida aylantiriladi. Hujjatdagi shrift bizda boʻlmasa, unga oʻxshash shrift qoʻyiladi va qatorlar biroz surilishi mumkin. Arial, Times New Roman yoki Calibri kabi keng tarqalgan shriftlar eng aniq chiqadi; Word'da saqlashda shriftlarni faylga joylash ham mumkin."
+      },
+      {
+        "q": "Parol qoʻyilgan PDF yoki arxivni ochsa boʻladimi?",
+        "a": "Ha, agar parolni bilsangiz. “PDF parolini olib tashlash” vositasi va arxivni ochish parolni soʻraydi. Parol faqat oʻsha bitta vazifa uchun ishlatiladi va hech qayerda saqlanmaydi."
+      },
+      {
+        "q": "Nega faylim qabul qilinmadi?",
+        "a": "Biz faylning faqat kengaytmasini emas, haqiqiy turini tekshiramiz, shuning uchun nomi oʻzgartirilgan boshqa turdagi fayl qabul qilinmaydi. Boshqa sabablar: fayl limitingizdan katta, kunlik limit tugagan, fayl buzilgan yoki shifrlangan, yoki virus tekshiruvi nimadir topgan. Ekrandagi xabar aniq sababni aytadi."
+      },
+      {
+        "q": "Telegram bot bormi?",
+        "a": "Ha. Botga fayl yuboring va tugmalardan keraklisini tanlang; bir nechta suratni albom qilib yuborsangiz, bitta PDF olasiz. Telegram botlarga 20 MB gacha faylni yuklab olishga ruxsat beradi, kattaroq fayllar uchun bot sayt havolasini beradi."
+      },
+      {
+        "q": "Akkauntimni qanday himoya qilaman?",
+        "a": "Boshqa joyda ishlatmaydigan parol qoʻying va akkauntingizning “Xavfsizlik” boʻlimida ikki bosqichli kirishni yoqing. Shundan keyin har safar kirishda Google Authenticator yoki Authy kabi ilovadagi kod ham soʻraladi."
+      },
+      {
+        "q": "Akkauntni qanday oʻchiraman?",
+        "a": "Akkaunt sahifasini oching va “Akkauntni oʻchirish”ni tanlang. Akkaunt, tarix va saqlangan barcha fayllar darhol oʻchiriladi va ularni tiklab boʻlmaydi."
+      }
+    ]
+  },
+  "compare": {
+    "before": "Oldin",
+    "after": "Keyin",
+    "label": "Asl va siqilgan suratni taqqoslash",
+    "value": "{{percent}}% asl surat",
+    "hint": "Sifatni taqqoslash uchun chiziqni suring yoki strelka tugmalaridan foydalaning."
   }
 }

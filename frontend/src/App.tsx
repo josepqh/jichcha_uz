@@ -6,6 +6,7 @@ import { DEFAULT_LANGUAGE, isLanguage, type Language } from "@/i18n";
 import { refreshSession } from "@/lib/api";
 import { AccountPage } from "@/pages/AccountPage";
 import { AdminPage } from "@/pages/AdminPage";
+import { FaqPage } from "@/pages/FaqPage";
 import { ForgotPage } from "@/pages/ForgotPage";
 import { HomePage } from "@/pages/HomePage";
 import { LegalPage } from "@/pages/LegalPage";
@@ -52,6 +53,7 @@ export function App() {
         <Route path="admin/:tab" element={<LangGuard><AdminPage /></LangGuard>} />
         <Route path="privacy" element={<LangGuard><LegalPage key="privacy" doc="privacy" /></LangGuard>} />
         <Route path="terms" element={<LangGuard><LegalPage key="terms" doc="terms" /></LangGuard>} />
+        <Route path="faq" element={<LangGuard><FaqPage /></LangGuard>} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

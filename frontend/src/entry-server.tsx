@@ -23,6 +23,7 @@ export function publicPaths(): string[] {
     "",
     ...TOOL_LIST.map((tool) => `tools/${tool.slug}`),
     ...[...conversions].sort().map((pair) => `convert/${pair}`),
+    "faq",
     "privacy",
     "terms",
   ];

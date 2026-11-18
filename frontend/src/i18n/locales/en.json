@@ -363,7 +363,8 @@
     "privacy": "Your files are used only for conversion and are deleted automatically.",
     "privacyLink": "Privacy policy",
     "termsLink": "Terms of use",
-    "legalNav": "Legal"
+    "legalNav": "Legal",
+    "faqLink": "FAQ"
   },
   "fields": {
     "email": "Email",
@@ -732,5 +733,60 @@
   },
   "next": {
     "title": "More you can do with this file"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "description": "Answers about Universe: what it costs, file limits, how long files are kept, supported formats and the Telegram bot.",
+    "intro": "Short answers to what people ask most. Didn't find yours? Write to us using the contact at the bottom of the privacy policy.",
+    "botLink": "Open the bot in Telegram",
+    "items": [
+      {
+        "q": "Is Universe free?",
+        "a": "Yes. Every tool is free, with no watermarks and no trial period. An account is free too: it only raises the limits."
+      },
+      {
+        "q": "Do I need an account?",
+        "a": "No. Without an account you can upload files up to {{guestMb}} MB, run {{guestTasks}} tasks a day and process up to {{guestBatch}} files at once. A free account raises this to {{userMb}} MB, {{userTasks}} tasks a day and {{userBatch}} files, and keeps a 30-day history of your tasks."
+      },
+      {
+        "q": "What happens to my files?",
+        "a": "They are used only to do the conversion you asked for. Every upload is checked for viruses, and files are deleted automatically: after {{guestHours}} hour without an account, after {{userHours}} hours with one. You can also delete a result yourself right away."
+      },
+      {
+        "q": "Which formats are supported?",
+        "a": "PDF: merge, split, reorder pages, compress, unlock, turn pages into JPG or PNG. Word, Excel, PowerPoint, OpenDocument, RTF and CSV to PDF. Photos: JPG, PNG, WEBP, AVIF, HEIC, GIF, BMP and TIFF — convert, compress, crop, rotate, resize, or combine into one PDF. Archives: open ZIP, RAR, 7Z, TAR, GZ, BZ2 and XZ, create ZIP or 7Z, or repack one archive type as another."
+      },
+      {
+        "q": "Why does my Word file look slightly different as a PDF?",
+        "a": "Documents are converted with LibreOffice. If the document uses a font we don't have, a similar one is used and lines can shift a little. Common fonts such as Arial, Times New Roman or Calibri convert most faithfully; you can also embed fonts when saving in Word."
+      },
+      {
+        "q": "Can I open a password-protected PDF or archive?",
+        "a": "Yes, if you know the password. The “Unlock PDF” tool and archive extraction ask for it. The password is used only for that one task and is never stored."
+      },
+      {
+        "q": "Why was my file rejected?",
+        "a": "We check what a file really is, not just its extension, so a renamed file of another type is refused. Other reasons: the file is larger than your limit, the daily limit is used up, the file is damaged or encrypted, or the virus check found something. The message on screen names the exact reason."
+      },
+      {
+        "q": "Is there a Telegram bot?",
+        "a": "Yes. Send a file to the bot and pick what to do with it from the buttons; send several photos as an album to get one PDF. Telegram lets bots download files up to 20 MB, so for bigger files the bot gives you a link to the website."
+      },
+      {
+        "q": "How do I keep my account safe?",
+        "a": "Use a password you don't use anywhere else, and turn on two-step sign-in in the Security section of your account. After that, every sign-in also asks for a code from an app such as Google Authenticator or Authy."
+      },
+      {
+        "q": "How do I delete my account?",
+        "a": "Open your account page and choose “Delete account”. Your account, history and all stored files are deleted at once and can't be restored."
+      }
+    ]
+  },
+  "compare": {
+    "before": "Before",
+    "after": "After",
+    "label": "Compare original and compressed image",
+    "value": "{{percent}}% original",
+    "hint": "Drag the line or use the arrow keys to compare the quality."
   }
 }

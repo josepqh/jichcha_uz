@@ -43,6 +43,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
   const [taskId, setTaskId] = useState<string | null>(null);
   const [inputBytes, setInputBytes] = useState(0);
+  const [source, setSource] = useState<File | null>(null);
 
   const itemsRef = useRef(items);
   itemsRef.current = items;
@@ -158,6 +159,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
     setWorking(true);
     setUploadProgress(0);
     setInputBytes(items.reduce((sum, i) => sum + i.file.size, 0));
+    setSource(items.length === 1 ? (items[0]?.file ?? null) : null);
     const apiOptions =
       tool.editor === "organize"
         ? { pages: pages.map(({ page, rotate }) => ({ page, rotate })) }
@@ -217,7 +219,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
           {t("errors.tool_disabled")}
         </p>
       ) : working ? (
-        <TaskPanel taskId={taskId} uploadProgress={uploadProgress} inputBytes={inputBytes} onReset={reset} />
+        <TaskPanel taskId={taskId} uploadProgress={uploadProgress} inputBytes={inputBytes} source={source} onReset={reset} />
       ) : (
         <>
           {items.length === 0 ? (

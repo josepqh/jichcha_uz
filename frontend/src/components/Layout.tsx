@@ -133,7 +133,10 @@ export function Layout() {
       <footer className="border-t border-border">
         <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>{t("footer.privacy")}</p>
-          <nav aria-label={t("footer.legalNav")} className="flex gap-4">
+          <nav aria-label={t("footer.legalNav")} className="flex flex-wrap gap-x-4">
+            <Link to={`/${lang}/faq`} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-fg hover:underline">
+              {t("footer.faqLink")}
+            </Link>
             <Link to={`/${lang}/privacy`} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-fg hover:underline">
               {t("footer.privacyLink")}
             </Link>
