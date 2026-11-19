@@ -45,7 +45,7 @@ export function FaqPage() {
       <meta name="description" content={t("faq.description")} />
       <script type="application/ld+json">{JSON.stringify(structured)}</script>
       <header className="space-y-3">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-4xl">{t("faq.title")}</h1>
+        <h1 className="font-display text-3xl leading-[1.1] font-medium tracking-[-0.045em] sm:text-4xl">{t("faq.title")}</h1>
         <p className="text-pretty text-muted">{t("faq.intro")}</p>
       </header>
       <div className="space-y-3">

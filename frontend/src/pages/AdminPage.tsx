@@ -725,7 +725,7 @@ export function AdminPage() {
     <div className="space-y-6">
       <title>{`${t("admin.title")} | ${t("meta.siteName")}`}</title>
       <meta name="robots" content="noindex" />
-      <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("admin.title")}</h1>
+      <h1 className="font-display text-3xl leading-[1.1] font-medium tracking-[-0.045em] sm:text-4xl">{t("admin.title")}</h1>
       <nav aria-label={t("admin.title")} className="-mx-4 overflow-x-auto px-4">
         <ul className="flex gap-2">
           {TABS.map((name) => (

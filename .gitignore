@@ -32,3 +32,4 @@ frontend/blob-report/
 
 # Off-site backup credentials
 backup.env
+.taste-skill/

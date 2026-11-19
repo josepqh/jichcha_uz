@@ -6,7 +6,7 @@ test.skip(!process.env.E2E_BASE_URL, "Prerendered HTML exists only in the produc
 test("conversion pages arrive as real HTML, without JavaScript", async ({ request }) => {
   const html = await (await request.get("/ru/convert/docx-to-pdf")).text();
   expect(html).toContain('<html lang="ru">');
-  expect(html).toContain("<title>Конвертировать DOCX в PDF | Universe</title>");
+  expect(html).toContain("<title>Конвертировать DOCX в PDF | jichcha</title>");
   expect(html).toMatch(/<h1[^>]*>Конвертировать DOCX в PDF<\/h1>/);
   expect(html).toMatch(/<link rel="canonical" href="[^"]+\/ru\/convert\/docx-to-pdf" \/>/);
   expect(html).toContain('hreflang="uz"');

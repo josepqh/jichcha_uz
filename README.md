@@ -1,4 +1,4 @@
-# Universe
+# jichcha
 
 Free file converter platform. Requirements and roadmap: [docs/TZ.md](docs/TZ.md).
 

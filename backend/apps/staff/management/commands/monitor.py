@@ -44,9 +44,9 @@ def run_checks(state: dict[str, str | None], site: str) -> list[str]:
             problem = f"Check crashed: {exc.__class__.__name__}"
         before = state.get(name)
         if problem and problem != before:
-            message = f"🔴 Universe ({site}) — {name}: {problem}"
+            message = f"🔴 jichcha ({site}) — {name}: {problem}"
         elif before and not problem:
-            message = f"✅ Universe ({site}) — {name} is OK again."
+            message = f"✅ jichcha ({site}) — {name} is OK again."
         else:
             continue
         state[name] = problem

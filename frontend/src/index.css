@@ -3,55 +3,73 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
- * Semantic tokens. Components use only these (bg-surface, text-muted, ...), never raw hex.
- * Contrast (normal text, WCAG AA 4.5:1) checked for each fg/bg pair in both themes.
+ * jichcha tokens. Paper ground, ink text, a highlighter accent (only ever behind ink text or as
+ * a mark, never as text on paper). Components use these names, never raw hex.
+ * Contrast checked for every text pair in both themes (normal text >= 4.5:1, borders >= 3:1).
  */
 :root {
-  --bg: #fafaf9;
-  --surface: #ffffff;
-  --surface-muted: #f5f5f4;
-  --fg: #1c1917;
-  --muted: #57534e; /* 7.4:1 on surface */
-  --border: #e7e5e4;
-  --border-strong: #a8a29e;
-  --primary: #c2410c; /* white text 5.2:1 */
-  --primary-hover: #9a3412;
-  --primary-fg: #ffffff;
-  --ring: #c2410c;
-  --success: #15803d;
-  --danger: #b91c1c;
-  --cat-image: #1d4ed8;
-  --cat-compress: #15803d;
-  --cat-pdf: #b91c1c;
-  --cat-office: #6d28d9;
-  --cat-archive: #b45309; /* 5.0:1 on surface */
+  --bg: #f4f3ee;
+  --surface: #fbfbf8;
+  --surface-muted: #ebe9e2;
+  --fg: #141412;
+  --muted: #5d5b55; /* 6.1:1 on bg */
+  --border: #dcd9d0;
+  --border-strong: #8c897f; /* 3.2:1 */
+  --primary: #141412; /* ink buttons */
+  --primary-hover: #33322d;
+  --primary-fg: #f4f3ee;
+  --accent: #d4f53c; /* ink on it: 14.9:1 */
+  --accent-fg: #141412;
+  --logo-dot: #d4f53c;
+  --ring: #141412;
+  --success: #276b2a;
+  --danger: #b42318;
+  /* One colour per file family; text-safe on bg, surface and surface-muted. */
+  --fam-pdf: #c0262d;
+  --fam-word: #1f57c3;
+  --fam-excel: #1a7341;
+  --fam-powerpoint: #a63b0b;
+  --fam-image: #0b6577;
+  --fam-archive: #8a5a00;
+  --cat-image: var(--fam-image);
+  --cat-compress: var(--fam-excel);
+  --cat-pdf: var(--fam-pdf);
+  --cat-office: var(--fam-word);
+  --cat-archive: var(--fam-archive);
   /* Admin chart series, validated (CVD, contrast) against the light surface. */
   --chart-ok: #2563eb;
   --chart-failed: #dc2626;
+  --shadow-lift: 0 1px 0 rgb(20 20 18 / 0.04), 0 10px 24px -14px rgb(20 20 18 / 0.28);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .dark {
-  --bg: #1c1917;
-  --surface: #262321;
-  --surface-muted: #2e2a27;
-  --fg: #fafaf9;
-  --muted: #b5aea9; /* 7.3:1 on surface */
-  --border: #3d3835;
-  --border-strong: #6b6460;
-  --primary: #fb923c; /* dark text 7.9:1 */
-  --primary-hover: #fdba74;
-  --primary-fg: #1c1917;
-  --ring: #fb923c;
-  --success: #4ade80;
-  --danger: #f87171;
-  --cat-image: #93c5fd;
-  --cat-compress: #86efac;
-  --cat-pdf: #fca5a5;
-  --cat-office: #c4b5fd;
-  --cat-archive: #fcd34d;
-  /* Validated against the dark surface #262321. */
+  --bg: #121311;
+  --surface: #1a1b18;
+  --surface-muted: #23241f;
+  --fg: #f1f0ea;
+  --muted: #a9a79e; /* 7.2:1 on surface */
+  --border: #2e2f2a;
+  --border-strong: #6e6c64;
+  --primary: #f1f0ea;
+  --primary-hover: #ffffff;
+  --primary-fg: #121311;
+  --accent: #d4f53c;
+  --accent-fg: #141412;
+  --logo-dot: #121311;
+  --ring: #d4f53c;
+  --success: #7fd18a;
+  --danger: #ff8a80;
+  --fam-pdf: #ff8a80;
+  --fam-word: #8ab4ff;
+  --fam-excel: #6fd39a;
+  --fam-powerpoint: #ffab70;
+  --fam-image: #5fd0e6;
+  --fam-archive: #f2c14e;
+  /* Validated against the dark surface. */
   --chart-ok: #3b82f6;
   --chart-failed: #ef4444;
+  --shadow-lift: 0 1px 0 rgb(0 0 0 / 0.3), 0 12px 28px -14px rgb(0 0 0 / 0.7);
 }
 
 @theme inline {
@@ -65,9 +83,18 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-primary-fg: var(--primary-fg);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-logo-dot: var(--logo-dot);
   --color-ring: var(--ring);
   --color-success: var(--success);
   --color-danger: var(--danger);
+  --color-fam-pdf: var(--fam-pdf);
+  --color-fam-word: var(--fam-word);
+  --color-fam-excel: var(--fam-excel);
+  --color-fam-powerpoint: var(--fam-powerpoint);
+  --color-fam-image: var(--fam-image);
+  --color-fam-archive: var(--fam-archive);
   --color-cat-image: var(--cat-image);
   --color-cat-compress: var(--cat-compress);
   --color-cat-pdf: var(--cat-pdf);
@@ -75,7 +102,10 @@
   --color-cat-archive: var(--cat-archive);
   --color-chart-ok: var(--chart-ok);
   --color-chart-failed: var(--chart-failed);
-  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --shadow-lift: var(--shadow-lift);
+  --font-sans: "Onest Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Unbounded Variable", "Onest Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 @layer base {
@@ -88,7 +118,11 @@
   }
   body {
     @apply bg-bg font-sans text-fg antialiased;
-    font-feature-settings: "cv11";
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
   :focus-visible {
     outline: 2px solid var(--ring);
@@ -109,5 +143,60 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* The brand's highlighter stroke behind a word. Drawn once on load (scaleX), GSAP or CSS. */
+.hl {
+  position: relative;
+  z-index: 0;
+  white-space: nowrap;
+}
+.hl::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0.08em -0.12em 0.02em;
+  border-radius: 0.18em 0.4em 0.22em 0.5em;
+  background: var(--accent);
+  transform-origin: left center;
+  transform: scaleX(var(--hl, 1));
+}
+.dark .hl {
+  color: var(--accent-fg);
+}
+
+/* Paper grain: a faint dot grid used on large bands. Pure CSS, no image. */
+.paper-grid {
+  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--fg) 9%, transparent) 1px, transparent 0);
+  background-size: 18px 18px;
+}
+
+/* Horizontal scrollers fade at the edges instead of cutting items mid-letter. */
+.edge-fade {
+  mask-image: linear-gradient(to right, transparent, #000 16px, #000 calc(100% - 24px), transparent);
+}
+
+/* Folded top-right corner: the card reads as a sheet of paper. --fold tints the fold. */
+.sheet::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(to bottom left, var(--bg) 50%, var(--fold, var(--surface-muted)) 50%);
+  border-bottom-left-radius: 5px;
+  box-shadow: -1px 1px 0 var(--border);
+  transition: width 0.2s var(--ease-out-soft), height 0.2s var(--ease-out-soft);
+}
+.sheet:hover::after {
+  width: 26px;
+  height: 26px;
+}
+@layer base {
+  html {
+    /* Sticky header + section bar: keep anchors and keyboard focus out from under them. */
+    scroll-padding-top: 8rem;
   }
 }

@@ -1,5 +1,7 @@
 // Self-hosted (latin + cyrillic subsets load on demand): no request to Google on page load.
-import "@fontsource-variable/inter";
+import "@fontsource-variable/onest";
+import "@fontsource-variable/unbounded";
+import "@fontsource-variable/jetbrains-mono";
 import "./index.css";
 import "./i18n";
 

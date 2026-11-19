@@ -1,4 +1,4 @@
-# Universe'ni serverga chiqarish
+# jichcha'ni serverga chiqarish
 
 Bu hujjat loyihani birinchi marta serverga joylash va keyin yangilash tartibini tushuntiradi.
 Buyruqlar Ubuntu 24.04 / Debian 13 uchun yozilgan.

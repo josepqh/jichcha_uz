@@ -11,7 +11,7 @@ MB = 1024 * 1024
 
 async def test_start_speaks_the_users_language(h):
     await h.send(user={**USER, "language_code": "ru"}, text="/start")
-    assert h.texts()[-1].startswith("Здравствуйте! Я бот <b>Universe</b>.")
+    assert h.texts()[-1].startswith("Здравствуйте! Я бот <b>jichcha</b>.")
     await h.send(user={**USER, "language_code": "de"}, text="/start")
     assert h.texts()[-1].startswith("Salom!")  # unknown language falls back to Uzbek
 

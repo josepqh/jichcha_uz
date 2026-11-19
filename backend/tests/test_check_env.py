@@ -14,7 +14,7 @@ GOOD = {
     "POSTGRES_PASSWORD": "p" * 24,
     "MAIL_BACKEND": "smtp",
     "SMTP_HOST": "smtp.universe.uz",
-    "VITE_LEGAL_NAME": "Universe MChJ",
+    "VITE_LEGAL_NAME": "jichcha MChJ",
     "VITE_CONTACT_EMAIL": "support@universe.uz",
 }
 

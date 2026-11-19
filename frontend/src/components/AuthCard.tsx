@@ -6,7 +6,7 @@ export function AuthCard({ title, intro, children, footer }: { title: string; in
   return (
     <div className="mx-auto w-full max-w-md space-y-6">
       <header className="space-y-2 text-center">
-        <h1 className="text-2xl font-bold tracking-tight text-balance sm:text-3xl">{title}</h1>
+        <h1 className="font-display text-3xl leading-[1.1] font-medium tracking-[-0.045em] sm:text-4xl">{title}</h1>
         {intro ? <p className="text-muted text-pretty">{intro}</p> : null}
       </header>
       <div className={`${card} space-y-5 p-5 sm:p-6`}>{children}</div>

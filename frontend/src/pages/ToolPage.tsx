@@ -1,6 +1,7 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ChevronRight } from "lucide-react";
 import { Link, useLocation, useParams } from "react-router";
 
 import { Dropzone } from "@/components/Dropzone";
@@ -13,6 +14,7 @@ import { useDisabledTools, useUsage } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
 import { createTask } from "@/lib/api";
 import { errorMessage } from "@/lib/errors";
+import { FAMILY_BG, familyForPath, SECTION_SLUG } from "@/lib/sections";
 import { isToolSlug, resolveConversion, toApiOptions, TOOLS, type Conversion, type OptionValues, type ToolDef } from "@/lib/tools";
 import { btn, card } from "@/lib/ui";
 import { NotFoundPage } from "@/pages/NotFoundPage";
@@ -30,6 +32,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
   const limits = usage.data?.limits;
   const lang = useLang();
   const { pathname } = useLocation();
+  const family = familyForPath(pathname.replace(/^\/[a-z]{2}(?=\/|$)/, ""));
   const isGuest = useAuthStore((s) => s.status === "anon");
   const disabled = useDisabledTools().has(tool.slug);
 
@@ -50,11 +53,17 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
   const abortRef = useRef<AbortController | null>(null);
 
   // Arrived from a previous result ("next step"): fetch that file and start with it, no re-upload by hand.
-  const handedOver = (useLocation().state as { from?: { url: string; name: string } } | null)?.from;
+  // From the home page's smart drop the File itself arrives; from a result, a download link.
+  const handedOver = (useLocation().state as { from?: { url?: string; file?: File; name: string } } | null)?.from;
   const tookOver = useRef(false);
   useEffect(() => {
     if (!handedOver || tookOver.current) return;
     tookOver.current = true;
+    if (handedOver.file instanceof File) {
+      addFiles([handedOver.file]);
+      return;
+    }
+    if (!handedOver.url) return;
     void fetch(handedOver.url, { credentials: "same-origin" })
       .then((res) => (res.ok ? res.blob() : Promise.reject(new Error(String(res.status)))))
       .then((blob) => addFiles([new File([blob], handedOver.name, { type: blob.type })]))
@@ -209,9 +218,35 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
       <title>{`${title} | ${t("meta.siteName")}`}</title>
       <meta name="description" content={description} />
 
-      <header className="space-y-2">
-        <h1 className="text-2xl font-bold tracking-tight text-balance sm:text-4xl">{title}</h1>
-        <p className="text-muted text-pretty">{description}</p>
+      <nav aria-label={t("sections.breadcrumb")} className="-mt-4 text-sm text-muted">
+        <ol className="flex flex-wrap items-center gap-1">
+          <li>
+            <Link to={`/${lang}`} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-fg hover:underline">
+              {t("sections.home")}
+            </Link>
+          </li>
+          {family ? (
+            <>
+              <li aria-hidden="true">
+                <ChevronRight className="size-4" />
+              </li>
+              <li>
+                <Link
+                  to={`/${lang}/${SECTION_SLUG[family]}`}
+                  className="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:text-fg hover:underline"
+                >
+                  <span aria-hidden="true" className={`size-2 rounded-[2px] ${FAMILY_BG[family]}`} />
+                  {t(`home.groups.${family}`)}
+                </Link>
+              </li>
+            </>
+          ) : null}
+        </ol>
+      </nav>
+
+      <header className="space-y-3">
+        <h1 className="font-display text-3xl leading-[1.1] font-medium tracking-[-0.045em] sm:text-[2.6rem]">{title}</h1>
+        <p className="text-lg text-pretty text-muted">{description}</p>
       </header>
 
       {disabled ? (

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "siteName": "Universe",
-    "homeTitle": "Word, PDF, surat va arxivlarni bepul aylantirish | Universe",
+    "siteName": "jichcha",
+    "homeTitle": "Word, PDF, surat va arxivlarni bepul aylantirish | jichcha",
     "homeDescription": "Word va Excel'ni PDF qiling, PDF'ni birlashtiring va siqing, HEIC, PNG, RAR fayllarni kerakli formatga oʻtkazing. Bepul, roʻyxatdan oʻtmasdan."
   },
   "nav": {
@@ -18,14 +18,14 @@
     "account": "Kabinet"
   },
   "home": {
-    "title": "Fayllaringiz bilan oddiy ishlar, bepul",
-    "subtitle": "Word va Excel'ni PDF qiling, PDF'larni birlashtiring yoki siqing, suratlar va arxivlarni kerakli formatga oʻtkazing. Roʻyxatdan oʻtish shart emas.",
+    "title": "Word, PDF, surat va arxivlar uchun <hl>bepul</hl> vositalar",
+    "subtitle": "Faylni tashlang yoki boʻlimni tanlang. Roʻyxatdan oʻtish shart emas, fayllar oʻzi oʻchadi.",
     "searchLabel": "Vositani qidirish",
     "searchPlaceholder": "Masalan: heic jpg…",
     "toolsHeading": "Vositalar",
     "popularHeading": "Koʻp ishlatiladigan aylantirishlar",
     "noResults": "“{{query}}” boʻyicha vosita topilmadi. Boshqacha yozib koʻring, masalan “png pdf”.",
-    "benefitsHeading": "Nega Universe",
+    "benefitsHeading": "Nega jichcha",
     "benefits": {
       "free": {
         "title": "Akkaunt shart emas",
@@ -47,7 +47,10 @@
       "powerpoint": "PowerPoint",
       "image": "Suratlar",
       "archive": "Arxivlar"
-    }
+    },
+    "sectionsHeading": "Boʻlimlar",
+    "toolCount": "{{count}} ta vosita",
+    "openSection": "{{name}} boʻlimini ochish"
   },
   "tools": {
     "image-convert": {
@@ -494,7 +497,7 @@
     "noContact": "Aloqa manzili hali koʻrsatilmagan.",
     "privacy": {
       "title": "Maxfiylik siyosati",
-      "intro": "Bu sahifa Universe qanday maʼlumotlarni olishi, ularni nima uchun ishlatishi va qachon oʻchirishini tushuntiradi. Maʼlumotlarga Oʻzbekiston Respublikasining “Shaxsga doir maʼlumotlar toʻgʻrisida”gi Qonuniga muvofiq ishlov beriladi.",
+      "intro": "Bu sahifa jichcha qanday maʼlumotlarni olishi, ularni nima uchun ishlatishi va qachon oʻchirishini tushuntiradi. Maʼlumotlarga Oʻzbekiston Respublikasining “Shaxsga doir maʼlumotlar toʻgʻrisida”gi Qonuniga muvofiq ishlov beriladi.",
       "sections": [
         {
           "h": "Yuklagan fayllaringiz",
@@ -545,12 +548,12 @@
     },
     "terms": {
       "title": "Foydalanish shartlari",
-      "intro": "Universe'dan foydalanish orqali siz quyidagi shartlarga rozilik bildirasiz.",
+      "intro": "jichcha'dan foydalanish orqali siz quyidagi shartlarga rozilik bildirasiz.",
       "sections": [
         {
           "h": "Xizmat",
           "p": [
-            "Universe fayllarni aylantirish, siqish va tahrirlash uchun bepul xizmat. Kunlik limitlar va fayl hajmi chegaralari xizmatni suiisteʼmoldan himoya qiladi va oʻzgarishi mumkin."
+            "jichcha fayllarni aylantirish, siqish va tahrirlash uchun bepul xizmat. Kunlik limitlar va fayl hajmi chegaralari xizmatni suiisteʼmoldan himoya qiladi va oʻzgarishi mumkin."
           ]
         },
         {
@@ -737,12 +740,12 @@
   },
   "faq": {
     "title": "Koʻp beriladigan savollar",
-    "description": "Universe haqida javoblar: narxi, fayl limitlari, fayllar qancha saqlanishi, qoʻllab-quvvatlanadigan formatlar va Telegram bot.",
+    "description": "jichcha haqida javoblar: narxi, fayl limitlari, fayllar qancha saqlanishi, qoʻllab-quvvatlanadigan formatlar va Telegram bot.",
     "intro": "Eng koʻp soʻraladigan savollarga qisqa javoblar. Savolingizni topmadingizmi? Maxfiylik siyosati oxiridagi aloqa orqali yozing.",
     "botLink": "Botni Telegramda ochish",
     "items": [
       {
-        "q": "Universe bepulmi?",
+        "q": "jichcha bepulmi?",
         "a": "Ha. Barcha vositalar bepul, suv belgisi va sinov muddati yoʻq. Akkaunt ham bepul: u faqat limitlarni oshiradi."
       },
       {
@@ -789,5 +792,37 @@
     "label": "Asl va siqilgan suratni taqqoslash",
     "value": "{{percent}}% asl surat",
     "hint": "Sifatni taqqoslash uchun chiziqni suring yoki strelka tugmalaridan foydalaning."
+  },
+  "drop": {
+    "title": "Faylni shu yerga tashlang",
+    "text": "Qaysi turdagi fayl ekanini aniqlab, u bilan nima qilish mumkinligini koʻrsatamiz. Fayl siz vositani tanlaganingizdagina yuklanadi.",
+    "choose": "Fayl tanlash",
+    "detected": "<name>{{name}}</name> — {{family}} fayli. Nima qilamiz?",
+    "unknown": "“{{name}}” turini taniy olmadik. Quyidagi boʻlimlardan birini tanlang.",
+    "another": "Boshqa fayl"
+  },
+  "sections": {
+    "label": "Boʻlimlar",
+    "pdf": {
+      "lead": "Birlashtiring, ajrating, sahifalarni tartiblang, siqing yoki paroldan oching."
+    },
+    "word": {
+      "lead": "Word hujjatini PDF qiling: chop etish va yuborish uchun tayyor."
+    },
+    "excel": {
+      "lead": "Excel jadvalini bir bosishda PDF qiling."
+    },
+    "powerpoint": {
+      "lead": "Taqdimotni PDF qiling: har bir slayd alohida sahifa boʻladi."
+    },
+    "image": {
+      "lead": "Suratni boshqa formatga oʻtkazing, siqing, kesing yoki bitta PDF qiling. iPhone'ning HEIC fayllari ham."
+    },
+    "archive": {
+      "lead": "ZIP, RAR va 7Z arxivlarini oching, yangi arxiv yarating yoki formatini oʻzgartiring."
+    },
+    "formats": "Formatlar",
+    "home": "Bosh sahifa",
+    "breadcrumb": "Siz turgan joy"
   }
 }

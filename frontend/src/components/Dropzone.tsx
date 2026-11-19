@@ -63,12 +63,12 @@ export function Dropzone({ accept, multiple = true, disabled = false, compact = 
       }}
       onDragLeave={() => setDragging(false)}
       onDrop={handleDrop}
-      className={`flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed px-6 py-12 text-center transition-colors duration-150 sm:py-16 ${
-        dragging ? "border-primary bg-surface-muted" : "border-border-strong bg-surface"
+      className={`paper-grid flex flex-col items-center justify-center gap-3 rounded-3xl border-2 border-dashed px-6 py-12 text-center transition-[border-color,background-color] duration-200 sm:py-16 ${
+        dragging ? "border-fg bg-accent/25" : "border-border-strong bg-surface"
       }`}
     >
       <Upload className="size-10 text-muted" aria-hidden="true" />
-      <p className="text-lg font-semibold">{t("upload.drop")}</p>
+      <p className="font-display text-xl font-medium tracking-[-0.03em]">{t("upload.drop")}</p>
       <p className="text-sm text-muted">{t("upload.or")}</p>
       {picker}
       {hint ? <p className="max-w-sm text-sm text-muted">{hint}</p> : null}

@@ -6,7 +6,7 @@ DEFAULT = "uz"
 TEXTS: dict[str, dict[str, str]] = {
     "uz": {
         "start": (
-            "Salom! Men <b>Universe</b> botiman.\n\n"
+            "Salom! Men <b>jichcha</b> botiman.\n\n"
             "Menga fayl yuboring: Word, Excel, PowerPoint, PDF, surat yoki arxiv. "
             "Nima qilish mumkinligini tugmalar bilan taklif qilaman.\n\n"
             "Bir nechta suratni bitta albom qilib yuborsangiz, ulardan PDF yasayman."
@@ -67,7 +67,7 @@ TEXTS: dict[str, dict[str, str]] = {
     },
     "ru": {
         "start": (
-            "Здравствуйте! Я бот <b>Universe</b>.\n\n"
+            "Здравствуйте! Я бот <b>jichcha</b>.\n\n"
             "Пришлите файл: Word, Excel, PowerPoint, PDF, фото или архив. "
             "Я предложу кнопками, что с ним можно сделать.\n\n"
             "Если отправить несколько фото одним альбомом, я соберу из них PDF."
@@ -128,7 +128,7 @@ TEXTS: dict[str, dict[str, str]] = {
     },
     "en": {
         "start": (
-            "Hi! I'm the <b>Universe</b> bot.\n\n"
+            "Hi! I'm the <b>jichcha</b> bot.\n\n"
             "Send me a file: Word, Excel, PowerPoint, PDF, a photo or an archive. "
             "I'll offer what I can do with it as buttons.\n\n"
             "Send several photos as one album and I'll turn them into a PDF."

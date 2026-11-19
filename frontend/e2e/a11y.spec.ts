@@ -31,7 +31,8 @@ const PAGES = [
 
 for (const scheme of ["light", "dark"] as const) {
   test.describe(`${scheme} theme`, () => {
-    test.use({ colorScheme: scheme });
+    // Axe judges the page at rest: entrance animations would be caught mid-fade.
+    test.use({ colorScheme: scheme, reducedMotion: "reduce" });
 
     for (const url of PAGES) {
       test(`no serious accessibility problems on ${url}`, async ({ page }) => {

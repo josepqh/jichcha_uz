@@ -18,7 +18,7 @@ from .models import User
 
 STEP = 30
 DIGITS = 6
-ISSUER = "Universe"
+ISSUER = "jichcha"
 # Wrong codes allowed per account before a pause, and the pause length (seconds).
 MAX_FAILURES = 5
 LOCK_SECONDS = 15 * 60

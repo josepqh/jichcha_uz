@@ -4,6 +4,8 @@
 > Oʻzgarish (2026-11-17, buyurtmachi qarori): e-kitob konvertatsiyasi (F-29) va matn muharriri (F-53) loyiha doirasidan chiqarildi; ular bilan birga Calibre ham olib tashlandi.
 >
 > Qoʻshildi (2026-11-18): FAQ sahifasi (F-78), siqishdan oldin/keyin taqqoslash slayderi (F-33), email tasdiqlash, akkauntda parolni oʻzgartirish, ikki bosqichli kirish (TOTP; admin panel uchun majburiy), PWA manifest. Django `/admin/` productionda sukut boʻyicha oʻchiq.
+>
+> Oʻzgarish (2026-11-19, buyurtmachi qarori): platforma nomi **jichcha**. Yangi dizayn: header ostida boʻlimlar paneli (PDF, Word, Excel, PowerPoint, Suratlar, Arxivlar), har bir boʻlim alohida sahifada faqat oʻz vositalarini koʻrsatadi; bosh sahifada faylni tashlab, mos vositani tanlash.
 > 6-qism (2026-11-17): admin panel (F-70–F-75), SEO prerender va sitemap (F-76), surat muharriri (F-47–F-49), matn muharriri (F-53), natijadan keyingi amal, parolli PDF va arxivlar (F-30), Telegram'ga ogohlantirishlar, Turnstile, tashqi zaxira, accessibility auditi, yuklama sinovi va ishga tushirish yoʻriqnomasi (docs/DEPLOY.md).
 > 5-qism (2026-11-17): Telegram bot ishlab chiqildi (F-65, F-66, F-68, F-69): fayl yuborilsa saytdagi boʻlimlarga mos amallar tugmalari, suratlar albomi → PDF, PDF albomi → birlashtirish, uch til, 20 MB dan katta faylga sayt havolasi. Har bir Telegram foydalanuvchisi alohida limit va vazifalarga ega. Botni web akkauntga ulash (F-67) 2-bosqichda.
 > 4-qism (2026-11-16): arxivlar (F-26–F-28: ochish, ZIP/7Z yaratish, formatni almashtirish; parolli arxiv F-30 hali yoʻq) va e-kitoblar (F-29, qoʻshimcha FB2) ishlab chiqildi. Ishga tushirishga tayyorgarlik: ClamAV tekshiruvi, kunlik DB zaxirasi, health check, Sentry (ixtiyoriy), CI, worker konteynerlarini cheklash, maxfiylik siyosati va foydalanish shartlari sahifalari.
@@ -12,7 +14,7 @@
 > 2-qism (2026-11-10): akkauntlar ishlab chiqildi (F-57, F-59, F-60, F-64; Google kirish `GOOGLE_CLIENT_ID` bilan yoqiladi).
 > 1-qism (2026-11-10): surat vositalari ishlab chiqildi; rejadan farqlar 9 va 11-bo'limlarda belgilangan.
 > 0.2 o'zgarishi: platforma ishga tushganda to'liq bepul bo'ladi; Pro tarif va to'lovlar alohida "Pro bosqichi"ga ko'chirildi.
-> Ishchi nomi: **Universe** **[Taxmin]**: papka nomidan olindi, yakuniy brend nomi ochiq savol.
+> Ishchi nomi: **jichcha** **[Taxmin]**: papka nomidan olindi, yakuniy brend nomi ochiq savol.
 
 ---
 
@@ -655,7 +657,7 @@ Boshlash sharti **[Taxmin]**: MAU 20 000 ga yetganda yoki oylik server xarajatla
 | Maxfiylikka ishonchsizlik | O'rta | O'rta | Ochiq maxfiylik siyosati, "Hozir o'chirish", fayllar muddati ko'rinib turadi |
 
 **Barcha [Taxmin]lar ro'yxati**
-1. Ishchi nomi "Universe".
+1. Ishchi nomi "jichcha".
 2. Bo'lim 2'dagi barcha KPI raqamlari.
 3. Bo'lim 5'dagi limitlar (hajm, vazifalar soni, saqlash muddati).
 4. O'zbekistonda yirik mahalliy web raqobatchi yo'qligi (tekshirilmagan).

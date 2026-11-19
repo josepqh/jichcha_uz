@@ -68,7 +68,7 @@ class TestSetup:
 
         setup = client.post("/api/v1/me/2fa/setup/")
         assert setup.status_code == 200
-        assert setup.data["otpauth_uri"].startswith("otpauth://totp/Universe%3A")
+        assert setup.data["otpauth_uri"].startswith("otpauth://totp/jichcha%3A")
         assert setup.data["qr"].startswith("data:image/svg+xml")
         secret = setup.data["secret"]
 
@@ -214,7 +214,7 @@ class TestEmailVerification:
                 format="json",
             )
         [message] = mail.outbox
-        assert message.subject == "Universe: confirm your email"
+        assert message.subject == "jichcha: confirm your email"
         token = re.search(r"/en/verify-email/(\S+)", message.body).group(1)
         assert "vali@example.com" not in token
 
@@ -235,7 +235,7 @@ class TestEmailVerification:
         user = UserFactory(language="ru")
         with django_capture_on_commit_callbacks(execute=True):
             assert signed_in(user).post("/api/v1/me/email/verify/").status_code == 202
-        assert mail.outbox[0].subject == "Universe: подтвердите email"
+        assert mail.outbox[0].subject == "jichcha: подтвердите email"
         user.email_verified = True
         user.save()
         assert signed_in(user).post("/api/v1/me/email/verify/").data["error"]["code"] == "already_verified"

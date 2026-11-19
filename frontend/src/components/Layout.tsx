@@ -6,6 +6,8 @@ import { Link, Outlet, useLocation } from "react-router";
 import { useLang } from "@/hooks/useLang";
 import { LANGUAGE_NAMES, LANGUAGES } from "@/i18n";
 import { btn } from "@/lib/ui";
+import { LogoMark, Wordmark } from "@/components/Logo";
+import { SectionBar } from "@/components/SectionBar";
 import { useAuthStore } from "@/stores/auth";
 import { applyTheme, useThemeStore } from "@/stores/theme";
 
@@ -51,8 +53,8 @@ function LanguageSwitcher() {
               hrefLang={code}
               aria-current={code === lang ? "true" : undefined}
               title={LANGUAGE_NAMES[code]}
-              className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg px-2 text-sm font-semibold uppercase transition-colors duration-150 ${
-                code === lang ? "bg-surface-muted text-fg" : "text-muted hover:text-fg"
+              className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl px-2 font-mono text-xs font-medium uppercase transition-colors duration-150 ${
+                code === lang ? "bg-primary text-primary-fg" : "text-muted hover:bg-surface-muted hover:text-fg"
               }`}
             >
               {code}
@@ -106,20 +108,22 @@ export function Layout() {
     <div className="flex min-h-dvh flex-col">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2"
       >
         {t("nav.skip")}
       </a>
-      <header className="border-b border-border bg-surface/80 backdrop-blur supports-[backdrop-filter]:bg-surface/70">
-        <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-2 px-4">
-          <Link to={`/${lang}`} className="flex min-h-11 items-center gap-2 rounded-lg font-bold"
-            // The visible name comes first so voice control ("click Universe") works (WCAG 2.5.3).
+      <header className="sticky top-0 z-30 border-b border-border bg-bg/85 backdrop-blur-md supports-[backdrop-filter]:bg-bg/75">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4">
+          <Link
+            to={`/${lang}`}
+            className="group flex min-h-11 items-center gap-2.5 rounded-lg"
+            // The visible name comes first so voice control ("click jichcha") works (WCAG 2.5.3).
             aria-label={`${t("meta.siteName")}, ${t("nav.home")}`}
           >
-            <img src="/favicon.svg" alt="" width={28} height={28} />
-            {/* Below 400px the name would push the menu off-screen; the logo and aria-label remain. */}
-            <span className="text-lg max-[399px]:sr-only" translate="no">
-              {t("meta.siteName")}
+            <LogoMark className="size-8 transition-transform duration-300 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5" />
+            {/* Below 400px the name would push the menu off-screen; the mark and aria-label remain. */}
+            <span className="max-[399px]:sr-only">
+              <Wordmark />
             </span>
           </Link>
           <div className="flex items-center gap-1">
@@ -128,14 +132,21 @@ export function Layout() {
             <AccountLink />
           </div>
         </div>
+        <SectionBar />
       </header>
-      <main id="main" tabIndex={-1} className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 outline-none sm:py-12">
+      <main id="main" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 outline-none sm:py-12">
         <Outlet />
       </main>
-      <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>{t("footer.privacy")}</p>
-          <nav aria-label={t("footer.legalNav")} className="flex flex-wrap gap-x-4">
+      <footer className="mt-12 border-t border-border">
+        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 text-sm text-muted sm:grid-cols-[1fr_auto] sm:items-end">
+          <div className="space-y-3">
+            <Link to={`/${lang}`} className="inline-flex min-h-11 items-center gap-2.5 text-fg" aria-label={`${t("meta.siteName")}, ${t("nav.home")}`}>
+              <LogoMark className="size-7" />
+              <Wordmark />
+            </Link>
+            <p className="max-w-sm text-pretty">{t("footer.privacy")}</p>
+          </div>
+          <nav aria-label={t("footer.legalNav")} className="flex flex-wrap gap-x-5">
             <Link to={`/${lang}/faq`} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-fg hover:underline">
               {t("footer.faqLink")}
             </Link>

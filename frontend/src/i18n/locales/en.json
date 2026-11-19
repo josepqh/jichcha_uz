@@ -1,7 +1,7 @@
 {
   "meta": {
-    "siteName": "Universe",
-    "homeTitle": "Free Word, PDF, photo and archive converter | Universe",
+    "siteName": "jichcha",
+    "homeTitle": "Free Word, PDF, photo and archive converter | jichcha",
     "homeDescription": "Turn Word and Excel into PDF, merge and compress PDFs, convert HEIC, PNG and RAR files. Free, no sign-up."
   },
   "nav": {
@@ -18,14 +18,14 @@
     "account": "Account"
   },
   "home": {
-    "title": "Everyday file tasks, free",
-    "subtitle": "Turn Word and Excel into PDF, merge or compress PDFs, and convert photos and archives. No sign-up required.",
+    "title": "<hl>Free</hl> tools for Word, PDF, photos and archives",
+    "subtitle": "Drop a file or pick a section. No sign-up, and files delete themselves.",
     "searchLabel": "Search tools",
     "searchPlaceholder": "For example: heic jpg…",
     "toolsHeading": "Tools",
     "popularHeading": "Popular conversions",
     "noResults": "No tool matches “{{query}}”. Try something like “png pdf”.",
-    "benefitsHeading": "Why Universe",
+    "benefitsHeading": "Why jichcha",
     "benefits": {
       "free": {
         "title": "No account needed",
@@ -47,7 +47,11 @@
       "powerpoint": "PowerPoint",
       "image": "Photos",
       "archive": "Archives"
-    }
+    },
+    "sectionsHeading": "Sections",
+    "toolCount_one": "{{count}} tool",
+    "toolCount_other": "{{count}} tools",
+    "openSection": "Open the {{name}} section"
   },
   "tools": {
     "image-convert": {
@@ -494,7 +498,7 @@
     "noContact": "No contact address has been set yet.",
     "privacy": {
       "title": "Privacy policy",
-      "intro": "This page explains what data Universe receives, why, and when it is deleted. Data is processed under the Law of the Republic of Uzbekistan “On Personal Data”.",
+      "intro": "This page explains what data jichcha receives, why, and when it is deleted. Data is processed under the Law of the Republic of Uzbekistan “On Personal Data”.",
       "sections": [
         {
           "h": "Files you upload",
@@ -545,12 +549,12 @@
     },
     "terms": {
       "title": "Terms of use",
-      "intro": "By using Universe you agree to these terms.",
+      "intro": "By using jichcha you agree to these terms.",
       "sections": [
         {
           "h": "The service",
           "p": [
-            "Universe is a free service for converting, compressing and editing files. Daily limits and size caps protect it from abuse and may change."
+            "jichcha is a free service for converting, compressing and editing files. Daily limits and size caps protect it from abuse and may change."
           ]
         },
         {
@@ -737,12 +741,12 @@
   },
   "faq": {
     "title": "Frequently asked questions",
-    "description": "Answers about Universe: what it costs, file limits, how long files are kept, supported formats and the Telegram bot.",
+    "description": "Answers about jichcha: what it costs, file limits, how long files are kept, supported formats and the Telegram bot.",
     "intro": "Short answers to what people ask most. Didn't find yours? Write to us using the contact at the bottom of the privacy policy.",
     "botLink": "Open the bot in Telegram",
     "items": [
       {
-        "q": "Is Universe free?",
+        "q": "Is jichcha free?",
         "a": "Yes. Every tool is free, with no watermarks and no trial period. An account is free too: it only raises the limits."
       },
       {
@@ -789,5 +793,37 @@
     "label": "Compare original and compressed image",
     "value": "{{percent}}% original",
     "hint": "Drag the line or use the arrow keys to compare the quality."
+  },
+  "drop": {
+    "title": "Drop a file here",
+    "text": "We'll work out what kind of file it is and show what you can do with it. Nothing is uploaded until you pick a tool.",
+    "choose": "Choose a file",
+    "detected": "<name>{{name}}</name> is a {{family}} file. What should we do?",
+    "unknown": "We couldn't tell what “{{name}}” is. Pick a section below.",
+    "another": "Another file"
+  },
+  "sections": {
+    "label": "Sections",
+    "pdf": {
+      "lead": "Merge, split, reorder, compress or unlock PDF files."
+    },
+    "word": {
+      "lead": "Turn a Word document into a PDF, ready to print or send."
+    },
+    "excel": {
+      "lead": "Turn an Excel sheet into a PDF in one click."
+    },
+    "powerpoint": {
+      "lead": "Turn a presentation into a PDF, one slide per page."
+    },
+    "image": {
+      "lead": "Convert, compress, crop or combine photos into one PDF. iPhone HEIC files too."
+    },
+    "archive": {
+      "lead": "Open ZIP, RAR and 7Z archives, make new ones, or change their format."
+    },
+    "formats": "Formats",
+    "home": "Home",
+    "breadcrumb": "You are here"
   }
 }

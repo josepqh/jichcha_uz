@@ -4,6 +4,7 @@ import { Navigate, Route, Routes, useParams } from "react-router";
 import { Layout } from "@/components/Layout";
 import { DEFAULT_LANGUAGE, isLanguage, type Language } from "@/i18n";
 import { refreshSession } from "@/lib/api";
+import { SECTION_SLUG, SECTIONS } from "@/lib/sections";
 import { AccountPage } from "@/pages/AccountPage";
 import { AdminPage } from "@/pages/AdminPage";
 import { FaqPage } from "@/pages/FaqPage";
@@ -14,6 +15,7 @@ import { LoginPage } from "@/pages/LoginPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { RegisterPage } from "@/pages/RegisterPage";
 import { ResetPage } from "@/pages/ResetPage";
+import { SectionPage } from "@/pages/SectionPage";
 import { VerifyEmailPage } from "@/pages/VerifyEmailPage";
 import { ToolPage } from "@/pages/ToolPage";
 
@@ -41,6 +43,9 @@ export function App() {
       <Route index element={<Navigate to={`/${preferredLanguage()}`} replace />} />
       <Route path=":lang" element={<Layout />}>
         <Route index element={<LangGuard><HomePage /></LangGuard>} />
+        {SECTIONS.map((family) => (
+          <Route key={family} path={SECTION_SLUG[family]} element={<LangGuard><SectionPage family={family} /></LangGuard>} />
+        ))}
         <Route path="tools/:slug" element={<LangGuard><ToolPage /></LangGuard>} />
         <Route path="convert/:pair" element={<LangGuard><ToolPage /></LangGuard>} />
         <Route path="login" element={<LangGuard><LoginPage /></LangGuard>} />

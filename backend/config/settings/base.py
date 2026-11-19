@@ -217,7 +217,7 @@ DJANGO_ADMIN_URL = env("DJANGO_ADMIN_URL", default="")
 GOOGLE_CLIENT_ID = env("GOOGLE_CLIENT_ID", default="")
 
 # --- Email -------------------------------------------------------------------
-DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="Universe <no-reply@localhost>")
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="jichcha <no-reply@localhost>")
 _mail_backend = env("MAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
 _mail_options = {}
 if _mail_backend.endswith("smtp.EmailBackend"):

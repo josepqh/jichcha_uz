@@ -578,7 +578,7 @@ export function AccountPage() {
       <title>{`${t("account.title")} | ${t("meta.siteName")}`}</title>
       <meta name="robots" content="noindex" />
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{t("account.title")}</h1>
+        <h1 className="font-display text-3xl leading-[1.1] font-medium tracking-[-0.045em] sm:text-4xl">{t("account.title")}</h1>
         <div className="flex flex-wrap gap-2">
           {user.is_staff ? (
             <Link to={`/${lang}/admin`} className={btn.secondary}>

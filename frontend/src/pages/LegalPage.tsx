@@ -22,7 +22,7 @@ export function LegalPage({ doc }: { doc: "privacy" | "terms" }) {
     <article className="mx-auto max-w-2xl space-y-8">
       <title>{`${t(`legal.${doc}.title`)} | ${t("meta.siteName")}`}</title>
       <header className="space-y-3">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-4xl">{t(`legal.${doc}.title`)}</h1>
+        <h1 className="font-display text-3xl leading-[1.1] font-medium tracking-[-0.045em] sm:text-4xl">{t(`legal.${doc}.title`)}</h1>
         <p className="text-sm text-muted">{t("legal.updated", { date: updated })}</p>
         <p className="text-pretty">{t(`legal.${doc}.intro`)}</p>
       </header>

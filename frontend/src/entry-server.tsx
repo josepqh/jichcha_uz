@@ -9,6 +9,7 @@ import { StaticRouter } from "react-router";
 import { App } from "./App";
 import i18n, { LANGUAGES } from "./i18n";
 import { buildCatalog } from "./lib/catalog";
+import { SECTION_SLUG, SECTIONS } from "./lib/sections";
 import { POPULAR_CONVERSIONS, TOOL_LIST } from "./lib/tools";
 
 export { LANGUAGES };
@@ -21,6 +22,7 @@ export function publicPaths(): string[] {
   }
   return [
     "",
+    ...SECTIONS.map((family) => SECTION_SLUG[family]),
     ...TOOL_LIST.map((tool) => `tools/${tool.slug}`),
     ...[...conversions].toSorted().map((pair) => `convert/${pair}`),
     "faq",

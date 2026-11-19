@@ -59,9 +59,9 @@ test.describe("image tools", () => {
 test.describe("navigation", () => {
   test("search filters tools and language switch keeps the page", async ({ page }) => {
     await page.goto("/uz");
-    await page.getByRole("searchbox", { name: "Vositani qidirish" }).fill("heic pdf");
-    await expect(page.getByRole("link", { name: "HEIC → PDF" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "PNG → JPG" })).toHaveCount(0);
+    await page.getByRole("searchbox", { name: "Vositani qidirish" }).fill("surat pdf");
+    await expect(page.getByRole("region", { name: "Vositalar" }).getByRole("link", { name: /Suratlardan PDF/ })).toBeVisible();
+    await expect(page.getByRole("region", { name: "Vositalar" }).getByRole("link", { name: /PDF birlashtirish/ })).toHaveCount(0);
 
     await page.getByRole("link", { name: "HEIC → PDF" }).click();
     await page.getByRole("link", { name: "ru", exact: true }).click();
