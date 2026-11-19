@@ -1,0 +1,42 @@
+# Temporary hosting: the site on Vercel, the API on this machine through an ngrok tunnel.
+#   docker compose -f compose.yaml -f compose.tunnel.yaml up -d --wait
+# Needs in .env: NGROK_AUTHTOKEN, NGROK_DOMAIN, VERCEL_ORIGIN, EDGE_SECRET. See docs/VERCEL.md.
+# Works only while this computer and Docker are running.
+x-tunnel-backend: &tunnel
+  environment:
+    DJANGO_SETTINGS_MODULE: config.settings.production
+    # Vercel -> ngrok -> nginx -> gunicorn: the client is the third-to-last X-Forwarded-For entry.
+    NUM_PROXIES: "3"
+    DJANGO_ALLOWED_HOSTS: ${NGROK_DOMAIN:?set NGROK_DOMAIN in .env},backend,localhost,127.0.0.1
+    PUBLIC_ORIGIN: ${VERCEL_ORIGIN:?set VERCEL_ORIGIN in .env}
+    CSRF_TRUSTED_ORIGINS: ${VERCEL_ORIGIN}
+    CORS_ALLOWED_ORIGINS: ${VERCEL_ORIGIN}
+    GUEST_COOKIE_SECURE: "true"
+    AUTH_COOKIE_SECURE: "true"
+    EDGE_HOST: ${NGROK_DOMAIN}
+    EDGE_SECRET: ${EDGE_SECRET:?set EDGE_SECRET in .env (32+ random characters)}
+
+services:
+  backend: *tunnel
+  worker: *tunnel
+  worker-office: *tunnel
+  beat: *tunnel
+  monitor: *tunnel
+  migrate: *tunnel
+
+  bot:
+    environment:
+      PUBLIC_ORIGIN: ${VERCEL_ORIGIN}
+
+  ngrok:
+    image: ngrok/ngrok:3.39.7-alpine
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+    command: ["http", "web:8080", "--url=${NGROK_DOMAIN}", "--log=stdout"]
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN:?set NGROK_AUTHTOKEN in .env}
+    depends_on:
+      web:
+        condition: service_healthy

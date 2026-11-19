@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "apps.core.edge.EdgeSecretMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "corsheaders.middleware.CorsMiddleware",
@@ -201,6 +202,10 @@ AUTH_COOKIE_SECURE = env.bool("AUTH_COOKIE_SECURE", default=True)
 
 # Public origin of the SPA, used for links in emails.
 PUBLIC_ORIGIN = env("PUBLIC_ORIGIN", default="http://localhost:5173")
+
+# Vercel + tunnel setup (compose.tunnel.yaml): requests for EDGE_HOST must carry EDGE_SECRET.
+EDGE_HOST = env("EDGE_HOST", default="")
+EDGE_SECRET = env("EDGE_SECRET", default="")
 
 # Staff must turn on two-step sign-in before the admin panel API answers them.
 STAFF_REQUIRE_2FA = env.bool("STAFF_REQUIRE_2FA", default=True)
