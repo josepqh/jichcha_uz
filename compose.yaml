@@ -65,8 +65,10 @@ services:
       context: ./deploy
       dockerfile: backup.Dockerfile
     image: universe-backup:dev
-    pull_policy: build
     restart: unless-stopped
+    # tini as PID 1: "docker compose stop/up" ends the container at once instead of killing it after
+    # 10 s (a killed container mid-recreate left a renamed copy behind and blocked the next "up").
+    init: true
     # default network: it reaches Postgres there, and the internet for the off-site copy.
     networks: [default]
     # Off-site storage credentials (rclone RCLONE_CONFIG_* variables) live in their own file, so this

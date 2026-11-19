@@ -10,6 +10,9 @@ REMOTE_KEEP_DAYS="${BACKUP_REMOTE_KEEP_DAYS:-30}"
 INTERVAL="${BACKUP_INTERVAL_SECONDS:-86400}"
 REMOTE="${BACKUP_REMOTE:-}"
 
+# Stop promptly on "docker compose stop": the long sleep runs in the background so the trap fires.
+trap 'exit 0' TERM INT
+
 while true; do
     stamp="$(date -u +%Y%m%d-%H%M%S)"
     target="/backups/${PGDATABASE}-${stamp}.dump"
@@ -30,5 +33,6 @@ while true; do
         echo "backup FAILED at ${stamp}" >&2
     fi
     find /backups -name "*.dump" -type f -mtime "+${KEEP_DAYS}" -print -delete
-    sleep "${INTERVAL}"
+    sleep "${INTERVAL}" &
+    wait $!
 done
