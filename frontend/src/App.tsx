@@ -36,6 +36,8 @@ export function App() {
   // Restore the session from the httpOnly refresh cookie once per page load.
   useEffect(() => {
     void refreshSession();
+    // The client app has replaced the prerendered HTML: from here on, its controls work.
+    document.documentElement.dataset.app = "ready";
   }, []);
 
   return (

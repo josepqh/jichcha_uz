@@ -2,12 +2,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./test";
 
 const fixture = (name: string) => path.join(path.dirname(fileURLToPath(import.meta.url)), "fixtures", name);
 
 // WCAG 2.2 A/AA. Serious and critical findings fail the build; minor/moderate are printed.
 async function audit(page: Page, label: string) {
+  // Audit from the top: scrolled, whatever sits under the sticky header reads as "obscured"
+  // to target-size, which says where the page happens to be, not what is wrong with it.
+  await page.evaluate(() => window.scrollTo(0, 0));
   const results = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
     .analyze();

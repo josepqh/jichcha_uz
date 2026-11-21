@@ -1,4 +1,4 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./test";
 
 const PASSWORD = "Str0ng-e2e-pass!";
 
@@ -27,7 +27,7 @@ test.describe("accounts", () => {
 
     await page.getByRole("button", { name: "Sign out" }).click();
     await expect(page).toHaveURL(/\/en$/);
-    await expect(page.getByRole("link", { name: "Sign in" })).toBeVisible();
+    await expect(page.getByRole("banner").getByRole("link", { name: "Sign in" })).toBeVisible();
 
     await page.goto("/en/account");
     await expect(page).toHaveURL(/\/en\/login\?next=%2Fen%2Faccount$/);

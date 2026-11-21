@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./test";
 
 test("the globe menu switches the page language and keeps the page", async ({ page }) => {
   await page.goto("/en/pdf");

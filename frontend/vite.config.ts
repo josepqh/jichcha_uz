@@ -18,6 +18,8 @@ export default defineConfig({
     // Same-origin API in dev, so the httpOnly guest cookie works without CORS.
     proxy: { "/api": { target: apiTarget, changeOrigin: true } },
   },
+  // The prerender script reads it to preload each page language's strings.
+  build: { manifest: true },
   test: {
     environment: "jsdom",
     include: ["src/**/*.test.{ts,tsx}"],

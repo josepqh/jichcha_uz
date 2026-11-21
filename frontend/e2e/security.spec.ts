@@ -1,6 +1,6 @@
 import { createHmac } from "node:crypto";
 
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Page } from "./test";
 
 import { djangoShell } from "./manage";
 

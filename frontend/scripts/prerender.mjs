@@ -10,6 +10,14 @@ const site = (process.env.SITE_URL || process.env.PUBLIC_ORIGIN || "http://local
 const { render, publicPaths, LANGUAGES, directionOf } = await import(pathToFileURL(path.join(root, "dist-ssr/entry-server.js")).href);
 
 const template = readFileSync(path.join(dist, "index.html"), "utf8");
+// Each language's strings are their own chunk; preload them with the page so the app starts sooner.
+const manifest = JSON.parse(readFileSync(path.join(dist, ".vite/manifest.json"), "utf8"));
+const chunkFor = (lang) => manifest[`src/i18n/locales/${lang}.json`]?.file;
+const preloads = (lang) =>
+  (lang === "uz" ? [] : [...new Set([lang, "en"])])
+    .map(chunkFor)
+    .filter(Boolean)
+    .map((file) => `<link rel="modulepreload" href="/${file}" />`);
 const escapeAttr = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 const url = (lang, p) => `${site}/${lang}${p ? `/${p}` : ""}`;
 
@@ -27,7 +35,7 @@ function page(lang, p, html) {
   const { head, body } = takeHead(html);
   const alternates = LANGUAGES.map((l) => `<link rel="alternate" hreflang="${l}" href="${escapeAttr(url(l, p))}" />`);
   alternates.push(`<link rel="alternate" hreflang="x-default" href="${escapeAttr(url("uz", p))}" />`);
-  const tags = [...head, `<link rel="canonical" href="${escapeAttr(url(lang, p))}" />`, ...alternates].join("\n    ");
+  const tags = [...head, `<link rel="canonical" href="${escapeAttr(url(lang, p))}" />`, ...alternates, ...preloads(lang)].join("\n    ");
   return template
     .replace(/<html lang="[^"]*">/, `<html lang="${lang}" dir="${directionOf(lang)}">`)
     .replace(/<title>[\s\S]*?<\/title>\s*<meta\s+name="description"[\s\S]*?\/>/, tags)
@@ -75,4 +83,5 @@ writeFileSync(
 );
 
 rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
+rmSync(path.join(dist, ".vite"), { recursive: true, force: true }); // build metadata, not for the web
 console.log(`prerendered ${paths.length * LANGUAGES.length} pages for ${site}`);

@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./test";
 
 test("footer links open the privacy policy and terms in the current language", async ({ page }) => {
   await page.goto("/ru");
