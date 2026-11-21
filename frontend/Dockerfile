@@ -22,7 +22,7 @@ ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID \
 RUN npm run build
 
 # ---- runtime: unprivileged nginx serves files and proxies the API ----
-FROM nginxinc/nginx-unprivileged:1.29-alpine AS runtime
+FROM nginxinc/nginx-unprivileged:1.31-alpine AS runtime
 LABEL org.opencontainers.image.title="universe-web"
 COPY --link nginx.conf /etc/nginx/conf.d/default.conf
 COPY --link --from=build /app/dist /usr/share/nginx/html
