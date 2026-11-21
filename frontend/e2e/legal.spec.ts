@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("footer links open the privacy policy and terms in the current language", async ({ page }) => {
   await page.goto("/ru");
-  await page.getByRole("navigation", { name: "Правовая информация" }).getByRole("link", { name: "Политика конфиденциальности" }).click();
+  await page.getByRole("contentinfo").getByRole("link", { name: "Политика конфиденциальности" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Политика конфиденциальности");
   await expect(page.getByRole("heading", { name: "Cookie и память браузера" })).toBeVisible();
 

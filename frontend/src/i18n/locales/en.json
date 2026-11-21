@@ -368,7 +368,9 @@
     "privacyLink": "Privacy policy",
     "termsLink": "Terms of use",
     "legalNav": "Legal",
-    "faqLink": "FAQ"
+    "faqLink": "FAQ",
+    "help": "Help",
+    "rights": "© {{year}} jichcha. Free tools for everyday file tasks."
   },
   "fields": {
     "email": "Email",
@@ -824,5 +826,10 @@
     "formats": "Formats",
     "home": "Home",
     "breadcrumb": "You are here"
+  },
+  "menu": {
+    "work": "Edit and manage",
+    "from": "Convert to another format",
+    "into": "Convert into this format"
   }
 }

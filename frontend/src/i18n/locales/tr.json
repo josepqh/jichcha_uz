@@ -1,1 +1,731 @@
-{"meta":{"siteName":"jichcha","homeTitle":"Ücretsiz Word, PDF, fotoğraf ve arşiv dönüştürücü | jichcha","homeDescription":"Word ve Excel'i PDF'ye çevirin, PDF'leri birleştirin ve küçültün, HEIC, PNG ve RAR dosyalarını dönüştürün. Ücretsiz, kayıt gerekmez."},"nav":{"skip":"Ana içeriğe geç","home":"Ana sayfa","language":"Dil","theme":"Tema: {{mode}}","themeModes":{"system":"sistem","light":"açık","dark":"koyu"},"login":"Giriş yap","account":"Hesap"},"home":{"title":"Word, PDF, fotoğraf ve arşivler için <hl>ücretsiz</hl> araçlar","subtitle":"Bir dosya bırakın ya da bir bölüm seçin. Kayıt gerekmez, dosyalar kendiliğinden silinir.","searchLabel":"Araç ara","searchPlaceholder":"Örneğin: heic jpg…","toolsHeading":"Araçlar","popularHeading":"Sık kullanılan dönüşümler","noResults":"“{{query}}” ile eşleşen araç yok. “png pdf” gibi bir şey deneyin.","benefitsHeading":"Neden jichcha","benefits":{"free":{"title":"Hesap gerekmez","text":"Dosyayı bırakın ve sonucu indirin. Tüm araçlar ücretsizdir."},"deleted":{"title":"Dosyalar bir saat içinde silinir","text":"Yüklediğiniz dosya işlem biter bitmez, sonuç ise 1 saat sonra silinir. Daha önce de silebilirsiniz."},"gps":{"title":"Konum bilgisi kaldırılır","text":"Telefon fotoğraflarındaki GPS ve kamera bilgileri sonuca aktarılmaz."}},"groups":{"pdf":"PDF","word":"Word","excel":"Excel","powerpoint":"PowerPoint","image":"Fotoğraflar","archive":"Arşivler"},"sectionsHeading":"Bölümler","toolCount_one":"{{count}} araç","toolCount_other":"{{count}} araç","openSection":"{{name}} bölümünü aç"},"tools":{"image-convert":{"name":"Biçim değiştir","title":"Görsel biçimi dönüştürücü","description":"PNG, JPG, WEBP, HEIC, AVIF, GIF, BMP ve TIFF arasında dönüştürün. Birden fazla fotoğraf aynı anda."},"image-compress":{"name":"Boyutu küçült","title":"Görsel sıkıştırma","description":"Üç seviye: güçlü, orta ve hafif. Her fotoğrafın ne kadar yer kazandırdığını görün."},"images-to-pdf":{"name":"Fotoğraftan PDF","title":"Fotoğraflardan PDF oluştur","description":"Fotoğraflarınızı sıraya koyun ve A4 ya da Letter boyutunda tek bir PDF'de birleştirin."},"office-to-pdf":{"name":"Word, Excel, PowerPoint → PDF","title":"Belgeleri PDF'ye dönüştür","description":"Word, Excel, PowerPoint ve OpenDocument dosyalarını yazı tipleri ve düzeniyle birlikte PDF'ye çevirin."},"pdf-merge":{"name":"PDF birleştir","title":"PDF dosyalarını birleştir","description":"Birden fazla PDF'yi seçtiğiniz sırayla tek dosyada birleştirin."},"pdf-split":{"name":"PDF böl","title":"PDF'yi böl","description":"Her sayfayı ayrı bir PDF olarak kaydedin ya da yalnızca gereken sayfaları çıkarın."},"pdf-organize":{"name":"Sayfaları düzenle","title":"PDF sayfalarını düzenle","description":"Sayfaların sırasını değiştirin, döndürün ya da silin."},"pdf-compress":{"name":"PDF sıkıştır","title":"PDF boyutunu küçült","description":"Taramaları ve görsel ağırlıklı PDF'leri küçültün; e-posta ya da yükleme sınırına sığsın."},"pdf-to-images":{"name":"PDF → JPG, PNG","title":"PDF sayfalarını görsele dönüştür","description":"Her sayfayı ayrı bir JPG ya da PNG görseli olarak kaydedin."},"archive-extract":{"name":"Arşivi aç","title":"ZIP, RAR ve 7Z arşivlerini çevrimiçi açın","description":"Arşivin içinde ne olduğunu görün ve gereken dosyaları tek tek indirin. ZIP, RAR, 7Z, TAR, GZ."},"archive-create":{"name":"ZIP oluştur","title":"Dosyaları ZIP ya da 7Z arşivine paketle","description":"Birden fazla dosyayı tek bir ZIP ya da 7Z arşivine koyun. Her dosya türü olur."},"archive-convert":{"name":"Arşiv biçimini değiştir","title":"RAR, 7Z ve TAR'ı ZIP'e dönüştür","description":"RAR, 7Z ya da TAR'ı klasör yapısını koruyarak ZIP ya da 7Z olarak yeniden paketleyin."},"image-edit":{"name":"Fotoğrafı düzenle","title":"Fotoğrafı kırp, döndür ve yeniden boyutlandır","description":"Fotoğrafı kırpın (1:1, 4:5, 16:9, 3×4 vesikalık), döndürün ya da aynalayın ve boyutunu değiştirin."},"pdf-unlock":{"name":"PDF kilidini aç","title":"PDF şifresini kaldır","description":"PDF'nizin şifresiz bir kopyasını alın (şifreyi bilmeniz gerekir), sonra birleştirin, sıkıştırın ya da bölün."}},"conversion":{"short":"{{from}} → {{to}}","title":"{{from}} dosyasını {{to}} biçimine dönüştür","description":"{{from}} dosyalarını ücretsiz olarak {{to}} biçimine dönüştürün. Kayıt gerekmez, dosyalar bir saat içinde silinir."},"options":{"target":{"label":"Dönüştürülecek biçim","choices":{"jpg":"JPG","png":"PNG","webp":"WEBP","avif":"AVIF","gif":"GIF","bmp":"BMP","tiff":"TIFF","zip":"ZIP","7z":"7Z","pdf":"PDF"}},"level":{"label":"Sıkıştırma seviyesi","choices":{"strong":"Güçlü","medium":"Orta","light":"Hafif"},"hints":{"strong":"En küçük dosya","medium":"Boyut ve kalite dengesi","light":"Kalite neredeyse değişmez"}},"page_size":{"label":"Sayfa boyutu","choices":{"a4":"A4","letter":"Letter","fit":"Fotoğrafla aynı"}},"orientation":{"label":"Yön","choices":{"auto":"Otomatik","portrait":"Dikey","landscape":"Yatay"}},"margin":{"label":"Kenar boşluğu","choices":{"none":"Yok","small":"Küçük","large":"Büyük"}},"mode":{"label":"Nasıl bölünsün","choices":{"each":"Her sayfa ayrı","ranges":"Seçilen sayfalar"}},"ranges":{"label":"Sayfalar","placeholder":"Örneğin: 1-3, 5, 8-…","hint":"Her aralık ayrı bir PDF olur. “8-” 8. sayfadan sona kadar demektir."},"pdfLevel":{"label":"Sıkıştırma seviyesi","choices":{"strong":"Güçlü","medium":"Orta","light":"Hafif"},"hints":{"strong":"En küçük dosya, görseller daha yumuşak","medium":"Ekranda okumak için","light":"Yazdırmak için"}},"format":{"label":"Görsel biçimi","choices":{"jpg":"JPG","png":"PNG"}},"quality":{"label":"Kalite","choices":{"low":"Düşük","medium":"Orta","high":"Yüksek"},"hints":{"low":"72 DPI, ekran için","medium":"150 DPI","high":"300 DPI, yazdırmak için"}},"archiveFormat":{"label":"Arşiv türü","choices":{"zip":"ZIP","7z":"7Z"},"hints":{"zip":"Her yerde açılır","7z":"Daha küçük"}},"password":{"label":"Şifre","hint":"Yalnızca bu dosya için kullanılır ve hiçbir zaman saklanmaz."}},"upload":{"drop":"Dosyaları buraya bırakın","or":"ya da","choose":"Dosya seç","addMore":"Daha ekle","limits":"Dosya başına en fazla {{maxFile}} MB, aynı anda {{maxBatch}} dosya.","selected_one":"{{count}} dosya seçildi","selected_other":"{{count}} dosya seçildi","remove":"{{name}} dosyasını kaldır","moveUp":"{{name}} dosyasını yukarı taşı","moveDown":"{{name}} dosyasını aşağı taşı","orderHint":{"images-to-pdf":"PDF sayfaları bu sırayı izler.","pdf-merge":"Dosyalar bu sırayla birleştirilir."},"formats":"Biçimler: {{formats}}.","anyFormat":"Her dosya türü."},"actions":{"image-convert":"{{target}} biçimine dönüştür","image-compress":"Sıkıştır","images-to-pdf":"PDF oluştur","download":"İndir","downloadFile":"{{name}} dosyasını indir","downloadAll":"Hepsini ZIP olarak indir","deleteNow":"Sunucudan şimdi sil","deleteConfirm":"Dosyalar sunucudan kalıcı olarak silinecek. Devam edilsin mi?","again":"Yeni dosyalarla baştan başla","retry":"Tekrar dene","office-to-pdf":"PDF'ye dönüştür","pdf-merge":"Birleştir","pdf-split":"Böl","pdf-organize":"Kaydet","pdf-compress":"Sıkıştır","pdf-to-images":"{{target}} biçimine dönüştür","archive-extract":"Aç","archive-create":"{{target}} oluştur","archive-convert":"{{target}} biçimine dönüştür","image-edit":"Uygula","pdf-unlock":"Şifreyi kaldır"},"status":{"uploading":"Yükleniyor… %{{percent}}","queued":"Sırada…","processing":"İşleniyor…","done":"Tamamlandı","failed":"Başarısız","expires":"Dosyalar saat {{time}} itibarıyla otomatik silinecek.","deleted":"Dosyalar sunucudan silindi.","saved":"%{{percent}} daha küçük: {{before}} → {{after}}","notSaved":"Bu fotoğraflar daha fazla sıkıştırılamaz: {{before}} → {{after}}","showAll":"Tümünü göster ({{count}})"},"errors":{"no_files":"Önce en az bir dosya seçin.","too_many_files":"Aynı anda en fazla {{max_files}} dosya yükleyebilirsiniz. Fazlasını kaldırın.","file_too_large":"“{{name}}” {{max_file_mb}} MB'tan büyük. Daha küçük bir dosya seçin.","request_too_large":"Dosyaların toplamı en fazla {{max_total_mb}} MB olmalı. Birkaçını kaldırın.","unsupported_format":"“{{name}}” bu aracın kabul ettiği bir dosya değil. Desteklenen biçimler yükleme alanında yazıyor.","image_too_large":"Görselin çözünürlüğü çok yüksek (100 megapikselden fazla). Daha küçük bir görsel seçin.","daily_limit_reached":"Günlük sınıra ulaşıldı: günde {{daily_tasks}} işlem. Yarın tekrar deneyin.","throttled":"Çok fazla istek. Bir dakika sonra tekrar deneyin.","corrupt_file":"Dosya açılamadı, bozuk olabilir. Başka bir kopyasını deneyin.","timeout":"İşlem çok uzun sürdü. Daha az ya da daha küçük dosya deneyin.","files_deleted":"Dosyalar işlem bitmeden silindi. Yeniden yükleyin.","file_expired":"Bu dosya sunucudan silindi. Yeniden yükleyin.","unknown_tool":"Bu araç yok.","validation_error":"Ayarlarda bir sorun var. Sayfayı yenileyip tekrar deneyin.","network_error":"Sunucuya ulaşılamıyor. Bağlantınızı kontrol edip tekrar deneyin.","internal_error":"Bizim tarafımızda bir sorun oluştu. Biraz sonra tekrar deneyin.","tool_unavailable":"Bu araç geçici olarak kullanılamıyor.","not_found":"İşlem bulunamadı ya da süresi doldu.","invalid_credentials":"E-posta ya da şifre yanlış.","email_taken":"Bu e-postayla bir hesap zaten var. Giriş yapın ya da şifrenizi sıfırlayın.","weak_password":"Şifre yeterince güçlü değil: {{reasons}}.","session_expired":"Oturumunuz sona erdi. Tekrar giriş yapın.","invalid_reset_link":"Bu bağlantının süresi doldu ya da daha önce kullanıldı. Yenisini isteyin.","google_failed":"Google ile giriş yapılamadı. Tekrar deneyin ya da e-postayla giriş yapın.","google_disabled":"Google ile giriş henüz etkin değil.","account_disabled":"Bu hesap devre dışı.","auth_required":"Bunu yapmak için giriş yapın.","required":"Bu alanı doldurun.","invalid_email":"Geçerli bir e-posta girin, örneğin ali@example.com.","too_few_files":"En az {{min_files}} dosya seçin.","pdf_encrypted":"Bu PDF şifreli. Önce “PDF kilidini aç” aracını kullanın.","too_many_pages":"Belgede çok fazla sayfa var. Önce parçalara bölün.","invalid_page_range":"Sayfaları “1-3, 5, 8-10” gibi, belgenin sayfa sayısı içinde yazın.","reauth_required":"Hesabınızı silmeden önce Google ile onaylayın.","google_account_mismatch":"Bu başka bir Google hesabı. Bu hesabın adresiyle onaylayın.","archive_encrypted":"Bu arşiv şifreli. Şifreyi girip tekrar deneyin.","archive_too_large":"Bu arşiv açıldığında çok fazla veri çıkıyor. Daha küçük bir arşiv deneyin.","archive_too_many_files":"Bu arşivde çok fazla dosya var. En fazla 1000 dosyalık bir arşiv yükleyin.","archive_empty":"Bu arşivde dosya yok.","malware_detected":"Bu dosyada zararlı yazılım bulundu; dosya işlenmedi ve silindi.","scan_unavailable":"Bu dosyayı virüslere karşı tarayamadık. Biraz sonra tekrar deneyin.","tool_disabled":"Bu araç şimdilik kapalı. Daha sonra tekrar deneyin.","cannot_block_self":"Kendinizi engelleyemezsiniz.","cannot_block_staff":"Personel hesapları burada engellenemez.","permission_denied":"Bu sayfaya erişiminiz yok.","invalid_crop":"Kırpma alanı fotoğrafın dışında. Yeniden seçin.","wrong_password":"Şifre yanlış. Kontrol edip tekrar deneyin.","captcha_required":"Lütfen robot olmadığınızı onaylayın.","captcha_failed":"Robot doğrulaması geçilemedi. Tekrar deneyin.","otp_required":"Doğrulama uygulamanızdaki 6 haneli kodu girin.","otp_invalid":"Kod yanlış ya da daha önce kullanıldı. Sonraki kodu bekleyip tekrar deneyin.","otp_locked":"Çok fazla yanlış kod. 15 dakika bekleyip tekrar deneyin.","otp_already_enabled":"İki adımlı giriş zaten açık.","otp_not_started":"Kurulumu baştan başlatın.","otp_not_enabled":"İki adımlı giriş zaten kapalı.","email_unverified":"Önce e-postanızı onaylayın.","invalid_verify_link":"Bu onay bağlantısı geçersiz ya da süresi dolmuş. Hesap sayfanızdan yenisini gönderin.","already_verified":"E-postanız zaten onaylı.","staff_2fa_required":"Yönetim paneli iki adımlı giriş gerektirir. Önce hesabınızda açın."},"notFound":{"title":"Sayfa bulunamadı","text":"Bağlantı eski ya da yanlış yazılmış olabilir.","back":"Ana sayfaya dön"},"footer":{"privacy":"Dosyalarınız yalnızca dönüştürme için kullanılır ve otomatik silinir.","privacyLink":"Gizlilik politikası","termsLink":"Kullanım koşulları","legalNav":"Yasal","faqLink":"SSS"},"fields":{"email":"E-posta","password":"Şifre","newPassword":"Yeni şifre","show":"Şifreyi göster","hide":"Şifreyi gizle","passwordHint":"En az 8 karakter. Çok yaygın ya da yalnızca rakamdan oluşan şifreler kabul edilmez.","otp":"Uygulamadaki kod","otpHint":"Google Authenticator, Authy ya da benzer bir uygulamadaki 6 hane.","currentPassword":"Mevcut şifre"},"auth":{"benefits":"Hesapla 200 MB'a kadar dosya yükleyebilir, günde 100 işlem yapabilir ve 30 günlük geçmişi saklayabilirsiniz.","or":"ya da","login":{"title":"Giriş yap","submit":"Giriş yap","submitting":"Giriş yapılıyor…","forgot":"Şifrenizi mi unuttunuz?","noAccount":"Henüz hesabınız yok mu?","toRegister":"Hesap oluşturun"},"register":{"title":"Hesap oluştur","submit":"Hesap oluştur","submitting":"Oluşturuluyor…","hasAccount":"Zaten hesabınız var mı?","toLogin":"Giriş yap"},"forgot":{"title":"Şifrenizi sıfırlayın","text":"E-postanızı girin, şifrenizi sıfırlamanız için bir bağlantı gönderelim.","submit":"Sıfırlama bağlantısı gönder","submitting":"Gönderiliyor…","sent":"{{email}} için bir hesap varsa bağlantıyı gönderdik. Spam klasörünü de kontrol edin.","back":"Girişe dön"},"reset":{"title":"Yeni şifre belirleyin","submit":"Şifreyi kaydet","submitting":"Kaydediliyor…","requestNew":"Yeni bağlantı iste"},"google":"Google ile giriş yap","otp":{"text":"Bu hesapta iki adımlı giriş açık. Doğrulama uygulamanızdaki kodu girin.","submit":"Onayla","back":"Baştan başla"},"verify":{"title":"E-postanızı onaylayın","checking":"E-postanız onaylanıyor…","done":"E-postanız onaylandı. Teşekkürler!","toAccount":"Hesabınıza gidin","toHome":"Ana sayfaya gidin"}},"account":{"title":"Hesap","profile":"Profil","verified":"E-posta onaylı","unverified":"E-posta henüz onaylanmadı","language":"Arayüz dili","saved":"Kaydedildi","usage":"Bugünkü sınır","usageText":"{{total}} işlemden {{used}} tanesi kullanıldı. Dosya başına en fazla {{maxFile}} MB.","history":"Son 30 gün","empty":"Henüz işlem yok. İlk dosyanızı dönüştürün, burada görünsün.","toTools":"Araçlara git","filesDeleted":"Dosyalar silindi","more":"Daha fazla göster","logout":"Çıkış yap","deleteTitle":"Hesabı sil","deleteText":"Hesabınız, geçmişiniz ve tüm dosyalarınız kalıcı olarak silinir. Bu geri alınamaz.","deletePassword":"Onay için şifreniz","deleteSubmit":"Hesabı kalıcı olarak sil","deleteConfirm":"Hesabınız ve tüm dosyalar kalıcı olarak silinecek. Devam edilsin mi?","deleteGoogle":"Onaylamak için bu hesapla Google'a yeniden giriş yapın. Hesap hemen ardından silinir.","deleteNoGoogle":"Bu hesabın şifresi yok. Silmek için önce bir şifre belirleyin.","adminLink":"Yönetim paneli","verifyText":"E-postanıza bir onay bağlantısı gönderdik. Gelmedi mi?","resend":"Tekrar gönder","resent":"Gönderildi. Gelen kutusunu ve spam klasörünü kontrol edin.","security":"Güvenlik","passwordTitle":"Şifreyi değiştir","passwordSubmit":"Şifreyi değiştir","passwordSaved":"Şifre değiştirildi. Diğer cihazlarda oturumunuz kapatıldı.","passwordNone":"Google ile giriş yaptığınız için bu hesabın şifresi yok. Şifre eklemek için giriş sayfasındaki “Şifrenizi mi unuttunuz?” bağlantısını kullanın.","twoFactor":"İki adımlı giriş","twoFactorOff":"Kapalı. Açıldığında her girişte telefonunuzdaki bir uygulamadan kod da istenir.","twoFactorOn":"Açık. Her girişte doğrulama uygulamanızdan kod istenir.","twoFactorStart":"Aç","twoFactorScan":"Bu QR kodunu Google Authenticator, Authy ya da başka bir doğrulama uygulamasıyla tarayın, sonra gösterilen 6 haneli kodu girin.","twoFactorQr":"Doğrulama uygulaması için QR kodu","twoFactorManual":"Tarayamıyor musunuz? Bu anahtarı elle girin:","twoFactorConfirm":"Onayla ve aç","twoFactorCancel":"Vazgeç","twoFactorDisable":"Kapat","twoFactorDisableText":"Kapatmak için şifrenizi ve güncel bir kodu girin.","twoFactorNeedsEmail":"Önce e-postanızı onaylayın, sonra iki adımlı girişi açabilirsiniz.","twoFactorNoPassword":"Kapatmak için önce “Şifrenizi mi unuttunuz?” ile bir şifre ekleyin."},"weak":{"password_too_short":"en az 8 karakter kullanın","password_too_common":"bu şifre çok yaygın","password_entirely_numeric":"yalnızca rakam kullanmayın","password_too_similar":"e-postanıza fazla benziyor","invalid":"koşulları karşılamıyor"},"organize":{"loading":"Sayfalar yükleniyor…","count":"{{total}} sayfadan {{count}} tanesi","reset":"Tüm değişiklikleri geri al","listLabel":"PDF sayfaları","page":"Sayfa {{n}}","moveBack":"{{page}} öne al","moveForward":"{{page}} arkaya al","rotate":"{{page}} 90° döndür","remove":"{{page}} sil","empty":"En az bir sayfa bırakın."},"legal":{"updated":"Son güncelleme: {{date}}","operator":"İşleten: {{name}}.","contact":"Sorular ve talepler: ","noContact":"Henüz bir iletişim adresi belirlenmedi.","privacy":{"title":"Gizlilik politikası","intro":"Bu sayfa jichcha'nın hangi verileri aldığını, neden aldığını ve ne zaman sildiğini açıklar. Veriler Özbekistan Cumhuriyeti'nin “Kişisel Veriler Hakkında” Kanunu'na göre işlenir.","sections":[{"h":"Yüklediğiniz dosyalar","p":["Dosyalar yalnızca seçtiğiniz işlem için kullanılır. İçeriklerini okumaz, satmaz ya da paylaşmayız.","Orijinal dosya işlem biter bitmez silinir. Sonuçlar misafirler için 1 saat, hesap sahipleri için 6 saat sonra otomatik silinir ya da “Sunucudan şimdi sil” ile hemen silinir. Dosyaların hiçbir zaman yedeği alınmaz.","Her dosya işlenmeden önce virüslere karşı taranır. Telefon fotoğraflarındaki GPS ve kamera bilgileri sonuçlara aktarılmaz."]},{"h":"Hesabınız","p":["Hesap için e-postanızı, şifrenizin tek yönlü özetini (Argon2) ve arayüz dilinizi saklarız. Google ile girişte Google bize yalnızca doğrulanmış e-postanızı bildirir.","Geçmiş, araç adını, dosya adlarını, boyutları ve zamanları 30 gün saklar. Dosyaların kendisi yukarıdaki sürelerde silinir.","Hesap sayfasındaki “Hesabı kalıcı olarak sil” hesabınızı, geçmişinizi ve dosyalarınızı hemen kaldırır."]},{"h":"Çerezler ve tarayıcı depolaması","p":["uv_guest: giriş yapmadığınızda sonuçlarınızı bu tarayıcıda gösterir. Rastgele bir belirteç tutar; sunucu yalnızca özetini saklar.","uv_refresh: 7 gün boyunca oturumunuzu açık tutar.","Tarayıcı depolaması (localStorage) yalnızca tema seçiminizi (açık ya da koyu) tutar.","Reklam, izleme ya da analiz çerezi kullanılmaz."]},{"h":"Teknik veriler","p":["IP adresiniz kötüye kullanım sınırları için kullanılır ve birkaç dakika bellekte tutulur. Sunucu kayıtları güvenlik ve sorun giderme için sınırlı bir süre saklanır."]},{"h":"Üçüncü taraf hizmetleri","p":["Google: yalnızca “Google ile devam et” düğmesine basarsanız.","Hata raporları: uygulama hataları kişisel veri olmadan gönderilir (çerez, IP adresi ya da dosya içeriği olmadan)."]},{"h":"Haklarınız","p":["Sizinle ilgili verileri görmeyi, düzeltmeyi ya da silmeyi isteyebilirsiniz. Hesabınızı ve dosyalarınızı sitede kendiniz silebilirsiniz. Diğer her şey için aşağıdaki adrese yazın."]}]},"terms":{"title":"Kullanım koşulları","intro":"jichcha'yı kullanarak bu koşulları kabul etmiş olursunuz.","sections":[{"h":"Hizmet","p":["jichcha dosya dönüştürme, sıkıştırma ve düzenleme için ücretsiz bir hizmettir. Günlük sınırlar ve boyut sınırları onu kötüye kullanıma karşı korur ve değişebilir."]},{"h":"Dosyalarınız","p":["Yalnızca kullanma hakkınız olan dosyaları yükleyin. İçeriklerinden ve sonuçları nasıl kullandığınızdan siz sorumlusunuz.","Şifreli bir dosya yalnızca kendi şifresiyle açılır; şifre yalnızca o dosya için kullanılır ve hiçbir zaman saklanmaz."]},{"h":"İzin verilmeyenler","p":["Zararlı yazılım yüklemek, sınırları aşmaya çalışmak, otomatik toplu kullanım, hizmete saldırmak ya da onu aksatmak veya yasa dışı içerik yaymak. Böyle bir durumda dosyalar silinir ve hesap engellenebilir."]},{"h":"Sonuçlar ve sorumluluk","p":["Hizmet “olduğu gibi” sunulur. Her dosyanın kusursuz dönüşeceğini garanti edemeyiz, bu yüzden orijinal dosyanızı saklayın. Sonuçları süreleri dolmadan indirin: dosyaların yedeği yoktur."]},{"h":"Hesabınız","p":["Şifrenizi gizli tutun. Bu koşulları ihlal eden hesaplar kaldırılabilir ya da engellenebilir. Hesabınızı istediğiniz zaman silebilirsiniz."]},{"h":"Hukuk ve değişiklikler","p":["Bu koşullar Özbekistan Cumhuriyeti yasalarına tabidir. Değiştiğinde yeni sürüm tarihiyle birlikte bu sayfada yayımlanır."]}]}},"catalog":{"conversionName":"{{from}} → {{to}}","conversionDescription":"{{from}} dosyasını ücretsiz olarak {{to}} biçimine dönüştürün.","jump":"Bölümler"},"edit":{"title":"Düzenleme","crop":"Kırp","aspects":{"free":"Serbest","square":"1:1 kare","portrait":"4:5","wide":"16:9","id":"3×4 vesikalık"},"cropArea":"Kırpma alanı","cropValue":"Soldan %{{x}}, üstten %{{y}}, genişlik %{{w}}, yükseklik %{{h}}","cropHint":"Alanı fare ya da parmakla sürükleyin; boyutunu değiştirmek için köşedeki noktayı sürükleyin. Klavye: oklar taşır, Shift + oklar boyutlandırır.","batchCrop":"Birden fazla fotoğraf: her biri seçilen şekilde ortadan kırpılır.","noPreview":"Tarayıcınız bu fotoğrafı gösteremiyor. Bir şekil seçin, ortadan kırpılacak.","turn":"Döndür ve aynala","rotateLeft":"Sola döndür","rotateRight":"Sağa döndür","flipH":"Yatay aynala","flipV":"Dikey aynala","rotation":"Döndürme: {{deg}}°","preview":"Sonucun önizlemesi","resize":"Boyut","resizeModes":{"none":"Aynı kalsın","percent":"Yüzde olarak","pixels":"Piksel olarak"},"percent":"Orijinal boyutun yüzdesi","width":"Genişlik, px","height":"Yükseklik, px","pixelsHint":"Birini girin, diğeri orijinal oranlara göre ayarlanır.","format":"Biçim","keepFormat":"Orijinaliyle aynı","needSize":"Genişlik ya da yükseklik girin."},"next":{"title":"Bu dosyayla yapabileceğiniz başka şeyler"},"faq":{"title":"Sık sorulan sorular","description":"jichcha hakkında yanıtlar: ücret, dosya sınırları, dosyaların ne kadar saklandığı, desteklenen biçimler ve Telegram botu.","intro":"En çok sorulan sorulara kısa yanıtlar. Sorunuzu bulamadınız mı? Gizlilik politikasının sonundaki iletişim adresinden bize yazın.","botLink":"Botu Telegram'da aç","items":[{"q":"jichcha ücretsiz mi?","a":"Evet. Tüm araçlar ücretsizdir; filigran ya da deneme süresi yoktur. Hesap da ücretsizdir: yalnızca sınırları artırır."},{"q":"Hesap gerekli mi?","a":"Hayır. Hesapsız {{guestMb}} MB'a kadar dosya yükleyebilir, günde {{guestTasks}} işlem yapabilir ve aynı anda {{guestBatch}} dosyaya kadar işleyebilirsiniz. Ücretsiz hesap bunu {{userMb}} MB'a, günde {{userTasks}} işleme ve {{userBatch}} dosyaya çıkarır ve işlemlerinizin 30 günlük geçmişini saklar."},{"q":"Dosyalarıma ne oluyor?","a":"Yalnızca istediğiniz dönüştürme için kullanılırlar. Her yükleme virüslere karşı taranır ve dosyalar otomatik silinir: hesapsız {{guestHours}} saat, hesapla {{userHours}} saat sonra. Sonucu hemen kendiniz de silebilirsiniz."},{"q":"Hangi biçimler destekleniyor?","a":"PDF: birleştirme, bölme, sayfa sırasını değiştirme, sıkıştırma, kilit açma, sayfaları JPG ya da PNG'ye çevirme. Word, Excel, PowerPoint, OpenDocument, RTF ve CSV'den PDF'ye. Fotoğraflar: JPG, PNG, WEBP, AVIF, HEIC, GIF, BMP ve TIFF — dönüştürme, sıkıştırma, kırpma, döndürme, yeniden boyutlandırma ya da tek bir PDF'de birleştirme. Arşivler: ZIP, RAR, 7Z, TAR, GZ, BZ2 ve XZ açma, ZIP ya da 7Z oluşturma veya bir arşiv türünü başka bir türe yeniden paketleme."},{"q":"Word dosyam neden PDF'de biraz farklı görünüyor?","a":"Belgeler LibreOffice ile dönüştürülür. Belge bizde olmayan bir yazı tipi kullanıyorsa yerine benzeri kullanılır ve satırlar biraz kayabilir. Arial, Times New Roman ya da Calibri gibi yaygın yazı tipleri en doğru şekilde dönüşür; Word'de kaydederken yazı tiplerini dosyaya gömebilirsiniz."},{"q":"Şifreli bir PDF ya da arşivi açabilir miyim?","a":"Evet, şifreyi biliyorsanız. “PDF kilidini aç” aracı ve arşiv açma işlemi şifreyi sorar. Şifre yalnızca o işlem için kullanılır ve hiçbir zaman saklanmaz."},{"q":"Dosyam neden reddedildi?","a":"Yalnızca uzantıya değil, dosyanın gerçekte ne olduğuna bakarız; bu yüzden adı değiştirilmiş başka türde bir dosya reddedilir. Diğer nedenler: dosya sınırınızı aşıyor, günlük sınır doldu, dosya bozuk ya da şifreli veya virüs taraması bir şey buldu. Ekrandaki mesaj nedeni tam olarak söyler."},{"q":"Telegram botu var mı?","a":"Var. Bota bir dosya gönderin ve ne yapılacağını düğmelerden seçin; birden fazla fotoğrafı albüm olarak gönderirseniz tek bir PDF alırsınız. Telegram botların yalnızca 20 MB'a kadar dosya indirmesine izin verir, bu yüzden daha büyük dosyalar için bot size sitenin bağlantısını verir."},{"q":"Hesabımı nasıl güvende tutarım?","a":"Başka hiçbir yerde kullanmadığınız bir şifre seçin ve hesabınızın Güvenlik bölümünde iki adımlı girişi açın. Bundan sonra her girişte Google Authenticator ya da Authy gibi bir uygulamadan kod da istenir."},{"q":"Hesabımı nasıl silerim?","a":"Hesap sayfanızı açın ve “Hesabı sil”i seçin. Hesabınız, geçmişiniz ve saklanan tüm dosyalar hemen silinir ve geri getirilemez."}]},"compare":{"before":"Önce","after":"Sonra","label":"Orijinal ve sıkıştırılmış görseli karşılaştır","value":"%{{percent}} orijinal","hint":"Kaliteyi karşılaştırmak için çizgiyi sürükleyin ya da ok tuşlarını kullanın."},"drop":{"title":"Dosyayı buraya bırakın","text":"Dosyanın türünü anlayıp onunla neler yapabileceğinizi gösteririz. Bir araç seçene kadar hiçbir şey yüklenmez.","choose":"Dosya seç","detected":"<name>{{name}}</name> bir {{family}} dosyası. Ne yapalım?","unknown":"“{{name}}” dosyasının ne olduğunu anlayamadık. Aşağıdan bir bölüm seçin.","another":"Başka dosya"},"sections":{"label":"Bölümler","pdf":{"lead":"PDF dosyalarını birleştirin, bölün, sıralayın, sıkıştırın ya da kilidini açın."},"word":{"lead":"Word belgesini yazdırmaya ya da göndermeye hazır bir PDF'ye çevirin."},"excel":{"lead":"Excel tablosunu tek tıkla PDF'ye çevirin."},"powerpoint":{"lead":"Sunumu PDF'ye çevirin; her slayt bir sayfa olur."},"image":{"lead":"Fotoğrafları dönüştürün, sıkıştırın, kırpın ya da tek bir PDF'de birleştirin. iPhone'un HEIC dosyaları da olur."},"archive":{"lead":"ZIP, RAR ve 7Z arşivlerini açın, yenilerini oluşturun ya da biçimlerini değiştirin."},"formats":"Biçimler","home":"Ana sayfa","breadcrumb":"Buradasınız"}}
+{
+  "meta": {
+    "siteName": "jichcha",
+    "homeTitle": "Ücretsiz Word, PDF, fotoğraf ve arşiv dönüştürücü | jichcha",
+    "homeDescription": "Word ve Excel'i PDF'ye çevirin, PDF'leri birleştirin ve küçültün, HEIC, PNG ve RAR dosyalarını dönüştürün. Ücretsiz, kayıt gerekmez."
+  },
+  "nav": {
+    "skip": "Ana içeriğe geç",
+    "home": "Ana sayfa",
+    "language": "Dil",
+    "theme": "Tema: {{mode}}",
+    "themeModes": {
+      "system": "sistem",
+      "light": "açık",
+      "dark": "koyu"
+    },
+    "login": "Giriş yap",
+    "account": "Hesap"
+  },
+  "home": {
+    "title": "Word, PDF, fotoğraf ve arşivler için <hl>ücretsiz</hl> araçlar",
+    "subtitle": "Bir dosya bırakın ya da bir bölüm seçin. Kayıt gerekmez, dosyalar kendiliğinden silinir.",
+    "searchLabel": "Araç ara",
+    "searchPlaceholder": "Örneğin: heic jpg…",
+    "toolsHeading": "Araçlar",
+    "popularHeading": "Sık kullanılan dönüşümler",
+    "noResults": "“{{query}}” ile eşleşen araç yok. “png pdf” gibi bir şey deneyin.",
+    "benefitsHeading": "Neden jichcha",
+    "benefits": {
+      "free": {
+        "title": "Hesap gerekmez",
+        "text": "Dosyayı bırakın ve sonucu indirin. Tüm araçlar ücretsizdir."
+      },
+      "deleted": {
+        "title": "Dosyalar bir saat içinde silinir",
+        "text": "Yüklediğiniz dosya işlem biter bitmez, sonuç ise 1 saat sonra silinir. Daha önce de silebilirsiniz."
+      },
+      "gps": {
+        "title": "Konum bilgisi kaldırılır",
+        "text": "Telefon fotoğraflarındaki GPS ve kamera bilgileri sonuca aktarılmaz."
+      }
+    },
+    "groups": {
+      "pdf": "PDF",
+      "word": "Word",
+      "excel": "Excel",
+      "powerpoint": "PowerPoint",
+      "image": "Fotoğraflar",
+      "archive": "Arşivler"
+    },
+    "sectionsHeading": "Bölümler",
+    "toolCount_one": "{{count}} araç",
+    "toolCount_other": "{{count}} araç",
+    "openSection": "{{name}} bölümünü aç"
+  },
+  "tools": {
+    "image-convert": {
+      "name": "Biçim değiştir",
+      "title": "Görsel biçimi dönüştürücü",
+      "description": "PNG, JPG, WEBP, HEIC, AVIF, GIF, BMP ve TIFF arasında dönüştürün. Birden fazla fotoğraf aynı anda."
+    },
+    "image-compress": {
+      "name": "Boyutu küçült",
+      "title": "Görsel sıkıştırma",
+      "description": "Üç seviye: güçlü, orta ve hafif. Her fotoğrafın ne kadar yer kazandırdığını görün."
+    },
+    "images-to-pdf": {
+      "name": "Fotoğraftan PDF",
+      "title": "Fotoğraflardan PDF oluştur",
+      "description": "Fotoğraflarınızı sıraya koyun ve A4 ya da Letter boyutunda tek bir PDF'de birleştirin."
+    },
+    "office-to-pdf": {
+      "name": "Word, Excel, PowerPoint → PDF",
+      "title": "Belgeleri PDF'ye dönüştür",
+      "description": "Word, Excel, PowerPoint ve OpenDocument dosyalarını yazı tipleri ve düzeniyle birlikte PDF'ye çevirin."
+    },
+    "pdf-merge": {
+      "name": "PDF birleştir",
+      "title": "PDF dosyalarını birleştir",
+      "description": "Birden fazla PDF'yi seçtiğiniz sırayla tek dosyada birleştirin."
+    },
+    "pdf-split": {
+      "name": "PDF böl",
+      "title": "PDF'yi böl",
+      "description": "Her sayfayı ayrı bir PDF olarak kaydedin ya da yalnızca gereken sayfaları çıkarın."
+    },
+    "pdf-organize": {
+      "name": "Sayfaları düzenle",
+      "title": "PDF sayfalarını düzenle",
+      "description": "Sayfaların sırasını değiştirin, döndürün ya da silin."
+    },
+    "pdf-compress": {
+      "name": "PDF sıkıştır",
+      "title": "PDF boyutunu küçült",
+      "description": "Taramaları ve görsel ağırlıklı PDF'leri küçültün; e-posta ya da yükleme sınırına sığsın."
+    },
+    "pdf-to-images": {
+      "name": "PDF → JPG, PNG",
+      "title": "PDF sayfalarını görsele dönüştür",
+      "description": "Her sayfayı ayrı bir JPG ya da PNG görseli olarak kaydedin."
+    },
+    "archive-extract": {
+      "name": "Arşivi aç",
+      "title": "ZIP, RAR ve 7Z arşivlerini çevrimiçi açın",
+      "description": "Arşivin içinde ne olduğunu görün ve gereken dosyaları tek tek indirin. ZIP, RAR, 7Z, TAR, GZ."
+    },
+    "archive-create": {
+      "name": "ZIP oluştur",
+      "title": "Dosyaları ZIP ya da 7Z arşivine paketle",
+      "description": "Birden fazla dosyayı tek bir ZIP ya da 7Z arşivine koyun. Her dosya türü olur."
+    },
+    "archive-convert": {
+      "name": "Arşiv biçimini değiştir",
+      "title": "RAR, 7Z ve TAR'ı ZIP'e dönüştür",
+      "description": "RAR, 7Z ya da TAR'ı klasör yapısını koruyarak ZIP ya da 7Z olarak yeniden paketleyin."
+    },
+    "image-edit": {
+      "name": "Fotoğrafı düzenle",
+      "title": "Fotoğrafı kırp, döndür ve yeniden boyutlandır",
+      "description": "Fotoğrafı kırpın (1:1, 4:5, 16:9, 3×4 vesikalık), döndürün ya da aynalayın ve boyutunu değiştirin."
+    },
+    "pdf-unlock": {
+      "name": "PDF kilidini aç",
+      "title": "PDF şifresini kaldır",
+      "description": "PDF'nizin şifresiz bir kopyasını alın (şifreyi bilmeniz gerekir), sonra birleştirin, sıkıştırın ya da bölün."
+    }
+  },
+  "conversion": {
+    "short": "{{from}} → {{to}}",
+    "title": "{{from}} dosyasını {{to}} biçimine dönüştür",
+    "description": "{{from}} dosyalarını ücretsiz olarak {{to}} biçimine dönüştürün. Kayıt gerekmez, dosyalar bir saat içinde silinir."
+  },
+  "options": {
+    "target": {
+      "label": "Dönüştürülecek biçim",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG",
+        "webp": "WEBP",
+        "avif": "AVIF",
+        "gif": "GIF",
+        "bmp": "BMP",
+        "tiff": "TIFF",
+        "zip": "ZIP",
+        "7z": "7Z",
+        "pdf": "PDF"
+      }
+    },
+    "level": {
+      "label": "Sıkıştırma seviyesi",
+      "choices": {
+        "strong": "Güçlü",
+        "medium": "Orta",
+        "light": "Hafif"
+      },
+      "hints": {
+        "strong": "En küçük dosya",
+        "medium": "Boyut ve kalite dengesi",
+        "light": "Kalite neredeyse değişmez"
+      }
+    },
+    "page_size": {
+      "label": "Sayfa boyutu",
+      "choices": {
+        "a4": "A4",
+        "letter": "Letter",
+        "fit": "Fotoğrafla aynı"
+      }
+    },
+    "orientation": {
+      "label": "Yön",
+      "choices": {
+        "auto": "Otomatik",
+        "portrait": "Dikey",
+        "landscape": "Yatay"
+      }
+    },
+    "margin": {
+      "label": "Kenar boşluğu",
+      "choices": {
+        "none": "Yok",
+        "small": "Küçük",
+        "large": "Büyük"
+      }
+    },
+    "mode": {
+      "label": "Nasıl bölünsün",
+      "choices": {
+        "each": "Her sayfa ayrı",
+        "ranges": "Seçilen sayfalar"
+      }
+    },
+    "ranges": {
+      "label": "Sayfalar",
+      "placeholder": "Örneğin: 1-3, 5, 8-…",
+      "hint": "Her aralık ayrı bir PDF olur. “8-” 8. sayfadan sona kadar demektir."
+    },
+    "pdfLevel": {
+      "label": "Sıkıştırma seviyesi",
+      "choices": {
+        "strong": "Güçlü",
+        "medium": "Orta",
+        "light": "Hafif"
+      },
+      "hints": {
+        "strong": "En küçük dosya, görseller daha yumuşak",
+        "medium": "Ekranda okumak için",
+        "light": "Yazdırmak için"
+      }
+    },
+    "format": {
+      "label": "Görsel biçimi",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG"
+      }
+    },
+    "quality": {
+      "label": "Kalite",
+      "choices": {
+        "low": "Düşük",
+        "medium": "Orta",
+        "high": "Yüksek"
+      },
+      "hints": {
+        "low": "72 DPI, ekran için",
+        "medium": "150 DPI",
+        "high": "300 DPI, yazdırmak için"
+      }
+    },
+    "archiveFormat": {
+      "label": "Arşiv türü",
+      "choices": {
+        "zip": "ZIP",
+        "7z": "7Z"
+      },
+      "hints": {
+        "zip": "Her yerde açılır",
+        "7z": "Daha küçük"
+      }
+    },
+    "password": {
+      "label": "Şifre",
+      "hint": "Yalnızca bu dosya için kullanılır ve hiçbir zaman saklanmaz."
+    }
+  },
+  "upload": {
+    "drop": "Dosyaları buraya bırakın",
+    "or": "ya da",
+    "choose": "Dosya seç",
+    "addMore": "Daha ekle",
+    "limits": "Dosya başına en fazla {{maxFile}} MB, aynı anda {{maxBatch}} dosya.",
+    "selected_one": "{{count}} dosya seçildi",
+    "selected_other": "{{count}} dosya seçildi",
+    "remove": "{{name}} dosyasını kaldır",
+    "moveUp": "{{name}} dosyasını yukarı taşı",
+    "moveDown": "{{name}} dosyasını aşağı taşı",
+    "orderHint": {
+      "images-to-pdf": "PDF sayfaları bu sırayı izler.",
+      "pdf-merge": "Dosyalar bu sırayla birleştirilir."
+    },
+    "formats": "Biçimler: {{formats}}.",
+    "anyFormat": "Her dosya türü."
+  },
+  "actions": {
+    "image-convert": "{{target}} biçimine dönüştür",
+    "image-compress": "Sıkıştır",
+    "images-to-pdf": "PDF oluştur",
+    "download": "İndir",
+    "downloadFile": "{{name}} dosyasını indir",
+    "downloadAll": "Hepsini ZIP olarak indir",
+    "deleteNow": "Sunucudan şimdi sil",
+    "deleteConfirm": "Dosyalar sunucudan kalıcı olarak silinecek. Devam edilsin mi?",
+    "again": "Yeni dosyalarla baştan başla",
+    "retry": "Tekrar dene",
+    "office-to-pdf": "PDF'ye dönüştür",
+    "pdf-merge": "Birleştir",
+    "pdf-split": "Böl",
+    "pdf-organize": "Kaydet",
+    "pdf-compress": "Sıkıştır",
+    "pdf-to-images": "{{target}} biçimine dönüştür",
+    "archive-extract": "Aç",
+    "archive-create": "{{target}} oluştur",
+    "archive-convert": "{{target}} biçimine dönüştür",
+    "image-edit": "Uygula",
+    "pdf-unlock": "Şifreyi kaldır"
+  },
+  "status": {
+    "uploading": "Yükleniyor… %{{percent}}",
+    "queued": "Sırada…",
+    "processing": "İşleniyor…",
+    "done": "Tamamlandı",
+    "failed": "Başarısız",
+    "expires": "Dosyalar saat {{time}} itibarıyla otomatik silinecek.",
+    "deleted": "Dosyalar sunucudan silindi.",
+    "saved": "%{{percent}} daha küçük: {{before}} → {{after}}",
+    "notSaved": "Bu fotoğraflar daha fazla sıkıştırılamaz: {{before}} → {{after}}",
+    "showAll": "Tümünü göster ({{count}})"
+  },
+  "errors": {
+    "no_files": "Önce en az bir dosya seçin.",
+    "too_many_files": "Aynı anda en fazla {{max_files}} dosya yükleyebilirsiniz. Fazlasını kaldırın.",
+    "file_too_large": "“{{name}}” {{max_file_mb}} MB'tan büyük. Daha küçük bir dosya seçin.",
+    "request_too_large": "Dosyaların toplamı en fazla {{max_total_mb}} MB olmalı. Birkaçını kaldırın.",
+    "unsupported_format": "“{{name}}” bu aracın kabul ettiği bir dosya değil. Desteklenen biçimler yükleme alanında yazıyor.",
+    "image_too_large": "Görselin çözünürlüğü çok yüksek (100 megapikselden fazla). Daha küçük bir görsel seçin.",
+    "daily_limit_reached": "Günlük sınıra ulaşıldı: günde {{daily_tasks}} işlem. Yarın tekrar deneyin.",
+    "throttled": "Çok fazla istek. Bir dakika sonra tekrar deneyin.",
+    "corrupt_file": "Dosya açılamadı, bozuk olabilir. Başka bir kopyasını deneyin.",
+    "timeout": "İşlem çok uzun sürdü. Daha az ya da daha küçük dosya deneyin.",
+    "files_deleted": "Dosyalar işlem bitmeden silindi. Yeniden yükleyin.",
+    "file_expired": "Bu dosya sunucudan silindi. Yeniden yükleyin.",
+    "unknown_tool": "Bu araç yok.",
+    "validation_error": "Ayarlarda bir sorun var. Sayfayı yenileyip tekrar deneyin.",
+    "network_error": "Sunucuya ulaşılamıyor. Bağlantınızı kontrol edip tekrar deneyin.",
+    "internal_error": "Bizim tarafımızda bir sorun oluştu. Biraz sonra tekrar deneyin.",
+    "tool_unavailable": "Bu araç geçici olarak kullanılamıyor.",
+    "not_found": "İşlem bulunamadı ya da süresi doldu.",
+    "invalid_credentials": "E-posta ya da şifre yanlış.",
+    "email_taken": "Bu e-postayla bir hesap zaten var. Giriş yapın ya da şifrenizi sıfırlayın.",
+    "weak_password": "Şifre yeterince güçlü değil: {{reasons}}.",
+    "session_expired": "Oturumunuz sona erdi. Tekrar giriş yapın.",
+    "invalid_reset_link": "Bu bağlantının süresi doldu ya da daha önce kullanıldı. Yenisini isteyin.",
+    "google_failed": "Google ile giriş yapılamadı. Tekrar deneyin ya da e-postayla giriş yapın.",
+    "google_disabled": "Google ile giriş henüz etkin değil.",
+    "account_disabled": "Bu hesap devre dışı.",
+    "auth_required": "Bunu yapmak için giriş yapın.",
+    "required": "Bu alanı doldurun.",
+    "invalid_email": "Geçerli bir e-posta girin, örneğin ali@example.com.",
+    "too_few_files": "En az {{min_files}} dosya seçin.",
+    "pdf_encrypted": "Bu PDF şifreli. Önce “PDF kilidini aç” aracını kullanın.",
+    "too_many_pages": "Belgede çok fazla sayfa var. Önce parçalara bölün.",
+    "invalid_page_range": "Sayfaları “1-3, 5, 8-10” gibi, belgenin sayfa sayısı içinde yazın.",
+    "reauth_required": "Hesabınızı silmeden önce Google ile onaylayın.",
+    "google_account_mismatch": "Bu başka bir Google hesabı. Bu hesabın adresiyle onaylayın.",
+    "archive_encrypted": "Bu arşiv şifreli. Şifreyi girip tekrar deneyin.",
+    "archive_too_large": "Bu arşiv açıldığında çok fazla veri çıkıyor. Daha küçük bir arşiv deneyin.",
+    "archive_too_many_files": "Bu arşivde çok fazla dosya var. En fazla 1000 dosyalık bir arşiv yükleyin.",
+    "archive_empty": "Bu arşivde dosya yok.",
+    "malware_detected": "Bu dosyada zararlı yazılım bulundu; dosya işlenmedi ve silindi.",
+    "scan_unavailable": "Bu dosyayı virüslere karşı tarayamadık. Biraz sonra tekrar deneyin.",
+    "tool_disabled": "Bu araç şimdilik kapalı. Daha sonra tekrar deneyin.",
+    "cannot_block_self": "Kendinizi engelleyemezsiniz.",
+    "cannot_block_staff": "Personel hesapları burada engellenemez.",
+    "permission_denied": "Bu sayfaya erişiminiz yok.",
+    "invalid_crop": "Kırpma alanı fotoğrafın dışında. Yeniden seçin.",
+    "wrong_password": "Şifre yanlış. Kontrol edip tekrar deneyin.",
+    "captcha_required": "Lütfen robot olmadığınızı onaylayın.",
+    "captcha_failed": "Robot doğrulaması geçilemedi. Tekrar deneyin.",
+    "otp_required": "Doğrulama uygulamanızdaki 6 haneli kodu girin.",
+    "otp_invalid": "Kod yanlış ya da daha önce kullanıldı. Sonraki kodu bekleyip tekrar deneyin.",
+    "otp_locked": "Çok fazla yanlış kod. 15 dakika bekleyip tekrar deneyin.",
+    "otp_already_enabled": "İki adımlı giriş zaten açık.",
+    "otp_not_started": "Kurulumu baştan başlatın.",
+    "otp_not_enabled": "İki adımlı giriş zaten kapalı.",
+    "email_unverified": "Önce e-postanızı onaylayın.",
+    "invalid_verify_link": "Bu onay bağlantısı geçersiz ya da süresi dolmuş. Hesap sayfanızdan yenisini gönderin.",
+    "already_verified": "E-postanız zaten onaylı.",
+    "staff_2fa_required": "Yönetim paneli iki adımlı giriş gerektirir. Önce hesabınızda açın."
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "text": "Bağlantı eski ya da yanlış yazılmış olabilir.",
+    "back": "Ana sayfaya dön"
+  },
+  "footer": {
+    "privacy": "Dosyalarınız yalnızca dönüştürme için kullanılır ve otomatik silinir.",
+    "privacyLink": "Gizlilik politikası",
+    "termsLink": "Kullanım koşulları",
+    "legalNav": "Yasal",
+    "faqLink": "SSS",
+    "help": "Yardım",
+    "rights": "© {{year}} jichcha. Günlük dosya işleri için ücretsiz araçlar."
+  },
+  "fields": {
+    "email": "E-posta",
+    "password": "Şifre",
+    "newPassword": "Yeni şifre",
+    "show": "Şifreyi göster",
+    "hide": "Şifreyi gizle",
+    "passwordHint": "En az 8 karakter. Çok yaygın ya da yalnızca rakamdan oluşan şifreler kabul edilmez.",
+    "otp": "Uygulamadaki kod",
+    "otpHint": "Google Authenticator, Authy ya da benzer bir uygulamadaki 6 hane.",
+    "currentPassword": "Mevcut şifre"
+  },
+  "auth": {
+    "benefits": "Hesapla 200 MB'a kadar dosya yükleyebilir, günde 100 işlem yapabilir ve 30 günlük geçmişi saklayabilirsiniz.",
+    "or": "ya da",
+    "login": {
+      "title": "Giriş yap",
+      "submit": "Giriş yap",
+      "submitting": "Giriş yapılıyor…",
+      "forgot": "Şifrenizi mi unuttunuz?",
+      "noAccount": "Henüz hesabınız yok mu?",
+      "toRegister": "Hesap oluşturun"
+    },
+    "register": {
+      "title": "Hesap oluştur",
+      "submit": "Hesap oluştur",
+      "submitting": "Oluşturuluyor…",
+      "hasAccount": "Zaten hesabınız var mı?",
+      "toLogin": "Giriş yap"
+    },
+    "forgot": {
+      "title": "Şifrenizi sıfırlayın",
+      "text": "E-postanızı girin, şifrenizi sıfırlamanız için bir bağlantı gönderelim.",
+      "submit": "Sıfırlama bağlantısı gönder",
+      "submitting": "Gönderiliyor…",
+      "sent": "{{email}} için bir hesap varsa bağlantıyı gönderdik. Spam klasörünü de kontrol edin.",
+      "back": "Girişe dön"
+    },
+    "reset": {
+      "title": "Yeni şifre belirleyin",
+      "submit": "Şifreyi kaydet",
+      "submitting": "Kaydediliyor…",
+      "requestNew": "Yeni bağlantı iste"
+    },
+    "google": "Google ile giriş yap",
+    "otp": {
+      "text": "Bu hesapta iki adımlı giriş açık. Doğrulama uygulamanızdaki kodu girin.",
+      "submit": "Onayla",
+      "back": "Baştan başla"
+    },
+    "verify": {
+      "title": "E-postanızı onaylayın",
+      "checking": "E-postanız onaylanıyor…",
+      "done": "E-postanız onaylandı. Teşekkürler!",
+      "toAccount": "Hesabınıza gidin",
+      "toHome": "Ana sayfaya gidin"
+    }
+  },
+  "account": {
+    "title": "Hesap",
+    "profile": "Profil",
+    "verified": "E-posta onaylı",
+    "unverified": "E-posta henüz onaylanmadı",
+    "language": "Arayüz dili",
+    "saved": "Kaydedildi",
+    "usage": "Bugünkü sınır",
+    "usageText": "{{total}} işlemden {{used}} tanesi kullanıldı. Dosya başına en fazla {{maxFile}} MB.",
+    "history": "Son 30 gün",
+    "empty": "Henüz işlem yok. İlk dosyanızı dönüştürün, burada görünsün.",
+    "toTools": "Araçlara git",
+    "filesDeleted": "Dosyalar silindi",
+    "more": "Daha fazla göster",
+    "logout": "Çıkış yap",
+    "deleteTitle": "Hesabı sil",
+    "deleteText": "Hesabınız, geçmişiniz ve tüm dosyalarınız kalıcı olarak silinir. Bu geri alınamaz.",
+    "deletePassword": "Onay için şifreniz",
+    "deleteSubmit": "Hesabı kalıcı olarak sil",
+    "deleteConfirm": "Hesabınız ve tüm dosyalar kalıcı olarak silinecek. Devam edilsin mi?",
+    "deleteGoogle": "Onaylamak için bu hesapla Google'a yeniden giriş yapın. Hesap hemen ardından silinir.",
+    "deleteNoGoogle": "Bu hesabın şifresi yok. Silmek için önce bir şifre belirleyin.",
+    "adminLink": "Yönetim paneli",
+    "verifyText": "E-postanıza bir onay bağlantısı gönderdik. Gelmedi mi?",
+    "resend": "Tekrar gönder",
+    "resent": "Gönderildi. Gelen kutusunu ve spam klasörünü kontrol edin.",
+    "security": "Güvenlik",
+    "passwordTitle": "Şifreyi değiştir",
+    "passwordSubmit": "Şifreyi değiştir",
+    "passwordSaved": "Şifre değiştirildi. Diğer cihazlarda oturumunuz kapatıldı.",
+    "passwordNone": "Google ile giriş yaptığınız için bu hesabın şifresi yok. Şifre eklemek için giriş sayfasındaki “Şifrenizi mi unuttunuz?” bağlantısını kullanın.",
+    "twoFactor": "İki adımlı giriş",
+    "twoFactorOff": "Kapalı. Açıldığında her girişte telefonunuzdaki bir uygulamadan kod da istenir.",
+    "twoFactorOn": "Açık. Her girişte doğrulama uygulamanızdan kod istenir.",
+    "twoFactorStart": "Aç",
+    "twoFactorScan": "Bu QR kodunu Google Authenticator, Authy ya da başka bir doğrulama uygulamasıyla tarayın, sonra gösterilen 6 haneli kodu girin.",
+    "twoFactorQr": "Doğrulama uygulaması için QR kodu",
+    "twoFactorManual": "Tarayamıyor musunuz? Bu anahtarı elle girin:",
+    "twoFactorConfirm": "Onayla ve aç",
+    "twoFactorCancel": "Vazgeç",
+    "twoFactorDisable": "Kapat",
+    "twoFactorDisableText": "Kapatmak için şifrenizi ve güncel bir kodu girin.",
+    "twoFactorNeedsEmail": "Önce e-postanızı onaylayın, sonra iki adımlı girişi açabilirsiniz.",
+    "twoFactorNoPassword": "Kapatmak için önce “Şifrenizi mi unuttunuz?” ile bir şifre ekleyin."
+  },
+  "weak": {
+    "password_too_short": "en az 8 karakter kullanın",
+    "password_too_common": "bu şifre çok yaygın",
+    "password_entirely_numeric": "yalnızca rakam kullanmayın",
+    "password_too_similar": "e-postanıza fazla benziyor",
+    "invalid": "koşulları karşılamıyor"
+  },
+  "organize": {
+    "loading": "Sayfalar yükleniyor…",
+    "count": "{{total}} sayfadan {{count}} tanesi",
+    "reset": "Tüm değişiklikleri geri al",
+    "listLabel": "PDF sayfaları",
+    "page": "Sayfa {{n}}",
+    "moveBack": "{{page}} öne al",
+    "moveForward": "{{page}} arkaya al",
+    "rotate": "{{page}} 90° döndür",
+    "remove": "{{page}} sil",
+    "empty": "En az bir sayfa bırakın."
+  },
+  "legal": {
+    "updated": "Son güncelleme: {{date}}",
+    "operator": "İşleten: {{name}}.",
+    "contact": "Sorular ve talepler: ",
+    "noContact": "Henüz bir iletişim adresi belirlenmedi.",
+    "privacy": {
+      "title": "Gizlilik politikası",
+      "intro": "Bu sayfa jichcha'nın hangi verileri aldığını, neden aldığını ve ne zaman sildiğini açıklar. Veriler Özbekistan Cumhuriyeti'nin “Kişisel Veriler Hakkında” Kanunu'na göre işlenir.",
+      "sections": [
+        {
+          "h": "Yüklediğiniz dosyalar",
+          "p": [
+            "Dosyalar yalnızca seçtiğiniz işlem için kullanılır. İçeriklerini okumaz, satmaz ya da paylaşmayız.",
+            "Orijinal dosya işlem biter bitmez silinir. Sonuçlar misafirler için 1 saat, hesap sahipleri için 6 saat sonra otomatik silinir ya da “Sunucudan şimdi sil” ile hemen silinir. Dosyaların hiçbir zaman yedeği alınmaz.",
+            "Her dosya işlenmeden önce virüslere karşı taranır. Telefon fotoğraflarındaki GPS ve kamera bilgileri sonuçlara aktarılmaz."
+          ]
+        },
+        {
+          "h": "Hesabınız",
+          "p": [
+            "Hesap için e-postanızı, şifrenizin tek yönlü özetini (Argon2) ve arayüz dilinizi saklarız. Google ile girişte Google bize yalnızca doğrulanmış e-postanızı bildirir.",
+            "Geçmiş, araç adını, dosya adlarını, boyutları ve zamanları 30 gün saklar. Dosyaların kendisi yukarıdaki sürelerde silinir.",
+            "Hesap sayfasındaki “Hesabı kalıcı olarak sil” hesabınızı, geçmişinizi ve dosyalarınızı hemen kaldırır."
+          ]
+        },
+        {
+          "h": "Çerezler ve tarayıcı depolaması",
+          "p": [
+            "uv_guest: giriş yapmadığınızda sonuçlarınızı bu tarayıcıda gösterir. Rastgele bir belirteç tutar; sunucu yalnızca özetini saklar.",
+            "uv_refresh: 7 gün boyunca oturumunuzu açık tutar.",
+            "Tarayıcı depolaması (localStorage) yalnızca tema seçiminizi (açık ya da koyu) tutar.",
+            "Reklam, izleme ya da analiz çerezi kullanılmaz."
+          ]
+        },
+        {
+          "h": "Teknik veriler",
+          "p": [
+            "IP adresiniz kötüye kullanım sınırları için kullanılır ve birkaç dakika bellekte tutulur. Sunucu kayıtları güvenlik ve sorun giderme için sınırlı bir süre saklanır."
+          ]
+        },
+        {
+          "h": "Üçüncü taraf hizmetleri",
+          "p": [
+            "Google: yalnızca “Google ile devam et” düğmesine basarsanız.",
+            "Hata raporları: uygulama hataları kişisel veri olmadan gönderilir (çerez, IP adresi ya da dosya içeriği olmadan)."
+          ]
+        },
+        {
+          "h": "Haklarınız",
+          "p": [
+            "Sizinle ilgili verileri görmeyi, düzeltmeyi ya da silmeyi isteyebilirsiniz. Hesabınızı ve dosyalarınızı sitede kendiniz silebilirsiniz. Diğer her şey için aşağıdaki adrese yazın."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Kullanım koşulları",
+      "intro": "jichcha'yı kullanarak bu koşulları kabul etmiş olursunuz.",
+      "sections": [
+        {
+          "h": "Hizmet",
+          "p": [
+            "jichcha dosya dönüştürme, sıkıştırma ve düzenleme için ücretsiz bir hizmettir. Günlük sınırlar ve boyut sınırları onu kötüye kullanıma karşı korur ve değişebilir."
+          ]
+        },
+        {
+          "h": "Dosyalarınız",
+          "p": [
+            "Yalnızca kullanma hakkınız olan dosyaları yükleyin. İçeriklerinden ve sonuçları nasıl kullandığınızdan siz sorumlusunuz.",
+            "Şifreli bir dosya yalnızca kendi şifresiyle açılır; şifre yalnızca o dosya için kullanılır ve hiçbir zaman saklanmaz."
+          ]
+        },
+        {
+          "h": "İzin verilmeyenler",
+          "p": [
+            "Zararlı yazılım yüklemek, sınırları aşmaya çalışmak, otomatik toplu kullanım, hizmete saldırmak ya da onu aksatmak veya yasa dışı içerik yaymak. Böyle bir durumda dosyalar silinir ve hesap engellenebilir."
+          ]
+        },
+        {
+          "h": "Sonuçlar ve sorumluluk",
+          "p": [
+            "Hizmet “olduğu gibi” sunulur. Her dosyanın kusursuz dönüşeceğini garanti edemeyiz, bu yüzden orijinal dosyanızı saklayın. Sonuçları süreleri dolmadan indirin: dosyaların yedeği yoktur."
+          ]
+        },
+        {
+          "h": "Hesabınız",
+          "p": [
+            "Şifrenizi gizli tutun. Bu koşulları ihlal eden hesaplar kaldırılabilir ya da engellenebilir. Hesabınızı istediğiniz zaman silebilirsiniz."
+          ]
+        },
+        {
+          "h": "Hukuk ve değişiklikler",
+          "p": [
+            "Bu koşullar Özbekistan Cumhuriyeti yasalarına tabidir. Değiştiğinde yeni sürüm tarihiyle birlikte bu sayfada yayımlanır."
+          ]
+        }
+      ]
+    }
+  },
+  "catalog": {
+    "conversionName": "{{from}} → {{to}}",
+    "conversionDescription": "{{from}} dosyasını ücretsiz olarak {{to}} biçimine dönüştürün.",
+    "jump": "Bölümler"
+  },
+  "edit": {
+    "title": "Düzenleme",
+    "crop": "Kırp",
+    "aspects": {
+      "free": "Serbest",
+      "square": "1:1 kare",
+      "portrait": "4:5",
+      "wide": "16:9",
+      "id": "3×4 vesikalık"
+    },
+    "cropArea": "Kırpma alanı",
+    "cropValue": "Soldan %{{x}}, üstten %{{y}}, genişlik %{{w}}, yükseklik %{{h}}",
+    "cropHint": "Alanı fare ya da parmakla sürükleyin; boyutunu değiştirmek için köşedeki noktayı sürükleyin. Klavye: oklar taşır, Shift + oklar boyutlandırır.",
+    "batchCrop": "Birden fazla fotoğraf: her biri seçilen şekilde ortadan kırpılır.",
+    "noPreview": "Tarayıcınız bu fotoğrafı gösteremiyor. Bir şekil seçin, ortadan kırpılacak.",
+    "turn": "Döndür ve aynala",
+    "rotateLeft": "Sola döndür",
+    "rotateRight": "Sağa döndür",
+    "flipH": "Yatay aynala",
+    "flipV": "Dikey aynala",
+    "rotation": "Döndürme: {{deg}}°",
+    "preview": "Sonucun önizlemesi",
+    "resize": "Boyut",
+    "resizeModes": {
+      "none": "Aynı kalsın",
+      "percent": "Yüzde olarak",
+      "pixels": "Piksel olarak"
+    },
+    "percent": "Orijinal boyutun yüzdesi",
+    "width": "Genişlik, px",
+    "height": "Yükseklik, px",
+    "pixelsHint": "Birini girin, diğeri orijinal oranlara göre ayarlanır.",
+    "format": "Biçim",
+    "keepFormat": "Orijinaliyle aynı",
+    "needSize": "Genişlik ya da yükseklik girin."
+  },
+  "next": {
+    "title": "Bu dosyayla yapabileceğiniz başka şeyler"
+  },
+  "faq": {
+    "title": "Sık sorulan sorular",
+    "description": "jichcha hakkında yanıtlar: ücret, dosya sınırları, dosyaların ne kadar saklandığı, desteklenen biçimler ve Telegram botu.",
+    "intro": "En çok sorulan sorulara kısa yanıtlar. Sorunuzu bulamadınız mı? Gizlilik politikasının sonundaki iletişim adresinden bize yazın.",
+    "botLink": "Botu Telegram'da aç",
+    "items": [
+      {
+        "q": "jichcha ücretsiz mi?",
+        "a": "Evet. Tüm araçlar ücretsizdir; filigran ya da deneme süresi yoktur. Hesap da ücretsizdir: yalnızca sınırları artırır."
+      },
+      {
+        "q": "Hesap gerekli mi?",
+        "a": "Hayır. Hesapsız {{guestMb}} MB'a kadar dosya yükleyebilir, günde {{guestTasks}} işlem yapabilir ve aynı anda {{guestBatch}} dosyaya kadar işleyebilirsiniz. Ücretsiz hesap bunu {{userMb}} MB'a, günde {{userTasks}} işleme ve {{userBatch}} dosyaya çıkarır ve işlemlerinizin 30 günlük geçmişini saklar."
+      },
+      {
+        "q": "Dosyalarıma ne oluyor?",
+        "a": "Yalnızca istediğiniz dönüştürme için kullanılırlar. Her yükleme virüslere karşı taranır ve dosyalar otomatik silinir: hesapsız {{guestHours}} saat, hesapla {{userHours}} saat sonra. Sonucu hemen kendiniz de silebilirsiniz."
+      },
+      {
+        "q": "Hangi biçimler destekleniyor?",
+        "a": "PDF: birleştirme, bölme, sayfa sırasını değiştirme, sıkıştırma, kilit açma, sayfaları JPG ya da PNG'ye çevirme. Word, Excel, PowerPoint, OpenDocument, RTF ve CSV'den PDF'ye. Fotoğraflar: JPG, PNG, WEBP, AVIF, HEIC, GIF, BMP ve TIFF — dönüştürme, sıkıştırma, kırpma, döndürme, yeniden boyutlandırma ya da tek bir PDF'de birleştirme. Arşivler: ZIP, RAR, 7Z, TAR, GZ, BZ2 ve XZ açma, ZIP ya da 7Z oluşturma veya bir arşiv türünü başka bir türe yeniden paketleme."
+      },
+      {
+        "q": "Word dosyam neden PDF'de biraz farklı görünüyor?",
+        "a": "Belgeler LibreOffice ile dönüştürülür. Belge bizde olmayan bir yazı tipi kullanıyorsa yerine benzeri kullanılır ve satırlar biraz kayabilir. Arial, Times New Roman ya da Calibri gibi yaygın yazı tipleri en doğru şekilde dönüşür; Word'de kaydederken yazı tiplerini dosyaya gömebilirsiniz."
+      },
+      {
+        "q": "Şifreli bir PDF ya da arşivi açabilir miyim?",
+        "a": "Evet, şifreyi biliyorsanız. “PDF kilidini aç” aracı ve arşiv açma işlemi şifreyi sorar. Şifre yalnızca o işlem için kullanılır ve hiçbir zaman saklanmaz."
+      },
+      {
+        "q": "Dosyam neden reddedildi?",
+        "a": "Yalnızca uzantıya değil, dosyanın gerçekte ne olduğuna bakarız; bu yüzden adı değiştirilmiş başka türde bir dosya reddedilir. Diğer nedenler: dosya sınırınızı aşıyor, günlük sınır doldu, dosya bozuk ya da şifreli veya virüs taraması bir şey buldu. Ekrandaki mesaj nedeni tam olarak söyler."
+      },
+      {
+        "q": "Telegram botu var mı?",
+        "a": "Var. Bota bir dosya gönderin ve ne yapılacağını düğmelerden seçin; birden fazla fotoğrafı albüm olarak gönderirseniz tek bir PDF alırsınız. Telegram botların yalnızca 20 MB'a kadar dosya indirmesine izin verir, bu yüzden daha büyük dosyalar için bot size sitenin bağlantısını verir."
+      },
+      {
+        "q": "Hesabımı nasıl güvende tutarım?",
+        "a": "Başka hiçbir yerde kullanmadığınız bir şifre seçin ve hesabınızın Güvenlik bölümünde iki adımlı girişi açın. Bundan sonra her girişte Google Authenticator ya da Authy gibi bir uygulamadan kod da istenir."
+      },
+      {
+        "q": "Hesabımı nasıl silerim?",
+        "a": "Hesap sayfanızı açın ve “Hesabı sil”i seçin. Hesabınız, geçmişiniz ve saklanan tüm dosyalar hemen silinir ve geri getirilemez."
+      }
+    ]
+  },
+  "compare": {
+    "before": "Önce",
+    "after": "Sonra",
+    "label": "Orijinal ve sıkıştırılmış görseli karşılaştır",
+    "value": "%{{percent}} orijinal",
+    "hint": "Kaliteyi karşılaştırmak için çizgiyi sürükleyin ya da ok tuşlarını kullanın."
+  },
+  "drop": {
+    "title": "Dosyayı buraya bırakın",
+    "text": "Dosyanın türünü anlayıp onunla neler yapabileceğinizi gösteririz. Bir araç seçene kadar hiçbir şey yüklenmez.",
+    "choose": "Dosya seç",
+    "detected": "<name>{{name}}</name> bir {{family}} dosyası. Ne yapalım?",
+    "unknown": "“{{name}}” dosyasının ne olduğunu anlayamadık. Aşağıdan bir bölüm seçin.",
+    "another": "Başka dosya"
+  },
+  "sections": {
+    "label": "Bölümler",
+    "pdf": {
+      "lead": "PDF dosyalarını birleştirin, bölün, sıralayın, sıkıştırın ya da kilidini açın."
+    },
+    "word": {
+      "lead": "Word belgesini yazdırmaya ya da göndermeye hazır bir PDF'ye çevirin."
+    },
+    "excel": {
+      "lead": "Excel tablosunu tek tıkla PDF'ye çevirin."
+    },
+    "powerpoint": {
+      "lead": "Sunumu PDF'ye çevirin; her slayt bir sayfa olur."
+    },
+    "image": {
+      "lead": "Fotoğrafları dönüştürün, sıkıştırın, kırpın ya da tek bir PDF'de birleştirin. iPhone'un HEIC dosyaları da olur."
+    },
+    "archive": {
+      "lead": "ZIP, RAR ve 7Z arşivlerini açın, yenilerini oluşturun ya da biçimlerini değiştirin."
+    },
+    "formats": "Biçimler",
+    "home": "Ana sayfa",
+    "breadcrumb": "Buradasınız"
+  },
+  "menu": {
+    "work": "Düzenle ve yönet",
+    "from": "Başka biçime dönüştür",
+    "into": "Bu biçime dönüştür"
+  }
+}

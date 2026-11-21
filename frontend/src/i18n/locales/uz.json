@@ -367,7 +367,9 @@
     "privacyLink": "Maxfiylik siyosati",
     "termsLink": "Foydalanish shartlari",
     "legalNav": "Huquqiy maʼlumotlar",
-    "faqLink": "Savollar"
+    "faqLink": "Savollar",
+    "help": "Yordam",
+    "rights": "© {{year}} jichcha. Fayllar bilan oddiy ishlar uchun bepul vositalar."
   },
   "fields": {
     "email": "Email",
@@ -823,5 +825,10 @@
     "formats": "Formatlar",
     "home": "Bosh sahifa",
     "breadcrumb": "Siz turgan joy"
+  },
+  "menu": {
+    "work": "Ishlov berish",
+    "from": "Boshqa formatga",
+    "into": "Shu formatga"
   }
 }

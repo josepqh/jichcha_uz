@@ -74,3 +74,33 @@ export function formatOf(name: string): string {
   const ext = name.toLowerCase().split(".").pop() ?? "";
   return ALIASES[ext] ?? ext;
 }
+
+/** Tools that turn a file into another format (the rest edit or manage files of their own kind). */
+const CONVERTERS = new Set(["image-convert", "archive-convert", "pdf-to-images", "images-to-pdf"]);
+/** Family a converting tool produces when it leaves its own family. */
+const TOOL_OUTPUT: Partial<Record<string, Family>> = { "images-to-pdf": "pdf", "pdf-to-images": "image" };
+
+export interface MenuGroups {
+  /** Editing and managing files of this kind: merge, compress, extract… */
+  work: CatalogEntry[];
+  /** From this kind to another format. */
+  from: CatalogEntry[];
+  /** From other sections into this kind ("Word → PDF" under PDF). Links to the other section's entry. */
+  into: { family: Family; entry: CatalogEntry }[];
+}
+
+/** What a section's dropdown shows, worked out from the catalog like the sections themselves. */
+export function menuGroups(family: Family, hidden: ReadonlySet<string> = new Set()): MenuGroups {
+  const own = sectionEntries(family).filter((e) => !hidden.has(e.tool.slug));
+  const isConversion = (e: CatalogEntry) => e.kind === "conversion" || CONVERTERS.has(e.tool.slug);
+  const outputOf = (e: CatalogEntry) => (e.kind === "conversion" ? familyOf(e.to) : TOOL_OUTPUT[e.tool.slug]);
+  return {
+    work: own.filter((e) => !isConversion(e)),
+    from: own.filter(isConversion),
+    into: SECTIONS.filter((other) => other !== family).flatMap((other) =>
+      sectionEntries(other)
+        .filter((e) => !hidden.has(e.tool.slug) && outputOf(e) === family)
+        .map((entry) => ({ family: other, entry })),
+    ),
+  };
+}

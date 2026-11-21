@@ -6,6 +6,7 @@ import { Link, Outlet, useLocation } from "react-router";
 import { useLang } from "@/hooks/useLang";
 import { directionOf, setLanguage } from "@/i18n";
 import { btn } from "@/lib/ui";
+import { Footer } from "@/components/Footer";
 import { LanguageMenu } from "@/components/LanguageMenu";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { SectionBar } from "@/components/SectionBar";
@@ -109,28 +110,7 @@ export function Layout() {
       <main id="main" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 outline-none sm:py-12">
         <Outlet />
       </main>
-      <footer className="mt-12 border-t border-border">
-        <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 text-sm text-muted sm:grid-cols-[1fr_auto] sm:items-end">
-          <div className="space-y-3">
-            <Link to={`/${lang}`} className="inline-flex min-h-11 items-center gap-2.5 text-fg" aria-label={`${t("meta.siteName")}, ${t("nav.home")}`}>
-              <LogoMark className="size-7" />
-              <Wordmark />
-            </Link>
-            <p className="max-w-sm text-pretty">{t("footer.privacy")}</p>
-          </div>
-          <nav aria-label={t("footer.legalNav")} className="flex flex-wrap gap-x-5">
-            <Link to={`/${lang}/faq`} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-fg hover:underline">
-              {t("footer.faqLink")}
-            </Link>
-            <Link to={`/${lang}/privacy`} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-fg hover:underline">
-              {t("footer.privacyLink")}
-            </Link>
-            <Link to={`/${lang}/terms`} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-fg hover:underline">
-              {t("footer.termsLink")}
-            </Link>
-          </nav>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

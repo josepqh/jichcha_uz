@@ -1,1 +1,729 @@
-{"meta":{"siteName":"jichcha","homeTitle":"무료 Word·PDF·사진·압축 파일 변환기 | jichcha","homeDescription":"Word와 Excel을 PDF로 바꾸고, PDF를 합치고 줄이고, HEIC·PNG·RAR 파일을 변환하세요. 무료, 가입 필요 없음."},"nav":{"skip":"본문으로 건너뛰기","home":"홈","language":"언어","theme":"테마: {{mode}}","themeModes":{"system":"시스템","light":"라이트","dark":"다크"},"login":"로그인","account":"계정"},"home":{"title":"Word·PDF·사진·압축 파일을 위한 <hl>무료</hl> 도구","subtitle":"파일을 끌어 놓거나 분류를 고르세요. 가입할 필요가 없고, 파일은 저절로 삭제됩니다.","searchLabel":"도구 검색","searchPlaceholder":"예: heic jpg…","toolsHeading":"도구","popularHeading":"자주 쓰는 변환","noResults":"“{{query}}”와 일치하는 도구가 없습니다. “png pdf”처럼 검색해 보세요.","benefitsHeading":"jichcha를 쓰는 이유","benefits":{"free":{"title":"계정 필요 없음","text":"파일을 끌어 놓고 결과를 내려받으세요. 모든 도구가 무료입니다."},"deleted":{"title":"파일은 1시간 안에 삭제","text":"올린 파일은 처리가 끝나는 즉시, 결과는 1시간 뒤에 삭제됩니다. 그 전에 직접 지울 수도 있습니다."},"gps":{"title":"위치 정보 제거","text":"휴대폰 사진의 GPS와 카메라 정보는 결과 파일에 남지 않습니다."}},"groups":{"pdf":"PDF","word":"Word","excel":"Excel","powerpoint":"PowerPoint","image":"사진","archive":"압축 파일"},"sectionsHeading":"분류","toolCount_other":"도구 {{count}}개","openSection":"{{name}} 분류 열기"},"tools":{"image-convert":{"name":"형식 바꾸기","title":"이미지 형식 변환","description":"PNG, JPG, WEBP, HEIC, AVIF, GIF, BMP, TIFF 사이에서 변환합니다. 여러 장을 한 번에."},"image-compress":{"name":"용량 줄이기","title":"이미지 압축","description":"강·중·약 세 단계. 사진마다 얼마나 줄었는지 확인할 수 있습니다."},"images-to-pdf":{"name":"사진을 PDF로","title":"사진으로 PDF 만들기","description":"사진 순서를 정하고 A4 또는 Letter 크기의 PDF 한 개로 묶습니다."},"office-to-pdf":{"name":"Word·Excel·PowerPoint → PDF","title":"문서를 PDF로 변환","description":"Word, Excel, PowerPoint, OpenDocument 파일을 글꼴과 레이아웃을 유지한 채 PDF로 바꿉니다."},"pdf-merge":{"name":"PDF 합치기","title":"PDF 파일 합치기","description":"여러 PDF를 원하는 순서대로 한 파일로 합칩니다."},"pdf-split":{"name":"PDF 나누기","title":"PDF 나누기","description":"페이지마다 따로 PDF로 저장하거나 필요한 페이지만 꺼냅니다."},"pdf-organize":{"name":"페이지 정리","title":"PDF 페이지 정리","description":"페이지 순서를 바꾸거나, 돌리거나, 지웁니다."},"pdf-compress":{"name":"PDF 압축","title":"PDF 용량 줄이기","description":"스캔본과 이미지가 많은 PDF를 줄여 메일이나 업로드 용량 제한에 맞춥니다."},"pdf-to-images":{"name":"PDF → JPG·PNG","title":"PDF 페이지를 이미지로 변환","description":"페이지마다 JPG 또는 PNG 이미지로 따로 저장합니다."},"archive-extract":{"name":"압축 풀기","title":"ZIP·RAR·7Z 압축 파일을 온라인으로 열기","description":"압축 파일 안을 보고 필요한 파일만 하나씩 내려받으세요. ZIP, RAR, 7Z, TAR, GZ."},"archive-create":{"name":"ZIP 만들기","title":"파일을 ZIP 또는 7Z로 묶기","description":"여러 파일을 ZIP 또는 7Z 압축 파일 하나로 묶습니다. 어떤 파일이든 가능합니다."},"archive-convert":{"name":"압축 형식 바꾸기","title":"RAR·7Z·TAR를 ZIP으로 변환","description":"RAR, 7Z, TAR를 폴더 구조를 유지한 채 ZIP 또는 7Z로 다시 묶습니다."},"image-edit":{"name":"사진 편집","title":"사진 자르기·회전·크기 조절","description":"사진을 자르고(1:1, 4:5, 16:9, 3×4 증명사진), 돌리거나 뒤집고, 크기를 바꿉니다."},"pdf-unlock":{"name":"PDF 잠금 해제","title":"PDF 비밀번호 없애기","description":"비밀번호 없는 PDF 사본을 받으세요(비밀번호를 알아야 합니다). 그다음 합치거나 압축하거나 나눌 수 있습니다."}},"conversion":{"short":"{{from}} → {{to}}","title":"{{from}}을(를) {{to}}(으)로 변환","description":"{{from}} 파일을 무료로 {{to}}(으)로 변환하세요. 가입 필요 없음, 파일은 1시간 안에 삭제됩니다."},"options":{"target":{"label":"변환할 형식","choices":{"jpg":"JPG","png":"PNG","webp":"WEBP","avif":"AVIF","gif":"GIF","bmp":"BMP","tiff":"TIFF","zip":"ZIP","7z":"7Z","pdf":"PDF"}},"level":{"label":"압축 수준","choices":{"strong":"강","medium":"중","light":"약"},"hints":{"strong":"가장 작은 파일","medium":"용량과 화질의 균형","light":"화질이 거의 그대로"}},"page_size":{"label":"페이지 크기","choices":{"a4":"A4","letter":"Letter","fit":"사진과 같게"}},"orientation":{"label":"방향","choices":{"auto":"자동","portrait":"세로","landscape":"가로"}},"margin":{"label":"여백","choices":{"none":"없음","small":"좁게","large":"넓게"}},"mode":{"label":"나누는 방법","choices":{"each":"페이지마다 따로","ranges":"고른 페이지"}},"ranges":{"label":"페이지","placeholder":"예: 1-3, 5, 8-…","hint":"범위마다 별도의 PDF가 됩니다. “8-”은 8쪽부터 끝까지라는 뜻입니다."},"pdfLevel":{"label":"압축 수준","choices":{"strong":"강","medium":"중","light":"약"},"hints":{"strong":"가장 작은 파일, 이미지가 조금 흐려짐","medium":"화면으로 읽기용","light":"인쇄용"}},"format":{"label":"이미지 형식","choices":{"jpg":"JPG","png":"PNG"}},"quality":{"label":"화질","choices":{"low":"낮음","medium":"보통","high":"높음"},"hints":{"low":"72 DPI, 화면용","medium":"150 DPI","high":"300 DPI, 인쇄용"}},"archiveFormat":{"label":"압축 형식","choices":{"zip":"ZIP","7z":"7Z"},"hints":{"zip":"어디서나 열림","7z":"더 작은 용량"}},"password":{"label":"비밀번호","hint":"이 파일에만 쓰이고 절대 저장되지 않습니다."}},"upload":{"drop":"여기에 파일을 끌어 놓으세요","or":"또는","choose":"파일 선택","addMore":"더 추가","limits":"파일당 최대 {{maxFile}}MB, 한 번에 {{maxBatch}}개까지.","selected_other":"파일 {{count}}개 선택됨","remove":"{{name}} 빼기","moveUp":"{{name}} 위로","moveDown":"{{name}} 아래로","orderHint":{"images-to-pdf":"PDF 페이지는 이 순서를 따릅니다.","pdf-merge":"파일은 이 순서대로 합쳐집니다."},"formats":"형식: {{formats}}.","anyFormat":"모든 파일 형식."},"actions":{"image-convert":"{{target}}(으)로 변환","image-compress":"압축","images-to-pdf":"PDF 만들기","download":"내려받기","downloadFile":"{{name}} 내려받기","downloadAll":"모두 ZIP으로 내려받기","deleteNow":"지금 서버에서 삭제","deleteConfirm":"파일이 서버에서 영구 삭제됩니다. 계속할까요?","again":"새 파일로 다시 시작","retry":"다시 시도","office-to-pdf":"PDF로 변환","pdf-merge":"합치기","pdf-split":"나누기","pdf-organize":"저장","pdf-compress":"압축","pdf-to-images":"{{target}}(으)로 변환","archive-extract":"압축 풀기","archive-create":"{{target}} 만들기","archive-convert":"{{target}}(으)로 변환","image-edit":"적용","pdf-unlock":"비밀번호 없애기"},"status":{"uploading":"올리는 중… {{percent}}%","queued":"대기 중…","processing":"처리 중…","done":"완료","failed":"실패","expires":"파일은 {{time}}에 자동으로 삭제됩니다.","deleted":"파일이 서버에서 삭제되었습니다.","saved":"{{percent}}% 줄었습니다: {{before}} → {{after}}","notSaved":"이 사진들은 더 줄일 수 없습니다: {{before}} → {{after}}","showAll":"모두 보기({{count}})"},"errors":{"no_files":"먼저 파일을 한 개 이상 고르세요.","too_many_files":"한 번에 {{max_files}}개까지 올릴 수 있습니다. 나머지는 빼 주세요.","file_too_large":"“{{name}}”이(가) {{max_file_mb}}MB보다 큽니다. 더 작은 파일을 고르세요.","request_too_large":"파일 합계가 {{max_total_mb}}MB 이하여야 합니다. 몇 개를 빼 주세요.","unsupported_format":"“{{name}}”은(는) 이 도구에서 받지 않는 파일입니다. 지원 형식은 업로드 영역에 적혀 있습니다.","image_too_large":"이미지 해상도가 너무 높습니다(1억 화소 초과). 더 작은 이미지를 고르세요.","daily_limit_reached":"하루 한도에 도달했습니다. 하루 {{daily_tasks}}건입니다. 내일 다시 시도하세요.","throttled":"요청이 너무 많습니다. 1분 뒤에 다시 시도하세요.","corrupt_file":"파일을 열 수 없습니다. 손상되었을 수 있습니다. 다른 사본으로 시도하세요.","timeout":"처리 시간이 너무 오래 걸렸습니다. 파일 수를 줄이거나 더 작은 파일로 시도하세요.","files_deleted":"처리가 끝나기 전에 파일이 삭제되었습니다. 다시 올려 주세요.","file_expired":"이 파일은 서버에서 삭제되었습니다. 다시 올려 주세요.","unknown_tool":"없는 도구입니다.","validation_error":"설정에 문제가 있습니다. 페이지를 새로 고친 뒤 다시 시도하세요.","network_error":"서버에 연결할 수 없습니다. 인터넷 연결을 확인하고 다시 시도하세요.","internal_error":"저희 쪽에서 문제가 생겼습니다. 잠시 뒤 다시 시도하세요.","tool_unavailable":"이 도구는 잠시 사용할 수 없습니다.","not_found":"작업을 찾을 수 없거나 기한이 지났습니다.","invalid_credentials":"이메일 또는 비밀번호가 틀렸습니다.","email_taken":"이 이메일로 된 계정이 이미 있습니다. 로그인하거나 비밀번호를 재설정하세요.","weak_password":"비밀번호가 충분히 안전하지 않습니다: {{reasons}}.","session_expired":"세션이 끝났습니다. 다시 로그인하세요.","invalid_reset_link":"이 링크는 만료되었거나 이미 사용되었습니다. 새 링크를 요청하세요.","google_failed":"Google 로그인에 실패했습니다. 다시 시도하거나 이메일로 로그인하세요.","google_disabled":"Google 로그인은 아직 켜져 있지 않습니다.","account_disabled":"이 계정은 비활성화되었습니다.","auth_required":"로그인해야 할 수 있습니다.","required":"이 칸을 채워 주세요.","invalid_email":"올바른 이메일을 입력하세요. 예: ali@example.com","too_few_files":"파일을 {{min_files}}개 이상 고르세요.","pdf_encrypted":"이 PDF는 비밀번호로 보호되어 있습니다. 먼저 “PDF 잠금 해제”를 사용하세요.","too_many_pages":"문서의 페이지가 너무 많습니다. 먼저 여러 부분으로 나누세요.","invalid_page_range":"페이지를 “1-3, 5, 8-10”처럼, 문서의 페이지 수 안에서 적어 주세요.","reauth_required":"계정을 삭제하기 전에 Google로 확인하세요.","google_account_mismatch":"다른 Google 계정입니다. 이 계정의 주소로 확인하세요.","archive_encrypted":"이 압축 파일은 비밀번호로 보호되어 있습니다. 비밀번호를 입력하고 다시 시도하세요.","archive_too_large":"이 압축 파일은 풀면 데이터가 너무 많습니다. 더 작은 압축 파일로 시도하세요.","archive_too_many_files":"이 압축 파일에는 파일이 너무 많습니다. 1000개 이하인 압축 파일을 올려 주세요.","archive_empty":"이 압축 파일에는 파일이 없습니다.","malware_detected":"이 파일에서 악성 코드가 발견되어 처리하지 않고 삭제했습니다.","scan_unavailable":"이 파일의 바이러스 검사를 하지 못했습니다. 잠시 뒤 다시 시도하세요.","tool_disabled":"이 도구는 지금 꺼져 있습니다. 나중에 다시 시도하세요.","cannot_block_self":"자기 자신은 차단할 수 없습니다.","cannot_block_staff":"직원 계정은 여기서 차단할 수 없습니다.","permission_denied":"이 페이지에 접근할 권한이 없습니다.","invalid_crop":"자르기 영역이 사진 밖으로 나갔습니다. 다시 고르세요.","wrong_password":"비밀번호가 틀렸습니다. 확인하고 다시 시도하세요.","captcha_required":"로봇이 아님을 확인해 주세요.","captcha_failed":"로봇 확인을 통과하지 못했습니다. 다시 시도하세요.","otp_required":"인증 앱의 6자리 코드를 입력하세요.","otp_invalid":"코드가 틀렸거나 이미 사용되었습니다. 다음 코드를 기다렸다가 다시 시도하세요.","otp_locked":"틀린 코드가 너무 많습니다. 15분 뒤에 다시 시도하세요.","otp_already_enabled":"2단계 로그인이 이미 켜져 있습니다.","otp_not_started":"설정을 처음부터 다시 시작하세요.","otp_not_enabled":"2단계 로그인이 이미 꺼져 있습니다.","email_unverified":"먼저 이메일을 인증하세요.","invalid_verify_link":"이 인증 링크는 유효하지 않거나 만료되었습니다. 계정 페이지에서 새 링크를 보내세요.","already_verified":"이메일이 이미 인증되었습니다.","staff_2fa_required":"관리자 패널은 2단계 로그인이 필요합니다. 먼저 계정에서 켜 주세요."},"notFound":{"title":"페이지를 찾을 수 없습니다","text":"링크가 오래되었거나 잘못 입력되었을 수 있습니다.","back":"홈으로 돌아가기"},"footer":{"privacy":"파일은 변환에만 쓰이고 자동으로 삭제됩니다.","privacyLink":"개인정보 처리방침","termsLink":"이용약관","legalNav":"법적 고지","faqLink":"자주 묻는 질문"},"fields":{"email":"이메일","password":"비밀번호","newPassword":"새 비밀번호","show":"비밀번호 보기","hide":"비밀번호 숨기기","passwordHint":"8자 이상. 너무 흔하거나 숫자로만 된 비밀번호는 쓸 수 없습니다.","otp":"앱의 코드","otpHint":"Google Authenticator, Authy 같은 앱에 나오는 6자리 숫자.","currentPassword":"현재 비밀번호"},"auth":{"benefits":"계정이 있으면 최대 200MB 파일을 올리고, 하루 100건을 처리하고, 30일간 기록을 볼 수 있습니다.","or":"또는","login":{"title":"로그인","submit":"로그인","submitting":"로그인 중…","forgot":"비밀번호를 잊으셨나요?","noAccount":"아직 계정이 없나요?","toRegister":"계정 만들기"},"register":{"title":"계정 만들기","submit":"계정 만들기","submitting":"만드는 중…","hasAccount":"이미 계정이 있나요?","toLogin":"로그인"},"forgot":{"title":"비밀번호 재설정","text":"이메일을 입력하면 비밀번호 재설정 링크를 보내 드립니다.","submit":"재설정 링크 보내기","submitting":"보내는 중…","sent":"{{email}}로 된 계정이 있다면 링크를 보냈습니다. 스팸함도 확인해 주세요.","back":"로그인으로 돌아가기"},"reset":{"title":"새 비밀번호 설정","submit":"비밀번호 저장","submitting":"저장 중…","requestNew":"새 링크 요청"},"google":"Google로 로그인","otp":{"text":"이 계정은 2단계 로그인이 켜져 있습니다. 인증 앱의 코드를 입력하세요.","submit":"확인","back":"처음부터 다시"},"verify":{"title":"이메일 인증","checking":"이메일을 인증하는 중…","done":"이메일이 인증되었습니다. 고맙습니다!","toAccount":"내 계정으로","toHome":"홈으로"}},"account":{"title":"계정","profile":"프로필","verified":"이메일 인증됨","unverified":"이메일 미인증","language":"화면 언어","saved":"저장됨","usage":"오늘 한도","usageText":"{{total}}건 중 {{used}}건 사용. 파일당 최대 {{maxFile}}MB.","history":"최근 30일","empty":"아직 작업이 없습니다. 첫 파일을 변환하면 여기에 나타납니다.","toTools":"도구로 가기","filesDeleted":"파일 삭제됨","more":"더 보기","logout":"로그아웃","deleteTitle":"계정 삭제","deleteText":"계정, 기록, 모든 파일이 영구 삭제됩니다. 되돌릴 수 없습니다.","deletePassword":"확인용 비밀번호","deleteSubmit":"계정 영구 삭제","deleteConfirm":"계정과 모든 파일이 영구 삭제됩니다. 계속할까요?","deleteGoogle":"확인을 위해 이 계정으로 Google에 다시 로그인하세요. 그 직후 계정이 삭제됩니다.","deleteNoGoogle":"이 계정에는 비밀번호가 없습니다. 삭제하려면 먼저 비밀번호를 설정하세요.","adminLink":"관리자 패널","verifyText":"이메일로 인증 링크를 보냈습니다. 받지 못하셨나요?","resend":"다시 보내기","resent":"보냈습니다. 받은편지함과 스팸함을 확인하세요.","security":"보안","passwordTitle":"비밀번호 변경","passwordSubmit":"비밀번호 변경","passwordSaved":"비밀번호를 바꿨습니다. 다른 기기에서는 로그아웃되었습니다.","passwordNone":"Google로 로그인하므로 이 계정에는 비밀번호가 없습니다. 추가하려면 로그인 페이지의 “비밀번호를 잊으셨나요?”를 이용하세요.","twoFactor":"2단계 로그인","twoFactorOff":"꺼짐. 켜면 로그인할 때마다 휴대폰 앱의 코드도 입력해야 합니다.","twoFactorOn":"켜짐. 로그인할 때마다 인증 앱의 코드를 입력합니다.","twoFactorStart":"켜기","twoFactorScan":"이 QR 코드를 Google Authenticator, Authy 같은 인증 앱으로 스캔한 뒤, 앱에 나오는 6자리 코드를 입력하세요.","twoFactorQr":"인증 앱용 QR 코드","twoFactorManual":"스캔이 안 되나요? 이 키를 직접 입력하세요:","twoFactorConfirm":"확인하고 켜기","twoFactorCancel":"취소","twoFactorDisable":"끄기","twoFactorDisableText":"끄려면 비밀번호와 현재 코드를 입력하세요.","twoFactorNeedsEmail":"먼저 이메일을 인증해야 2단계 로그인을 켤 수 있습니다.","twoFactorNoPassword":"끄려면 먼저 “비밀번호를 잊으셨나요?”로 비밀번호를 추가하세요."},"weak":{"password_too_short":"8자 이상으로 하세요","password_too_common":"너무 흔한 비밀번호입니다","password_entirely_numeric":"숫자만 쓰지 마세요","password_too_similar":"이메일과 너무 비슷합니다","invalid":"조건을 충족하지 않습니다"},"organize":{"loading":"페이지를 불러오는 중…","count":"{{total}}쪽 중 {{count}}쪽","reset":"모든 변경 취소","listLabel":"PDF 페이지","page":"{{n}}쪽","moveBack":"{{page}} 앞으로","moveForward":"{{page}} 뒤로","rotate":"{{page}} 90° 회전","remove":"{{page}} 삭제","empty":"최소 한 페이지는 남겨 두세요."},"legal":{"updated":"마지막 업데이트: {{date}}","operator":"운영: {{name}}.","contact":"문의 및 요청: ","noContact":"아직 연락처가 정해지지 않았습니다.","privacy":{"title":"개인정보 처리방침","intro":"이 페이지는 jichcha가 어떤 데이터를 받는지, 왜 받는지, 언제 삭제하는지 설명합니다. 데이터는 우즈베키스탄 공화국 「개인 데이터에 관한 법률」에 따라 처리됩니다.","sections":[{"h":"올린 파일","p":["파일은 선택한 작업에만 쓰입니다. 파일 내용을 읽거나 팔거나 공유하지 않습니다.","원본은 처리가 끝나는 즉시 삭제됩니다. 결과는 비회원은 1시간, 회원은 6시간 뒤에 자동으로 삭제되며, “지금 서버에서 삭제”로 바로 지울 수도 있습니다. 파일은 절대 백업하지 않습니다.","모든 파일은 처리 전에 바이러스 검사를 합니다. 휴대폰 사진의 GPS와 카메라 정보는 결과에 남지 않습니다."]},{"h":"계정","p":["계정에 대해서는 이메일, 비밀번호의 단방향 해시(Argon2), 화면 언어를 저장합니다. Google로 로그인하면 Google은 인증된 이메일만 알려 줍니다.","기록에는 도구 이름, 파일 이름, 크기, 시간이 30일 동안 남습니다. 파일 자체는 위의 기한에 따라 삭제됩니다.","계정 페이지의 “계정 영구 삭제”를 누르면 계정, 기록, 파일이 즉시 삭제됩니다."]},{"h":"쿠키와 브라우저 저장소","p":["uv_guest: 로그인하지 않았을 때 이 브라우저에서 결과를 보여 줍니다. 무작위 토큰이 들어 있으며, 서버는 그 해시만 저장합니다.","uv_refresh: 7일 동안 로그인 상태를 유지합니다.","브라우저 저장소(localStorage)에는 테마 선택(라이트 또는 다크)만 저장됩니다.","광고, 추적, 분석용 쿠키는 쓰지 않습니다."]},{"h":"기술 데이터","p":["IP 주소는 남용 방지 한도에 쓰이며 몇 분 동안만 메모리에 보관됩니다. 서버 로그는 보안과 문제 해결을 위해 제한된 기간 동안 보관됩니다."]},{"h":"외부 서비스","p":["Google: “Google로 계속하기”를 눌렀을 때만.","오류 보고: 앱 오류는 개인 데이터 없이 전송됩니다(쿠키, IP 주소, 파일 내용 없음)."]},{"h":"이용자의 권리","p":["본인에 관한 데이터의 열람, 정정, 삭제를 요청할 수 있습니다. 계정과 파일은 사이트에서 직접 삭제할 수 있습니다. 그 밖의 요청은 아래 주소로 보내 주세요."]}]},"terms":{"title":"이용약관","intro":"jichcha를 이용하면 이 약관에 동의하는 것으로 봅니다.","sections":[{"h":"서비스","p":["jichcha는 파일 변환, 압축, 편집을 위한 무료 서비스입니다. 하루 한도와 용량 한도는 남용을 막기 위한 것이며 바뀔 수 있습니다."]},{"h":"이용자의 파일","p":["사용할 권리가 있는 파일만 올려 주세요. 파일 내용과 결과의 사용에 대한 책임은 이용자에게 있습니다.","비밀번호로 보호된 파일은 그 비밀번호로만 열리며, 비밀번호는 그 파일에만 쓰이고 저장되지 않습니다."]},{"h":"금지 사항","p":["악성 코드 업로드, 한도 우회, 자동화된 대량 이용, 서비스 공격이나 방해, 불법 콘텐츠 유포. 이런 일이 생기면 파일은 삭제되고 계정이 차단될 수 있습니다."]},{"h":"결과와 책임","p":["서비스는 “있는 그대로” 제공됩니다. 모든 파일이 완벽하게 변환된다고 보장할 수 없으니 원본은 보관해 두세요. 결과는 만료되기 전에 내려받으세요. 파일 백업은 없습니다."]},{"h":"계정","p":["비밀번호를 비밀로 지켜 주세요. 이 약관을 어긴 계정은 삭제되거나 차단될 수 있습니다. 계정은 언제든지 삭제할 수 있습니다."]},{"h":"준거법과 변경","p":["이 약관은 우즈베키스탄 공화국 법률을 따릅니다. 약관이 바뀌면 새 버전을 날짜와 함께 이 페이지에 게시합니다."]}]}},"catalog":{"conversionName":"{{from}} → {{to}}","conversionDescription":"{{from}} 파일을 무료로 {{to}}(으)로 변환하세요.","jump":"분류"},"edit":{"title":"편집","crop":"자르기","aspects":{"free":"자유","square":"1:1 정사각형","portrait":"4:5","wide":"16:9","id":"3×4 증명사진"},"cropArea":"자르기 영역","cropValue":"왼쪽에서 {{x}}%, 위에서 {{y}}%, 너비 {{w}}%, 높이 {{h}}%","cropHint":"마우스나 손가락으로 영역을 끌고, 모서리 점을 끌어 크기를 바꾸세요. 키보드: 화살표로 이동, Shift + 화살표로 크기 조절.","batchCrop":"사진이 여러 장이면 각 사진을 가운데부터 고른 모양으로 자릅니다.","noPreview":"브라우저에서 이 사진을 표시할 수 없습니다. 모양을 고르면 가운데부터 잘립니다.","turn":"회전과 뒤집기","rotateLeft":"왼쪽으로 회전","rotateRight":"오른쪽으로 회전","flipH":"좌우 뒤집기","flipV":"상하 뒤집기","rotation":"회전: {{deg}}°","preview":"결과 미리보기","resize":"크기","resizeModes":{"none":"그대로","percent":"퍼센트로","pixels":"픽셀로"},"percent":"원본 크기 대비 퍼센트","width":"너비, px","height":"높이, px","pixelsHint":"하나만 입력하면 나머지는 원래 비율에 맞춰집니다.","format":"형식","keepFormat":"원본과 같게","needSize":"너비나 높이를 입력하세요."},"next":{"title":"이 파일로 할 수 있는 다른 작업"},"faq":{"title":"자주 묻는 질문","description":"jichcha에 대한 답변: 비용, 파일 한도, 보관 기간, 지원 형식, Telegram 봇.","intro":"가장 많이 묻는 질문에 대한 짧은 답변입니다. 찾는 질문이 없나요? 개인정보 처리방침 맨 아래의 연락처로 문의해 주세요.","botLink":"Telegram에서 봇 열기","items":[{"q":"jichcha는 무료인가요?","a":"네. 모든 도구가 무료이며 워터마크도 체험 기간도 없습니다. 계정도 무료이며, 한도만 늘어납니다."},{"q":"계정이 필요한가요?","a":"아니요. 계정 없이도 최대 {{guestMb}}MB 파일을 올리고, 하루 {{guestTasks}}건, 한 번에 {{guestBatch}}개 파일까지 처리할 수 있습니다. 무료 계정은 이를 {{userMb}}MB, 하루 {{userTasks}}건, {{userBatch}}개 파일로 늘리고 30일 동안 작업 기록을 남깁니다."},{"q":"제 파일은 어떻게 되나요?","a":"요청한 변환에만 쓰입니다. 올린 파일은 모두 바이러스 검사를 거치고 자동으로 삭제됩니다. 계정이 없으면 {{guestHours}}시간 뒤, 계정이 있으면 {{userHours}}시간 뒤입니다. 결과를 바로 직접 지울 수도 있습니다."},{"q":"어떤 형식을 지원하나요?","a":"PDF: 합치기, 나누기, 페이지 순서 바꾸기, 압축, 잠금 해제, 페이지를 JPG나 PNG로 변환. Word, Excel, PowerPoint, OpenDocument, RTF, CSV를 PDF로 변환. 사진: JPG, PNG, WEBP, AVIF, HEIC, GIF, BMP, TIFF의 변환, 압축, 자르기, 회전, 크기 조절, PDF 한 개로 묶기. 압축 파일: ZIP, RAR, 7Z, TAR, GZ, BZ2, XZ 열기, ZIP이나 7Z 만들기, 다른 형식으로 다시 묶기."},{"q":"Word 파일을 PDF로 바꾸면 왜 조금 달라 보이나요?","a":"문서는 LibreOffice로 변환합니다. 문서에 저희에게 없는 글꼴이 쓰였다면 비슷한 글꼴로 바뀌어 줄이 조금 밀릴 수 있습니다. Arial, Times New Roman, Calibri 같은 흔한 글꼴이 가장 정확하게 변환되며, Word에서 저장할 때 글꼴을 포함할 수도 있습니다."},{"q":"비밀번호가 걸린 PDF나 압축 파일도 열 수 있나요?","a":"비밀번호를 알면 열 수 있습니다. “PDF 잠금 해제” 도구와 압축 풀기에서 비밀번호를 묻습니다. 비밀번호는 그 작업에만 쓰이고 저장되지 않습니다."},{"q":"제 파일이 왜 거부되었나요?","a":"확장자만이 아니라 파일의 실제 내용을 확인하므로, 이름만 바꾼 다른 종류의 파일은 거부됩니다. 그 밖에 파일이 한도를 넘었거나, 하루 한도를 다 썼거나, 파일이 손상되었거나 암호화되었거나, 바이러스 검사에서 문제가 발견된 경우도 있습니다. 화면의 메시지가 정확한 이유를 알려 줍니다."},{"q":"Telegram 봇이 있나요?","a":"있습니다. 봇에게 파일을 보내고 버튼으로 할 일을 고르세요. 사진 여러 장을 앨범으로 보내면 PDF 한 개를 받을 수 있습니다. Telegram은 봇이 20MB까지만 내려받게 하므로, 더 큰 파일은 봇이 사이트 링크를 보내 드립니다."},{"q":"계정을 안전하게 지키려면?","a":"다른 곳에서 쓰지 않는 비밀번호를 쓰고, 계정의 보안 메뉴에서 2단계 로그인을 켜세요. 그러면 로그인할 때마다 Google Authenticator나 Authy 같은 앱의 코드도 입력하게 됩니다."},{"q":"계정은 어떻게 삭제하나요?","a":"계정 페이지를 열고 “계정 삭제”를 고르세요. 계정, 기록, 저장된 모든 파일이 즉시 삭제되며 되돌릴 수 없습니다."}]},"compare":{"before":"전","after":"후","label":"원본과 압축된 이미지 비교","value":"원본 {{percent}}%","hint":"선을 끌거나 화살표 키로 화질을 비교해 보세요."},"drop":{"title":"여기에 파일을 끌어 놓으세요","text":"어떤 종류의 파일인지 알아내고 할 수 있는 일을 보여 드립니다. 도구를 고르기 전까지는 아무것도 올라가지 않습니다.","choose":"파일 선택","detected":"<name>{{name}}</name>은(는) {{family}} 파일입니다. 무엇을 할까요?","unknown":"“{{name}}”이(가) 어떤 파일인지 알 수 없습니다. 아래에서 분류를 고르세요.","another":"다른 파일"},"sections":{"label":"분류","pdf":{"lead":"PDF 파일을 합치고, 나누고, 순서를 바꾸고, 압축하거나 잠금을 풉니다."},"word":{"lead":"Word 문서를 인쇄나 전송에 바로 쓸 PDF로 바꿉니다."},"excel":{"lead":"Excel 시트를 클릭 한 번으로 PDF로 바꿉니다."},"powerpoint":{"lead":"프레젠테이션을 PDF로 바꿉니다. 슬라이드 한 장이 한 페이지가 됩니다."},"image":{"lead":"사진을 변환하고, 압축하고, 자르거나 PDF 한 개로 묶습니다. iPhone의 HEIC 파일도 됩니다."},"archive":{"lead":"ZIP, RAR, 7Z 압축 파일을 열고, 새로 만들거나 형식을 바꿉니다."},"formats":"형식","home":"홈","breadcrumb":"현재 위치"}}
+{
+  "meta": {
+    "siteName": "jichcha",
+    "homeTitle": "무료 Word·PDF·사진·압축 파일 변환기 | jichcha",
+    "homeDescription": "Word와 Excel을 PDF로 바꾸고, PDF를 합치고 줄이고, HEIC·PNG·RAR 파일을 변환하세요. 무료, 가입 필요 없음."
+  },
+  "nav": {
+    "skip": "본문으로 건너뛰기",
+    "home": "홈",
+    "language": "언어",
+    "theme": "테마: {{mode}}",
+    "themeModes": {
+      "system": "시스템",
+      "light": "라이트",
+      "dark": "다크"
+    },
+    "login": "로그인",
+    "account": "계정"
+  },
+  "home": {
+    "title": "Word·PDF·사진·압축 파일을 위한 <hl>무료</hl> 도구",
+    "subtitle": "파일을 끌어 놓거나 분류를 고르세요. 가입할 필요가 없고, 파일은 저절로 삭제됩니다.",
+    "searchLabel": "도구 검색",
+    "searchPlaceholder": "예: heic jpg…",
+    "toolsHeading": "도구",
+    "popularHeading": "자주 쓰는 변환",
+    "noResults": "“{{query}}”와 일치하는 도구가 없습니다. “png pdf”처럼 검색해 보세요.",
+    "benefitsHeading": "jichcha를 쓰는 이유",
+    "benefits": {
+      "free": {
+        "title": "계정 필요 없음",
+        "text": "파일을 끌어 놓고 결과를 내려받으세요. 모든 도구가 무료입니다."
+      },
+      "deleted": {
+        "title": "파일은 1시간 안에 삭제",
+        "text": "올린 파일은 처리가 끝나는 즉시, 결과는 1시간 뒤에 삭제됩니다. 그 전에 직접 지울 수도 있습니다."
+      },
+      "gps": {
+        "title": "위치 정보 제거",
+        "text": "휴대폰 사진의 GPS와 카메라 정보는 결과 파일에 남지 않습니다."
+      }
+    },
+    "groups": {
+      "pdf": "PDF",
+      "word": "Word",
+      "excel": "Excel",
+      "powerpoint": "PowerPoint",
+      "image": "사진",
+      "archive": "압축 파일"
+    },
+    "sectionsHeading": "분류",
+    "toolCount_other": "도구 {{count}}개",
+    "openSection": "{{name}} 분류 열기"
+  },
+  "tools": {
+    "image-convert": {
+      "name": "형식 바꾸기",
+      "title": "이미지 형식 변환",
+      "description": "PNG, JPG, WEBP, HEIC, AVIF, GIF, BMP, TIFF 사이에서 변환합니다. 여러 장을 한 번에."
+    },
+    "image-compress": {
+      "name": "용량 줄이기",
+      "title": "이미지 압축",
+      "description": "강·중·약 세 단계. 사진마다 얼마나 줄었는지 확인할 수 있습니다."
+    },
+    "images-to-pdf": {
+      "name": "사진을 PDF로",
+      "title": "사진으로 PDF 만들기",
+      "description": "사진 순서를 정하고 A4 또는 Letter 크기의 PDF 한 개로 묶습니다."
+    },
+    "office-to-pdf": {
+      "name": "Word·Excel·PowerPoint → PDF",
+      "title": "문서를 PDF로 변환",
+      "description": "Word, Excel, PowerPoint, OpenDocument 파일을 글꼴과 레이아웃을 유지한 채 PDF로 바꿉니다."
+    },
+    "pdf-merge": {
+      "name": "PDF 합치기",
+      "title": "PDF 파일 합치기",
+      "description": "여러 PDF를 원하는 순서대로 한 파일로 합칩니다."
+    },
+    "pdf-split": {
+      "name": "PDF 나누기",
+      "title": "PDF 나누기",
+      "description": "페이지마다 따로 PDF로 저장하거나 필요한 페이지만 꺼냅니다."
+    },
+    "pdf-organize": {
+      "name": "페이지 정리",
+      "title": "PDF 페이지 정리",
+      "description": "페이지 순서를 바꾸거나, 돌리거나, 지웁니다."
+    },
+    "pdf-compress": {
+      "name": "PDF 압축",
+      "title": "PDF 용량 줄이기",
+      "description": "스캔본과 이미지가 많은 PDF를 줄여 메일이나 업로드 용량 제한에 맞춥니다."
+    },
+    "pdf-to-images": {
+      "name": "PDF → JPG·PNG",
+      "title": "PDF 페이지를 이미지로 변환",
+      "description": "페이지마다 JPG 또는 PNG 이미지로 따로 저장합니다."
+    },
+    "archive-extract": {
+      "name": "압축 풀기",
+      "title": "ZIP·RAR·7Z 압축 파일을 온라인으로 열기",
+      "description": "압축 파일 안을 보고 필요한 파일만 하나씩 내려받으세요. ZIP, RAR, 7Z, TAR, GZ."
+    },
+    "archive-create": {
+      "name": "ZIP 만들기",
+      "title": "파일을 ZIP 또는 7Z로 묶기",
+      "description": "여러 파일을 ZIP 또는 7Z 압축 파일 하나로 묶습니다. 어떤 파일이든 가능합니다."
+    },
+    "archive-convert": {
+      "name": "압축 형식 바꾸기",
+      "title": "RAR·7Z·TAR를 ZIP으로 변환",
+      "description": "RAR, 7Z, TAR를 폴더 구조를 유지한 채 ZIP 또는 7Z로 다시 묶습니다."
+    },
+    "image-edit": {
+      "name": "사진 편집",
+      "title": "사진 자르기·회전·크기 조절",
+      "description": "사진을 자르고(1:1, 4:5, 16:9, 3×4 증명사진), 돌리거나 뒤집고, 크기를 바꿉니다."
+    },
+    "pdf-unlock": {
+      "name": "PDF 잠금 해제",
+      "title": "PDF 비밀번호 없애기",
+      "description": "비밀번호 없는 PDF 사본을 받으세요(비밀번호를 알아야 합니다). 그다음 합치거나 압축하거나 나눌 수 있습니다."
+    }
+  },
+  "conversion": {
+    "short": "{{from}} → {{to}}",
+    "title": "{{from}}을(를) {{to}}(으)로 변환",
+    "description": "{{from}} 파일을 무료로 {{to}}(으)로 변환하세요. 가입 필요 없음, 파일은 1시간 안에 삭제됩니다."
+  },
+  "options": {
+    "target": {
+      "label": "변환할 형식",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG",
+        "webp": "WEBP",
+        "avif": "AVIF",
+        "gif": "GIF",
+        "bmp": "BMP",
+        "tiff": "TIFF",
+        "zip": "ZIP",
+        "7z": "7Z",
+        "pdf": "PDF"
+      }
+    },
+    "level": {
+      "label": "압축 수준",
+      "choices": {
+        "strong": "강",
+        "medium": "중",
+        "light": "약"
+      },
+      "hints": {
+        "strong": "가장 작은 파일",
+        "medium": "용량과 화질의 균형",
+        "light": "화질이 거의 그대로"
+      }
+    },
+    "page_size": {
+      "label": "페이지 크기",
+      "choices": {
+        "a4": "A4",
+        "letter": "Letter",
+        "fit": "사진과 같게"
+      }
+    },
+    "orientation": {
+      "label": "방향",
+      "choices": {
+        "auto": "자동",
+        "portrait": "세로",
+        "landscape": "가로"
+      }
+    },
+    "margin": {
+      "label": "여백",
+      "choices": {
+        "none": "없음",
+        "small": "좁게",
+        "large": "넓게"
+      }
+    },
+    "mode": {
+      "label": "나누는 방법",
+      "choices": {
+        "each": "페이지마다 따로",
+        "ranges": "고른 페이지"
+      }
+    },
+    "ranges": {
+      "label": "페이지",
+      "placeholder": "예: 1-3, 5, 8-…",
+      "hint": "범위마다 별도의 PDF가 됩니다. “8-”은 8쪽부터 끝까지라는 뜻입니다."
+    },
+    "pdfLevel": {
+      "label": "압축 수준",
+      "choices": {
+        "strong": "강",
+        "medium": "중",
+        "light": "약"
+      },
+      "hints": {
+        "strong": "가장 작은 파일, 이미지가 조금 흐려짐",
+        "medium": "화면으로 읽기용",
+        "light": "인쇄용"
+      }
+    },
+    "format": {
+      "label": "이미지 형식",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG"
+      }
+    },
+    "quality": {
+      "label": "화질",
+      "choices": {
+        "low": "낮음",
+        "medium": "보통",
+        "high": "높음"
+      },
+      "hints": {
+        "low": "72 DPI, 화면용",
+        "medium": "150 DPI",
+        "high": "300 DPI, 인쇄용"
+      }
+    },
+    "archiveFormat": {
+      "label": "압축 형식",
+      "choices": {
+        "zip": "ZIP",
+        "7z": "7Z"
+      },
+      "hints": {
+        "zip": "어디서나 열림",
+        "7z": "더 작은 용량"
+      }
+    },
+    "password": {
+      "label": "비밀번호",
+      "hint": "이 파일에만 쓰이고 절대 저장되지 않습니다."
+    }
+  },
+  "upload": {
+    "drop": "여기에 파일을 끌어 놓으세요",
+    "or": "또는",
+    "choose": "파일 선택",
+    "addMore": "더 추가",
+    "limits": "파일당 최대 {{maxFile}}MB, 한 번에 {{maxBatch}}개까지.",
+    "selected_other": "파일 {{count}}개 선택됨",
+    "remove": "{{name}} 빼기",
+    "moveUp": "{{name}} 위로",
+    "moveDown": "{{name}} 아래로",
+    "orderHint": {
+      "images-to-pdf": "PDF 페이지는 이 순서를 따릅니다.",
+      "pdf-merge": "파일은 이 순서대로 합쳐집니다."
+    },
+    "formats": "형식: {{formats}}.",
+    "anyFormat": "모든 파일 형식."
+  },
+  "actions": {
+    "image-convert": "{{target}}(으)로 변환",
+    "image-compress": "압축",
+    "images-to-pdf": "PDF 만들기",
+    "download": "내려받기",
+    "downloadFile": "{{name}} 내려받기",
+    "downloadAll": "모두 ZIP으로 내려받기",
+    "deleteNow": "지금 서버에서 삭제",
+    "deleteConfirm": "파일이 서버에서 영구 삭제됩니다. 계속할까요?",
+    "again": "새 파일로 다시 시작",
+    "retry": "다시 시도",
+    "office-to-pdf": "PDF로 변환",
+    "pdf-merge": "합치기",
+    "pdf-split": "나누기",
+    "pdf-organize": "저장",
+    "pdf-compress": "압축",
+    "pdf-to-images": "{{target}}(으)로 변환",
+    "archive-extract": "압축 풀기",
+    "archive-create": "{{target}} 만들기",
+    "archive-convert": "{{target}}(으)로 변환",
+    "image-edit": "적용",
+    "pdf-unlock": "비밀번호 없애기"
+  },
+  "status": {
+    "uploading": "올리는 중… {{percent}}%",
+    "queued": "대기 중…",
+    "processing": "처리 중…",
+    "done": "완료",
+    "failed": "실패",
+    "expires": "파일은 {{time}}에 자동으로 삭제됩니다.",
+    "deleted": "파일이 서버에서 삭제되었습니다.",
+    "saved": "{{percent}}% 줄었습니다: {{before}} → {{after}}",
+    "notSaved": "이 사진들은 더 줄일 수 없습니다: {{before}} → {{after}}",
+    "showAll": "모두 보기({{count}})"
+  },
+  "errors": {
+    "no_files": "먼저 파일을 한 개 이상 고르세요.",
+    "too_many_files": "한 번에 {{max_files}}개까지 올릴 수 있습니다. 나머지는 빼 주세요.",
+    "file_too_large": "“{{name}}”이(가) {{max_file_mb}}MB보다 큽니다. 더 작은 파일을 고르세요.",
+    "request_too_large": "파일 합계가 {{max_total_mb}}MB 이하여야 합니다. 몇 개를 빼 주세요.",
+    "unsupported_format": "“{{name}}”은(는) 이 도구에서 받지 않는 파일입니다. 지원 형식은 업로드 영역에 적혀 있습니다.",
+    "image_too_large": "이미지 해상도가 너무 높습니다(1억 화소 초과). 더 작은 이미지를 고르세요.",
+    "daily_limit_reached": "하루 한도에 도달했습니다. 하루 {{daily_tasks}}건입니다. 내일 다시 시도하세요.",
+    "throttled": "요청이 너무 많습니다. 1분 뒤에 다시 시도하세요.",
+    "corrupt_file": "파일을 열 수 없습니다. 손상되었을 수 있습니다. 다른 사본으로 시도하세요.",
+    "timeout": "처리 시간이 너무 오래 걸렸습니다. 파일 수를 줄이거나 더 작은 파일로 시도하세요.",
+    "files_deleted": "처리가 끝나기 전에 파일이 삭제되었습니다. 다시 올려 주세요.",
+    "file_expired": "이 파일은 서버에서 삭제되었습니다. 다시 올려 주세요.",
+    "unknown_tool": "없는 도구입니다.",
+    "validation_error": "설정에 문제가 있습니다. 페이지를 새로 고친 뒤 다시 시도하세요.",
+    "network_error": "서버에 연결할 수 없습니다. 인터넷 연결을 확인하고 다시 시도하세요.",
+    "internal_error": "저희 쪽에서 문제가 생겼습니다. 잠시 뒤 다시 시도하세요.",
+    "tool_unavailable": "이 도구는 잠시 사용할 수 없습니다.",
+    "not_found": "작업을 찾을 수 없거나 기한이 지났습니다.",
+    "invalid_credentials": "이메일 또는 비밀번호가 틀렸습니다.",
+    "email_taken": "이 이메일로 된 계정이 이미 있습니다. 로그인하거나 비밀번호를 재설정하세요.",
+    "weak_password": "비밀번호가 충분히 안전하지 않습니다: {{reasons}}.",
+    "session_expired": "세션이 끝났습니다. 다시 로그인하세요.",
+    "invalid_reset_link": "이 링크는 만료되었거나 이미 사용되었습니다. 새 링크를 요청하세요.",
+    "google_failed": "Google 로그인에 실패했습니다. 다시 시도하거나 이메일로 로그인하세요.",
+    "google_disabled": "Google 로그인은 아직 켜져 있지 않습니다.",
+    "account_disabled": "이 계정은 비활성화되었습니다.",
+    "auth_required": "로그인해야 할 수 있습니다.",
+    "required": "이 칸을 채워 주세요.",
+    "invalid_email": "올바른 이메일을 입력하세요. 예: ali@example.com",
+    "too_few_files": "파일을 {{min_files}}개 이상 고르세요.",
+    "pdf_encrypted": "이 PDF는 비밀번호로 보호되어 있습니다. 먼저 “PDF 잠금 해제”를 사용하세요.",
+    "too_many_pages": "문서의 페이지가 너무 많습니다. 먼저 여러 부분으로 나누세요.",
+    "invalid_page_range": "페이지를 “1-3, 5, 8-10”처럼, 문서의 페이지 수 안에서 적어 주세요.",
+    "reauth_required": "계정을 삭제하기 전에 Google로 확인하세요.",
+    "google_account_mismatch": "다른 Google 계정입니다. 이 계정의 주소로 확인하세요.",
+    "archive_encrypted": "이 압축 파일은 비밀번호로 보호되어 있습니다. 비밀번호를 입력하고 다시 시도하세요.",
+    "archive_too_large": "이 압축 파일은 풀면 데이터가 너무 많습니다. 더 작은 압축 파일로 시도하세요.",
+    "archive_too_many_files": "이 압축 파일에는 파일이 너무 많습니다. 1000개 이하인 압축 파일을 올려 주세요.",
+    "archive_empty": "이 압축 파일에는 파일이 없습니다.",
+    "malware_detected": "이 파일에서 악성 코드가 발견되어 처리하지 않고 삭제했습니다.",
+    "scan_unavailable": "이 파일의 바이러스 검사를 하지 못했습니다. 잠시 뒤 다시 시도하세요.",
+    "tool_disabled": "이 도구는 지금 꺼져 있습니다. 나중에 다시 시도하세요.",
+    "cannot_block_self": "자기 자신은 차단할 수 없습니다.",
+    "cannot_block_staff": "직원 계정은 여기서 차단할 수 없습니다.",
+    "permission_denied": "이 페이지에 접근할 권한이 없습니다.",
+    "invalid_crop": "자르기 영역이 사진 밖으로 나갔습니다. 다시 고르세요.",
+    "wrong_password": "비밀번호가 틀렸습니다. 확인하고 다시 시도하세요.",
+    "captcha_required": "로봇이 아님을 확인해 주세요.",
+    "captcha_failed": "로봇 확인을 통과하지 못했습니다. 다시 시도하세요.",
+    "otp_required": "인증 앱의 6자리 코드를 입력하세요.",
+    "otp_invalid": "코드가 틀렸거나 이미 사용되었습니다. 다음 코드를 기다렸다가 다시 시도하세요.",
+    "otp_locked": "틀린 코드가 너무 많습니다. 15분 뒤에 다시 시도하세요.",
+    "otp_already_enabled": "2단계 로그인이 이미 켜져 있습니다.",
+    "otp_not_started": "설정을 처음부터 다시 시작하세요.",
+    "otp_not_enabled": "2단계 로그인이 이미 꺼져 있습니다.",
+    "email_unverified": "먼저 이메일을 인증하세요.",
+    "invalid_verify_link": "이 인증 링크는 유효하지 않거나 만료되었습니다. 계정 페이지에서 새 링크를 보내세요.",
+    "already_verified": "이메일이 이미 인증되었습니다.",
+    "staff_2fa_required": "관리자 패널은 2단계 로그인이 필요합니다. 먼저 계정에서 켜 주세요."
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없습니다",
+    "text": "링크가 오래되었거나 잘못 입력되었을 수 있습니다.",
+    "back": "홈으로 돌아가기"
+  },
+  "footer": {
+    "privacy": "파일은 변환에만 쓰이고 자동으로 삭제됩니다.",
+    "privacyLink": "개인정보 처리방침",
+    "termsLink": "이용약관",
+    "legalNav": "법적 고지",
+    "faqLink": "자주 묻는 질문",
+    "help": "도움말",
+    "rights": "© {{year}} jichcha. 일상적인 파일 작업을 위한 무료 도구."
+  },
+  "fields": {
+    "email": "이메일",
+    "password": "비밀번호",
+    "newPassword": "새 비밀번호",
+    "show": "비밀번호 보기",
+    "hide": "비밀번호 숨기기",
+    "passwordHint": "8자 이상. 너무 흔하거나 숫자로만 된 비밀번호는 쓸 수 없습니다.",
+    "otp": "앱의 코드",
+    "otpHint": "Google Authenticator, Authy 같은 앱에 나오는 6자리 숫자.",
+    "currentPassword": "현재 비밀번호"
+  },
+  "auth": {
+    "benefits": "계정이 있으면 최대 200MB 파일을 올리고, 하루 100건을 처리하고, 30일간 기록을 볼 수 있습니다.",
+    "or": "또는",
+    "login": {
+      "title": "로그인",
+      "submit": "로그인",
+      "submitting": "로그인 중…",
+      "forgot": "비밀번호를 잊으셨나요?",
+      "noAccount": "아직 계정이 없나요?",
+      "toRegister": "계정 만들기"
+    },
+    "register": {
+      "title": "계정 만들기",
+      "submit": "계정 만들기",
+      "submitting": "만드는 중…",
+      "hasAccount": "이미 계정이 있나요?",
+      "toLogin": "로그인"
+    },
+    "forgot": {
+      "title": "비밀번호 재설정",
+      "text": "이메일을 입력하면 비밀번호 재설정 링크를 보내 드립니다.",
+      "submit": "재설정 링크 보내기",
+      "submitting": "보내는 중…",
+      "sent": "{{email}}로 된 계정이 있다면 링크를 보냈습니다. 스팸함도 확인해 주세요.",
+      "back": "로그인으로 돌아가기"
+    },
+    "reset": {
+      "title": "새 비밀번호 설정",
+      "submit": "비밀번호 저장",
+      "submitting": "저장 중…",
+      "requestNew": "새 링크 요청"
+    },
+    "google": "Google로 로그인",
+    "otp": {
+      "text": "이 계정은 2단계 로그인이 켜져 있습니다. 인증 앱의 코드를 입력하세요.",
+      "submit": "확인",
+      "back": "처음부터 다시"
+    },
+    "verify": {
+      "title": "이메일 인증",
+      "checking": "이메일을 인증하는 중…",
+      "done": "이메일이 인증되었습니다. 고맙습니다!",
+      "toAccount": "내 계정으로",
+      "toHome": "홈으로"
+    }
+  },
+  "account": {
+    "title": "계정",
+    "profile": "프로필",
+    "verified": "이메일 인증됨",
+    "unverified": "이메일 미인증",
+    "language": "화면 언어",
+    "saved": "저장됨",
+    "usage": "오늘 한도",
+    "usageText": "{{total}}건 중 {{used}}건 사용. 파일당 최대 {{maxFile}}MB.",
+    "history": "최근 30일",
+    "empty": "아직 작업이 없습니다. 첫 파일을 변환하면 여기에 나타납니다.",
+    "toTools": "도구로 가기",
+    "filesDeleted": "파일 삭제됨",
+    "more": "더 보기",
+    "logout": "로그아웃",
+    "deleteTitle": "계정 삭제",
+    "deleteText": "계정, 기록, 모든 파일이 영구 삭제됩니다. 되돌릴 수 없습니다.",
+    "deletePassword": "확인용 비밀번호",
+    "deleteSubmit": "계정 영구 삭제",
+    "deleteConfirm": "계정과 모든 파일이 영구 삭제됩니다. 계속할까요?",
+    "deleteGoogle": "확인을 위해 이 계정으로 Google에 다시 로그인하세요. 그 직후 계정이 삭제됩니다.",
+    "deleteNoGoogle": "이 계정에는 비밀번호가 없습니다. 삭제하려면 먼저 비밀번호를 설정하세요.",
+    "adminLink": "관리자 패널",
+    "verifyText": "이메일로 인증 링크를 보냈습니다. 받지 못하셨나요?",
+    "resend": "다시 보내기",
+    "resent": "보냈습니다. 받은편지함과 스팸함을 확인하세요.",
+    "security": "보안",
+    "passwordTitle": "비밀번호 변경",
+    "passwordSubmit": "비밀번호 변경",
+    "passwordSaved": "비밀번호를 바꿨습니다. 다른 기기에서는 로그아웃되었습니다.",
+    "passwordNone": "Google로 로그인하므로 이 계정에는 비밀번호가 없습니다. 추가하려면 로그인 페이지의 “비밀번호를 잊으셨나요?”를 이용하세요.",
+    "twoFactor": "2단계 로그인",
+    "twoFactorOff": "꺼짐. 켜면 로그인할 때마다 휴대폰 앱의 코드도 입력해야 합니다.",
+    "twoFactorOn": "켜짐. 로그인할 때마다 인증 앱의 코드를 입력합니다.",
+    "twoFactorStart": "켜기",
+    "twoFactorScan": "이 QR 코드를 Google Authenticator, Authy 같은 인증 앱으로 스캔한 뒤, 앱에 나오는 6자리 코드를 입력하세요.",
+    "twoFactorQr": "인증 앱용 QR 코드",
+    "twoFactorManual": "스캔이 안 되나요? 이 키를 직접 입력하세요:",
+    "twoFactorConfirm": "확인하고 켜기",
+    "twoFactorCancel": "취소",
+    "twoFactorDisable": "끄기",
+    "twoFactorDisableText": "끄려면 비밀번호와 현재 코드를 입력하세요.",
+    "twoFactorNeedsEmail": "먼저 이메일을 인증해야 2단계 로그인을 켤 수 있습니다.",
+    "twoFactorNoPassword": "끄려면 먼저 “비밀번호를 잊으셨나요?”로 비밀번호를 추가하세요."
+  },
+  "weak": {
+    "password_too_short": "8자 이상으로 하세요",
+    "password_too_common": "너무 흔한 비밀번호입니다",
+    "password_entirely_numeric": "숫자만 쓰지 마세요",
+    "password_too_similar": "이메일과 너무 비슷합니다",
+    "invalid": "조건을 충족하지 않습니다"
+  },
+  "organize": {
+    "loading": "페이지를 불러오는 중…",
+    "count": "{{total}}쪽 중 {{count}}쪽",
+    "reset": "모든 변경 취소",
+    "listLabel": "PDF 페이지",
+    "page": "{{n}}쪽",
+    "moveBack": "{{page}} 앞으로",
+    "moveForward": "{{page}} 뒤로",
+    "rotate": "{{page}} 90° 회전",
+    "remove": "{{page}} 삭제",
+    "empty": "최소 한 페이지는 남겨 두세요."
+  },
+  "legal": {
+    "updated": "마지막 업데이트: {{date}}",
+    "operator": "운영: {{name}}.",
+    "contact": "문의 및 요청: ",
+    "noContact": "아직 연락처가 정해지지 않았습니다.",
+    "privacy": {
+      "title": "개인정보 처리방침",
+      "intro": "이 페이지는 jichcha가 어떤 데이터를 받는지, 왜 받는지, 언제 삭제하는지 설명합니다. 데이터는 우즈베키스탄 공화국 「개인 데이터에 관한 법률」에 따라 처리됩니다.",
+      "sections": [
+        {
+          "h": "올린 파일",
+          "p": [
+            "파일은 선택한 작업에만 쓰입니다. 파일 내용을 읽거나 팔거나 공유하지 않습니다.",
+            "원본은 처리가 끝나는 즉시 삭제됩니다. 결과는 비회원은 1시간, 회원은 6시간 뒤에 자동으로 삭제되며, “지금 서버에서 삭제”로 바로 지울 수도 있습니다. 파일은 절대 백업하지 않습니다.",
+            "모든 파일은 처리 전에 바이러스 검사를 합니다. 휴대폰 사진의 GPS와 카메라 정보는 결과에 남지 않습니다."
+          ]
+        },
+        {
+          "h": "계정",
+          "p": [
+            "계정에 대해서는 이메일, 비밀번호의 단방향 해시(Argon2), 화면 언어를 저장합니다. Google로 로그인하면 Google은 인증된 이메일만 알려 줍니다.",
+            "기록에는 도구 이름, 파일 이름, 크기, 시간이 30일 동안 남습니다. 파일 자체는 위의 기한에 따라 삭제됩니다.",
+            "계정 페이지의 “계정 영구 삭제”를 누르면 계정, 기록, 파일이 즉시 삭제됩니다."
+          ]
+        },
+        {
+          "h": "쿠키와 브라우저 저장소",
+          "p": [
+            "uv_guest: 로그인하지 않았을 때 이 브라우저에서 결과를 보여 줍니다. 무작위 토큰이 들어 있으며, 서버는 그 해시만 저장합니다.",
+            "uv_refresh: 7일 동안 로그인 상태를 유지합니다.",
+            "브라우저 저장소(localStorage)에는 테마 선택(라이트 또는 다크)만 저장됩니다.",
+            "광고, 추적, 분석용 쿠키는 쓰지 않습니다."
+          ]
+        },
+        {
+          "h": "기술 데이터",
+          "p": [
+            "IP 주소는 남용 방지 한도에 쓰이며 몇 분 동안만 메모리에 보관됩니다. 서버 로그는 보안과 문제 해결을 위해 제한된 기간 동안 보관됩니다."
+          ]
+        },
+        {
+          "h": "외부 서비스",
+          "p": [
+            "Google: “Google로 계속하기”를 눌렀을 때만.",
+            "오류 보고: 앱 오류는 개인 데이터 없이 전송됩니다(쿠키, IP 주소, 파일 내용 없음)."
+          ]
+        },
+        {
+          "h": "이용자의 권리",
+          "p": [
+            "본인에 관한 데이터의 열람, 정정, 삭제를 요청할 수 있습니다. 계정과 파일은 사이트에서 직접 삭제할 수 있습니다. 그 밖의 요청은 아래 주소로 보내 주세요."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "이용약관",
+      "intro": "jichcha를 이용하면 이 약관에 동의하는 것으로 봅니다.",
+      "sections": [
+        {
+          "h": "서비스",
+          "p": [
+            "jichcha는 파일 변환, 압축, 편집을 위한 무료 서비스입니다. 하루 한도와 용량 한도는 남용을 막기 위한 것이며 바뀔 수 있습니다."
+          ]
+        },
+        {
+          "h": "이용자의 파일",
+          "p": [
+            "사용할 권리가 있는 파일만 올려 주세요. 파일 내용과 결과의 사용에 대한 책임은 이용자에게 있습니다.",
+            "비밀번호로 보호된 파일은 그 비밀번호로만 열리며, 비밀번호는 그 파일에만 쓰이고 저장되지 않습니다."
+          ]
+        },
+        {
+          "h": "금지 사항",
+          "p": [
+            "악성 코드 업로드, 한도 우회, 자동화된 대량 이용, 서비스 공격이나 방해, 불법 콘텐츠 유포. 이런 일이 생기면 파일은 삭제되고 계정이 차단될 수 있습니다."
+          ]
+        },
+        {
+          "h": "결과와 책임",
+          "p": [
+            "서비스는 “있는 그대로” 제공됩니다. 모든 파일이 완벽하게 변환된다고 보장할 수 없으니 원본은 보관해 두세요. 결과는 만료되기 전에 내려받으세요. 파일 백업은 없습니다."
+          ]
+        },
+        {
+          "h": "계정",
+          "p": [
+            "비밀번호를 비밀로 지켜 주세요. 이 약관을 어긴 계정은 삭제되거나 차단될 수 있습니다. 계정은 언제든지 삭제할 수 있습니다."
+          ]
+        },
+        {
+          "h": "준거법과 변경",
+          "p": [
+            "이 약관은 우즈베키스탄 공화국 법률을 따릅니다. 약관이 바뀌면 새 버전을 날짜와 함께 이 페이지에 게시합니다."
+          ]
+        }
+      ]
+    }
+  },
+  "catalog": {
+    "conversionName": "{{from}} → {{to}}",
+    "conversionDescription": "{{from}} 파일을 무료로 {{to}}(으)로 변환하세요.",
+    "jump": "분류"
+  },
+  "edit": {
+    "title": "편집",
+    "crop": "자르기",
+    "aspects": {
+      "free": "자유",
+      "square": "1:1 정사각형",
+      "portrait": "4:5",
+      "wide": "16:9",
+      "id": "3×4 증명사진"
+    },
+    "cropArea": "자르기 영역",
+    "cropValue": "왼쪽에서 {{x}}%, 위에서 {{y}}%, 너비 {{w}}%, 높이 {{h}}%",
+    "cropHint": "마우스나 손가락으로 영역을 끌고, 모서리 점을 끌어 크기를 바꾸세요. 키보드: 화살표로 이동, Shift + 화살표로 크기 조절.",
+    "batchCrop": "사진이 여러 장이면 각 사진을 가운데부터 고른 모양으로 자릅니다.",
+    "noPreview": "브라우저에서 이 사진을 표시할 수 없습니다. 모양을 고르면 가운데부터 잘립니다.",
+    "turn": "회전과 뒤집기",
+    "rotateLeft": "왼쪽으로 회전",
+    "rotateRight": "오른쪽으로 회전",
+    "flipH": "좌우 뒤집기",
+    "flipV": "상하 뒤집기",
+    "rotation": "회전: {{deg}}°",
+    "preview": "결과 미리보기",
+    "resize": "크기",
+    "resizeModes": {
+      "none": "그대로",
+      "percent": "퍼센트로",
+      "pixels": "픽셀로"
+    },
+    "percent": "원본 크기 대비 퍼센트",
+    "width": "너비, px",
+    "height": "높이, px",
+    "pixelsHint": "하나만 입력하면 나머지는 원래 비율에 맞춰집니다.",
+    "format": "형식",
+    "keepFormat": "원본과 같게",
+    "needSize": "너비나 높이를 입력하세요."
+  },
+  "next": {
+    "title": "이 파일로 할 수 있는 다른 작업"
+  },
+  "faq": {
+    "title": "자주 묻는 질문",
+    "description": "jichcha에 대한 답변: 비용, 파일 한도, 보관 기간, 지원 형식, Telegram 봇.",
+    "intro": "가장 많이 묻는 질문에 대한 짧은 답변입니다. 찾는 질문이 없나요? 개인정보 처리방침 맨 아래의 연락처로 문의해 주세요.",
+    "botLink": "Telegram에서 봇 열기",
+    "items": [
+      {
+        "q": "jichcha는 무료인가요?",
+        "a": "네. 모든 도구가 무료이며 워터마크도 체험 기간도 없습니다. 계정도 무료이며, 한도만 늘어납니다."
+      },
+      {
+        "q": "계정이 필요한가요?",
+        "a": "아니요. 계정 없이도 최대 {{guestMb}}MB 파일을 올리고, 하루 {{guestTasks}}건, 한 번에 {{guestBatch}}개 파일까지 처리할 수 있습니다. 무료 계정은 이를 {{userMb}}MB, 하루 {{userTasks}}건, {{userBatch}}개 파일로 늘리고 30일 동안 작업 기록을 남깁니다."
+      },
+      {
+        "q": "제 파일은 어떻게 되나요?",
+        "a": "요청한 변환에만 쓰입니다. 올린 파일은 모두 바이러스 검사를 거치고 자동으로 삭제됩니다. 계정이 없으면 {{guestHours}}시간 뒤, 계정이 있으면 {{userHours}}시간 뒤입니다. 결과를 바로 직접 지울 수도 있습니다."
+      },
+      {
+        "q": "어떤 형식을 지원하나요?",
+        "a": "PDF: 합치기, 나누기, 페이지 순서 바꾸기, 압축, 잠금 해제, 페이지를 JPG나 PNG로 변환. Word, Excel, PowerPoint, OpenDocument, RTF, CSV를 PDF로 변환. 사진: JPG, PNG, WEBP, AVIF, HEIC, GIF, BMP, TIFF의 변환, 압축, 자르기, 회전, 크기 조절, PDF 한 개로 묶기. 압축 파일: ZIP, RAR, 7Z, TAR, GZ, BZ2, XZ 열기, ZIP이나 7Z 만들기, 다른 형식으로 다시 묶기."
+      },
+      {
+        "q": "Word 파일을 PDF로 바꾸면 왜 조금 달라 보이나요?",
+        "a": "문서는 LibreOffice로 변환합니다. 문서에 저희에게 없는 글꼴이 쓰였다면 비슷한 글꼴로 바뀌어 줄이 조금 밀릴 수 있습니다. Arial, Times New Roman, Calibri 같은 흔한 글꼴이 가장 정확하게 변환되며, Word에서 저장할 때 글꼴을 포함할 수도 있습니다."
+      },
+      {
+        "q": "비밀번호가 걸린 PDF나 압축 파일도 열 수 있나요?",
+        "a": "비밀번호를 알면 열 수 있습니다. “PDF 잠금 해제” 도구와 압축 풀기에서 비밀번호를 묻습니다. 비밀번호는 그 작업에만 쓰이고 저장되지 않습니다."
+      },
+      {
+        "q": "제 파일이 왜 거부되었나요?",
+        "a": "확장자만이 아니라 파일의 실제 내용을 확인하므로, 이름만 바꾼 다른 종류의 파일은 거부됩니다. 그 밖에 파일이 한도를 넘었거나, 하루 한도를 다 썼거나, 파일이 손상되었거나 암호화되었거나, 바이러스 검사에서 문제가 발견된 경우도 있습니다. 화면의 메시지가 정확한 이유를 알려 줍니다."
+      },
+      {
+        "q": "Telegram 봇이 있나요?",
+        "a": "있습니다. 봇에게 파일을 보내고 버튼으로 할 일을 고르세요. 사진 여러 장을 앨범으로 보내면 PDF 한 개를 받을 수 있습니다. Telegram은 봇이 20MB까지만 내려받게 하므로, 더 큰 파일은 봇이 사이트 링크를 보내 드립니다."
+      },
+      {
+        "q": "계정을 안전하게 지키려면?",
+        "a": "다른 곳에서 쓰지 않는 비밀번호를 쓰고, 계정의 보안 메뉴에서 2단계 로그인을 켜세요. 그러면 로그인할 때마다 Google Authenticator나 Authy 같은 앱의 코드도 입력하게 됩니다."
+      },
+      {
+        "q": "계정은 어떻게 삭제하나요?",
+        "a": "계정 페이지를 열고 “계정 삭제”를 고르세요. 계정, 기록, 저장된 모든 파일이 즉시 삭제되며 되돌릴 수 없습니다."
+      }
+    ]
+  },
+  "compare": {
+    "before": "전",
+    "after": "후",
+    "label": "원본과 압축된 이미지 비교",
+    "value": "원본 {{percent}}%",
+    "hint": "선을 끌거나 화살표 키로 화질을 비교해 보세요."
+  },
+  "drop": {
+    "title": "여기에 파일을 끌어 놓으세요",
+    "text": "어떤 종류의 파일인지 알아내고 할 수 있는 일을 보여 드립니다. 도구를 고르기 전까지는 아무것도 올라가지 않습니다.",
+    "choose": "파일 선택",
+    "detected": "<name>{{name}}</name>은(는) {{family}} 파일입니다. 무엇을 할까요?",
+    "unknown": "“{{name}}”이(가) 어떤 파일인지 알 수 없습니다. 아래에서 분류를 고르세요.",
+    "another": "다른 파일"
+  },
+  "sections": {
+    "label": "분류",
+    "pdf": {
+      "lead": "PDF 파일을 합치고, 나누고, 순서를 바꾸고, 압축하거나 잠금을 풉니다."
+    },
+    "word": {
+      "lead": "Word 문서를 인쇄나 전송에 바로 쓸 PDF로 바꿉니다."
+    },
+    "excel": {
+      "lead": "Excel 시트를 클릭 한 번으로 PDF로 바꿉니다."
+    },
+    "powerpoint": {
+      "lead": "프레젠테이션을 PDF로 바꿉니다. 슬라이드 한 장이 한 페이지가 됩니다."
+    },
+    "image": {
+      "lead": "사진을 변환하고, 압축하고, 자르거나 PDF 한 개로 묶습니다. iPhone의 HEIC 파일도 됩니다."
+    },
+    "archive": {
+      "lead": "ZIP, RAR, 7Z 압축 파일을 열고, 새로 만들거나 형식을 바꿉니다."
+    },
+    "formats": "형식",
+    "home": "홈",
+    "breadcrumb": "현재 위치"
+  },
+  "menu": {
+    "work": "편집과 관리",
+    "from": "다른 형식으로 변환",
+    "into": "이 형식으로 변환"
+  }
+}

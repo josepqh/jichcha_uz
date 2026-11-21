@@ -1,1 +1,733 @@
-{"meta":{"siteName":"jichcha","homeTitle":"Convertisseur gratuit Word, PDF, photos et archives | jichcha","homeDescription":"Transformez Word et Excel en PDF, fusionnez et compressez des PDF, convertissez des fichiers HEIC, PNG et RAR. Gratuit, sans inscription."},"nav":{"skip":"Aller au contenu principal","home":"Accueil","language":"Langue","theme":"Thème : {{mode}}","themeModes":{"system":"système","light":"clair","dark":"sombre"},"login":"Se connecter","account":"Compte"},"home":{"title":"Des outils <hl>gratuits</hl> pour Word, PDF, photos et archives","subtitle":"Déposez un fichier ou choisissez une rubrique. Sans inscription, et les fichiers s'effacent tout seuls.","searchLabel":"Rechercher un outil","searchPlaceholder":"Par exemple : heic jpg…","toolsHeading":"Outils","popularHeading":"Conversions populaires","noResults":"Aucun outil ne correspond à « {{query}} ». Essayez par exemple « png pdf ».","benefitsHeading":"Pourquoi jichcha","benefits":{"free":{"title":"Pas besoin de compte","text":"Déposez un fichier et téléchargez le résultat. Tous les outils sont gratuits."},"deleted":{"title":"Fichiers supprimés en une heure","text":"Votre fichier est supprimé dès la fin du traitement, et le résultat au bout d'une heure. Vous pouvez le supprimer avant."},"gps":{"title":"Données de localisation retirées","text":"Le GPS et les informations de l'appareil photo des photos de téléphone ne sont pas copiés dans le résultat."}},"groups":{"pdf":"PDF","word":"Word","excel":"Excel","powerpoint":"PowerPoint","image":"Photos","archive":"Archives"},"sectionsHeading":"Rubriques","toolCount_one":"{{count}} outil","toolCount_many":"{{count}} outils","toolCount_other":"{{count}} outils","openSection":"Ouvrir la rubrique {{name}}"},"tools":{"image-convert":{"name":"Changer de format","title":"Convertisseur de formats d'image","description":"Convertissez entre PNG, JPG, WEBP, HEIC, AVIF, GIF, BMP et TIFF. Plusieurs photos à la fois."},"image-compress":{"name":"Réduire la taille","title":"Compresser des images","description":"Trois niveaux : fort, moyen et léger. Voyez combien d'espace chaque photo a gagné."},"images-to-pdf":{"name":"Photos en PDF","title":"Créer un PDF à partir de photos","description":"Mettez vos photos dans l'ordre et réunissez-les dans un seul PDF au format A4 ou Letter."},"office-to-pdf":{"name":"Word, Excel, PowerPoint → PDF","title":"Convertir des documents en PDF","description":"Transformez vos fichiers Word, Excel, PowerPoint et OpenDocument en PDF en gardant polices et mise en page."},"pdf-merge":{"name":"Fusionner des PDF","title":"Fusionner des fichiers PDF","description":"Réunissez plusieurs PDF en un seul fichier dans l'ordre de votre choix."},"pdf-split":{"name":"Diviser un PDF","title":"Diviser un PDF","description":"Enregistrez chaque page dans son propre PDF ou extrayez seulement les pages utiles."},"pdf-organize":{"name":"Organiser les pages","title":"Organiser les pages d'un PDF","description":"Changez l'ordre, faites pivoter ou supprimez des pages."},"pdf-compress":{"name":"Compresser un PDF","title":"Réduire la taille d'un PDF","description":"Allégez les scans et les PDF riches en images pour respecter les limites des e-mails ou des envois."},"pdf-to-images":{"name":"PDF → JPG, PNG","title":"Convertir les pages d'un PDF en images","description":"Enregistrez chaque page dans une image JPG ou PNG séparée."},"archive-extract":{"name":"Extraire une archive","title":"Ouvrir des archives ZIP, RAR et 7Z en ligne","description":"Voyez le contenu d'une archive et téléchargez un par un les fichiers dont vous avez besoin. ZIP, RAR, 7Z, TAR, GZ."},"archive-create":{"name":"Créer un ZIP","title":"Regrouper des fichiers dans une archive ZIP ou 7Z","description":"Mettez plusieurs fichiers dans une seule archive ZIP ou 7Z. Tous les types de fichiers sont acceptés."},"archive-convert":{"name":"Changer le format d'archive","title":"Convertir RAR, 7Z et TAR en ZIP","description":"Réemballez un RAR, un 7Z ou un TAR en ZIP ou 7Z en gardant l'arborescence des dossiers."},"image-edit":{"name":"Retoucher une photo","title":"Recadrer, faire pivoter et redimensionner une photo","description":"Recadrez une photo (1:1, 4:5, 16:9, photo d'identité 3×4), faites-la pivoter ou retournez-la, et changez sa taille."},"pdf-unlock":{"name":"Déverrouiller un PDF","title":"Supprimer le mot de passe d'un PDF","description":"Obtenez une copie de votre PDF sans mot de passe (vous devez le connaître), puis fusionnez-la, compressez-la ou divisez-la."}},"conversion":{"short":"{{from}} → {{to}}","title":"Convertir {{from}} en {{to}}","description":"Convertissez gratuitement des fichiers {{from}} en {{to}}. Sans inscription, fichiers supprimés en une heure."},"options":{"target":{"label":"Convertir en","choices":{"jpg":"JPG","png":"PNG","webp":"WEBP","avif":"AVIF","gif":"GIF","bmp":"BMP","tiff":"TIFF","zip":"ZIP","7z":"7Z","pdf":"PDF"}},"level":{"label":"Niveau de compression","choices":{"strong":"Fort","medium":"Moyen","light":"Léger"},"hints":{"strong":"Fichier le plus petit","medium":"Équilibre entre taille et qualité","light":"Qualité presque inchangée"}},"page_size":{"label":"Format de page","choices":{"a4":"A4","letter":"Letter","fit":"Comme la photo"}},"orientation":{"label":"Orientation","choices":{"auto":"Automatique","portrait":"Portrait","landscape":"Paysage"}},"margin":{"label":"Marge","choices":{"none":"Aucune","small":"Petite","large":"Grande"}},"mode":{"label":"Comment diviser","choices":{"each":"Chaque page séparément","ranges":"Pages choisies"}},"ranges":{"label":"Pages","placeholder":"Par exemple : 1-3, 5, 8-…","hint":"Chaque plage devient un PDF séparé. « 8- » signifie de la page 8 jusqu'à la fin."},"pdfLevel":{"label":"Niveau de compression","choices":{"strong":"Fort","medium":"Moyen","light":"Léger"},"hints":{"strong":"Fichier le plus petit, images plus douces","medium":"Pour la lecture à l'écran","light":"Pour l'impression"}},"format":{"label":"Format d'image","choices":{"jpg":"JPG","png":"PNG"}},"quality":{"label":"Qualité","choices":{"low":"Basse","medium":"Moyenne","high":"Haute"},"hints":{"low":"72 DPI, pour l'écran","medium":"150 DPI","high":"300 DPI, pour l'impression"}},"archiveFormat":{"label":"Type d'archive","choices":{"zip":"ZIP","7z":"7Z"},"hints":{"zip":"S'ouvre partout","7z":"Plus compact"}},"password":{"label":"Mot de passe","hint":"Utilisé pour ce fichier uniquement et jamais conservé."}},"upload":{"drop":"Déposez les fichiers ici","or":"ou","choose":"Choisir des fichiers","addMore":"En ajouter","limits":"Jusqu'à {{maxFile}} Mo par fichier, {{maxBatch}} fichiers à la fois.","selected_one":"{{count}} fichier sélectionné","selected_many":"{{count}} fichiers sélectionnés","selected_other":"{{count}} fichiers sélectionnés","remove":"Retirer {{name}}","moveUp":"Monter {{name}}","moveDown":"Descendre {{name}}","orderHint":{"images-to-pdf":"Les pages du PDF suivront cet ordre.","pdf-merge":"Les fichiers seront fusionnés dans cet ordre."},"formats":"Formats : {{formats}}.","anyFormat":"Tous types de fichiers."},"actions":{"image-convert":"Convertir en {{target}}","image-compress":"Compresser","images-to-pdf":"Créer le PDF","download":"Télécharger","downloadFile":"Télécharger {{name}}","downloadAll":"Tout télécharger en ZIP","deleteNow":"Supprimer du serveur maintenant","deleteConfirm":"Les fichiers seront définitivement supprimés du serveur. Continuer ?","again":"Recommencer avec d'autres fichiers","retry":"Réessayer","office-to-pdf":"Convertir en PDF","pdf-merge":"Fusionner","pdf-split":"Diviser","pdf-organize":"Enregistrer","pdf-compress":"Compresser","pdf-to-images":"Convertir en {{target}}","archive-extract":"Extraire","archive-create":"Créer un {{target}}","archive-convert":"Convertir en {{target}}","image-edit":"Appliquer","pdf-unlock":"Retirer le mot de passe"},"status":{"uploading":"Envoi… {{percent}} %","queued":"En file d'attente…","processing":"Traitement…","done":"Terminé","failed":"Échec","expires":"Les fichiers seront supprimés automatiquement à {{time}}.","deleted":"Les fichiers ont été supprimés du serveur.","saved":"{{percent}} % plus léger : {{before}} → {{after}}","notSaved":"Ces photos ne peuvent pas être compressées davantage : {{before}} → {{after}}","showAll":"Tout afficher ({{count}})"},"errors":{"no_files":"Choisissez d'abord au moins un fichier.","too_many_files":"Vous pouvez envoyer {{max_files}} fichiers au maximum à la fois. Retirez ceux en trop.","file_too_large":"« {{name}} » dépasse {{max_file_mb}} Mo. Choisissez un fichier plus petit.","request_too_large":"Les fichiers ne doivent pas dépasser {{max_total_mb}} Mo au total. Retirez-en quelques-uns.","unsupported_format":"« {{name}} » n'est pas un fichier accepté par cet outil. Les formats pris en charge sont indiqués dans la zone d'envoi.","image_too_large":"La résolution de l'image est trop élevée (plus de 100 mégapixels). Choisissez une image plus petite.","daily_limit_reached":"Limite quotidienne atteinte : {{daily_tasks}} tâches par jour. Réessayez demain.","throttled":"Trop de requêtes. Réessayez dans une minute.","corrupt_file":"Impossible d'ouvrir le fichier, il est peut-être endommagé. Essayez une autre copie.","timeout":"Le traitement a pris trop de temps. Essayez avec moins de fichiers ou des fichiers plus petits.","files_deleted":"Les fichiers ont été supprimés avant la fin du traitement. Envoyez-les à nouveau.","file_expired":"Ce fichier a été supprimé du serveur. Envoyez-le à nouveau.","unknown_tool":"Cet outil n'existe pas.","validation_error":"Les réglages posent problème. Rechargez la page et réessayez.","network_error":"Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.","internal_error":"Un problème est survenu de notre côté. Réessayez dans un instant.","tool_unavailable":"Cet outil est momentanément indisponible.","not_found":"Tâche introuvable ou expirée.","invalid_credentials":"E-mail ou mot de passe incorrect.","email_taken":"Un compte existe déjà avec cet e-mail. Connectez-vous ou réinitialisez votre mot de passe.","weak_password":"Le mot de passe n'est pas assez solide : {{reasons}}.","session_expired":"Votre session a expiré. Reconnectez-vous.","invalid_reset_link":"Ce lien a expiré ou a déjà servi. Demandez-en un nouveau.","google_failed":"La connexion avec Google a échoué. Réessayez ou connectez-vous avec votre e-mail.","google_disabled":"La connexion avec Google n'est pas encore activée.","account_disabled":"Ce compte est désactivé.","auth_required":"Connectez-vous pour faire cela.","required":"Remplissez ce champ.","invalid_email":"Saisissez un e-mail valide, par exemple ali@example.com.","too_few_files":"Choisissez au moins {{min_files}} fichiers.","pdf_encrypted":"Ce PDF est protégé par un mot de passe. Utilisez d'abord « Déverrouiller un PDF ».","too_many_pages":"Le document a trop de pages. Divisez-le d'abord en plusieurs parties.","invalid_page_range":"Écrivez les pages comme « 1-3, 5, 8-10 », dans la limite du nombre de pages du document.","reauth_required":"Confirmez avec Google avant de supprimer votre compte.","google_account_mismatch":"C'est un autre compte Google. Confirmez avec l'adresse de ce compte.","archive_encrypted":"Cette archive est protégée par un mot de passe. Saisissez-le et réessayez.","archive_too_large":"Cette archive contient trop de données une fois décompressée. Essayez une archive plus petite.","archive_too_many_files":"Cette archive contient trop de fichiers. Envoyez-en une de 1000 fichiers au maximum.","archive_empty":"Cette archive ne contient aucun fichier.","malware_detected":"Un logiciel malveillant a été trouvé dans ce fichier : il n'a pas été traité et a été supprimé.","scan_unavailable":"Nous n'avons pas pu analyser ce fichier contre les virus. Réessayez dans un instant.","tool_disabled":"Cet outil est désactivé pour le moment. Réessayez plus tard.","cannot_block_self":"Vous ne pouvez pas vous bloquer vous-même.","cannot_block_staff":"Les comptes de l'équipe ne peuvent pas être bloqués ici.","permission_denied":"Vous n'avez pas accès à cette page.","invalid_crop":"La zone de recadrage sort de la photo. Choisissez-la à nouveau.","wrong_password":"Ce mot de passe est incorrect. Vérifiez-le et réessayez.","captcha_required":"Merci de confirmer que vous n'êtes pas un robot.","captcha_failed":"La vérification anti-robot a échoué. Réessayez.","otp_required":"Saisissez le code à 6 chiffres de votre application d'authentification.","otp_invalid":"Ce code est incorrect ou a déjà servi. Attendez le code suivant et réessayez.","otp_locked":"Trop de codes erronés. Attendez 15 minutes et réessayez.","otp_already_enabled":"La connexion en deux étapes est déjà activée.","otp_not_started":"Recommencez la configuration.","otp_not_enabled":"La connexion en deux étapes est déjà désactivée.","email_unverified":"Confirmez d'abord votre e-mail.","invalid_verify_link":"Ce lien de confirmation est invalide ou a expiré. Envoyez-en un nouveau depuis votre compte.","already_verified":"Votre e-mail est déjà confirmé.","staff_2fa_required":"Le panneau d'administration exige la connexion en deux étapes. Activez-la d'abord dans votre compte."},"notFound":{"title":"Page introuvable","text":"Le lien est peut-être périmé ou mal saisi.","back":"Retour à l'accueil"},"footer":{"privacy":"Vos fichiers servent uniquement à la conversion et sont supprimés automatiquement.","privacyLink":"Politique de confidentialité","termsLink":"Conditions d'utilisation","legalNav":"Mentions légales","faqLink":"FAQ"},"fields":{"email":"E-mail","password":"Mot de passe","newPassword":"Nouveau mot de passe","show":"Afficher le mot de passe","hide":"Masquer le mot de passe","passwordHint":"Au moins 8 caractères. Les mots de passe trop courants ou uniquement numériques sont refusés.","otp":"Code de l'application","otpHint":"6 chiffres de Google Authenticator, Authy ou une application similaire.","currentPassword":"Mot de passe actuel"},"auth":{"benefits":"Avec un compte, vous pouvez envoyer des fichiers jusqu'à 200 Mo, faire 100 tâches par jour et garder 30 jours d'historique.","or":"ou","login":{"title":"Se connecter","submit":"Se connecter","submitting":"Connexion…","forgot":"Mot de passe oublié ?","noAccount":"Pas encore de compte ?","toRegister":"Créez-en un"},"register":{"title":"Créer un compte","submit":"Créer le compte","submitting":"Création…","hasAccount":"Vous avez déjà un compte ?","toLogin":"Se connecter"},"forgot":{"title":"Réinitialiser le mot de passe","text":"Saisissez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.","submit":"Envoyer le lien","submitting":"Envoi…","sent":"S'il existe un compte pour {{email}}, nous lui avons envoyé un lien. Pensez à vérifier vos spams.","back":"Retour à la connexion"},"reset":{"title":"Choisir un nouveau mot de passe","submit":"Enregistrer le mot de passe","submitting":"Enregistrement…","requestNew":"Demander un nouveau lien"},"google":"Se connecter avec Google","otp":{"text":"La connexion en deux étapes est activée pour ce compte. Saisissez le code de votre application d'authentification.","submit":"Confirmer","back":"Recommencer"},"verify":{"title":"Confirmez votre e-mail","checking":"Confirmation de votre e-mail…","done":"Votre e-mail est confirmé. Merci !","toAccount":"Aller à votre compte","toHome":"Aller à l'accueil"}},"account":{"title":"Compte","profile":"Profil","verified":"E-mail confirmé","unverified":"E-mail pas encore confirmé","language":"Langue de l'interface","saved":"Enregistré","usage":"Limite du jour","usageText":"{{used}} tâches utilisées sur {{total}}. Jusqu'à {{maxFile}} Mo par fichier.","history":"30 derniers jours","empty":"Aucune tâche pour l'instant. Convertissez votre premier fichier pour le voir ici.","toTools":"Voir les outils","filesDeleted":"Fichiers supprimés","more":"Afficher plus","logout":"Se déconnecter","deleteTitle":"Supprimer le compte","deleteText":"Votre compte, votre historique et tous vos fichiers seront définitivement supprimés. C'est irréversible.","deletePassword":"Votre mot de passe, pour confirmer","deleteSubmit":"Supprimer définitivement le compte","deleteConfirm":"Votre compte et tous vos fichiers seront définitivement supprimés. Continuer ?","deleteGoogle":"Pour confirmer, reconnectez-vous avec Google avec ce compte. Le compte est supprimé juste après.","deleteNoGoogle":"Ce compte n'a pas de mot de passe. Pour le supprimer, définissez d'abord un mot de passe.","adminLink":"Administration","verifyText":"Nous avons envoyé un lien de confirmation à votre e-mail. Vous ne l'avez pas reçu ?","resend":"Renvoyer","resent":"Envoyé. Vérifiez votre boîte de réception et vos spams.","security":"Sécurité","passwordTitle":"Changer le mot de passe","passwordSubmit":"Changer le mot de passe","passwordSaved":"Mot de passe changé. Vous avez été déconnecté de vos autres appareils.","passwordNone":"Vous vous connectez avec Google, ce compte n'a donc pas de mot de passe. Pour en ajouter un, utilisez « Mot de passe oublié ? » sur la page de connexion.","twoFactor":"Connexion en deux étapes","twoFactorOff":"Désactivée. Une fois activée, chaque connexion demande aussi un code d'une application sur votre téléphone.","twoFactorOn":"Activée. Chaque connexion demande un code de votre application d'authentification.","twoFactorStart":"Activer","twoFactorScan":"Scannez ce code QR avec Google Authenticator, Authy ou une autre application d'authentification, puis saisissez le code à 6 chiffres affiché.","twoFactorQr":"Code QR pour l'application d'authentification","twoFactorManual":"Impossible de le scanner ? Saisissez cette clé à la main :","twoFactorConfirm":"Confirmer et activer","twoFactorCancel":"Annuler","twoFactorDisable":"Désactiver","twoFactorDisableText":"Pour la désactiver, saisissez votre mot de passe et un code actuel.","twoFactorNeedsEmail":"Confirmez d'abord votre e-mail, puis vous pourrez activer la connexion en deux étapes.","twoFactorNoPassword":"Pour la désactiver, ajoutez d'abord un mot de passe avec « Mot de passe oublié ? »."},"weak":{"password_too_short":"utilisez au moins 8 caractères","password_too_common":"ce mot de passe est trop courant","password_entirely_numeric":"n'utilisez pas que des chiffres","password_too_similar":"il ressemble trop à votre e-mail","invalid":"il ne remplit pas les conditions"},"organize":{"loading":"Chargement des pages…","count":"{{count}} pages sur {{total}}","reset":"Annuler toutes les modifications","listLabel":"Pages du PDF","page":"Page {{n}}","moveBack":"Avancer {{page}}","moveForward":"Reculer {{page}}","rotate":"Faire pivoter {{page}} de 90°","remove":"Supprimer {{page}}","empty":"Gardez au moins une page."},"legal":{"updated":"Dernière mise à jour : {{date}}","operator":"Exploité par {{name}}.","contact":"Questions et demandes : ","noContact":"Aucune adresse de contact n'a encore été indiquée.","privacy":{"title":"Politique de confidentialité","intro":"Cette page explique quelles données jichcha reçoit, pourquoi et quand elles sont supprimées. Les données sont traitées conformément à la loi de la République d'Ouzbékistan « sur les données personnelles ».","sections":[{"h":"Les fichiers que vous envoyez","p":["Les fichiers servent uniquement à la tâche que vous choisissez. Nous ne lisons, ne vendons et ne partageons pas leur contenu.","L'original est supprimé dès la fin du traitement. Les résultats sont supprimés automatiquement au bout d'une heure pour les visiteurs et de 6 heures pour les titulaires d'un compte, ou aussitôt avec « Supprimer du serveur maintenant ». Les fichiers ne sont jamais sauvegardés.","Chaque fichier est analysé contre les virus avant le traitement. Le GPS et les informations de l'appareil photo des photos de téléphone ne sont pas copiés dans les résultats."]},{"h":"Votre compte","p":["Pour un compte, nous conservons votre e-mail, une empreinte irréversible de votre mot de passe (Argon2) et la langue de l'interface. Avec la connexion Google, Google nous communique uniquement votre e-mail vérifié.","L'historique garde le nom de l'outil, les noms de fichiers, leurs tailles et les heures pendant 30 jours. Les fichiers eux-mêmes sont supprimés selon les délais ci-dessus.","« Supprimer définitivement le compte », sur la page du compte, efface immédiatement votre compte, votre historique et vos fichiers."]},{"h":"Cookies et stockage du navigateur","p":["uv_guest : affiche vos résultats dans ce navigateur quand vous n'êtes pas connecté. Il contient un jeton aléatoire ; le serveur ne garde que son empreinte.","uv_refresh : vous garde connecté pendant 7 jours.","Le stockage du navigateur (localStorage) ne garde que votre choix de thème (clair ou sombre).","Aucun cookie publicitaire, de suivi ou de mesure d'audience n'est utilisé."]},{"h":"Données techniques","p":["Votre adresse IP sert aux limites anti-abus et reste en mémoire quelques minutes. Les journaux du serveur sont conservés pendant une durée limitée pour la sécurité et le dépannage."]},{"h":"Services tiers","p":["Google : uniquement si vous cliquez sur « Continuer avec Google ».","Rapports d'erreurs : les erreurs de l'application sont envoyées sans données personnelles (ni cookies, ni adresses IP, ni contenu de fichiers)."]},{"h":"Vos droits","p":["Vous pouvez demander à consulter, corriger ou supprimer les données vous concernant. Vous pouvez supprimer vous-même votre compte et vos fichiers sur le site. Pour toute autre demande, écrivez à l'adresse ci-dessous."]}]},"terms":{"title":"Conditions d'utilisation","intro":"En utilisant jichcha, vous acceptez ces conditions.","sections":[{"h":"Le service","p":["jichcha est un service gratuit pour convertir, compresser et modifier des fichiers. Les limites quotidiennes et de taille le protègent des abus et peuvent évoluer."]},{"h":"Vos fichiers","p":["N'envoyez que des fichiers que vous avez le droit d'utiliser. Vous êtes responsable de leur contenu et de l'usage que vous faites des résultats.","Un fichier protégé par mot de passe ne s'ouvre qu'avec ce mot de passe, utilisé pour ce seul fichier et jamais conservé."]},{"h":"Interdit","p":["Envoyer des logiciels malveillants, contourner les limites, faire un usage automatisé massif, attaquer ou perturber le service, ou diffuser des contenus illégaux. Dans ce cas, les fichiers sont supprimés et le compte peut être bloqué."]},{"h":"Résultats et responsabilité","p":["Le service est fourni « en l'état ». Nous ne pouvons pas garantir que chaque fichier sera parfaitement converti : gardez votre original. Téléchargez les résultats avant leur expiration, car les fichiers ne sont pas sauvegardés."]},{"h":"Votre compte","p":["Gardez votre mot de passe secret. Les comptes qui enfreignent ces conditions peuvent être supprimés ou bloqués. Vous pouvez supprimer votre compte à tout moment."]},{"h":"Droit applicable et modifications","p":["Ces conditions sont régies par les lois de la République d'Ouzbékistan. En cas de modification, la nouvelle version est publiée sur cette page avec sa date."]}]}},"catalog":{"conversionName":"{{from}} en {{to}}","conversionDescription":"Convertissez gratuitement un fichier {{from}} en {{to}}.","jump":"Rubriques"},"edit":{"title":"Retouche","crop":"Recadrer","aspects":{"free":"Libre","square":"1:1 carré","portrait":"4:5","wide":"16:9","id":"3×4 photo d'identité"},"cropArea":"Zone de recadrage","cropValue":"{{x}} % depuis la gauche, {{y}} % depuis le haut, {{w}} % de large, {{h}} % de haut","cropHint":"Faites glisser la zone à la souris ou au doigt ; tirez le point du coin pour la redimensionner. Clavier : les flèches la déplacent, Maj + flèches la redimensionnent.","batchCrop":"Plusieurs photos : chacune est recadrée depuis le centre selon la forme choisie.","noPreview":"Votre navigateur ne peut pas afficher cette photo. Choisissez une forme et elle sera recadrée depuis le centre.","turn":"Pivoter et retourner","rotateLeft":"Pivoter à gauche","rotateRight":"Pivoter à droite","flipH":"Retourner horizontalement","flipV":"Retourner verticalement","rotation":"Rotation : {{deg}}°","preview":"Aperçu du résultat","resize":"Taille","resizeModes":{"none":"Conserver","percent":"En pourcentage","pixels":"En pixels"},"percent":"Pourcentage de la taille d'origine","width":"Largeur, px","height":"Hauteur, px","pixelsHint":"Saisissez l'une et l'autre suit les proportions d'origine.","format":"Format","keepFormat":"Comme l'original","needSize":"Saisissez une largeur ou une hauteur."},"next":{"title":"Autres choses à faire avec ce fichier"},"faq":{"title":"Questions fréquentes","description":"Réponses sur jichcha : le prix, les limites de fichiers, la durée de conservation, les formats pris en charge et le bot Telegram.","intro":"Des réponses courtes aux questions les plus fréquentes. Vous ne trouvez pas la vôtre ? Écrivez-nous via le contact en bas de la politique de confidentialité.","botLink":"Ouvrir le bot dans Telegram","items":[{"q":"jichcha est-il gratuit ?","a":"Oui. Tous les outils sont gratuits, sans filigrane ni période d'essai. Le compte est gratuit lui aussi : il augmente seulement les limites."},{"q":"Faut-il un compte ?","a":"Non. Sans compte, vous pouvez envoyer des fichiers jusqu'à {{guestMb}} Mo, faire {{guestTasks}} tâches par jour et traiter jusqu'à {{guestBatch}} fichiers à la fois. Un compte gratuit porte cela à {{userMb}} Mo, {{userTasks}} tâches par jour et {{userBatch}} fichiers, et garde 30 jours d'historique de vos tâches."},{"q":"Que deviennent mes fichiers ?","a":"Ils servent uniquement à la conversion demandée. Chaque envoi est analysé contre les virus et les fichiers sont supprimés automatiquement : au bout de {{guestHours}} heure sans compte, de {{userHours}} heures avec un compte. Vous pouvez aussi supprimer vous-même un résultat tout de suite."},{"q":"Quels formats sont pris en charge ?","a":"PDF : fusionner, diviser, réordonner les pages, compresser, déverrouiller, transformer les pages en JPG ou PNG. Word, Excel, PowerPoint, OpenDocument, RTF et CSV en PDF. Photos : JPG, PNG, WEBP, AVIF, HEIC, GIF, BMP et TIFF — convertir, compresser, recadrer, faire pivoter, redimensionner ou réunir dans un PDF. Archives : ouvrir ZIP, RAR, 7Z, TAR, GZ, BZ2 et XZ, créer un ZIP ou un 7Z, ou réemballer une archive dans un autre format."},{"q":"Pourquoi mon Word a-t-il un aspect un peu différent en PDF ?","a":"Les documents sont convertis avec LibreOffice. Si le document utilise une police que nous n'avons pas, une police proche la remplace et les lignes peuvent un peu bouger. Les polices courantes comme Arial, Times New Roman ou Calibri sont les plus fidèles ; vous pouvez aussi incorporer les polices en enregistrant dans Word."},{"q":"Puis-je ouvrir un PDF ou une archive protégés par mot de passe ?","a":"Oui, si vous connaissez le mot de passe. L'outil « Déverrouiller un PDF » et l'extraction d'archives le demandent. Le mot de passe sert uniquement à cette tâche et n'est jamais conservé."},{"q":"Pourquoi mon fichier a-t-il été refusé ?","a":"Nous vérifions la vraie nature du fichier, pas seulement son extension : un fichier d'un autre type simplement renommé est donc refusé. Autres raisons : le fichier dépasse votre limite, la limite du jour est atteinte, le fichier est endommagé ou chiffré, ou l'analyse antivirus a trouvé quelque chose. Le message à l'écran indique la raison exacte."},{"q":"Y a-t-il un bot Telegram ?","a":"Oui. Envoyez un fichier au bot et choisissez quoi en faire avec les boutons ; envoyez plusieurs photos en album pour obtenir un seul PDF. Telegram ne permet aux bots de télécharger que des fichiers de 20 Mo au maximum : pour les fichiers plus gros, le bot vous donne un lien vers le site."},{"q":"Comment protéger mon compte ?","a":"Utilisez un mot de passe que vous n'utilisez nulle part ailleurs et activez la connexion en deux étapes dans la rubrique Sécurité de votre compte. Ensuite, chaque connexion demandera aussi un code d'une application comme Google Authenticator ou Authy."},{"q":"Comment supprimer mon compte ?","a":"Ouvrez la page de votre compte et choisissez « Supprimer le compte ». Votre compte, votre historique et tous les fichiers conservés sont supprimés immédiatement et ne peuvent pas être récupérés."}]},"compare":{"before":"Avant","after":"Après","label":"Comparer l'image d'origine et l'image compressée","value":"{{percent}} % original","hint":"Faites glisser la ligne ou utilisez les flèches pour comparer la qualité."},"drop":{"title":"Déposez un fichier ici","text":"Nous reconnaissons le type de fichier et vous montrons ce que vous pouvez en faire. Rien n'est envoyé tant que vous n'avez pas choisi un outil.","choose":"Choisir un fichier","detected":"<name>{{name}}</name> est un fichier {{family}}. Que faisons-nous ?","unknown":"Impossible de savoir ce qu'est « {{name}} ». Choisissez une rubrique ci-dessous.","another":"Un autre fichier"},"sections":{"label":"Rubriques","pdf":{"lead":"Fusionnez, divisez, réordonnez, compressez ou déverrouillez des PDF."},"word":{"lead":"Transformez un document Word en PDF, prêt à imprimer ou à envoyer."},"excel":{"lead":"Transformez une feuille Excel en PDF en un clic."},"powerpoint":{"lead":"Transformez une présentation en PDF, une diapositive par page."},"image":{"lead":"Convertissez, compressez, recadrez ou réunissez des photos dans un PDF. Les fichiers HEIC de l'iPhone aussi."},"archive":{"lead":"Ouvrez des archives ZIP, RAR et 7Z, créez-en de nouvelles ou changez leur format."},"formats":"Formats","home":"Accueil","breadcrumb":"Vous êtes ici"}}
+{
+  "meta": {
+    "siteName": "jichcha",
+    "homeTitle": "Convertisseur gratuit Word, PDF, photos et archives | jichcha",
+    "homeDescription": "Transformez Word et Excel en PDF, fusionnez et compressez des PDF, convertissez des fichiers HEIC, PNG et RAR. Gratuit, sans inscription."
+  },
+  "nav": {
+    "skip": "Aller au contenu principal",
+    "home": "Accueil",
+    "language": "Langue",
+    "theme": "Thème : {{mode}}",
+    "themeModes": {
+      "system": "système",
+      "light": "clair",
+      "dark": "sombre"
+    },
+    "login": "Se connecter",
+    "account": "Compte"
+  },
+  "home": {
+    "title": "Des outils <hl>gratuits</hl> pour Word, PDF, photos et archives",
+    "subtitle": "Déposez un fichier ou choisissez une rubrique. Sans inscription, et les fichiers s'effacent tout seuls.",
+    "searchLabel": "Rechercher un outil",
+    "searchPlaceholder": "Par exemple : heic jpg…",
+    "toolsHeading": "Outils",
+    "popularHeading": "Conversions populaires",
+    "noResults": "Aucun outil ne correspond à « {{query}} ». Essayez par exemple « png pdf ».",
+    "benefitsHeading": "Pourquoi jichcha",
+    "benefits": {
+      "free": {
+        "title": "Pas besoin de compte",
+        "text": "Déposez un fichier et téléchargez le résultat. Tous les outils sont gratuits."
+      },
+      "deleted": {
+        "title": "Fichiers supprimés en une heure",
+        "text": "Votre fichier est supprimé dès la fin du traitement, et le résultat au bout d'une heure. Vous pouvez le supprimer avant."
+      },
+      "gps": {
+        "title": "Données de localisation retirées",
+        "text": "Le GPS et les informations de l'appareil photo des photos de téléphone ne sont pas copiés dans le résultat."
+      }
+    },
+    "groups": {
+      "pdf": "PDF",
+      "word": "Word",
+      "excel": "Excel",
+      "powerpoint": "PowerPoint",
+      "image": "Photos",
+      "archive": "Archives"
+    },
+    "sectionsHeading": "Rubriques",
+    "toolCount_one": "{{count}} outil",
+    "toolCount_many": "{{count}} outils",
+    "toolCount_other": "{{count}} outils",
+    "openSection": "Ouvrir la rubrique {{name}}"
+  },
+  "tools": {
+    "image-convert": {
+      "name": "Changer de format",
+      "title": "Convertisseur de formats d'image",
+      "description": "Convertissez entre PNG, JPG, WEBP, HEIC, AVIF, GIF, BMP et TIFF. Plusieurs photos à la fois."
+    },
+    "image-compress": {
+      "name": "Réduire la taille",
+      "title": "Compresser des images",
+      "description": "Trois niveaux : fort, moyen et léger. Voyez combien d'espace chaque photo a gagné."
+    },
+    "images-to-pdf": {
+      "name": "Photos en PDF",
+      "title": "Créer un PDF à partir de photos",
+      "description": "Mettez vos photos dans l'ordre et réunissez-les dans un seul PDF au format A4 ou Letter."
+    },
+    "office-to-pdf": {
+      "name": "Word, Excel, PowerPoint → PDF",
+      "title": "Convertir des documents en PDF",
+      "description": "Transformez vos fichiers Word, Excel, PowerPoint et OpenDocument en PDF en gardant polices et mise en page."
+    },
+    "pdf-merge": {
+      "name": "Fusionner des PDF",
+      "title": "Fusionner des fichiers PDF",
+      "description": "Réunissez plusieurs PDF en un seul fichier dans l'ordre de votre choix."
+    },
+    "pdf-split": {
+      "name": "Diviser un PDF",
+      "title": "Diviser un PDF",
+      "description": "Enregistrez chaque page dans son propre PDF ou extrayez seulement les pages utiles."
+    },
+    "pdf-organize": {
+      "name": "Organiser les pages",
+      "title": "Organiser les pages d'un PDF",
+      "description": "Changez l'ordre, faites pivoter ou supprimez des pages."
+    },
+    "pdf-compress": {
+      "name": "Compresser un PDF",
+      "title": "Réduire la taille d'un PDF",
+      "description": "Allégez les scans et les PDF riches en images pour respecter les limites des e-mails ou des envois."
+    },
+    "pdf-to-images": {
+      "name": "PDF → JPG, PNG",
+      "title": "Convertir les pages d'un PDF en images",
+      "description": "Enregistrez chaque page dans une image JPG ou PNG séparée."
+    },
+    "archive-extract": {
+      "name": "Extraire une archive",
+      "title": "Ouvrir des archives ZIP, RAR et 7Z en ligne",
+      "description": "Voyez le contenu d'une archive et téléchargez un par un les fichiers dont vous avez besoin. ZIP, RAR, 7Z, TAR, GZ."
+    },
+    "archive-create": {
+      "name": "Créer un ZIP",
+      "title": "Regrouper des fichiers dans une archive ZIP ou 7Z",
+      "description": "Mettez plusieurs fichiers dans une seule archive ZIP ou 7Z. Tous les types de fichiers sont acceptés."
+    },
+    "archive-convert": {
+      "name": "Changer le format d'archive",
+      "title": "Convertir RAR, 7Z et TAR en ZIP",
+      "description": "Réemballez un RAR, un 7Z ou un TAR en ZIP ou 7Z en gardant l'arborescence des dossiers."
+    },
+    "image-edit": {
+      "name": "Retoucher une photo",
+      "title": "Recadrer, faire pivoter et redimensionner une photo",
+      "description": "Recadrez une photo (1:1, 4:5, 16:9, photo d'identité 3×4), faites-la pivoter ou retournez-la, et changez sa taille."
+    },
+    "pdf-unlock": {
+      "name": "Déverrouiller un PDF",
+      "title": "Supprimer le mot de passe d'un PDF",
+      "description": "Obtenez une copie de votre PDF sans mot de passe (vous devez le connaître), puis fusionnez-la, compressez-la ou divisez-la."
+    }
+  },
+  "conversion": {
+    "short": "{{from}} → {{to}}",
+    "title": "Convertir {{from}} en {{to}}",
+    "description": "Convertissez gratuitement des fichiers {{from}} en {{to}}. Sans inscription, fichiers supprimés en une heure."
+  },
+  "options": {
+    "target": {
+      "label": "Convertir en",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG",
+        "webp": "WEBP",
+        "avif": "AVIF",
+        "gif": "GIF",
+        "bmp": "BMP",
+        "tiff": "TIFF",
+        "zip": "ZIP",
+        "7z": "7Z",
+        "pdf": "PDF"
+      }
+    },
+    "level": {
+      "label": "Niveau de compression",
+      "choices": {
+        "strong": "Fort",
+        "medium": "Moyen",
+        "light": "Léger"
+      },
+      "hints": {
+        "strong": "Fichier le plus petit",
+        "medium": "Équilibre entre taille et qualité",
+        "light": "Qualité presque inchangée"
+      }
+    },
+    "page_size": {
+      "label": "Format de page",
+      "choices": {
+        "a4": "A4",
+        "letter": "Letter",
+        "fit": "Comme la photo"
+      }
+    },
+    "orientation": {
+      "label": "Orientation",
+      "choices": {
+        "auto": "Automatique",
+        "portrait": "Portrait",
+        "landscape": "Paysage"
+      }
+    },
+    "margin": {
+      "label": "Marge",
+      "choices": {
+        "none": "Aucune",
+        "small": "Petite",
+        "large": "Grande"
+      }
+    },
+    "mode": {
+      "label": "Comment diviser",
+      "choices": {
+        "each": "Chaque page séparément",
+        "ranges": "Pages choisies"
+      }
+    },
+    "ranges": {
+      "label": "Pages",
+      "placeholder": "Par exemple : 1-3, 5, 8-…",
+      "hint": "Chaque plage devient un PDF séparé. « 8- » signifie de la page 8 jusqu'à la fin."
+    },
+    "pdfLevel": {
+      "label": "Niveau de compression",
+      "choices": {
+        "strong": "Fort",
+        "medium": "Moyen",
+        "light": "Léger"
+      },
+      "hints": {
+        "strong": "Fichier le plus petit, images plus douces",
+        "medium": "Pour la lecture à l'écran",
+        "light": "Pour l'impression"
+      }
+    },
+    "format": {
+      "label": "Format d'image",
+      "choices": {
+        "jpg": "JPG",
+        "png": "PNG"
+      }
+    },
+    "quality": {
+      "label": "Qualité",
+      "choices": {
+        "low": "Basse",
+        "medium": "Moyenne",
+        "high": "Haute"
+      },
+      "hints": {
+        "low": "72 DPI, pour l'écran",
+        "medium": "150 DPI",
+        "high": "300 DPI, pour l'impression"
+      }
+    },
+    "archiveFormat": {
+      "label": "Type d'archive",
+      "choices": {
+        "zip": "ZIP",
+        "7z": "7Z"
+      },
+      "hints": {
+        "zip": "S'ouvre partout",
+        "7z": "Plus compact"
+      }
+    },
+    "password": {
+      "label": "Mot de passe",
+      "hint": "Utilisé pour ce fichier uniquement et jamais conservé."
+    }
+  },
+  "upload": {
+    "drop": "Déposez les fichiers ici",
+    "or": "ou",
+    "choose": "Choisir des fichiers",
+    "addMore": "En ajouter",
+    "limits": "Jusqu'à {{maxFile}} Mo par fichier, {{maxBatch}} fichiers à la fois.",
+    "selected_one": "{{count}} fichier sélectionné",
+    "selected_many": "{{count}} fichiers sélectionnés",
+    "selected_other": "{{count}} fichiers sélectionnés",
+    "remove": "Retirer {{name}}",
+    "moveUp": "Monter {{name}}",
+    "moveDown": "Descendre {{name}}",
+    "orderHint": {
+      "images-to-pdf": "Les pages du PDF suivront cet ordre.",
+      "pdf-merge": "Les fichiers seront fusionnés dans cet ordre."
+    },
+    "formats": "Formats : {{formats}}.",
+    "anyFormat": "Tous types de fichiers."
+  },
+  "actions": {
+    "image-convert": "Convertir en {{target}}",
+    "image-compress": "Compresser",
+    "images-to-pdf": "Créer le PDF",
+    "download": "Télécharger",
+    "downloadFile": "Télécharger {{name}}",
+    "downloadAll": "Tout télécharger en ZIP",
+    "deleteNow": "Supprimer du serveur maintenant",
+    "deleteConfirm": "Les fichiers seront définitivement supprimés du serveur. Continuer ?",
+    "again": "Recommencer avec d'autres fichiers",
+    "retry": "Réessayer",
+    "office-to-pdf": "Convertir en PDF",
+    "pdf-merge": "Fusionner",
+    "pdf-split": "Diviser",
+    "pdf-organize": "Enregistrer",
+    "pdf-compress": "Compresser",
+    "pdf-to-images": "Convertir en {{target}}",
+    "archive-extract": "Extraire",
+    "archive-create": "Créer un {{target}}",
+    "archive-convert": "Convertir en {{target}}",
+    "image-edit": "Appliquer",
+    "pdf-unlock": "Retirer le mot de passe"
+  },
+  "status": {
+    "uploading": "Envoi… {{percent}} %",
+    "queued": "En file d'attente…",
+    "processing": "Traitement…",
+    "done": "Terminé",
+    "failed": "Échec",
+    "expires": "Les fichiers seront supprimés automatiquement à {{time}}.",
+    "deleted": "Les fichiers ont été supprimés du serveur.",
+    "saved": "{{percent}} % plus léger : {{before}} → {{after}}",
+    "notSaved": "Ces photos ne peuvent pas être compressées davantage : {{before}} → {{after}}",
+    "showAll": "Tout afficher ({{count}})"
+  },
+  "errors": {
+    "no_files": "Choisissez d'abord au moins un fichier.",
+    "too_many_files": "Vous pouvez envoyer {{max_files}} fichiers au maximum à la fois. Retirez ceux en trop.",
+    "file_too_large": "« {{name}} » dépasse {{max_file_mb}} Mo. Choisissez un fichier plus petit.",
+    "request_too_large": "Les fichiers ne doivent pas dépasser {{max_total_mb}} Mo au total. Retirez-en quelques-uns.",
+    "unsupported_format": "« {{name}} » n'est pas un fichier accepté par cet outil. Les formats pris en charge sont indiqués dans la zone d'envoi.",
+    "image_too_large": "La résolution de l'image est trop élevée (plus de 100 mégapixels). Choisissez une image plus petite.",
+    "daily_limit_reached": "Limite quotidienne atteinte : {{daily_tasks}} tâches par jour. Réessayez demain.",
+    "throttled": "Trop de requêtes. Réessayez dans une minute.",
+    "corrupt_file": "Impossible d'ouvrir le fichier, il est peut-être endommagé. Essayez une autre copie.",
+    "timeout": "Le traitement a pris trop de temps. Essayez avec moins de fichiers ou des fichiers plus petits.",
+    "files_deleted": "Les fichiers ont été supprimés avant la fin du traitement. Envoyez-les à nouveau.",
+    "file_expired": "Ce fichier a été supprimé du serveur. Envoyez-le à nouveau.",
+    "unknown_tool": "Cet outil n'existe pas.",
+    "validation_error": "Les réglages posent problème. Rechargez la page et réessayez.",
+    "network_error": "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.",
+    "internal_error": "Un problème est survenu de notre côté. Réessayez dans un instant.",
+    "tool_unavailable": "Cet outil est momentanément indisponible.",
+    "not_found": "Tâche introuvable ou expirée.",
+    "invalid_credentials": "E-mail ou mot de passe incorrect.",
+    "email_taken": "Un compte existe déjà avec cet e-mail. Connectez-vous ou réinitialisez votre mot de passe.",
+    "weak_password": "Le mot de passe n'est pas assez solide : {{reasons}}.",
+    "session_expired": "Votre session a expiré. Reconnectez-vous.",
+    "invalid_reset_link": "Ce lien a expiré ou a déjà servi. Demandez-en un nouveau.",
+    "google_failed": "La connexion avec Google a échoué. Réessayez ou connectez-vous avec votre e-mail.",
+    "google_disabled": "La connexion avec Google n'est pas encore activée.",
+    "account_disabled": "Ce compte est désactivé.",
+    "auth_required": "Connectez-vous pour faire cela.",
+    "required": "Remplissez ce champ.",
+    "invalid_email": "Saisissez un e-mail valide, par exemple ali@example.com.",
+    "too_few_files": "Choisissez au moins {{min_files}} fichiers.",
+    "pdf_encrypted": "Ce PDF est protégé par un mot de passe. Utilisez d'abord « Déverrouiller un PDF ».",
+    "too_many_pages": "Le document a trop de pages. Divisez-le d'abord en plusieurs parties.",
+    "invalid_page_range": "Écrivez les pages comme « 1-3, 5, 8-10 », dans la limite du nombre de pages du document.",
+    "reauth_required": "Confirmez avec Google avant de supprimer votre compte.",
+    "google_account_mismatch": "C'est un autre compte Google. Confirmez avec l'adresse de ce compte.",
+    "archive_encrypted": "Cette archive est protégée par un mot de passe. Saisissez-le et réessayez.",
+    "archive_too_large": "Cette archive contient trop de données une fois décompressée. Essayez une archive plus petite.",
+    "archive_too_many_files": "Cette archive contient trop de fichiers. Envoyez-en une de 1000 fichiers au maximum.",
+    "archive_empty": "Cette archive ne contient aucun fichier.",
+    "malware_detected": "Un logiciel malveillant a été trouvé dans ce fichier : il n'a pas été traité et a été supprimé.",
+    "scan_unavailable": "Nous n'avons pas pu analyser ce fichier contre les virus. Réessayez dans un instant.",
+    "tool_disabled": "Cet outil est désactivé pour le moment. Réessayez plus tard.",
+    "cannot_block_self": "Vous ne pouvez pas vous bloquer vous-même.",
+    "cannot_block_staff": "Les comptes de l'équipe ne peuvent pas être bloqués ici.",
+    "permission_denied": "Vous n'avez pas accès à cette page.",
+    "invalid_crop": "La zone de recadrage sort de la photo. Choisissez-la à nouveau.",
+    "wrong_password": "Ce mot de passe est incorrect. Vérifiez-le et réessayez.",
+    "captcha_required": "Merci de confirmer que vous n'êtes pas un robot.",
+    "captcha_failed": "La vérification anti-robot a échoué. Réessayez.",
+    "otp_required": "Saisissez le code à 6 chiffres de votre application d'authentification.",
+    "otp_invalid": "Ce code est incorrect ou a déjà servi. Attendez le code suivant et réessayez.",
+    "otp_locked": "Trop de codes erronés. Attendez 15 minutes et réessayez.",
+    "otp_already_enabled": "La connexion en deux étapes est déjà activée.",
+    "otp_not_started": "Recommencez la configuration.",
+    "otp_not_enabled": "La connexion en deux étapes est déjà désactivée.",
+    "email_unverified": "Confirmez d'abord votre e-mail.",
+    "invalid_verify_link": "Ce lien de confirmation est invalide ou a expiré. Envoyez-en un nouveau depuis votre compte.",
+    "already_verified": "Votre e-mail est déjà confirmé.",
+    "staff_2fa_required": "Le panneau d'administration exige la connexion en deux étapes. Activez-la d'abord dans votre compte."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "Le lien est peut-être périmé ou mal saisi.",
+    "back": "Retour à l'accueil"
+  },
+  "footer": {
+    "privacy": "Vos fichiers servent uniquement à la conversion et sont supprimés automatiquement.",
+    "privacyLink": "Politique de confidentialité",
+    "termsLink": "Conditions d'utilisation",
+    "legalNav": "Mentions légales",
+    "faqLink": "FAQ",
+    "help": "Aide",
+    "rights": "© {{year}} jichcha. Des outils gratuits pour vos fichiers au quotidien."
+  },
+  "fields": {
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "show": "Afficher le mot de passe",
+    "hide": "Masquer le mot de passe",
+    "passwordHint": "Au moins 8 caractères. Les mots de passe trop courants ou uniquement numériques sont refusés.",
+    "otp": "Code de l'application",
+    "otpHint": "6 chiffres de Google Authenticator, Authy ou une application similaire.",
+    "currentPassword": "Mot de passe actuel"
+  },
+  "auth": {
+    "benefits": "Avec un compte, vous pouvez envoyer des fichiers jusqu'à 200 Mo, faire 100 tâches par jour et garder 30 jours d'historique.",
+    "or": "ou",
+    "login": {
+      "title": "Se connecter",
+      "submit": "Se connecter",
+      "submitting": "Connexion…",
+      "forgot": "Mot de passe oublié ?",
+      "noAccount": "Pas encore de compte ?",
+      "toRegister": "Créez-en un"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "submit": "Créer le compte",
+      "submitting": "Création…",
+      "hasAccount": "Vous avez déjà un compte ?",
+      "toLogin": "Se connecter"
+    },
+    "forgot": {
+      "title": "Réinitialiser le mot de passe",
+      "text": "Saisissez votre e-mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "submit": "Envoyer le lien",
+      "submitting": "Envoi…",
+      "sent": "S'il existe un compte pour {{email}}, nous lui avons envoyé un lien. Pensez à vérifier vos spams.",
+      "back": "Retour à la connexion"
+    },
+    "reset": {
+      "title": "Choisir un nouveau mot de passe",
+      "submit": "Enregistrer le mot de passe",
+      "submitting": "Enregistrement…",
+      "requestNew": "Demander un nouveau lien"
+    },
+    "google": "Se connecter avec Google",
+    "otp": {
+      "text": "La connexion en deux étapes est activée pour ce compte. Saisissez le code de votre application d'authentification.",
+      "submit": "Confirmer",
+      "back": "Recommencer"
+    },
+    "verify": {
+      "title": "Confirmez votre e-mail",
+      "checking": "Confirmation de votre e-mail…",
+      "done": "Votre e-mail est confirmé. Merci !",
+      "toAccount": "Aller à votre compte",
+      "toHome": "Aller à l'accueil"
+    }
+  },
+  "account": {
+    "title": "Compte",
+    "profile": "Profil",
+    "verified": "E-mail confirmé",
+    "unverified": "E-mail pas encore confirmé",
+    "language": "Langue de l'interface",
+    "saved": "Enregistré",
+    "usage": "Limite du jour",
+    "usageText": "{{used}} tâches utilisées sur {{total}}. Jusqu'à {{maxFile}} Mo par fichier.",
+    "history": "30 derniers jours",
+    "empty": "Aucune tâche pour l'instant. Convertissez votre premier fichier pour le voir ici.",
+    "toTools": "Voir les outils",
+    "filesDeleted": "Fichiers supprimés",
+    "more": "Afficher plus",
+    "logout": "Se déconnecter",
+    "deleteTitle": "Supprimer le compte",
+    "deleteText": "Votre compte, votre historique et tous vos fichiers seront définitivement supprimés. C'est irréversible.",
+    "deletePassword": "Votre mot de passe, pour confirmer",
+    "deleteSubmit": "Supprimer définitivement le compte",
+    "deleteConfirm": "Votre compte et tous vos fichiers seront définitivement supprimés. Continuer ?",
+    "deleteGoogle": "Pour confirmer, reconnectez-vous avec Google avec ce compte. Le compte est supprimé juste après.",
+    "deleteNoGoogle": "Ce compte n'a pas de mot de passe. Pour le supprimer, définissez d'abord un mot de passe.",
+    "adminLink": "Administration",
+    "verifyText": "Nous avons envoyé un lien de confirmation à votre e-mail. Vous ne l'avez pas reçu ?",
+    "resend": "Renvoyer",
+    "resent": "Envoyé. Vérifiez votre boîte de réception et vos spams.",
+    "security": "Sécurité",
+    "passwordTitle": "Changer le mot de passe",
+    "passwordSubmit": "Changer le mot de passe",
+    "passwordSaved": "Mot de passe changé. Vous avez été déconnecté de vos autres appareils.",
+    "passwordNone": "Vous vous connectez avec Google, ce compte n'a donc pas de mot de passe. Pour en ajouter un, utilisez « Mot de passe oublié ? » sur la page de connexion.",
+    "twoFactor": "Connexion en deux étapes",
+    "twoFactorOff": "Désactivée. Une fois activée, chaque connexion demande aussi un code d'une application sur votre téléphone.",
+    "twoFactorOn": "Activée. Chaque connexion demande un code de votre application d'authentification.",
+    "twoFactorStart": "Activer",
+    "twoFactorScan": "Scannez ce code QR avec Google Authenticator, Authy ou une autre application d'authentification, puis saisissez le code à 6 chiffres affiché.",
+    "twoFactorQr": "Code QR pour l'application d'authentification",
+    "twoFactorManual": "Impossible de le scanner ? Saisissez cette clé à la main :",
+    "twoFactorConfirm": "Confirmer et activer",
+    "twoFactorCancel": "Annuler",
+    "twoFactorDisable": "Désactiver",
+    "twoFactorDisableText": "Pour la désactiver, saisissez votre mot de passe et un code actuel.",
+    "twoFactorNeedsEmail": "Confirmez d'abord votre e-mail, puis vous pourrez activer la connexion en deux étapes.",
+    "twoFactorNoPassword": "Pour la désactiver, ajoutez d'abord un mot de passe avec « Mot de passe oublié ? »."
+  },
+  "weak": {
+    "password_too_short": "utilisez au moins 8 caractères",
+    "password_too_common": "ce mot de passe est trop courant",
+    "password_entirely_numeric": "n'utilisez pas que des chiffres",
+    "password_too_similar": "il ressemble trop à votre e-mail",
+    "invalid": "il ne remplit pas les conditions"
+  },
+  "organize": {
+    "loading": "Chargement des pages…",
+    "count": "{{count}} pages sur {{total}}",
+    "reset": "Annuler toutes les modifications",
+    "listLabel": "Pages du PDF",
+    "page": "Page {{n}}",
+    "moveBack": "Avancer {{page}}",
+    "moveForward": "Reculer {{page}}",
+    "rotate": "Faire pivoter {{page}} de 90°",
+    "remove": "Supprimer {{page}}",
+    "empty": "Gardez au moins une page."
+  },
+  "legal": {
+    "updated": "Dernière mise à jour : {{date}}",
+    "operator": "Exploité par {{name}}.",
+    "contact": "Questions et demandes : ",
+    "noContact": "Aucune adresse de contact n'a encore été indiquée.",
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "intro": "Cette page explique quelles données jichcha reçoit, pourquoi et quand elles sont supprimées. Les données sont traitées conformément à la loi de la République d'Ouzbékistan « sur les données personnelles ».",
+      "sections": [
+        {
+          "h": "Les fichiers que vous envoyez",
+          "p": [
+            "Les fichiers servent uniquement à la tâche que vous choisissez. Nous ne lisons, ne vendons et ne partageons pas leur contenu.",
+            "L'original est supprimé dès la fin du traitement. Les résultats sont supprimés automatiquement au bout d'une heure pour les visiteurs et de 6 heures pour les titulaires d'un compte, ou aussitôt avec « Supprimer du serveur maintenant ». Les fichiers ne sont jamais sauvegardés.",
+            "Chaque fichier est analysé contre les virus avant le traitement. Le GPS et les informations de l'appareil photo des photos de téléphone ne sont pas copiés dans les résultats."
+          ]
+        },
+        {
+          "h": "Votre compte",
+          "p": [
+            "Pour un compte, nous conservons votre e-mail, une empreinte irréversible de votre mot de passe (Argon2) et la langue de l'interface. Avec la connexion Google, Google nous communique uniquement votre e-mail vérifié.",
+            "L'historique garde le nom de l'outil, les noms de fichiers, leurs tailles et les heures pendant 30 jours. Les fichiers eux-mêmes sont supprimés selon les délais ci-dessus.",
+            "« Supprimer définitivement le compte », sur la page du compte, efface immédiatement votre compte, votre historique et vos fichiers."
+          ]
+        },
+        {
+          "h": "Cookies et stockage du navigateur",
+          "p": [
+            "uv_guest : affiche vos résultats dans ce navigateur quand vous n'êtes pas connecté. Il contient un jeton aléatoire ; le serveur ne garde que son empreinte.",
+            "uv_refresh : vous garde connecté pendant 7 jours.",
+            "Le stockage du navigateur (localStorage) ne garde que votre choix de thème (clair ou sombre).",
+            "Aucun cookie publicitaire, de suivi ou de mesure d'audience n'est utilisé."
+          ]
+        },
+        {
+          "h": "Données techniques",
+          "p": [
+            "Votre adresse IP sert aux limites anti-abus et reste en mémoire quelques minutes. Les journaux du serveur sont conservés pendant une durée limitée pour la sécurité et le dépannage."
+          ]
+        },
+        {
+          "h": "Services tiers",
+          "p": [
+            "Google : uniquement si vous cliquez sur « Continuer avec Google ».",
+            "Rapports d'erreurs : les erreurs de l'application sont envoyées sans données personnelles (ni cookies, ni adresses IP, ni contenu de fichiers)."
+          ]
+        },
+        {
+          "h": "Vos droits",
+          "p": [
+            "Vous pouvez demander à consulter, corriger ou supprimer les données vous concernant. Vous pouvez supprimer vous-même votre compte et vos fichiers sur le site. Pour toute autre demande, écrivez à l'adresse ci-dessous."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "intro": "En utilisant jichcha, vous acceptez ces conditions.",
+      "sections": [
+        {
+          "h": "Le service",
+          "p": [
+            "jichcha est un service gratuit pour convertir, compresser et modifier des fichiers. Les limites quotidiennes et de taille le protègent des abus et peuvent évoluer."
+          ]
+        },
+        {
+          "h": "Vos fichiers",
+          "p": [
+            "N'envoyez que des fichiers que vous avez le droit d'utiliser. Vous êtes responsable de leur contenu et de l'usage que vous faites des résultats.",
+            "Un fichier protégé par mot de passe ne s'ouvre qu'avec ce mot de passe, utilisé pour ce seul fichier et jamais conservé."
+          ]
+        },
+        {
+          "h": "Interdit",
+          "p": [
+            "Envoyer des logiciels malveillants, contourner les limites, faire un usage automatisé massif, attaquer ou perturber le service, ou diffuser des contenus illégaux. Dans ce cas, les fichiers sont supprimés et le compte peut être bloqué."
+          ]
+        },
+        {
+          "h": "Résultats et responsabilité",
+          "p": [
+            "Le service est fourni « en l'état ». Nous ne pouvons pas garantir que chaque fichier sera parfaitement converti : gardez votre original. Téléchargez les résultats avant leur expiration, car les fichiers ne sont pas sauvegardés."
+          ]
+        },
+        {
+          "h": "Votre compte",
+          "p": [
+            "Gardez votre mot de passe secret. Les comptes qui enfreignent ces conditions peuvent être supprimés ou bloqués. Vous pouvez supprimer votre compte à tout moment."
+          ]
+        },
+        {
+          "h": "Droit applicable et modifications",
+          "p": [
+            "Ces conditions sont régies par les lois de la République d'Ouzbékistan. En cas de modification, la nouvelle version est publiée sur cette page avec sa date."
+          ]
+        }
+      ]
+    }
+  },
+  "catalog": {
+    "conversionName": "{{from}} en {{to}}",
+    "conversionDescription": "Convertissez gratuitement un fichier {{from}} en {{to}}.",
+    "jump": "Rubriques"
+  },
+  "edit": {
+    "title": "Retouche",
+    "crop": "Recadrer",
+    "aspects": {
+      "free": "Libre",
+      "square": "1:1 carré",
+      "portrait": "4:5",
+      "wide": "16:9",
+      "id": "3×4 photo d'identité"
+    },
+    "cropArea": "Zone de recadrage",
+    "cropValue": "{{x}} % depuis la gauche, {{y}} % depuis le haut, {{w}} % de large, {{h}} % de haut",
+    "cropHint": "Faites glisser la zone à la souris ou au doigt ; tirez le point du coin pour la redimensionner. Clavier : les flèches la déplacent, Maj + flèches la redimensionnent.",
+    "batchCrop": "Plusieurs photos : chacune est recadrée depuis le centre selon la forme choisie.",
+    "noPreview": "Votre navigateur ne peut pas afficher cette photo. Choisissez une forme et elle sera recadrée depuis le centre.",
+    "turn": "Pivoter et retourner",
+    "rotateLeft": "Pivoter à gauche",
+    "rotateRight": "Pivoter à droite",
+    "flipH": "Retourner horizontalement",
+    "flipV": "Retourner verticalement",
+    "rotation": "Rotation : {{deg}}°",
+    "preview": "Aperçu du résultat",
+    "resize": "Taille",
+    "resizeModes": {
+      "none": "Conserver",
+      "percent": "En pourcentage",
+      "pixels": "En pixels"
+    },
+    "percent": "Pourcentage de la taille d'origine",
+    "width": "Largeur, px",
+    "height": "Hauteur, px",
+    "pixelsHint": "Saisissez l'une et l'autre suit les proportions d'origine.",
+    "format": "Format",
+    "keepFormat": "Comme l'original",
+    "needSize": "Saisissez une largeur ou une hauteur."
+  },
+  "next": {
+    "title": "Autres choses à faire avec ce fichier"
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "description": "Réponses sur jichcha : le prix, les limites de fichiers, la durée de conservation, les formats pris en charge et le bot Telegram.",
+    "intro": "Des réponses courtes aux questions les plus fréquentes. Vous ne trouvez pas la vôtre ? Écrivez-nous via le contact en bas de la politique de confidentialité.",
+    "botLink": "Ouvrir le bot dans Telegram",
+    "items": [
+      {
+        "q": "jichcha est-il gratuit ?",
+        "a": "Oui. Tous les outils sont gratuits, sans filigrane ni période d'essai. Le compte est gratuit lui aussi : il augmente seulement les limites."
+      },
+      {
+        "q": "Faut-il un compte ?",
+        "a": "Non. Sans compte, vous pouvez envoyer des fichiers jusqu'à {{guestMb}} Mo, faire {{guestTasks}} tâches par jour et traiter jusqu'à {{guestBatch}} fichiers à la fois. Un compte gratuit porte cela à {{userMb}} Mo, {{userTasks}} tâches par jour et {{userBatch}} fichiers, et garde 30 jours d'historique de vos tâches."
+      },
+      {
+        "q": "Que deviennent mes fichiers ?",
+        "a": "Ils servent uniquement à la conversion demandée. Chaque envoi est analysé contre les virus et les fichiers sont supprimés automatiquement : au bout de {{guestHours}} heure sans compte, de {{userHours}} heures avec un compte. Vous pouvez aussi supprimer vous-même un résultat tout de suite."
+      },
+      {
+        "q": "Quels formats sont pris en charge ?",
+        "a": "PDF : fusionner, diviser, réordonner les pages, compresser, déverrouiller, transformer les pages en JPG ou PNG. Word, Excel, PowerPoint, OpenDocument, RTF et CSV en PDF. Photos : JPG, PNG, WEBP, AVIF, HEIC, GIF, BMP et TIFF — convertir, compresser, recadrer, faire pivoter, redimensionner ou réunir dans un PDF. Archives : ouvrir ZIP, RAR, 7Z, TAR, GZ, BZ2 et XZ, créer un ZIP ou un 7Z, ou réemballer une archive dans un autre format."
+      },
+      {
+        "q": "Pourquoi mon Word a-t-il un aspect un peu différent en PDF ?",
+        "a": "Les documents sont convertis avec LibreOffice. Si le document utilise une police que nous n'avons pas, une police proche la remplace et les lignes peuvent un peu bouger. Les polices courantes comme Arial, Times New Roman ou Calibri sont les plus fidèles ; vous pouvez aussi incorporer les polices en enregistrant dans Word."
+      },
+      {
+        "q": "Puis-je ouvrir un PDF ou une archive protégés par mot de passe ?",
+        "a": "Oui, si vous connaissez le mot de passe. L'outil « Déverrouiller un PDF » et l'extraction d'archives le demandent. Le mot de passe sert uniquement à cette tâche et n'est jamais conservé."
+      },
+      {
+        "q": "Pourquoi mon fichier a-t-il été refusé ?",
+        "a": "Nous vérifions la vraie nature du fichier, pas seulement son extension : un fichier d'un autre type simplement renommé est donc refusé. Autres raisons : le fichier dépasse votre limite, la limite du jour est atteinte, le fichier est endommagé ou chiffré, ou l'analyse antivirus a trouvé quelque chose. Le message à l'écran indique la raison exacte."
+      },
+      {
+        "q": "Y a-t-il un bot Telegram ?",
+        "a": "Oui. Envoyez un fichier au bot et choisissez quoi en faire avec les boutons ; envoyez plusieurs photos en album pour obtenir un seul PDF. Telegram ne permet aux bots de télécharger que des fichiers de 20 Mo au maximum : pour les fichiers plus gros, le bot vous donne un lien vers le site."
+      },
+      {
+        "q": "Comment protéger mon compte ?",
+        "a": "Utilisez un mot de passe que vous n'utilisez nulle part ailleurs et activez la connexion en deux étapes dans la rubrique Sécurité de votre compte. Ensuite, chaque connexion demandera aussi un code d'une application comme Google Authenticator ou Authy."
+      },
+      {
+        "q": "Comment supprimer mon compte ?",
+        "a": "Ouvrez la page de votre compte et choisissez « Supprimer le compte ». Votre compte, votre historique et tous les fichiers conservés sont supprimés immédiatement et ne peuvent pas être récupérés."
+      }
+    ]
+  },
+  "compare": {
+    "before": "Avant",
+    "after": "Après",
+    "label": "Comparer l'image d'origine et l'image compressée",
+    "value": "{{percent}} % original",
+    "hint": "Faites glisser la ligne ou utilisez les flèches pour comparer la qualité."
+  },
+  "drop": {
+    "title": "Déposez un fichier ici",
+    "text": "Nous reconnaissons le type de fichier et vous montrons ce que vous pouvez en faire. Rien n'est envoyé tant que vous n'avez pas choisi un outil.",
+    "choose": "Choisir un fichier",
+    "detected": "<name>{{name}}</name> est un fichier {{family}}. Que faisons-nous ?",
+    "unknown": "Impossible de savoir ce qu'est « {{name}} ». Choisissez une rubrique ci-dessous.",
+    "another": "Un autre fichier"
+  },
+  "sections": {
+    "label": "Rubriques",
+    "pdf": {
+      "lead": "Fusionnez, divisez, réordonnez, compressez ou déverrouillez des PDF."
+    },
+    "word": {
+      "lead": "Transformez un document Word en PDF, prêt à imprimer ou à envoyer."
+    },
+    "excel": {
+      "lead": "Transformez une feuille Excel en PDF en un clic."
+    },
+    "powerpoint": {
+      "lead": "Transformez une présentation en PDF, une diapositive par page."
+    },
+    "image": {
+      "lead": "Convertissez, compressez, recadrez ou réunissez des photos dans un PDF. Les fichiers HEIC de l'iPhone aussi."
+    },
+    "archive": {
+      "lead": "Ouvrez des archives ZIP, RAR et 7Z, créez-en de nouvelles ou changez leur format."
+    },
+    "formats": "Formats",
+    "home": "Accueil",
+    "breadcrumb": "Vous êtes ici"
+  },
+  "menu": {
+    "work": "Modifier et gérer",
+    "from": "Convertir vers un autre format",
+    "into": "Convertir vers ce format"
+  }
+}
