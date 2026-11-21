@@ -30,12 +30,13 @@ RUN if [ -n "$DEBIAN_MIRROR" ]; then \
         sed -i "s|URIs: http://deb.debian.org/debian$|URIs: ${DEBIAN_MIRROR}|" /etc/apt/sources.list.d/debian.sources; \
     fi
 
-# libarchive: archive tools (zip, rar, 7z, tar...) through libarchive-c.
+# libarchive: archive tools (zip, rar, 7z, tar...) through libarchive-c. DejaVu: a Unicode font for
+# PDF page numbers and watermarks (Uzbek, Cyrillic).
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     rm -f /etc/apt/apt.conf.d/docker-clean \
     && apt-get update \
-    && apt-get install -y --no-install-recommends libarchive13t64
+    && apt-get install -y --no-install-recommends libarchive13t64 fonts-dejavu-core
 
 RUN groupadd --system --gid 1001 app \
     && useradd --system --uid 1001 --gid app --home-dir /app --shell /usr/sbin/nologin app \

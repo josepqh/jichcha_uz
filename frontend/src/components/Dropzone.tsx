@@ -6,6 +6,8 @@ import { btn } from "@/lib/ui";
 
 interface Props {
   accept: string;
+  /** On phones, open the rear camera instead of the file list (scanning paper). */
+  capture?: boolean;
   multiple?: boolean;
   disabled?: boolean;
   compact?: boolean;
@@ -13,7 +15,7 @@ interface Props {
   onFiles: (files: File[]) => void;
 }
 
-export function Dropzone({ accept, multiple = true, disabled = false, compact = false, hint, onFiles }: Props) {
+export function Dropzone({ accept, capture = false, multiple = true, disabled = false, compact = false, hint, onFiles }: Props) {
   const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragging, setDragging] = useState(false);
@@ -32,6 +34,7 @@ export function Dropzone({ accept, multiple = true, disabled = false, compact = 
         ref={inputRef}
         type="file"
         accept={accept}
+        capture={capture ? "environment" : undefined}
         multiple={multiple}
         hidden
         data-testid="file-input"

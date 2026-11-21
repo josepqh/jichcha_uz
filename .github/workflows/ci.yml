@@ -47,7 +47,7 @@ jobs:
           cache: pip
           cache-dependency-path: backend/requirements/*.txt
       - name: System libraries
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libarchive13t64
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libarchive13t64 fonts-dejavu-core
       - run: pip install -r requirements/dev.txt
       - name: Lint
         run: |
@@ -154,6 +154,7 @@ jobs:
       THROTTLE_TASK_CREATE_IP: 2000/min
       THROTTLE_ANON: 5000/min
       THROTTLE_ANON_IP: 10000/min
+      THROTTLE_FEEDBACK: 1000/1h
       E2E_MANAGE: python backend/manage.py
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -170,7 +171,7 @@ jobs:
           cache: npm
           cache-dependency-path: frontend/package-lock.json
       - name: System libraries
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libarchive13t64
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libarchive13t64 fonts-dejavu-core
       - name: Start backend and worker
         working-directory: backend
         run: |

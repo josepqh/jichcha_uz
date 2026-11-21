@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly VITE_LEGAL_NAME?: string;
   readonly VITE_CONTACT_EMAIL?: string;
   readonly VITE_TELEGRAM_BOT_USERNAME?: string;
+  readonly VITE_TELEGRAM_USERNAME?: string;
   readonly VITE_TURNSTILE_SITE_KEY?: string;
 }
 

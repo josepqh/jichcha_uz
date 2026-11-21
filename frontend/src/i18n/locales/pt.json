@@ -124,6 +124,51 @@
       "name": "Desbloquear PDF",
       "title": "Remover a senha de um PDF",
       "description": "Tenha uma cópia do PDF sem senha (você precisa saber a senha) e depois junte, comprima ou divida."
+    },
+    "pdf-rotate": {
+      "name": "Girar PDF",
+      "title": "Girar páginas de PDF",
+      "description": "Gire todas as páginas em 90°, 180° ou 270° quando a digitalização sair de lado ou de cabeça para baixo."
+    },
+    "pdf-remove-pages": {
+      "name": "Remover páginas",
+      "title": "Remover páginas de um PDF",
+      "description": "Apague as páginas que você não precisa, como em branco ou repetidas, e mantenha o resto."
+    },
+    "pdf-extract-pages": {
+      "name": "Extrair páginas",
+      "title": "Extrair páginas de um PDF",
+      "description": "Escolha as páginas que precisa e salve-as como um novo PDF."
+    },
+    "pdf-page-numbers": {
+      "name": "Numerar páginas",
+      "title": "Adicionar números de página a um PDF",
+      "description": "Numere as páginas no canto ou no centro que você escolher, a partir de qualquer número."
+    },
+    "pdf-watermark": {
+      "name": "Marca d'água",
+      "title": "Adicionar marca d'água de texto a um PDF",
+      "description": "Coloque um texto como “Rascunho” ou o nome da sua empresa em todas as páginas."
+    },
+    "pdf-crop": {
+      "name": "Cortar PDF",
+      "title": "Cortar as margens de um PDF",
+      "description": "Corte a mesma margem de cada lado de todas as páginas."
+    },
+    "pdf-protect": {
+      "name": "Proteger PDF",
+      "title": "Colocar senha em um PDF",
+      "description": "Tranque um PDF com senha e criptografia AES-256. A senha nunca é guardada."
+    },
+    "pdf-repair": {
+      "name": "Reparar PDF",
+      "title": "Reparar um PDF danificado",
+      "description": "Reconstrua um PDF que não abre ou mostra erros e receba uma cópia limpa."
+    },
+    "scan-to-pdf": {
+      "name": "Digitalizar para PDF",
+      "title": "Digitalizar papéis para PDF com o celular",
+      "description": "Fotografe as páginas com a câmera do celular e receba um único PDF em ordem."
     }
   },
   "conversion": {
@@ -243,6 +288,67 @@
     "password": {
       "label": "Senha",
       "hint": "Usada só para este arquivo e nunca guardada."
+    },
+    "angle": {
+      "label": "Girar",
+      "choices": {
+        "90": "90° para a direita",
+        "180": "180°",
+        "270": "90° para a esquerda"
+      }
+    },
+    "removePages": {
+      "label": "Páginas a remover",
+      "placeholder": "Por exemplo: 2, 5-7",
+      "hint": "Números e intervalos de páginas separados por vírgulas."
+    },
+    "extractPages": {
+      "label": "Páginas a manter",
+      "placeholder": "Por exemplo: 1-3, 8",
+      "hint": "Números e intervalos separados por vírgulas. “8-” significa da página 8 até o fim."
+    },
+    "numberPosition": {
+      "label": "Posição",
+      "choices": {
+        "bottom-center": "Embaixo no centro",
+        "bottom-right": "Embaixo à direita",
+        "bottom-left": "Embaixo à esquerda",
+        "top-center": "Em cima no centro",
+        "top-right": "Em cima à direita",
+        "top-left": "Em cima à esquerda"
+      }
+    },
+    "numberStyle": {
+      "label": "Formato",
+      "choices": {
+        "n": "1, 2, 3",
+        "n-of-total": "1 / 10"
+      }
+    },
+    "numberStart": {
+      "label": "Começar em",
+      "placeholder": "1"
+    },
+    "watermarkText": {
+      "label": "Texto da marca d'água",
+      "placeholder": "Por exemplo: Rascunho"
+    },
+    "opacity": {
+      "label": "Intensidade",
+      "choices": {
+        "light": "Fraca",
+        "medium": "Média",
+        "strong": "Forte"
+      }
+    },
+    "cropMargin": {
+      "label": "Cortar de cada lado",
+      "choices": {
+        "5": "5 mm",
+        "10": "10 mm",
+        "15": "15 mm",
+        "25": "25 mm"
+      }
     }
   },
   "upload": {
@@ -285,7 +391,16 @@
     "archive-create": "Criar {{target}}",
     "archive-convert": "Converter para {{target}}",
     "image-edit": "Aplicar",
-    "pdf-unlock": "Remover senha"
+    "pdf-unlock": "Remover senha",
+    "pdf-rotate": "Girar",
+    "pdf-remove-pages": "Remover páginas",
+    "pdf-extract-pages": "Extrair",
+    "pdf-page-numbers": "Adicionar números",
+    "pdf-watermark": "Adicionar marca",
+    "pdf-crop": "Cortar",
+    "pdf-protect": "Proteger",
+    "pdf-repair": "Reparar",
+    "scan-to-pdf": "Criar PDF"
   },
   "status": {
     "uploading": "Enviando… {{percent}}%",
@@ -358,7 +473,9 @@
     "email_unverified": "Confirme seu e-mail primeiro.",
     "invalid_verify_link": "Este link de confirmação é inválido ou expirou. Envie um novo pela página da sua conta.",
     "already_verified": "Seu e-mail já está confirmado.",
-    "staff_2fa_required": "O painel de administração exige verificação em duas etapas. Ative-a primeiro na sua conta."
+    "staff_2fa_required": "O painel de administração exige verificação em duas etapas. Ative-a primeiro na sua conta.",
+    "all_pages_removed": "Isso removeria todas as páginas. Deixe pelo menos uma.",
+    "crop_too_large": "As páginas são pequenas demais para cortar tanto. Escolha uma margem menor."
   },
   "notFound": {
     "title": "Página não encontrada",
@@ -728,6 +845,32 @@
   "menu": {
     "work": "Editar e organizar",
     "from": "Converter para outro formato",
-    "into": "Converter para este formato"
+    "into": "Converter para este formato",
+    "organize": "Organizar",
+    "optimize": "Otimizar",
+    "edit": "Editar",
+    "security": "Segurança"
+  },
+  "feedback": {
+    "title": "Sugestões e reclamações",
+    "intro": "Conte o que adicionar, o que não funcionou ou o que incomodou. Lemos todas as mensagens.",
+    "kind": "Sobre o que é?",
+    "kinds": {
+      "suggestion": "Sugestão",
+      "complaint": "Reclamação",
+      "question": "Pergunta"
+    },
+    "message": "Sua mensagem",
+    "placeholder": "Por exemplo: adicionem PDF para Word…",
+    "email": "E-mail para resposta (opcional)",
+    "emailHint": "Deixe em branco para escrever de forma anônima.",
+    "submit": "Enviar",
+    "submitting": "Enviando…",
+    "sent": "Obrigado, sua mensagem foi enviada.",
+    "sentText": "Se você deixou um e-mail, responderemos por lá.",
+    "another": "Escrever outra",
+    "direct": "Ou escreva diretamente para nós",
+    "tooShort": "Escreva pelo menos {{count}} caracteres.",
+    "throttled": "Você já enviou várias mensagens. Tente de novo daqui a uma hora."
   }
 }

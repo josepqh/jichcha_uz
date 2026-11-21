@@ -1,10 +1,12 @@
-import { Send } from "lucide-react";
+import { Bot, Mail, Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
+import { FamilyIcon } from "@/components/FamilyIcon";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { useLang } from "@/hooks/useLang";
-import { FAMILY_BG, SECTION_SLUG, SECTIONS } from "@/lib/sections";
+import { CONTACT_EMAIL, TELEGRAM_URL, TELEGRAM_USERNAME } from "@/lib/contacts";
+import { SECTION_SLUG, SECTIONS } from "@/lib/sections";
 import { POPULAR_CONVERSIONS, resolveConversion } from "@/lib/tools";
 import { useAuthStore } from "@/stores/auth";
 
@@ -30,12 +32,27 @@ export function Footer() {
             <Wordmark />
           </Link>
           <p className="max-w-xs text-pretty text-muted">{t("footer.privacy")}</p>
-          {BOT ? (
-            <a href={`https://t.me/${encodeURIComponent(BOT)}`} className={linkClass} rel="noopener">
-              <Send className="size-4" aria-hidden="true" />
-              {t("faq.botLink")}
-            </a>
-          ) : null}
+          <ul>
+            <li>
+              <a href={TELEGRAM_URL} className={linkClass} rel="noopener">
+                <Send className="size-4" aria-hidden="true" />@{TELEGRAM_USERNAME}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${CONTACT_EMAIL}`} className={linkClass}>
+                <Mail className="size-4" aria-hidden="true" />
+                {CONTACT_EMAIL}
+              </a>
+            </li>
+            {BOT ? (
+              <li>
+                <a href={`https://t.me/${encodeURIComponent(BOT)}`} className={linkClass} rel="noopener">
+                  <Bot className="size-4" aria-hidden="true" />
+                  {t("faq.botLink")}
+                </a>
+              </li>
+            ) : null}
+          </ul>
         </div>
 
         <div className="space-y-3">
@@ -46,7 +63,7 @@ export function Footer() {
             {SECTIONS.map((family) => (
               <li key={family}>
                 <Link to={`/${lang}/${SECTION_SLUG[family]}`} className={linkClass}>
-                  <span aria-hidden="true" className={`size-2 rounded-[2px] ${FAMILY_BG[family]}`} />
+                  <FamilyIcon family={family} className="size-4" />
                   {t(`home.groups.${family}`)}
                 </Link>
               </li>
@@ -77,6 +94,11 @@ export function Footer() {
             <li>
               <Link to={`/${lang}/faq`} className={linkClass}>
                 {t("footer.faqLink")}
+              </Link>
+            </li>
+            <li>
+              <Link to={`/${lang}/feedback`} className={linkClass}>
+                {t("feedback.title")}
               </Link>
             </li>
             <li>

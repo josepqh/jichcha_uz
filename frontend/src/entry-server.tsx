@@ -26,6 +26,7 @@ export function publicPaths(): string[] {
     ...TOOL_LIST.map((tool) => `tools/${tool.slug}`),
     ...[...conversions].toSorted().map((pair) => `convert/${pair}`),
     "faq",
+    "feedback",
     "privacy",
     "terms",
   ];

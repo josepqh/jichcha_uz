@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
 
+import { CONTACT_EMAIL } from "@/lib/contacts";
 import { formatDate } from "@/lib/format";
 import { card } from "@/lib/ui";
 
 /** Set these before launch: they name who runs the service and how to reach them (.env, VITE_*). */
 const OPERATOR = import.meta.env.VITE_LEGAL_NAME ?? "";
-const CONTACT = import.meta.env.VITE_CONTACT_EMAIL ?? "";
+const CONTACT = CONTACT_EMAIL;
 const UPDATED = "2026-11-21";
 
 interface Section {

@@ -181,7 +181,19 @@ export const auth = {
   verifyEmail: (token: string) => rawRequest<{ email_verified: boolean }>("/auth/email/verify/", json({ token })),
 };
 
+export interface FeedbackMessage {
+  kind: "suggestion" | "complaint" | "question";
+  message: string;
+  email: string;
+  page: string;
+  language: string;
+  /** Honeypot: always empty from people. */
+  website: string;
+  captcha: string;
+}
+
 export const api = {
+  sendFeedback: (body: FeedbackMessage) => rawRequest<void>("/feedback/", json(body)),
   usage: () => request<Usage>("/usage/"),
   tools: () => request<{ slug: string; enabled: boolean }[]>("/tools/"),
   task: (id: string) => request<Task>(`/tasks/${encodeURIComponent(id)}/`),

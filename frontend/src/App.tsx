@@ -8,6 +8,7 @@ import { SECTION_SLUG, SECTIONS } from "@/lib/sections";
 import { AccountPage } from "@/pages/AccountPage";
 import { AdminPage } from "@/pages/AdminPage";
 import { FaqPage } from "@/pages/FaqPage";
+import { FeedbackPage } from "@/pages/FeedbackPage";
 import { ForgotPage } from "@/pages/ForgotPage";
 import { HomePage } from "@/pages/HomePage";
 import { LegalPage } from "@/pages/LegalPage";
@@ -61,6 +62,7 @@ export function App() {
         <Route path="privacy" element={<LangGuard><LegalPage key="privacy" doc="privacy" /></LangGuard>} />
         <Route path="terms" element={<LangGuard><LegalPage key="terms" doc="terms" /></LangGuard>} />
         <Route path="faq" element={<LangGuard><FaqPage /></LangGuard>} />
+        <Route path="feedback" element={<LangGuard><FeedbackPage /></LangGuard>} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

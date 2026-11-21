@@ -4,10 +4,11 @@ import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router";
 
 import { entryText } from "@/components/EntryCard";
+import { FamilyIcon } from "@/components/FamilyIcon";
 import { useDisabledTools } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
 import { familyOf } from "@/lib/catalog";
-import { FAMILY_BG, FAMILY_TEXT, formatOf, sectionEntries } from "@/lib/sections";
+import { FAMILY_TEXT, formatOf, sectionEntries } from "@/lib/sections";
 import type { Family } from "@/lib/tools";
 import { btn } from "@/lib/ui";
 
@@ -100,7 +101,7 @@ export function SmartDrop() {
                       state={{ from: { file: picked.file, name: picked.file.name } }}
                       className="group flex min-h-12 items-center gap-3 rounded-xl border border-border bg-bg px-4 font-medium transition-[border-color,transform] duration-150 hover:border-fg active:scale-[0.99]"
                     >
-                      <span aria-hidden="true" className={`size-2 rounded-[2px] ${FAMILY_BG[picked.family!]}`} />
+                      <FamilyIcon family={picked.family!} className="size-4" />
                       <span className="flex-1">{name}</span>
                       <ArrowRight
                         className="size-4 text-muted transition-transform duration-200 group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1 group-hover:text-fg"

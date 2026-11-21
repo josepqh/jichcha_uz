@@ -123,6 +123,51 @@
       "name": "PDF kilidini aç",
       "title": "PDF şifresini kaldır",
       "description": "PDF'nizin şifresiz bir kopyasını alın (şifreyi bilmeniz gerekir), sonra birleştirin, sıkıştırın ya da bölün."
+    },
+    "pdf-rotate": {
+      "name": "PDF döndür",
+      "title": "PDF sayfalarını döndür",
+      "description": "Tarama yan ya da ters çıktıysa tüm sayfaları 90°, 180° ya da 270° döndürün."
+    },
+    "pdf-remove-pages": {
+      "name": "Sayfa sil",
+      "title": "PDF'den sayfa sil",
+      "description": "Boş ya da tekrar eden sayfalar gibi gereksiz sayfaları silin, gerisi kalsın."
+    },
+    "pdf-extract-pages": {
+      "name": "Sayfa çıkar",
+      "title": "PDF'den sayfa çıkar",
+      "description": "Gereken sayfaları seçin ve yeni bir PDF olarak kaydedin."
+    },
+    "pdf-page-numbers": {
+      "name": "Sayfa numarası ekle",
+      "title": "PDF'ye sayfa numarası ekle",
+      "description": "Sayfaları seçtiğiniz köşede ya da ortada, istediğiniz sayıdan başlayarak numaralandırın."
+    },
+    "pdf-watermark": {
+      "name": "Filigran ekle",
+      "title": "PDF'ye metin filigranı ekle",
+      "description": "Her sayfaya “Taslak” ya da şirket adınız gibi bir metin basın."
+    },
+    "pdf-crop": {
+      "name": "PDF kırp",
+      "title": "PDF kenar boşluklarını kırp",
+      "description": "Her sayfanın her kenarından aynı boşluğu kesin."
+    },
+    "pdf-protect": {
+      "name": "PDF'yi koru",
+      "title": "PDF'ye şifre koy",
+      "description": "PDF'yi AES-256 şifrelemeyle parolayla kilitleyin. Şifre hiçbir zaman saklanmaz."
+    },
+    "pdf-repair": {
+      "name": "PDF onar",
+      "title": "Bozuk PDF'yi onar",
+      "description": "Açılmayan ya da hata veren PDF'yi yeniden oluşturup temiz bir kopya alın."
+    },
+    "scan-to-pdf": {
+      "name": "Tarayıp PDF yap",
+      "title": "Kâğıtları telefonla PDF'ye tarayın",
+      "description": "Sayfaları telefon kamerasıyla çekin ve sırasıyla tek bir PDF alın."
     }
   },
   "conversion": {
@@ -242,6 +287,67 @@
     "password": {
       "label": "Şifre",
       "hint": "Yalnızca bu dosya için kullanılır ve hiçbir zaman saklanmaz."
+    },
+    "angle": {
+      "label": "Döndürme",
+      "choices": {
+        "90": "Sağa 90°",
+        "180": "180°",
+        "270": "Sola 90°"
+      }
+    },
+    "removePages": {
+      "label": "Silinecek sayfalar",
+      "placeholder": "Örneğin: 2, 5-7",
+      "hint": "Sayfa numaraları ve aralıkları, virgülle ayrılmış."
+    },
+    "extractPages": {
+      "label": "Kalacak sayfalar",
+      "placeholder": "Örneğin: 1-3, 8",
+      "hint": "Sayfa numaraları ve aralıkları, virgülle ayrılmış. “8-” 8. sayfadan sona kadar demektir."
+    },
+    "numberPosition": {
+      "label": "Konum",
+      "choices": {
+        "bottom-center": "Alt orta",
+        "bottom-right": "Alt sağ",
+        "bottom-left": "Alt sol",
+        "top-center": "Üst orta",
+        "top-right": "Üst sağ",
+        "top-left": "Üst sol"
+      }
+    },
+    "numberStyle": {
+      "label": "Biçim",
+      "choices": {
+        "n": "1, 2, 3",
+        "n-of-total": "1 / 10"
+      }
+    },
+    "numberStart": {
+      "label": "Başlangıç numarası",
+      "placeholder": "1"
+    },
+    "watermarkText": {
+      "label": "Filigran metni",
+      "placeholder": "Örneğin: Taslak"
+    },
+    "opacity": {
+      "label": "Belirginlik",
+      "choices": {
+        "light": "Hafif",
+        "medium": "Orta",
+        "strong": "Güçlü"
+      }
+    },
+    "cropMargin": {
+      "label": "Her kenardan kes",
+      "choices": {
+        "5": "5 mm",
+        "10": "10 mm",
+        "15": "15 mm",
+        "25": "25 mm"
+      }
     }
   },
   "upload": {
@@ -283,7 +389,16 @@
     "archive-create": "{{target}} oluştur",
     "archive-convert": "{{target}} biçimine dönüştür",
     "image-edit": "Uygula",
-    "pdf-unlock": "Şifreyi kaldır"
+    "pdf-unlock": "Şifreyi kaldır",
+    "pdf-rotate": "Döndür",
+    "pdf-remove-pages": "Sayfaları sil",
+    "pdf-extract-pages": "Çıkar",
+    "pdf-page-numbers": "Numara ekle",
+    "pdf-watermark": "Filigran ekle",
+    "pdf-crop": "Kırp",
+    "pdf-protect": "Koru",
+    "pdf-repair": "Onar",
+    "scan-to-pdf": "PDF oluştur"
   },
   "status": {
     "uploading": "Yükleniyor… %{{percent}}",
@@ -356,7 +471,9 @@
     "email_unverified": "Önce e-postanızı onaylayın.",
     "invalid_verify_link": "Bu onay bağlantısı geçersiz ya da süresi dolmuş. Hesap sayfanızdan yenisini gönderin.",
     "already_verified": "E-postanız zaten onaylı.",
-    "staff_2fa_required": "Yönetim paneli iki adımlı giriş gerektirir. Önce hesabınızda açın."
+    "staff_2fa_required": "Yönetim paneli iki adımlı giriş gerektirir. Önce hesabınızda açın.",
+    "all_pages_removed": "Bu durumda tüm sayfalar silinir. En az birini bırakın.",
+    "crop_too_large": "Sayfalar bu kadar kırpmak için çok küçük. Daha küçük bir boşluk seçin."
   },
   "notFound": {
     "title": "Sayfa bulunamadı",
@@ -726,6 +843,32 @@
   "menu": {
     "work": "Düzenle ve yönet",
     "from": "Başka biçime dönüştür",
-    "into": "Bu biçime dönüştür"
+    "into": "Bu biçime dönüştür",
+    "organize": "Düzenle",
+    "optimize": "İyileştir",
+    "edit": "Değiştir",
+    "security": "Güvenlik"
+  },
+  "feedback": {
+    "title": "Öneri ve şikâyetler",
+    "intro": "Neyin eklenmesini istediğinizi, neyin çalışmadığını ya da sizi neyin rahatsız ettiğini yazın. Her mesajı okuyoruz.",
+    "kind": "Konu nedir?",
+    "kinds": {
+      "suggestion": "Öneri",
+      "complaint": "Şikâyet",
+      "question": "Soru"
+    },
+    "message": "Mesajınız",
+    "placeholder": "Örneğin: PDF'den Word'e dönüştürme ekleyin…",
+    "email": "Yanıt için e-posta (isteğe bağlı)",
+    "emailHint": "Adsız yazmak için boş bırakın.",
+    "submit": "Gönder",
+    "submitting": "Gönderiliyor…",
+    "sent": "Teşekkürler, mesajınız gönderildi.",
+    "sentText": "E-posta bıraktıysanız oraya yanıt vereceğiz.",
+    "another": "Bir tane daha yaz",
+    "direct": "Ya da bize doğrudan yazın",
+    "tooShort": "En az {{count}} karakter yazın.",
+    "throttled": "Zaten birkaç mesaj gönderdiniz. Bir saat sonra tekrar deneyin."
   }
 }

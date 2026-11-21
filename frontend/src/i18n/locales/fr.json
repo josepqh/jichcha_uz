@@ -124,6 +124,51 @@
       "name": "Déverrouiller un PDF",
       "title": "Supprimer le mot de passe d'un PDF",
       "description": "Obtenez une copie de votre PDF sans mot de passe (vous devez le connaître), puis fusionnez-la, compressez-la ou divisez-la."
+    },
+    "pdf-rotate": {
+      "name": "Faire pivoter un PDF",
+      "title": "Faire pivoter les pages d'un PDF",
+      "description": "Tournez toutes les pages de 90°, 180° ou 270° quand un scan est sur le côté ou à l'envers."
+    },
+    "pdf-remove-pages": {
+      "name": "Supprimer des pages",
+      "title": "Supprimer des pages d'un PDF",
+      "description": "Retirez les pages inutiles, vides ou en double par exemple, et gardez le reste."
+    },
+    "pdf-extract-pages": {
+      "name": "Extraire des pages",
+      "title": "Extraire des pages d'un PDF",
+      "description": "Choisissez les pages utiles et enregistrez-les dans un nouveau PDF."
+    },
+    "pdf-page-numbers": {
+      "name": "Numéroter les pages",
+      "title": "Ajouter des numéros de page à un PDF",
+      "description": "Numérotez les pages dans le coin ou au centre de votre choix, à partir de n'importe quel nombre."
+    },
+    "pdf-watermark": {
+      "name": "Ajouter un filigrane",
+      "title": "Ajouter un filigrane texte à un PDF",
+      "description": "Apposez un texte comme « Brouillon » ou le nom de votre entreprise sur chaque page."
+    },
+    "pdf-crop": {
+      "name": "Rogner un PDF",
+      "title": "Rogner les marges d'un PDF",
+      "description": "Coupez la même marge de chaque côté de toutes les pages."
+    },
+    "pdf-protect": {
+      "name": "Protéger un PDF",
+      "title": "Mettre un mot de passe sur un PDF",
+      "description": "Verrouillez un PDF par mot de passe avec le chiffrement AES-256. Le mot de passe n'est jamais conservé."
+    },
+    "pdf-repair": {
+      "name": "Réparer un PDF",
+      "title": "Réparer un PDF endommagé",
+      "description": "Reconstruisez un PDF qui ne s'ouvre pas ou affiche des erreurs, et récupérez une copie propre."
+    },
+    "scan-to-pdf": {
+      "name": "Scanner en PDF",
+      "title": "Scanner des documents en PDF avec votre téléphone",
+      "description": "Photographiez les pages avec l'appareil photo du téléphone et obtenez un seul PDF dans l'ordre."
     }
   },
   "conversion": {
@@ -243,6 +288,67 @@
     "password": {
       "label": "Mot de passe",
       "hint": "Utilisé pour ce fichier uniquement et jamais conservé."
+    },
+    "angle": {
+      "label": "Rotation",
+      "choices": {
+        "90": "90° à droite",
+        "180": "180°",
+        "270": "90° à gauche"
+      }
+    },
+    "removePages": {
+      "label": "Pages à supprimer",
+      "placeholder": "Par exemple : 2, 5-7",
+      "hint": "Numéros et plages de pages séparés par des virgules."
+    },
+    "extractPages": {
+      "label": "Pages à garder",
+      "placeholder": "Par exemple : 1-3, 8",
+      "hint": "Numéros et plages séparés par des virgules. « 8- » signifie de la page 8 à la fin."
+    },
+    "numberPosition": {
+      "label": "Position",
+      "choices": {
+        "bottom-center": "En bas au centre",
+        "bottom-right": "En bas à droite",
+        "bottom-left": "En bas à gauche",
+        "top-center": "En haut au centre",
+        "top-right": "En haut à droite",
+        "top-left": "En haut à gauche"
+      }
+    },
+    "numberStyle": {
+      "label": "Format",
+      "choices": {
+        "n": "1, 2, 3",
+        "n-of-total": "1 / 10"
+      }
+    },
+    "numberStart": {
+      "label": "Commencer à",
+      "placeholder": "1"
+    },
+    "watermarkText": {
+      "label": "Texte du filigrane",
+      "placeholder": "Par exemple : Brouillon"
+    },
+    "opacity": {
+      "label": "Visibilité",
+      "choices": {
+        "light": "Légère",
+        "medium": "Moyenne",
+        "strong": "Forte"
+      }
+    },
+    "cropMargin": {
+      "label": "Couper de chaque côté",
+      "choices": {
+        "5": "5 mm",
+        "10": "10 mm",
+        "15": "15 mm",
+        "25": "25 mm"
+      }
     }
   },
   "upload": {
@@ -285,7 +391,16 @@
     "archive-create": "Créer un {{target}}",
     "archive-convert": "Convertir en {{target}}",
     "image-edit": "Appliquer",
-    "pdf-unlock": "Retirer le mot de passe"
+    "pdf-unlock": "Retirer le mot de passe",
+    "pdf-rotate": "Faire pivoter",
+    "pdf-remove-pages": "Supprimer les pages",
+    "pdf-extract-pages": "Extraire",
+    "pdf-page-numbers": "Ajouter les numéros",
+    "pdf-watermark": "Ajouter le filigrane",
+    "pdf-crop": "Rogner",
+    "pdf-protect": "Protéger",
+    "pdf-repair": "Réparer",
+    "scan-to-pdf": "Créer le PDF"
   },
   "status": {
     "uploading": "Envoi… {{percent}} %",
@@ -358,7 +473,9 @@
     "email_unverified": "Confirmez d'abord votre e-mail.",
     "invalid_verify_link": "Ce lien de confirmation est invalide ou a expiré. Envoyez-en un nouveau depuis votre compte.",
     "already_verified": "Votre e-mail est déjà confirmé.",
-    "staff_2fa_required": "Le panneau d'administration exige la connexion en deux étapes. Activez-la d'abord dans votre compte."
+    "staff_2fa_required": "Le panneau d'administration exige la connexion en deux étapes. Activez-la d'abord dans votre compte.",
+    "all_pages_removed": "Cela supprimerait toutes les pages. Gardez-en au moins une.",
+    "crop_too_large": "Les pages sont trop petites pour couper autant. Choisissez une marge plus petite."
   },
   "notFound": {
     "title": "Page introuvable",
@@ -728,6 +845,32 @@
   "menu": {
     "work": "Modifier et gérer",
     "from": "Convertir vers un autre format",
-    "into": "Convertir vers ce format"
+    "into": "Convertir vers ce format",
+    "organize": "Organiser",
+    "optimize": "Optimiser",
+    "edit": "Modifier",
+    "security": "Sécurité"
+  },
+  "feedback": {
+    "title": "Suggestions et réclamations",
+    "intro": "Dites-nous quoi ajouter, ce qui n'a pas marché ou ce qui vous a gêné. Nous lisons chaque message.",
+    "kind": "De quoi s'agit-il ?",
+    "kinds": {
+      "suggestion": "Suggestion",
+      "complaint": "Réclamation",
+      "question": "Question"
+    },
+    "message": "Votre message",
+    "placeholder": "Par exemple : ajoutez PDF vers Word…",
+    "email": "E-mail pour la réponse (facultatif)",
+    "emailHint": "Laissez vide pour écrire anonymement.",
+    "submit": "Envoyer",
+    "submitting": "Envoi…",
+    "sent": "Merci, votre message est parti.",
+    "sentText": "Si vous avez laissé un e-mail, nous y répondrons.",
+    "another": "Écrire un autre message",
+    "direct": "Ou écrivez-nous directement",
+    "tooShort": "Écrivez au moins {{count}} caractères.",
+    "throttled": "Vous avez déjà envoyé plusieurs messages. Réessayez dans une heure."
   }
 }

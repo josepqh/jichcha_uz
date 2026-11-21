@@ -37,23 +37,28 @@ describe("sections", () => {
 });
 
 describe("section menus", () => {
-  it("groups PDF like a converter site: work, from PDF, into PDF", async () => {
+  it("groups PDF like a converter site: into PDF, from PDF, then the kinds of work", async () => {
     const { menuGroups } = await import("./sections");
     const pdf = menuGroups("pdf");
-    expect(pdf.work.map((e) => e.key)).toEqual(expect.arrayContaining(["pdf-merge", "pdf-split", "pdf-compress", "pdf-unlock"]));
+    expect(pdf.into.map((i) => i.family)).toEqual(["word", "excel", "powerpoint", "image", "image"]);
+    expect(pdf.into.map((i) => i.entry.key)).toContain("images-to-pdf");
     expect(pdf.from.map((e) => e.key)).toEqual(["pdf-to-images"]);
-    expect(pdf.into.map((i) => i.family)).toEqual(["word", "excel", "powerpoint", "image"]);
-    expect(pdf.into.find((i) => i.family === "image")?.entry.key).toBe("images-to-pdf");
+    const work = Object.fromEntries(pdf.work.map((g) => [g.group, g.entries.map((e) => e.key)]));
+    expect(work.organize).toEqual(expect.arrayContaining(["pdf-merge", "pdf-split", "pdf-organize"]));
+    expect(work.optimize).toContain("pdf-compress");
+    expect(work.security).toContain("pdf-unlock");
   });
 
   it("every entry lands in exactly one of its own section's groups, and hidden tools drop out", async () => {
     const { menuGroups } = await import("./sections");
     for (const family of SECTIONS) {
       const { work, from } = menuGroups(family);
-      expect([...work, ...from].map((e) => e.key).toSorted()).toEqual(sectionEntries(family).map((e) => e.key).toSorted());
+      const keys = [...work.flatMap((g) => g.entries), ...from].map((e) => e.key);
+      expect(keys.toSorted()).toEqual(sectionEntries(family).map((e) => e.key).toSorted());
     }
     expect(menuGroups("image").into.map((i) => i.entry.key)).toEqual(["pdf-to-images"]);
-    expect(menuGroups("pdf", new Set(["pdf-merge", "office-to-pdf"])).work.map((e) => e.key)).not.toContain("pdf-merge");
-    expect(menuGroups("pdf", new Set(["office-to-pdf"])).into.map((i) => i.family)).toEqual(["image"]);
+    const pdf = menuGroups("pdf", new Set(["pdf-merge", "office-to-pdf"]));
+    expect(pdf.work.flatMap((g) => g.entries).map((e) => e.key)).not.toContain("pdf-merge");
+    expect(pdf.into.map((i) => i.family)).toEqual(["image", "image"]);
   });
 });

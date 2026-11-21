@@ -76,17 +76,44 @@ export function formatOf(name: string): string {
 }
 
 /** Tools that turn a file into another format (the rest edit or manage files of their own kind). */
-const CONVERTERS = new Set(["image-convert", "archive-convert", "pdf-to-images", "images-to-pdf"]);
+const CONVERTERS = new Set(["image-convert", "archive-convert", "pdf-to-images", "images-to-pdf", "scan-to-pdf"]);
 /** Family a converting tool produces when it leaves its own family. */
-const TOOL_OUTPUT: Partial<Record<string, Family>> = { "images-to-pdf": "pdf", "pdf-to-images": "image" };
+const TOOL_OUTPUT: Partial<Record<string, Family>> = {
+  "images-to-pdf": "pdf",
+  "scan-to-pdf": "pdf",
+  "pdf-to-images": "image",
+};
+
+/** Kinds of work on a file of its own type, as the menu splits them (like converter sites do). */
+export const WORK_GROUPS = ["organize", "optimize", "edit", "security"] as const;
+export type WorkGroup = (typeof WORK_GROUPS)[number];
+const WORK_GROUP: Partial<Record<string, WorkGroup>> = {
+  "pdf-merge": "organize",
+  "pdf-split": "organize",
+  "pdf-organize": "organize",
+  "pdf-remove-pages": "organize",
+  "pdf-extract-pages": "organize",
+  "archive-extract": "organize",
+  "archive-create": "organize",
+  "pdf-compress": "optimize",
+  "pdf-repair": "optimize",
+  "image-compress": "optimize",
+  "pdf-rotate": "edit",
+  "pdf-page-numbers": "edit",
+  "pdf-watermark": "edit",
+  "pdf-crop": "edit",
+  "image-edit": "edit",
+  "pdf-unlock": "security",
+  "pdf-protect": "security",
+};
 
 export interface MenuGroups {
-  /** Editing and managing files of this kind: merge, compress, extract… */
-  work: CatalogEntry[];
-  /** From this kind to another format. */
-  from: CatalogEntry[];
   /** From other sections into this kind ("Word → PDF" under PDF). Links to the other section's entry. */
   into: { family: Family; entry: CatalogEntry }[];
+  /** From this kind to another format. */
+  from: CatalogEntry[];
+  /** Editing and managing files of this kind, split by kind of work; empty groups left out. */
+  work: { group: WorkGroup; entries: CatalogEntry[] }[];
 }
 
 /** What a section's dropdown shows, worked out from the catalog like the sections themselves. */
@@ -94,13 +121,17 @@ export function menuGroups(family: Family, hidden: ReadonlySet<string> = new Set
   const own = sectionEntries(family).filter((e) => !hidden.has(e.tool.slug));
   const isConversion = (e: CatalogEntry) => e.kind === "conversion" || CONVERTERS.has(e.tool.slug);
   const outputOf = (e: CatalogEntry) => (e.kind === "conversion" ? familyOf(e.to) : TOOL_OUTPUT[e.tool.slug]);
+  const work = own.filter((e) => !isConversion(e));
   return {
-    work: own.filter((e) => !isConversion(e)),
-    from: own.filter(isConversion),
     into: SECTIONS.filter((other) => other !== family).flatMap((other) =>
       sectionEntries(other)
         .filter((e) => !hidden.has(e.tool.slug) && outputOf(e) === family)
         .map((entry) => ({ family: other, entry })),
     ),
+    from: own.filter(isConversion),
+    work: WORK_GROUPS.map((group) => ({
+      group,
+      entries: work.filter((e) => (WORK_GROUP[e.tool.slug] ?? "organize") === group),
+    })).filter((g) => g.entries.length),
   };
 }

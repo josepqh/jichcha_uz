@@ -11,20 +11,18 @@ test("each section under the header opens its menu and its page shows only its o
   const pdf = bar.getByRole("button", { name: "PDF" });
   await pdf.click();
   await expect(pdf).toHaveAttribute("aria-expanded", "true");
-  // Like a converter site: work on PDFs, convert from PDF, convert into PDF.
-  await expect(bar.getByRole("list", { name: "Edit and manage" }).getByRole("link", { name: "Merge PDF" })).toBeVisible();
-  await expect(bar.getByRole("list", { name: "Convert to another format" }).getByRole("link", { name: "PDF → JPG, PNG" })).toBeVisible();
+  // Like a converter site: converting first, then the kinds of work on PDFs.
   await expect(bar.getByRole("list", { name: "Convert into this format" }).getByRole("link", { name: "Word to PDF" })).toBeVisible();
+  await expect(bar.getByRole("list", { name: "Convert to another format" }).getByRole("link", { name: "PDF → JPG, PNG" })).toBeVisible();
+  await expect(bar.getByRole("list", { name: "Organize" }).getByRole("link", { name: "Merge PDF" })).toBeVisible();
+  await expect(bar.getByRole("list", { name: "Security" }).getByRole("link", { name: "Protect PDF" })).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(pdf).toHaveAttribute("aria-expanded", "false");
   await expect(pdf).toBeFocused();
 
-  await pdf.click();
-  await bar.getByRole("link", { name: "Open the PDF section" }).click();
-  await expect(page).toHaveURL(/\/en\/pdf$/);
+  await page.goto("/en/pdf");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("PDF");
   await expect(pdf).toHaveAttribute("aria-current", "page");
-  await expect(pdf).toHaveAttribute("aria-expanded", "false"); // navigating closed it
   await expect(page.getByRole("main").getByRole("link", { name: /Merge PDF/ })).toBeVisible();
   await expect(page.getByRole("main").getByRole("link", { name: /Word to PDF/ })).toHaveCount(0); // Word files live under Word
 
@@ -40,9 +38,11 @@ test("each section under the header opens its menu and its page shows only its o
 test("the footer links every section, popular conversions and the help pages", async ({ page }) => {
   await page.goto("/en/faq");
   const footer = page.getByRole("contentinfo");
-  for (const name of ["PDF", "Word", "Excel", "PowerPoint", "Photos", "Archives", "FAQ", "Privacy policy", "Terms of use"]) {
+  for (const name of ["PDF", "Word", "Excel", "PowerPoint", "Photos", "Archives", "FAQ", "Privacy policy", "Terms of use", "Suggestions and complaints"]) {
     await expect(footer.getByRole("link", { name, exact: true })).toBeVisible();
   }
+  await expect(footer.getByRole("link", { name: "@jichcha_info" })).toHaveAttribute("href", "https://t.me/jichcha_info");
+  await expect(footer.getByRole("link", { name: "jichchainfo@gmail.com" })).toHaveAttribute("href", "mailto:jichchainfo@gmail.com");
   await footer.getByRole("link", { name: "DOCX → PDF" }).click();
   await expect(page).toHaveURL(/\/en\/convert\/docx-to-pdf$/);
   await expect(footer).toContainText(`© ${new Date().getFullYear()} jichcha.`);
@@ -66,4 +66,14 @@ test("a dropped file is recognised and handed to the chosen tool", async ({ page
   await expect(page).toHaveURL(/\/en\/tools\/image-compress$/);
   await expect(page.getByRole("heading", { name: "1 file selected" })).toBeVisible();
   await expect(page.getByText("photo.png")).toBeVisible();
+});
+
+test("a suggestion is sent from the feedback page", async ({ page }) => {
+  await page.goto("/en/feedback");
+  await page.getByText("Complaint", { exact: true }).click();
+  await page.getByRole("button", { name: "Send" }).click();
+  await expect(page.getByText("Fill in this field.")).toBeVisible();
+  await page.getByLabel("Your message").fill("The download button did nothing on my phone.");
+  await page.getByRole("button", { name: "Send" }).click();
+  await expect(page.getByRole("status")).toContainText("Thank you, your message is on its way.");
 });

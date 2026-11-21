@@ -122,6 +122,51 @@
       "name": "解锁 PDF",
       "title": "移除 PDF 密码",
       "description": "得到一份没有密码的 PDF（你需要知道密码），然后可以合并、压缩或拆分。"
+    },
+    "pdf-rotate": {
+      "name": "旋转 PDF",
+      "title": "旋转 PDF 页面",
+      "description": "扫描件方向不对时，把所有页面旋转 90°、180° 或 270°。"
+    },
+    "pdf-remove-pages": {
+      "name": "删除页面",
+      "title": "从 PDF 中删除页面",
+      "description": "删除不需要的页面，比如空白页或重复页，其余页面保留。"
+    },
+    "pdf-extract-pages": {
+      "name": "提取页面",
+      "title": "从 PDF 中提取页面",
+      "description": "选出需要的页面，保存为新的 PDF。"
+    },
+    "pdf-page-numbers": {
+      "name": "添加页码",
+      "title": "为 PDF 添加页码",
+      "description": "在你选择的角落或中间添加页码，可以从任意数字开始。"
+    },
+    "pdf-watermark": {
+      "name": "添加水印",
+      "title": "为 PDF 添加文字水印",
+      "description": "在每一页上加上“草稿”或公司名称等文字。"
+    },
+    "pdf-crop": {
+      "name": "裁剪 PDF",
+      "title": "裁剪 PDF 页边",
+      "description": "从每一页的四边裁掉相同的边距。"
+    },
+    "pdf-protect": {
+      "name": "加密 PDF",
+      "title": "为 PDF 设置密码",
+      "description": "用 AES-256 为 PDF 加上密码。密码不会被保存。"
+    },
+    "pdf-repair": {
+      "name": "修复 PDF",
+      "title": "修复损坏的 PDF",
+      "description": "重建无法打开或报错的 PDF，得到一份干净的副本。"
+    },
+    "scan-to-pdf": {
+      "name": "扫描成 PDF",
+      "title": "用手机把纸质文件扫描成 PDF",
+      "description": "用手机相机拍下各页，得到按顺序排列的一个 PDF。"
     }
   },
   "conversion": {
@@ -241,6 +286,67 @@
     "password": {
       "label": "密码",
       "hint": "只用于这个文件，不会被保存。"
+    },
+    "angle": {
+      "label": "旋转角度",
+      "choices": {
+        "90": "向右 90°",
+        "180": "180°",
+        "270": "向左 90°"
+      }
+    },
+    "removePages": {
+      "label": "要删除的页面",
+      "placeholder": "例如：2, 5-7",
+      "hint": "页码和范围，用逗号分隔。"
+    },
+    "extractPages": {
+      "label": "要保留的页面",
+      "placeholder": "例如：1-3, 8",
+      "hint": "页码和范围，用逗号分隔。“8-”表示从第 8 页到最后。"
+    },
+    "numberPosition": {
+      "label": "位置",
+      "choices": {
+        "bottom-center": "底部居中",
+        "bottom-right": "底部右侧",
+        "bottom-left": "底部左侧",
+        "top-center": "顶部居中",
+        "top-right": "顶部右侧",
+        "top-left": "顶部左侧"
+      }
+    },
+    "numberStyle": {
+      "label": "格式",
+      "choices": {
+        "n": "1, 2, 3",
+        "n-of-total": "1 / 10"
+      }
+    },
+    "numberStart": {
+      "label": "起始页码",
+      "placeholder": "1"
+    },
+    "watermarkText": {
+      "label": "水印文字",
+      "placeholder": "例如：草稿"
+    },
+    "opacity": {
+      "label": "明显程度",
+      "choices": {
+        "light": "浅",
+        "medium": "中",
+        "strong": "深"
+      }
+    },
+    "cropMargin": {
+      "label": "每边裁掉",
+      "choices": {
+        "5": "5 毫米",
+        "10": "10 毫米",
+        "15": "15 毫米",
+        "25": "25 毫米"
+      }
     }
   },
   "upload": {
@@ -281,7 +387,16 @@
     "archive-create": "创建 {{target}}",
     "archive-convert": "转换为 {{target}}",
     "image-edit": "应用",
-    "pdf-unlock": "移除密码"
+    "pdf-unlock": "移除密码",
+    "pdf-rotate": "旋转",
+    "pdf-remove-pages": "删除页面",
+    "pdf-extract-pages": "提取",
+    "pdf-page-numbers": "添加页码",
+    "pdf-watermark": "添加水印",
+    "pdf-crop": "裁剪",
+    "pdf-protect": "加密",
+    "pdf-repair": "修复",
+    "scan-to-pdf": "生成 PDF"
   },
   "status": {
     "uploading": "正在上传… {{percent}}%",
@@ -354,7 +469,9 @@
     "email_unverified": "请先验证你的邮箱。",
     "invalid_verify_link": "此验证链接无效或已过期。请在账户页面重新发送。",
     "already_verified": "你的邮箱已经验证过了。",
-    "staff_2fa_required": "管理面板需要两步登录。请先在账户中开启。"
+    "staff_2fa_required": "管理面板需要两步登录。请先在账户中开启。",
+    "all_pages_removed": "这样会删除所有页面。请至少保留一页。",
+    "crop_too_large": "页面太小，无法裁掉这么多。请选择更小的边距。"
   },
   "notFound": {
     "title": "页面不存在",
@@ -724,6 +841,32 @@
   "menu": {
     "work": "编辑与管理",
     "from": "转换为其他格式",
-    "into": "转换为此格式"
+    "into": "转换为此格式",
+    "organize": "整理",
+    "optimize": "优化",
+    "edit": "编辑",
+    "security": "安全"
+  },
+  "feedback": {
+    "title": "建议与投诉",
+    "intro": "告诉我们应该添加什么、哪里出了问题或哪里让你不满意。每条消息我们都会阅读。",
+    "kind": "关于什么？",
+    "kinds": {
+      "suggestion": "建议",
+      "complaint": "投诉",
+      "question": "问题"
+    },
+    "message": "你的留言",
+    "placeholder": "例如：请加入 PDF 转 Word…",
+    "email": "用于回复的邮箱（可选）",
+    "emailHint": "留空即可匿名留言。",
+    "submit": "发送",
+    "submitting": "正在发送…",
+    "sent": "谢谢，你的留言已发出。",
+    "sentText": "如果留了邮箱，我们会回复到那里。",
+    "another": "再写一条",
+    "direct": "也可以直接联系我们",
+    "tooShort": "请至少写 {{count}} 个字符。",
+    "throttled": "你已经发送了好几条消息，请一小时后再试。"
   }
 }

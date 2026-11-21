@@ -172,6 +172,8 @@ REST_FRAMEWORK = {
         "task_create_ip": env("THROTTLE_TASK_CREATE_IP", default="120/min"),
         # Login, registration and password reset: per client IP.
         "auth": env("THROTTLE_AUTH", default="10/15m"),
+        # Suggestions and complaints: per client IP.
+        "feedback": env("THROTTLE_FEEDBACK", default="5/1h"),
     },
     "EXCEPTION_HANDLER": "apps.core.exceptions.api_exception_handler",
 }
@@ -208,6 +210,9 @@ PUBLIC_ORIGIN = env("PUBLIC_ORIGIN", default="http://localhost:5173")
 # Vercel + tunnel setup (compose.tunnel.yaml): requests for EDGE_HOST must carry EDGE_SECRET.
 EDGE_HOST = env("EDGE_HOST", default="")
 EDGE_SECRET = env("EDGE_SECRET", default="")
+
+# Where suggestions and complaints from the site are emailed.
+FEEDBACK_EMAIL = env("FEEDBACK_EMAIL", default="jichchainfo@gmail.com")
 
 # Staff must turn on two-step sign-in before the admin panel API answers them.
 STAFF_REQUIRE_2FA = env.bool("STAFF_REQUIRE_2FA", default=True)

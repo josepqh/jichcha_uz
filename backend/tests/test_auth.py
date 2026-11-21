@@ -118,6 +118,39 @@ class TestSessions:
         assert resp.data["error"]["code"] == "session_expired"
         assert resp.cookies[COOKIE].value == ""  # cookie cleared
 
+    def test_a_refresh_racing_a_rotation_waits_for_its_successor(self, monkeypatch):
+        """Second request for the same token while the first is mid-rotation: same successor, no 401."""
+        from apps.users import views
+
+        client = APIClient()
+        register(client)
+        old = client.cookies[COOKIE].value
+        jti = views._rotated_jti(old)
+        cache.add(f"{views._grace_key(jti)}:lock", 1, 5)  # another request holds the rotation
+
+        def successor_arrives(_seconds):
+            cache.set(views._grace_key(jti), issue_tokens(User.objects.get())[1], 30)
+
+        monkeypatch.setattr(views.time, "sleep", successor_arrives)
+        racer = APIClient()
+        racer.cookies[COOKIE] = old
+        resp = racer.post("/api/v1/auth/refresh/")
+        assert resp.status_code == 200
+        assert racer.cookies[COOKIE].value == cache.get(views._grace_key(jti))
+
+    def test_a_stuck_rotation_gives_up_waiting_and_rotates_itself(self, monkeypatch):
+        from apps.users import views
+
+        client = APIClient()
+        register(client)
+        old = client.cookies[COOKIE].value
+        cache.add(f"{views._grace_key(views._rotated_jti(old))}:lock", 1, 5)
+        monkeypatch.setattr(views, "ROTATION_WAIT_SECONDS", 0.05)
+        racer = APIClient()
+        racer.cookies[COOKIE] = old
+        assert racer.post("/api/v1/auth/refresh/").status_code == 200  # the holder died: don't sign the user out
+        assert racer.cookies[COOKIE].value != old
+
     def test_grace_period_does_not_survive_logout(self):
         client = APIClient()
         register(client)

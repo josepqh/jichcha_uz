@@ -1,6 +1,14 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Combine,
+  FileMinus,
+  FileOutput,
+  Hash,
+  Lock,
+  RotateCw,
+  ScanLine,
+  Stamp,
+  Wrench,
   FileArchive,
   FileDown,
   FileStack,
@@ -30,7 +38,16 @@ export type ToolSlug =
   | "pdf-unlock"
   | "archive-extract"
   | "archive-create"
-  | "archive-convert";
+  | "archive-convert"
+  | "pdf-rotate"
+  | "pdf-remove-pages"
+  | "pdf-extract-pages"
+  | "pdf-page-numbers"
+  | "pdf-watermark"
+  | "pdf-crop"
+  | "pdf-protect"
+  | "pdf-repair"
+  | "scan-to-pdf";
 
 /** Colour family of the icon. */
 export type Category = "image" | "compress" | "pdf" | "office" | "archive";
@@ -47,6 +64,10 @@ export interface OptionField {
   showWhen?: { field: string; value: string };
   /** A password: masked input, and the backend keeps it out of storage. */
   secret?: boolean;
+  /** Must be filled in (checked before upload, when visible). */
+  required?: boolean;
+  /** Page numbers and ranges like "1-3, 5, 8-" (checked before upload, when visible). */
+  pages?: boolean;
 }
 
 export interface ToolDef {
@@ -68,6 +89,8 @@ export interface ToolDef {
   maxFiles?: number;
   /** Page order matters for this tool: show move up/down controls. */
   reorder: boolean;
+  /** Phones open the camera for this tool's file picker (scanning paper). */
+  capture?: boolean;
   /** Custom editor next to the file list: PDF page organizer, image crop/rotate/resize. */
   editor?: "organize" | "image";
   fields: readonly OptionField[];
@@ -114,7 +137,10 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
     minFiles: 1,
     maxFiles: 1,
     reorder: false,
-    fields: [{ name: "mode", choices: ["each", "ranges"] }, { name: "ranges", showWhen: { field: "mode", value: "ranges" } }],
+    fields: [
+      { name: "mode", choices: ["each", "ranges"] },
+      { name: "ranges", showWhen: { field: "mode", value: "ranges" }, pages: true },
+    ],
     defaults: { mode: "each", ranges: "" },
   },
   "pdf-organize": {
@@ -170,8 +196,136 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
     minFiles: 1,
     maxFiles: 1,
     reorder: false,
-    fields: [{ name: "password", secret: true }],
+    fields: [{ name: "password", secret: true, required: true }],
     defaults: { password: "" },
+  },
+  "pdf-rotate": {
+    slug: "pdf-rotate",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: RotateCw,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [{ name: "angle", choices: ["90", "180", "270"] }],
+    defaults: { angle: "90" },
+  },
+  "pdf-remove-pages": {
+    slug: "pdf-remove-pages",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: FileMinus,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [{ name: "removePages", required: true, pages: true }],
+    defaults: { removePages: "" },
+  },
+  "pdf-extract-pages": {
+    slug: "pdf-extract-pages",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: FileOutput,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [{ name: "extractPages", required: true, pages: true }],
+    defaults: { extractPages: "" },
+  },
+  "pdf-page-numbers": {
+    slug: "pdf-page-numbers",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: Hash,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [
+      { name: "numberPosition", choices: ["bottom-center", "bottom-right", "bottom-left", "top-center", "top-right", "top-left"] },
+      { name: "numberStyle", choices: ["n", "n-of-total"] },
+      { name: "numberStart", required: true },
+    ],
+    defaults: { numberPosition: "bottom-center", numberStyle: "n", numberStart: "1" },
+  },
+  "pdf-watermark": {
+    slug: "pdf-watermark",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: Stamp,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [
+      { name: "watermarkText", required: true },
+      { name: "opacity", choices: ["light", "medium", "strong"] },
+    ],
+    defaults: { watermarkText: "", opacity: "medium" },
+  },
+  "pdf-crop": {
+    slug: "pdf-crop",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: Crop,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [{ name: "cropMargin", choices: ["5", "10", "15", "25"] }],
+    defaults: { cropMargin: "10" },
+  },
+  "pdf-protect": {
+    slug: "pdf-protect",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: Lock,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [{ name: "password", secret: true, required: true }],
+    defaults: { password: "" },
+  },
+  "pdf-repair": {
+    slug: "pdf-repair",
+    category: "pdf",
+    inputs: ["pdf"],
+    icon: Wrench,
+    accept: PDF_ACCEPT,
+    formats: "PDF",
+    minFiles: 1,
+    maxFiles: 1,
+    reorder: false,
+    fields: [],
+    defaults: {},
+  },
+  "scan-to-pdf": {
+    slug: "scan-to-pdf",
+    category: "pdf",
+    inputs: IMAGE_INPUTS,
+    icon: ScanLine,
+    accept: IMAGE_ACCEPT,
+    formats: IMAGE_FORMATS,
+    minFiles: 1,
+    maxFiles: 100,
+    reorder: true,
+    capture: true,
+    fields: [
+      { name: "page_size", choices: ["a4", "letter", "fit"] },
+      { name: "margin", choices: ["none", "small", "large"] },
+    ],
+    defaults: { page_size: "a4", orientation: "auto", margin: "small" },
   },
   "images-to-pdf": {
     slug: "images-to-pdf",
@@ -285,7 +439,17 @@ export const TOOLS: Record<ToolSlug, ToolDef> = {
 export const TOOL_LIST: ToolDef[] = Object.values(TOOLS);
 
 /** UI option names that differ from the API's (same API name, different choices and labels). */
-const API_NAMES: Record<string, string> = { pdfLevel: "level", archiveFormat: "format" };
+const API_NAMES: Record<string, string> = {
+  pdfLevel: "level",
+  archiveFormat: "format",
+  removePages: "pages",
+  extractPages: "pages",
+  numberPosition: "position",
+  numberStart: "start",
+  numberStyle: "style",
+  watermarkText: "text",
+  cropMargin: "margin",
+};
 
 export function isFieldVisible(field: OptionField, values: OptionValues): boolean {
   return !field.showWhen || values[field.showWhen.field] === field.showWhen.value;

@@ -14,7 +14,7 @@ from .formats import (
     OFFICE_INPUTS,
     PDF_INPUTS,
 )
-from .processors import archives, images, office, pdf
+from .processors import archives, images, office, pdf, pdf_edit
 from .processors.base import InputFile, OutputFile
 
 Processor = Callable[[list[InputFile], dict, Path], list[OutputFile]]
@@ -120,6 +120,38 @@ class RepackArchiveOptions(serializers.Serializer):
 
 class UnlockPdfOptions(serializers.Serializer):
     password = serializers.CharField(**_PASSWORD)
+
+
+class RotatePdfOptions(serializers.Serializer):
+    angle = serializers.ChoiceField(choices=["90", "180", "270"], default="90")
+
+
+class PageSelectionOptions(serializers.Serializer):
+    pages = serializers.CharField(max_length=200)
+
+    def validate_pages(self, value: str) -> str:
+        if not _RANGES.match(value):
+            raise serializers.ValidationError("Use page numbers and ranges like 1-3, 5, 8-10.")
+        return value
+
+
+class PageNumberOptions(serializers.Serializer):
+    position = serializers.ChoiceField(choices=list(pdf_edit.NUMBER_POSITIONS), default="bottom-center")
+    start = serializers.IntegerField(min_value=0, max_value=99999, default=1)
+    style = serializers.ChoiceField(choices=["n", "n-of-total"], default="n")
+
+
+class WatermarkOptions(serializers.Serializer):
+    text = serializers.CharField(max_length=60, trim_whitespace=True)
+    opacity = serializers.ChoiceField(choices=list(pdf_edit.WATERMARK_OPACITY), default="medium")
+
+
+class CropPdfOptions(serializers.Serializer):
+    margin = serializers.ChoiceField(choices=["5", "10", "15", "25"], default="10")
+
+
+class ProtectPdfOptions(serializers.Serializer):
+    password = serializers.CharField(min_length=4, **_PASSWORD)
 
 
 @dataclass(frozen=True)
@@ -245,6 +277,87 @@ TOOLS: dict[str, Tool] = {
             options=UnlockPdfOptions,
             run=pdf.unlock_pdf,
             max_files=1,
+        ),
+        Tool(
+            slug="pdf-rotate",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=RotatePdfOptions,
+            run=pdf_edit.rotate_pdf,
+            max_files=1,
+        ),
+        Tool(
+            slug="pdf-remove-pages",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=PageSelectionOptions,
+            run=pdf_edit.remove_pages,
+            max_files=1,
+        ),
+        Tool(
+            slug="pdf-extract-pages",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=PageSelectionOptions,
+            run=pdf_edit.extract_pages,
+            max_files=1,
+        ),
+        Tool(
+            slug="pdf-page-numbers",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=PageNumberOptions,
+            run=pdf_edit.add_page_numbers,
+            max_files=1,
+        ),
+        Tool(
+            slug="pdf-watermark",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=WatermarkOptions,
+            run=pdf_edit.add_watermark,
+            max_files=1,
+        ),
+        Tool(
+            slug="pdf-crop",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=CropPdfOptions,
+            run=pdf_edit.crop_pdf,
+            max_files=1,
+        ),
+        Tool(
+            slug="pdf-protect",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=ProtectPdfOptions,
+            run=pdf_edit.protect_pdf,
+            max_files=1,
+        ),
+        Tool(
+            slug="pdf-repair",
+            category="pdf",
+            accepts=PDF_INPUTS,
+            outputs=("pdf",),
+            options=NoOptions,
+            run=pdf_edit.repair_pdf,
+            max_files=1,
+        ),
+        Tool(
+            slug="scan-to-pdf",
+            category="pdf",
+            accepts=IMAGE_INPUTS,
+            outputs=("pdf",),
+            options=ImagesToPdfOptions,
+            run=images.images_to_pdf,
+            max_files=100,
         ),
         Tool(
             slug="archive-extract",

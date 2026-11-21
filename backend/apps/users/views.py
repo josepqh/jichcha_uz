@@ -165,6 +165,31 @@ def _rotated_jti(raw: str) -> str | None:
         return None
 
 
+# How long a refresh waits for another request that is rotating the same token right now.
+ROTATION_WAIT_SECONDS = 3.0
+
+
+def _successor(jti: str | None) -> str | None:
+    """The token that replaced this one, if it was rotated within the grace period.
+
+    One token is rotated once: the first request takes a short lock; one arriving meanwhile (two
+    tabs, or a reload) waits for that rotation and gets the same successor instead of racing it
+    and being refused between "old token blacklisted" and "successor remembered".
+    """
+    if not jti:
+        return None
+    key = _grace_key(jti)
+    successor = cache.get(key)
+    if successor or cache.add(f"{key}:lock", 1, int(ROTATION_WAIT_SECONDS) + 2):
+        return successor  # rotated already, or the lock is ours: the caller rotates
+    deadline = time.monotonic() + ROTATION_WAIT_SECONDS
+    while time.monotonic() < deadline:
+        time.sleep(0.05)
+        if successor := cache.get(key):
+            return successor
+    return None
+
+
 class RefreshView(APIView):
     authentication_classes: list = []
     permission_classes = [AllowAny]
@@ -173,20 +198,18 @@ class RefreshView(APIView):
         raw = request.COOKIES.get(settings.AUTH_REFRESH_COOKIE)
         if not raw:
             raise _session_expired()
-        serializer = TokenRefreshSerializer(data={"refresh": raw})
+        jti = _rotated_jti(raw)
         try:
-            try:
+            new_refresh = _successor(jti)
+            if new_refresh:
+                access = str(RefreshToken(new_refresh).access_token)  # raises if the successor was revoked
+            else:
+                serializer = TokenRefreshSerializer(data={"refresh": raw})
                 serializer.is_valid(raise_exception=True)
                 new_refresh = serializer.validated_data["refresh"]
                 access = serializer.validated_data["access"]
-                if jti := _rotated_jti(raw):
+                if jti:
                     cache.set(_grace_key(jti), new_refresh, REFRESH_GRACE_SECONDS)
-            except (TokenError, InvalidToken) as error:
-                jti = _rotated_jti(raw)
-                new_refresh = cache.get(_grace_key(jti)) if jti else None
-                if not new_refresh:
-                    raise error
-                access = str(RefreshToken(new_refresh).access_token)  # raises if the successor was revoked
             user = User.objects.get(pk=RefreshToken(new_refresh)["user_id"], is_active=True)
         except TokenError, InvalidToken, User.DoesNotExist, KeyError:
             response = Response(

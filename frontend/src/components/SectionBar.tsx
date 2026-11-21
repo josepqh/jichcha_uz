@@ -1,15 +1,16 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router";
 
 import { entryText } from "@/components/EntryCard";
+import { FamilyIcon } from "@/components/FamilyIcon";
 import { useDisabledTools } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
 import { FAMILY_ICON, type CatalogEntry } from "@/lib/catalog";
-import { FAMILY_BG, FAMILY_TEXT, familyForPath, menuGroups, SECTION_SLUG, SECTIONS } from "@/lib/sections";
+import { FAMILY_TEXT, familyForPath, menuGroups, SECTIONS } from "@/lib/sections";
 import type { Family } from "@/lib/tools";
 
 gsap.registerPlugin(useGSAP);
@@ -41,50 +42,35 @@ function MenuItem({ entry, family, onPick }: { entry: CatalogEntry; family: Fami
 
 function MenuPanel({ family, id, onPick }: { family: Family; id: string; onPick: () => void }) {
   const { t } = useTranslation();
-  const lang = useLang();
   const hidden = useDisabledTools();
   const groups = menuGroups(family, hidden);
-  const name = t(`home.groups.${family}`);
+  // Converting first (into this format, then out of it), then the kinds of work on it.
   const columns = [
-    { key: "work", items: groups.work.map((entry) => ({ entry, family })) },
-    { key: "from", items: groups.from.map((entry) => ({ entry, family })) },
-    { key: "into", items: groups.into },
+    { key: "into", label: t("menu.into"), items: groups.into },
+    { key: "from", label: t("menu.from"), items: groups.from.map((entry) => ({ entry, family })) },
+    ...groups.work.map((g) => ({
+      key: g.group,
+      label: t(`menu.${g.group}`),
+      items: g.entries.map((entry) => ({ entry, family })),
+    })),
   ].filter((column) => column.items.length);
 
   return (
-    <div id={id} className="absolute inset-x-0 top-full z-30 border-b border-border bg-bg shadow-lift">
-      <div className="mx-auto grid max-h-[min(70vh,36rem)] max-w-6xl gap-8 overflow-y-auto px-4 py-6 md:grid-cols-[14rem_1fr]">
-        <div className="space-y-3">
-          <p className="font-display text-2xl font-medium tracking-[-0.04em]">{name}</p>
-          <p className="text-sm text-pretty text-muted">{t(`sections.${family}.lead`)}</p>
-          <Link
-            to={`/${lang}/${SECTION_SLUG[family]}`}
-            onClick={onPick}
-            data-menu-link
-            className="group inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold underline-offset-4 hover:underline"
-          >
-            {t("home.openSection", { name })}
-            <ArrowUpRight
-              className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100"
-              aria-hidden="true"
-            />
-          </Link>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {columns.map((column) => (
-            // Group titles are labels, not headings: the panel sits before the page's h1.
-            <div key={column.key} className="space-y-2">
-              <p id={`${id}-${column.key}`} className="px-2.5 font-mono text-xs font-medium tracking-wide text-muted uppercase">
-                {t(`menu.${column.key}`)}
-              </p>
-              <ul aria-labelledby={`${id}-${column.key}`} className="space-y-0.5">
-                {column.items.map(({ entry, family: from }) => (
-                  <MenuItem key={`${from}-${entry.key}`} entry={entry} family={from} onPick={onPick} />
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+    <div id={id} className="absolute inset-x-0 top-full z-30 border-y border-border bg-bg shadow-lift">
+      <div className="mx-auto grid max-h-[min(70vh,36rem)] max-w-6xl gap-x-6 gap-y-8 overflow-y-auto px-4 py-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
+        {columns.map((column) => (
+          // Group titles are labels, not headings: the panel sits before the page's h1.
+          <div key={column.key} className="space-y-2">
+            <p id={`${id}-${column.key}`} className="px-2.5 font-mono text-xs font-medium tracking-wide text-muted uppercase">
+              {column.label}
+            </p>
+            <ul aria-labelledby={`${id}-${column.key}`} className="space-y-0.5">
+              {column.items.map(({ entry, family: from }) => (
+                <MenuItem key={`${from}-${entry.key}`} entry={entry} family={from} onPick={onPick} />
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -176,9 +162,9 @@ export function SectionBar() {
   }, [open, panelId]);
 
   return (
-    <nav ref={navRef} aria-label={t("sections.label")} className="relative border-t border-border">
-      <div className="mx-auto max-w-6xl">
-        <ul ref={listRef} className="edge-fade relative flex items-center gap-1 overflow-x-auto px-4 [scrollbar-width:none]">
+    <nav ref={navRef} aria-label={t("sections.label")} className="min-w-0">
+      <div>
+        <ul ref={listRef} className="edge-fade relative flex items-center gap-0.5 overflow-x-auto [scrollbar-width:none]">
           <li
             ref={markRef}
             aria-hidden="true"
@@ -195,14 +181,11 @@ export function SectionBar() {
                   aria-controls={expanded ? panelId : undefined}
                   aria-current={current ? "page" : undefined}
                   onClick={() => setMenu(expanded ? null : { family, path: pathname })}
-                  className={`group inline-flex min-h-12 cursor-pointer items-center gap-2 px-3 text-sm font-medium transition-colors duration-150 ${
+                  className={`group inline-flex min-h-11 cursor-pointer items-center gap-1.5 px-2.5 text-sm font-medium transition-colors duration-150 ${
                     current ? "text-accent-fg" : expanded ? "text-fg" : "text-muted hover:text-fg"
                   }`}
                 >
-                  <span
-                    aria-hidden="true"
-                    className={`size-2 rounded-[2px] ${FAMILY_BG[family]} transition-transform duration-200 group-hover:scale-125`}
-                  />
+                  <FamilyIcon family={family} className="size-5 transition-transform duration-200 group-hover:-translate-y-0.5" />
                   <span data-label className="relative">
                     {t(`home.groups.${family}`)}
                   </span>

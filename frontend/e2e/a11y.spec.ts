@@ -10,7 +10,7 @@ const fixture = (name: string) => path.join(path.dirname(fileURLToPath(import.me
 async function audit(page: Page, label: string) {
   // Audit from the top: scrolled, whatever sits under the sticky header reads as "obscured"
   // to target-size, which says where the page happens to be, not what is wrong with it.
-  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.evaluate("window.scrollTo(0, 0)");
   const results = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
     .analyze();

@@ -103,3 +103,29 @@ test("a result can go straight into the next tool", async ({ page }) => {
   await page.getByRole("button", { name: "Compress" }).click();
   await expect(page.getByText("Done")).toBeVisible({ timeout: 20_000 });
 });
+
+test.describe("PDF page tools", () => {
+  test("rotates, numbers and protects a PDF", async ({ page }) => {
+    await page.goto("/en/tools/pdf-page-numbers");
+    await page.getByTestId("file-input").setInputFiles(fixture("three.pdf"));
+    await page.getByText("Bottom right", { exact: true }).click();
+    await page.getByText("1 / 10", { exact: true }).click();
+    await page.getByRole("button", { name: "Add numbers" }).click();
+    await expect(page.getByText("Done")).toBeVisible({ timeout: 20_000 });
+    await expect(page.getByRole("link", { name: /three-numbered\.pdf/ })).toBeVisible();
+
+    await page.goto("/en/tools/pdf-remove-pages");
+    await page.getByTestId("file-input").setInputFiles(fixture("three.pdf"));
+    await page.getByRole("button", { name: "Remove pages" }).click();
+    await expect(page.getByText("Fill in this field.")).toBeVisible();
+    await page.getByLabel("Pages to remove").fill("1-3");
+    await page.getByRole("button", { name: "Remove pages" }).click();
+    await expect(page.getByRole("alert")).toContainText("That would remove every page.", { timeout: 20_000 });
+
+    await page.goto("/en/tools/pdf-protect");
+    await page.getByTestId("file-input").setInputFiles(fixture("three.pdf"));
+    await page.getByLabel("Password").fill("s3cret-pass");
+    await page.getByRole("button", { name: "Protect" }).click();
+    await expect(page.getByText("Done")).toBeVisible({ timeout: 20_000 });
+  });
+});

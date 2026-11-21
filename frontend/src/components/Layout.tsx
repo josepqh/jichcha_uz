@@ -85,11 +85,13 @@ export function Layout() {
       >
         {t("nav.skip")}
       </a>
+      {/* One row on wide screens: logo, sections and controls share one centre line. Narrower, the
+          sections wrap to a second scrollable row under the logo. */}
       <header className="sticky top-0 z-30 border-b border-border bg-bg/85 backdrop-blur-md supports-[backdrop-filter]:bg-bg/75">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 px-4 xl:h-16 xl:flex-nowrap">
           <Link
             to={`/${lang}`}
-            className="group flex min-h-11 items-center gap-2.5 rounded-lg"
+            className="group flex h-16 shrink-0 items-center gap-2.5 rounded-lg"
             // The visible name comes first so voice control ("click jichcha") works (WCAG 2.5.3).
             aria-label={`${t("meta.siteName")}, ${t("nav.home")}`}
           >
@@ -99,13 +101,15 @@ export function Layout() {
               <Wordmark />
             </span>
           </Link>
-          <div className="flex items-center gap-1">
+          <div className="order-last -mx-4 w-[calc(100%+2rem)] border-t border-border px-4 xl:order-none xl:mx-0 xl:w-auto xl:min-w-0 xl:flex-1 xl:border-0 xl:px-0">
+            <SectionBar />
+          </div>
+          <div className="ms-auto flex h-16 shrink-0 items-center gap-1 xl:ms-0">
             <LanguageMenu />
             <ThemeToggle />
             <AccountLink />
           </div>
         </div>
-        <SectionBar />
       </header>
       <main id="main" tabIndex={-1} className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 outline-none sm:py-12">
         <Outlet />

@@ -8,11 +8,26 @@ const keysOf = (family: string) => catalog.find((s) => s.family === family)?.ent
 
 describe("buildCatalog", () => {
   it("puts each item in the section of the file the user has", () => {
-    expect(keysOf("pdf")).toEqual(["pdf-merge", "pdf-split", "pdf-organize", "pdf-compress", "pdf-to-images", "pdf-unlock"]);
+    expect(keysOf("pdf")).toEqual([
+      "pdf-merge",
+      "pdf-split",
+      "pdf-organize",
+      "pdf-compress",
+      "pdf-to-images",
+      "pdf-unlock",
+      "pdf-rotate",
+      "pdf-remove-pages",
+      "pdf-extract-pages",
+      "pdf-page-numbers",
+      "pdf-watermark",
+      "pdf-crop",
+      "pdf-protect",
+      "pdf-repair",
+    ]);
     expect(keysOf("word")).toEqual(["docx-to-pdf"]);
     expect(keysOf("excel")).toEqual(["xlsx-to-pdf"]);
     expect(keysOf("powerpoint")).toEqual(["pptx-to-pdf"]);
-    expect(keysOf("image")).toEqual(["images-to-pdf", "image-convert", "image-edit", "image-compress"]);
+    expect(keysOf("image")).toEqual(["scan-to-pdf", "images-to-pdf", "image-convert", "image-edit", "image-compress"]);
     expect(keysOf("archive")).toEqual(["archive-extract", "archive-create", "archive-convert"]);
   });
 

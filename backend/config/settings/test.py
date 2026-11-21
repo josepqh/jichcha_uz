@@ -17,6 +17,7 @@ REST_FRAMEWORK = {
         "task_create": "1000/min",
         "task_create_ip": "1000/min",
         "auth": "1000/min",
+        "feedback": "1000/min",
     },
 }
 

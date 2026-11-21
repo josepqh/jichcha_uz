@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router";
 import { AuthCard } from "@/components/AuthCard";
 import { FormAlert } from "@/components/forms";
 import { useLang } from "@/hooks/useLang";
-import { auth } from "@/lib/api";
+import { api, auth } from "@/lib/api";
 import { errorMessage } from "@/lib/errors";
 import { btn } from "@/lib/ui";
 import { useAuthStore } from "@/stores/auth";
@@ -25,8 +25,11 @@ export function VerifyEmailPage() {
     auth.verifyEmail(token).then(
       () => {
         if (cancelled) return;
-        const { user, setUser } = useAuthStore.getState();
+        const { user, status, setUser } = useAuthStore.getState();
         if (user) setUser({ ...user, email_verified: true });
+        // The page-load session restore may answer after this, with the profile from before the
+        // confirmation: read the profile again once the session has settled.
+        if (status !== "anon") void api.me().then(setUser, () => undefined);
         setState({ done: true, error: null });
       },
       (err: unknown) => {

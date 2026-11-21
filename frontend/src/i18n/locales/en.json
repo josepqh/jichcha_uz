@@ -123,6 +123,51 @@
       "name": "Unlock PDF",
       "title": "Remove a PDF password",
       "description": "Get a copy of your PDF without its password (you need to know it), then merge, compress or split it."
+    },
+    "pdf-rotate": {
+      "name": "Rotate PDF",
+      "title": "Rotate PDF pages",
+      "description": "Turn every page by 90°, 180° or 270° when a scan came out sideways or upside down."
+    },
+    "pdf-remove-pages": {
+      "name": "Remove pages",
+      "title": "Remove pages from a PDF",
+      "description": "Delete the pages you don't need, such as blank or duplicate ones, and keep the rest."
+    },
+    "pdf-extract-pages": {
+      "name": "Extract pages",
+      "title": "Extract pages from a PDF",
+      "description": "Pick the pages you need and save them as a new PDF."
+    },
+    "pdf-page-numbers": {
+      "name": "Add page numbers",
+      "title": "Add page numbers to a PDF",
+      "description": "Number the pages in the corner or centre you choose, starting from any number."
+    },
+    "pdf-watermark": {
+      "name": "Add watermark",
+      "title": "Add a text watermark to a PDF",
+      "description": "Stamp text such as “Draft” or your company name across every page."
+    },
+    "pdf-crop": {
+      "name": "Crop PDF",
+      "title": "Crop PDF margins",
+      "description": "Trim the same margin from every side of every page."
+    },
+    "pdf-protect": {
+      "name": "Protect PDF",
+      "title": "Add a password to a PDF",
+      "description": "Lock a PDF with a password using AES-256. The password is never stored."
+    },
+    "pdf-repair": {
+      "name": "Repair PDF",
+      "title": "Repair a damaged PDF",
+      "description": "Rebuild a PDF that won't open or shows errors, and get a clean copy."
+    },
+    "scan-to-pdf": {
+      "name": "Scan to PDF",
+      "title": "Scan paper to PDF with your phone",
+      "description": "Take photos of pages with your phone camera and get one PDF in order."
     }
   },
   "conversion": {
@@ -242,6 +287,67 @@
     "password": {
       "label": "Password",
       "hint": "Used for this file only and never stored."
+    },
+    "angle": {
+      "label": "Rotate by",
+      "choices": {
+        "90": "90° right",
+        "180": "180°",
+        "270": "90° left"
+      }
+    },
+    "removePages": {
+      "label": "Pages to remove",
+      "placeholder": "For example: 2, 5-7",
+      "hint": "Page numbers and ranges, separated by commas."
+    },
+    "extractPages": {
+      "label": "Pages to keep",
+      "placeholder": "For example: 1-3, 8",
+      "hint": "Page numbers and ranges, separated by commas. “8-” means page 8 to the end."
+    },
+    "numberPosition": {
+      "label": "Position",
+      "choices": {
+        "bottom-center": "Bottom centre",
+        "bottom-right": "Bottom right",
+        "bottom-left": "Bottom left",
+        "top-center": "Top centre",
+        "top-right": "Top right",
+        "top-left": "Top left"
+      }
+    },
+    "numberStyle": {
+      "label": "Format",
+      "choices": {
+        "n": "1, 2, 3",
+        "n-of-total": "1 / 10"
+      }
+    },
+    "numberStart": {
+      "label": "Start from",
+      "placeholder": "1"
+    },
+    "watermarkText": {
+      "label": "Watermark text",
+      "placeholder": "For example: Draft"
+    },
+    "opacity": {
+      "label": "Visibility",
+      "choices": {
+        "light": "Light",
+        "medium": "Medium",
+        "strong": "Strong"
+      }
+    },
+    "cropMargin": {
+      "label": "Trim from each side",
+      "choices": {
+        "5": "5 mm",
+        "10": "10 mm",
+        "15": "15 mm",
+        "25": "25 mm"
+      }
     }
   },
   "upload": {
@@ -283,7 +389,16 @@
     "archive-create": "Create {{target}}",
     "archive-convert": "Convert to {{target}}",
     "image-edit": "Apply",
-    "pdf-unlock": "Remove password"
+    "pdf-unlock": "Remove password",
+    "pdf-rotate": "Rotate",
+    "pdf-remove-pages": "Remove pages",
+    "pdf-extract-pages": "Extract pages",
+    "pdf-page-numbers": "Add numbers",
+    "pdf-watermark": "Add watermark",
+    "pdf-crop": "Crop",
+    "pdf-protect": "Protect",
+    "pdf-repair": "Repair",
+    "scan-to-pdf": "Create PDF"
   },
   "status": {
     "uploading": "Uploading… {{percent}}%",
@@ -356,7 +471,9 @@
     "email_unverified": "Confirm your email first.",
     "invalid_verify_link": "This confirmation link is invalid or has expired. Send a new one from your account page.",
     "already_verified": "Your email is already confirmed.",
-    "staff_2fa_required": "The admin panel needs two-step sign-in. Turn it on in your account first."
+    "staff_2fa_required": "The admin panel needs two-step sign-in. Turn it on in your account first.",
+    "all_pages_removed": "That would remove every page. Leave at least one.",
+    "crop_too_large": "The pages are too small to trim that much. Choose a smaller margin."
   },
   "notFound": {
     "title": "Page not found",
@@ -830,6 +947,32 @@
   "menu": {
     "work": "Edit and manage",
     "from": "Convert to another format",
-    "into": "Convert into this format"
+    "into": "Convert into this format",
+    "organize": "Organize",
+    "optimize": "Optimize",
+    "edit": "Edit",
+    "security": "Security"
+  },
+  "feedback": {
+    "title": "Suggestions and complaints",
+    "intro": "Tell us what to add, what didn't work or what bothered you. We read every message.",
+    "kind": "What is it about?",
+    "kinds": {
+      "suggestion": "Suggestion",
+      "complaint": "Complaint",
+      "question": "Question"
+    },
+    "message": "Your message",
+    "placeholder": "For example: please add PDF to Word…",
+    "email": "Email for a reply (optional)",
+    "emailHint": "Leave it empty to write anonymously.",
+    "submit": "Send",
+    "submitting": "Sending…",
+    "sent": "Thank you, your message is on its way.",
+    "sentText": "If you left an email, we'll reply there.",
+    "another": "Write another one",
+    "direct": "Or write to us directly",
+    "tooShort": "Write at least {{count}} characters.",
+    "throttled": "You've sent several messages already. Try again in an hour."
   }
 }

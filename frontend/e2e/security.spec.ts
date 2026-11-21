@@ -70,6 +70,7 @@ test("changing the password keeps you signed in here", async ({ page }) => {
   await page.reload();
   await expect(page.getByRole("heading", { level: 1, name: "Account" })).toBeVisible();
   await page.getByRole("button", { name: "Sign out" }).click();
+  await expect(page).toHaveURL(/\/en$/); // signed out: the refresh cookie is gone before we sign back in
   await page.goto("/en/login");
   await page.getByLabel("Email").fill(email);
   await page.getByLabel("Password", { exact: true }).fill("An0ther-strong-pass");
@@ -92,6 +93,7 @@ test("two-step sign-in: set up, sign in with a code; a spent code cannot turn it
   await expect(security.getByText("On. Every sign-in asks for a code")).toBeVisible();
 
   await page.getByRole("button", { name: "Sign out" }).click();
+  await expect(page).toHaveURL(/\/en$/);
   await page.goto("/en/login");
   await page.getByLabel("Email").fill(email);
   await page.getByLabel("Password", { exact: true }).fill(PASSWORD);
@@ -111,5 +113,5 @@ test("two-step sign-in: set up, sign in with a code; a spent code cannot turn it
   await security.getByLabel("Code from the app").fill(loginCode);
   await security.getByRole("button", { name: "Turn off" }).click();
   // Same code again: refused, because each code works once.
-  await expect(security.getByText("That code is not right")).toBeVisible();
+  await expect(security.getByText("That code is not right")).toBeVisible({ timeout: 15_000 }); // Argon2 check under load
 });

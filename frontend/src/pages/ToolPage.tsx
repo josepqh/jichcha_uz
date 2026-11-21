@@ -9,13 +9,23 @@ import { FileList, type PickedFile } from "@/components/FileList";
 import { editOptions, ImageEditor, initialEdit, type EditState } from "@/components/ImageEditor";
 import type { PageItem } from "@/components/PdfOrganizer";
 import { TaskPanel } from "@/components/TaskPanel";
+import { FamilyIcon } from "@/components/FamilyIcon";
 import { ToolOptions } from "@/components/ToolOptions";
 import { useDisabledTools, useUsage } from "@/hooks/useApi";
 import { useLang } from "@/hooks/useLang";
 import { createTask } from "@/lib/api";
 import { errorMessage } from "@/lib/errors";
-import { FAMILY_BG, familyForPath, SECTION_SLUG } from "@/lib/sections";
-import { isToolSlug, resolveConversion, toApiOptions, TOOLS, type Conversion, type OptionValues, type ToolDef } from "@/lib/tools";
+import { familyForPath, SECTION_SLUG } from "@/lib/sections";
+import {
+  isFieldVisible,
+  isToolSlug,
+  resolveConversion,
+  toApiOptions,
+  TOOLS,
+  type Conversion,
+  type OptionValues,
+  type ToolDef,
+} from "@/lib/tools";
 import { btn, card } from "@/lib/ui";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { useAuthStore } from "@/stores/auth";
@@ -140,12 +150,16 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
       setError(t("errors.too_few_files", { min_files: tool.minFiles }));
       return false;
     }
-    if (tool.slug === "pdf-unlock" && !options.password) {
-      setFieldErrors({ password: t("errors.required") });
-      return false;
+    // Field rules from the tool definition: required values and page ranges, visible fields only.
+    const problems: Record<string, string> = {};
+    for (const field of tool.fields) {
+      if (!isFieldVisible(field, options)) continue;
+      const value = (options[field.name] ?? "").trim();
+      if (field.required && !value) problems[field.name] = t("errors.required");
+      else if (field.pages && !RANGES.test(value)) problems[field.name] = t("errors.invalid_page_range");
     }
-    if (tool.slug === "pdf-split" && options.mode === "ranges" && !RANGES.test(options.ranges ?? "")) {
-      setFieldErrors({ ranges: t("errors.invalid_page_range") });
+    if (Object.keys(problems).length) {
+      setFieldErrors(problems);
       return false;
     }
     if (tool.editor === "image" && edit.resize === "pixels" && !edit.width && !edit.height) {
@@ -235,7 +249,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
                   to={`/${lang}/${SECTION_SLUG[family]}`}
                   className="inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:text-fg hover:underline"
                 >
-                  <span aria-hidden="true" className={`size-2 rounded-[2px] ${FAMILY_BG[family]}`} />
+                  <FamilyIcon family={family} className="size-4" />
                   {t(`home.groups.${family}`)}
                 </Link>
               </li>
@@ -258,7 +272,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
       ) : (
         <>
           {items.length === 0 ? (
-            <Dropzone accept={tool.accept} multiple={maxFiles > 1} hint={hint} onFiles={addFiles} />
+            <Dropzone accept={tool.accept} capture={tool.capture} multiple={maxFiles > 1} hint={hint} onFiles={addFiles} />
           ) : (
             <section className={`${card} space-y-4 p-5 sm:p-6`} aria-labelledby="selected-heading">
               <div className="flex flex-wrap items-center justify-between gap-3">
@@ -266,7 +280,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
                   {t("upload.selected", { count: items.length })}
                 </h2>
                 {items.length < maxFiles ? (
-                  <Dropzone accept={tool.accept} multiple={maxFiles > 1} compact onFiles={addFiles} />
+                  <Dropzone accept={tool.accept} capture={tool.capture} multiple={maxFiles > 1} compact onFiles={addFiles} />
                 ) : null}
               </div>
               {tool.reorder && items.length > 1 ? <p className="text-sm text-muted">{t(`upload.orderHint.${tool.slug}`)}</p> : null}
