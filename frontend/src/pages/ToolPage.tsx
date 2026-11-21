@@ -228,7 +228,7 @@ function Workspace({ tool, conversion }: { tool: ToolDef; conversion: Conversion
           {family ? (
             <>
               <li aria-hidden="true">
-                <ChevronRight className="size-4" />
+                <ChevronRight className="size-4 rtl:-scale-x-100" />
               </li>
               <li>
                 <Link

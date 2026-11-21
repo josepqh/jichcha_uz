@@ -7,12 +7,12 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
 
 import { App } from "./App";
-import i18n, { LANGUAGES } from "./i18n";
+import { directionOf, LANGUAGES, setLanguage, type Language } from "./i18n";
 import { buildCatalog } from "./lib/catalog";
 import { SECTION_SLUG, SECTIONS } from "./lib/sections";
 import { POPULAR_CONVERSIONS, TOOL_LIST } from "./lib/tools";
 
-export { LANGUAGES };
+export { directionOf, LANGUAGES };
 
 /** Public, indexable paths (without the language prefix). Account, admin and auth pages are left out. */
 export function publicPaths(): string[] {
@@ -32,7 +32,7 @@ export function publicPaths(): string[] {
 }
 
 export async function render(url: string, lang: string): Promise<string> {
-  await i18n.changeLanguage(lang);
+  await setLanguage(lang as Language);
   const client = new QueryClient({ defaultOptions: { queries: { enabled: false } } });
   return renderToString(
     <QueryClientProvider client={client}>

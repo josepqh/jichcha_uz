@@ -1,3 +1,4 @@
+import type { Language } from "@/i18n";
 import { useAuthStore } from "@/stores/auth";
 
 export type TaskStatus = "queued" | "processing" | "done" | "failed";
@@ -46,7 +47,7 @@ export interface Usage {
 export interface Me {
   id: string;
   email: string;
-  language: "uz" | "ru" | "en";
+  language: Language;
   email_verified: boolean;
   has_password: boolean;
   totp_enabled: boolean;

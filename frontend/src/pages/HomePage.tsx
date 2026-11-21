@@ -91,7 +91,7 @@ export function HomePage() {
             <label htmlFor="tool-search" className="sr-only">
               {t("home.searchLabel")}
             </label>
-            <Search className="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted" aria-hidden="true" />
+            <Search className="pointer-events-none absolute start-4 top-1/2 size-5 -translate-y-1/2 text-muted" aria-hidden="true" />
             <input
               id="tool-search"
               type="search"
@@ -101,7 +101,7 @@ export function HomePage() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t("home.searchPlaceholder")}
               autoComplete="off"
-              className="min-h-14 w-full rounded-2xl border border-border-strong bg-surface py-2 pr-4 pl-12 text-base transition-[border-color,box-shadow] duration-150 placeholder:text-muted focus:border-fg focus:shadow-lift"
+              className="min-h-14 w-full rounded-2xl border border-border-strong bg-surface py-2 pe-4 ps-12 text-base transition-[border-color,box-shadow] duration-150 placeholder:text-muted focus:border-fg focus:shadow-lift"
             />
           </div>
         </div>
@@ -141,7 +141,7 @@ export function HomePage() {
                 <li key={family}>
                   <Link
                     to={`/${lang}/${SECTION_SLUG[family]}`}
-                    className={`sheet group relative flex h-full flex-col gap-6 rounded-2xl rounded-tr-none border border-border bg-surface p-6 transition-[transform,box-shadow,border-color] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-border-strong hover:shadow-lift ${FOLD[family]}`}
+                    className={`sheet group relative flex h-full flex-col gap-6 rounded-2xl rounded-se-none border border-border bg-surface p-6 transition-[transform,box-shadow,border-color] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-border-strong hover:shadow-lift ${FOLD[family]}`}
                   >
                     <span className={`font-mono text-xs font-medium tracking-wide uppercase ${FAMILY_TEXT[family]}`}>
                       {FAMILY_FORMATS[family].slice(0, 5).map((f) => `.${f}`).join("  ")}
@@ -158,7 +158,7 @@ export function HomePage() {
                           .join(" · ")}
                       </span>
                       <ArrowUpRight
-                        className="size-5 shrink-0 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-fg"
+                        className="size-5 shrink-0 text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5 group-hover:text-fg"
                         aria-hidden="true"
                       />
                     </span>

@@ -43,7 +43,7 @@ export function EntryCard({
       to={href}
       state={state}
       data-card
-      className="sheet group relative flex h-full flex-col gap-4 rounded-2xl rounded-tr-none border border-border bg-surface p-5 transition-[transform,box-shadow,border-color] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-border-strong hover:shadow-lift"
+      className="sheet group relative flex h-full flex-col gap-4 rounded-2xl rounded-se-none border border-border bg-surface p-5 transition-[transform,box-shadow,border-color] duration-200 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:border-border-strong hover:shadow-lift"
     >
       <span className="flex items-center gap-3">
         <span
@@ -61,7 +61,7 @@ export function EntryCard({
         <span className="block text-sm text-pretty text-muted">{description}</span>
       </span>
       <ArrowUpRight
-        className="mt-auto size-5 text-muted transition-transform duration-200 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-fg"
+        className="mt-auto size-5 text-muted transition-transform duration-200 ease-[var(--ease-out-soft)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5 group-hover:text-fg"
         aria-hidden="true"
       />
     </Link>

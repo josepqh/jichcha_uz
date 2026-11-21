@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const site = (process.env.SITE_URL || process.env.PUBLIC_ORIGIN || "http://localhost:8080").replace(/\/$/, "");
-const { render, publicPaths, LANGUAGES } = await import(pathToFileURL(path.join(root, "dist-ssr/entry-server.js")).href);
+const { render, publicPaths, LANGUAGES, directionOf } = await import(pathToFileURL(path.join(root, "dist-ssr/entry-server.js")).href);
 
 const template = readFileSync(path.join(dist, "index.html"), "utf8");
 const escapeAttr = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
@@ -29,7 +29,7 @@ function page(lang, p, html) {
   alternates.push(`<link rel="alternate" hreflang="x-default" href="${escapeAttr(url("uz", p))}" />`);
   const tags = [...head, `<link rel="canonical" href="${escapeAttr(url(lang, p))}" />`, ...alternates].join("\n    ");
   return template
-    .replace(/<html lang="[^"]*">/, `<html lang="${lang}">`)
+    .replace(/<html lang="[^"]*">/, `<html lang="${lang}" dir="${directionOf(lang)}">`)
     .replace(/<title>[\s\S]*?<\/title>\s*<meta\s+name="description"[\s\S]*?\/>/, tags)
     .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
 }

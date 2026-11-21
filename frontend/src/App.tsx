@@ -26,7 +26,7 @@ function LangGuard({ children }: { children: React.ReactNode }) {
 
 function preferredLanguage(): Language {
   for (const tag of navigator.languages ?? []) {
-    const code = tag.slice(0, 2).toLowerCase();
+    const code = tag.split("-")[0]!.toLowerCase();
     if (isLanguage(code)) return code;
   }
   return DEFAULT_LANGUAGE;

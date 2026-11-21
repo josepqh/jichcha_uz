@@ -35,6 +35,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         UZ = "uz", "O'zbekcha"
         RU = "ru", "Русский"
         EN = "en", "English"
+        ZH = "zh", "中文"
+        ES = "es", "Español"
+        HI = "hi", "हिन्दी"
+        AR = "ar", "العربية"
+        FR = "fr", "Français"
+        PT = "pt", "Português"
+        DE = "de", "Deutsch"
+        JA = "ja", "日本語"
+        TR = "tr", "Türkçe"
+        KO = "ko", "한국어"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(unique=True)

@@ -535,7 +535,6 @@
           "h": "Third-party services",
           "p": [
             "Google: only if you press “Continue with Google”.",
-            "Google Fonts: the page font loads from Google's servers, so Google sees your browser's IP address.",
             "Error reporting: application errors are sent without personal data (no cookies, IP addresses or file contents)."
           ]
         },

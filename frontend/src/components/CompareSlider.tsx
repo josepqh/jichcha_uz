@@ -26,7 +26,7 @@ export function CompareSlider({ before, afterUrl }: { before: File; afterUrl: st
   const badge = "absolute top-2 rounded-full bg-black/65 px-2.5 py-1 text-xs font-semibold text-white";
 
   return (
-    <figure className="space-y-2">
+    <figure className="space-y-2" dir="ltr">
       <div className="relative overflow-hidden rounded-xl border border-border bg-surface-muted select-none">
         <img src={afterUrl} alt={t("compare.after")} className="block max-h-[28rem] w-full object-contain" draggable={false} />
         <img

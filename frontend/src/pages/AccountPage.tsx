@@ -355,7 +355,7 @@ function Usage() {
         aria-valuenow={today.tasks_used}
       >
         <div
-          className="h-full w-full origin-left rounded-full bg-primary"
+          className="h-full w-full origin-left rtl:origin-right rounded-full bg-primary"
           style={{ transform: `scaleX(${Math.min(1, today.tasks_used / limits.daily_tasks)})` }}
         />
       </div>

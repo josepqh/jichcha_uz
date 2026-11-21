@@ -47,7 +47,7 @@ export function SectionPage({ family }: { family: Family }) {
             </Link>
           </li>
           <li aria-hidden="true">
-            <ChevronRight className="size-4" />
+            <ChevronRight className="size-4 rtl:-scale-x-100" />
           </li>
           <li aria-current="page" className="font-medium text-fg">
             {name}

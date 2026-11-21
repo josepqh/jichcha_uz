@@ -14,7 +14,7 @@ test("footer links open the privacy policy and terms in the current language", a
 test("the header fits a 360px phone without horizontal scrolling", async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 740 });
   await page.goto("/uz/privacy");
-  await expect(page.getByText("2026-yil 16-noyabr", { exact: false })).toBeVisible();
+  await expect(page.getByText("2026-yil 21-noyabr", { exact: false })).toBeVisible();
   const overflow = await page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth");
   expect(overflow).toBe(0);
 });

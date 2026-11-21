@@ -162,7 +162,7 @@ export function PdfOrganizer({ file, pages, disabled, onChange, onError }: Props
                   onClick={() => move(index, -1)}
                   aria-label={t("organize.moveBack", { page: name })}
                 >
-                  <ArrowLeft className="size-5" aria-hidden="true" />
+                  <ArrowLeft className="size-5 rtl:-scale-x-100" aria-hidden="true" />
                 </button>
                 <button
                   type="button"
@@ -171,7 +171,7 @@ export function PdfOrganizer({ file, pages, disabled, onChange, onError }: Props
                   onClick={() => move(index, 1)}
                   aria-label={t("organize.moveForward", { page: name })}
                 >
-                  <ArrowRight className="size-5" aria-hidden="true" />
+                  <ArrowRight className="size-5 rtl:-scale-x-100" aria-hidden="true" />
                 </button>
                 <button
                   type="button"

@@ -64,7 +64,8 @@ test.describe("navigation", () => {
     await expect(page.getByRole("region", { name: "Vositalar" }).getByRole("link", { name: /PDF birlashtirish/ })).toHaveCount(0);
 
     await page.getByRole("link", { name: "HEIC → PDF" }).click();
-    await page.getByRole("link", { name: "ru", exact: true }).click();
+    await page.getByRole("button", { name: /^Til/ }).click();
+    await page.getByRole("link", { name: "Русский" }).click();
     await expect(page).toHaveURL(/\/ru\/convert\/heic-to-pdf$/);
     await expect(page.locator("html")).toHaveAttribute("lang", "ru");
   });

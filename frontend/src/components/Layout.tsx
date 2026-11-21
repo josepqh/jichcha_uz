@@ -4,8 +4,9 @@ import { useTranslation } from "react-i18next";
 import { Link, Outlet, useLocation } from "react-router";
 
 import { useLang } from "@/hooks/useLang";
-import { LANGUAGE_NAMES, LANGUAGES } from "@/i18n";
+import { directionOf, setLanguage } from "@/i18n";
 import { btn } from "@/lib/ui";
+import { LanguageMenu } from "@/components/LanguageMenu";
 import { LogoMark, Wordmark } from "@/components/Logo";
 import { SectionBar } from "@/components/SectionBar";
 import { useAuthStore } from "@/stores/auth";
@@ -36,36 +37,6 @@ function ThemeToggle() {
   );
 }
 
-function LanguageSwitcher() {
-  const { t } = useTranslation();
-  const lang = useLang();
-  const { pathname } = useLocation();
-  const rest = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, "");
-
-  return (
-    <nav aria-label={t("nav.language")}>
-      <ul className="flex items-center gap-1">
-        {LANGUAGES.map((code) => (
-          <li key={code}>
-            <Link
-              to={`/${code}${rest}`}
-              lang={code}
-              hrefLang={code}
-              aria-current={code === lang ? "true" : undefined}
-              title={LANGUAGE_NAMES[code]}
-              className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl px-2 font-mono text-xs font-medium uppercase transition-colors duration-150 ${
-                code === lang ? "bg-primary text-primary-fg" : "text-muted hover:bg-surface-muted hover:text-fg"
-              }`}
-            >
-              {code}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
-}
-
 function AccountLink() {
   const { t } = useTranslation();
   const lang = useLang();
@@ -87,14 +58,15 @@ function AccountLink() {
 }
 
 export function Layout() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const lang = useLang();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (i18n.language !== lang) void i18n.changeLanguage(lang);
+    void setLanguage(lang);
     document.documentElement.lang = lang;
-  }, [i18n, lang]);
+    document.documentElement.dir = directionOf(lang);
+  }, [lang]);
 
   // Move focus to the page content after client-side navigation (screen readers).
   // Runs on purpose on every path change, though the body doesn't read pathname.
@@ -108,7 +80,7 @@ export function Layout() {
     <div className="flex min-h-dvh flex-col">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2"
       >
         {t("nav.skip")}
       </a>
@@ -127,7 +99,7 @@ export function Layout() {
             </span>
           </Link>
           <div className="flex items-center gap-1">
-            <LanguageSwitcher />
+            <LanguageMenu />
             <ThemeToggle />
             <AccountLink />
           </div>

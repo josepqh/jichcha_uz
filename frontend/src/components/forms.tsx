@@ -29,10 +29,10 @@ export function TextField({ label, error, hint, trailing, id, className, ...inpu
           id={inputId}
           aria-invalid={error ? true : undefined}
           aria-describedby={[errorId, hintId].filter(Boolean).join(" ") || undefined}
-          className={`${inputClass} ${error ? "" : "border-border-strong"} ${trailing ? "pr-12" : ""} ${className ?? ""}`}
+          className={`${inputClass} ${error ? "" : "border-border-strong"} ${trailing ? "pe-12" : ""} ${className ?? ""}`}
           {...input}
         />
-        {trailing ? <div className="absolute inset-y-0 right-0 flex items-center pr-1">{trailing}</div> : null}
+        {trailing ? <div className="absolute inset-y-0 end-0 flex items-center pe-1">{trailing}</div> : null}
       </div>
       {error ? (
         <p id={errorId} className="text-sm text-danger">

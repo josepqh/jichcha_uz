@@ -157,7 +157,7 @@ export function LoginPage() {
           error={errors.email}
         />
         <PasswordField label={t("fields.password")} name="password" autoComplete="current-password" error={errors.password} />
-        <div className="text-right text-sm">
+        <div className="text-end text-sm">
           <Link to={`/${lang}/forgot`} className="inline-flex min-h-11 items-center font-semibold text-primary underline-offset-4 hover:underline">
             {t("auth.login.forgot")}
           </Link>

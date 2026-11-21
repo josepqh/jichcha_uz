@@ -37,7 +37,7 @@ function Progress({ value, label }: { value: number | null; label: string }) {
         aria-valuenow={value === null ? undefined : Math.round(value * 100)}
       >
         <div
-          className={`h-full rounded-full bg-primary ${value === null ? "w-1/3 animate-pulse" : "w-full origin-left transition-transform duration-200"}`}
+          className={`h-full rounded-full bg-primary ${value === null ? "w-1/3 animate-pulse" : "w-full origin-left rtl:origin-right transition-transform duration-200"}`}
           style={value === null ? undefined : { transform: `scaleX(${Math.max(0.04, value)})` }}
         />
       </div>

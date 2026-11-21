@@ -147,7 +147,7 @@ function DayChart({ data }: { data: DashboardStats }) {
           <details>
             <summary className="cursor-pointer text-sm font-semibold">{t("admin.dashboard.tableView")}</summary>
             <table className="mt-2 w-full text-sm tabular-nums">
-              <thead className="text-left text-muted">
+              <thead className="text-start text-muted">
                 <tr>
                   <th className="py-1 font-normal">{t("admin.dashboard.date")}</th>
                   <th className="py-1 font-normal">{t("admin.dashboard.tasks")}</th>
@@ -231,19 +231,19 @@ function Dashboard() {
               <p className="text-muted">{t("admin.dashboard.empty")}</p>
             ) : (
               <table className="w-full text-sm tabular-nums">
-                <thead className="text-left text-muted">
+                <thead className="text-start text-muted">
                   <tr>
                     <th className="py-1 font-normal">{t("admin.dashboard.tool")}</th>
-                    <th className="py-1 text-right font-normal">{t("admin.dashboard.count")}</th>
-                    <th className="py-1 text-right font-normal">{t("admin.dashboard.failed")}</th>
+                    <th className="py-1 text-end font-normal">{t("admin.dashboard.count")}</th>
+                    <th className="py-1 text-end font-normal">{t("admin.dashboard.failed")}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {query.data.top_tools.map((row) => (
                     <tr key={row.tool} className="border-t border-border">
                       <td className="py-1.5">{toolName(t, row.tool)}</td>
-                      <td className="py-1.5 text-right">{n(row.count)}</td>
-                      <td className="py-1.5 text-right">{n(row.failed)}</td>
+                      <td className="py-1.5 text-end">{n(row.count)}</td>
+                      <td className="py-1.5 text-end">{n(row.failed)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -318,12 +318,12 @@ function Users() {
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] text-sm">
-            <thead className="text-left text-muted">
+            <thead className="text-start text-muted">
               <tr>
                 <th className="py-2 font-normal">{t("admin.users.email")}</th>
                 <th className="py-2 font-normal">{t("admin.users.joined")}</th>
                 <th className="py-2 font-normal">{t("admin.users.lastLogin")}</th>
-                <th className="py-2 text-right font-normal">{t("admin.users.tasks30")}</th>
+                <th className="py-2 text-end font-normal">{t("admin.users.tasks30")}</th>
                 <th className="py-2 font-normal">{t("admin.users.status")}</th>
                 <th className="py-2">
                   <span className="sr-only">{t("admin.users.actions")}</span>
@@ -338,11 +338,11 @@ function Users() {
                   <td className="py-2 tabular-nums">
                     {u.last_login ? formatDate(u.last_login, i18n.language) : t("admin.users.never")}
                   </td>
-                  <td className="py-2 text-right tabular-nums">{u.tasks_30d}</td>
+                  <td className="py-2 text-end tabular-nums">{u.tasks_30d}</td>
                   <td className="py-2">
                     {u.is_staff ? t("admin.users.staff") : u.is_active ? t("admin.users.active") : t("admin.users.blocked")}
                   </td>
-                  <td className="py-2 text-right">
+                  <td className="py-2 text-end">
                     {u.is_staff ? null : (
                       <button
                         type="button"
@@ -428,14 +428,14 @@ function Failures() {
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full min-w-[720px] text-sm">
-            <thead className="text-left text-muted">
+            <thead className="text-start text-muted">
               <tr>
                 <th className="py-2 font-normal">{t("admin.failures.when")}</th>
                 <th className="py-2 font-normal">{t("admin.failures.tool")}</th>
                 <th className="py-2 font-normal">{t("admin.failures.source")}</th>
                 <th className="py-2 font-normal">{t("admin.failures.code")}</th>
                 <th className="py-2 font-normal">{t("admin.failures.inputs")}</th>
-                <th className="py-2 text-right font-normal">{t("admin.failures.duration")}</th>
+                <th className="py-2 text-end font-normal">{t("admin.failures.duration")}</th>
               </tr>
             </thead>
             <tbody>
@@ -455,7 +455,7 @@ function Failures() {
                       </span>
                     ))}
                   </td>
-                  <td className="py-2 text-right tabular-nums">
+                  <td className="py-2 text-end tabular-nums">
                     {task.duration_ms === null ? "—" : `${n(task.duration_ms / 1000, { maximumFractionDigits: 1 })} s`}
                   </td>
                 </tr>
@@ -487,17 +487,17 @@ function Load() {
           {t("admin.load.queues")}
         </h2>
         <table className="w-full text-sm tabular-nums">
-          <thead className="text-left text-muted">
+          <thead className="text-start text-muted">
             <tr>
               <th className="py-1 font-normal">{t("admin.load.queue")}</th>
-              <th className="py-1 text-right font-normal">{t("admin.load.waiting")}</th>
+              <th className="py-1 text-end font-normal">{t("admin.load.waiting")}</th>
             </tr>
           </thead>
           <tbody>
             {Object.entries(queues).map(([name, length]) => (
               <tr key={name} className="border-t border-border">
                 <td className="py-1.5 font-mono">{name}</td>
-                <td className="py-1.5 text-right">{length === null ? t("admin.load.unknown") : n(length)}</td>
+                <td className="py-1.5 text-end">{length === null ? t("admin.load.unknown") : n(length)}</td>
               </tr>
             ))}
           </tbody>
@@ -550,7 +550,7 @@ function Load() {
               aria-valuenow={Math.round(used * 100)}
             >
               <div
-                className={`h-full w-full origin-left rounded-full ${used > 0.9 ? "bg-danger" : "bg-primary"}`}
+                className={`h-full w-full origin-left rtl:origin-right rounded-full ${used > 0.9 ? "bg-danger" : "bg-primary"}`}
                 style={{ transform: `scaleX(${used})` }}
               />
             </div>

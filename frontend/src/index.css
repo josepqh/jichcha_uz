@@ -182,7 +182,7 @@
   content: "";
   position: absolute;
   top: -1px;
-  right: -1px;
+  inset-inline-end: -1px;
   width: 20px;
   height: 20px;
   background: linear-gradient(to bottom left, var(--bg) 50%, var(--fold, var(--surface-muted)) 50%);
@@ -199,4 +199,24 @@
     /* Sticky header + section bar: keep anchors and keyboard focus out from under them. */
     scroll-padding-top: 8rem;
   }
+}
+
+/* Right-to-left (Arabic): the fold sits top-left, the highlighter draws from the right. */
+[dir="rtl"] .sheet::after {
+  background: linear-gradient(to bottom right, var(--bg) 50%, var(--fold, var(--surface-muted)) 50%);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 5px;
+  box-shadow: 1px 1px 0 var(--border);
+}
+[dir="rtl"] .hl::before {
+  transform-origin: right center;
+}
+
+/* Scripts the brand faces don't cover (CJK, Devanagari, Arabic, Hangul) use the system's own
+   fonts, without the tight display tracking (it breaks Arabic joining and crowds CJK). */
+:is(:lang(zh), :lang(ja), :lang(ko), :lang(hi), :lang(ar)) :is(.font-display, h1, h2, h3) {
+  letter-spacing: normal;
+}
+:is(:lang(zh), :lang(ja), :lang(ko), :lang(hi), :lang(ar)) .font-display {
+  font-family: "Onest Variable", ui-sans-serif, system-ui, sans-serif;
 }

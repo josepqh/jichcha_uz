@@ -103,7 +103,7 @@ export function SmartDrop() {
                       <span aria-hidden="true" className={`size-2 rounded-[2px] ${FAMILY_BG[picked.family!]}`} />
                       <span className="flex-1">{name}</span>
                       <ArrowRight
-                        className="size-4 text-muted transition-transform duration-200 group-hover:translate-x-1 group-hover:text-fg"
+                        className="size-4 text-muted transition-transform duration-200 group-hover:translate-x-1 rtl:-scale-x-100 rtl:group-hover:-translate-x-1 group-hover:text-fg"
                         aria-hidden="true"
                       />
                     </Link>

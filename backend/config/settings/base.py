@@ -32,6 +32,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "apps.core.edge.EdgeSecretMiddleware",
+    # First on the way in, so last on the way out: sees every cookie the others set.
+    "apps.core.cookies.LocalCookieMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "corsheaders.middleware.CorsMiddleware",
