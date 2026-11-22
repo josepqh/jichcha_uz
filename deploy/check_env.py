@@ -62,7 +62,8 @@ def check(env: dict[str, str], root: Path) -> tuple[list[str], list[str]]:
             "PUBLIC_ORIGIN is http://; compose.prod.yaml sets https://DOMAIN, but fix .env too."
         )
 
-    if get("MAIL_BACKEND", "console") == "console" or not get("SMTP_HOST"):
+    backend = get("MAIL_BACKEND", "console").strip()
+    if backend.lower() not in ("smtp", "django.core.mail.backends.smtp.emailbackend") or not get("SMTP_HOST"):
         errors.append(
             "Email: set MAIL_BACKEND=smtp and SMTP_HOST/SMTP_USER/SMTP_PASSWORD, or password reset mails go nowhere."
         )

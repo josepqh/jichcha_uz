@@ -5,6 +5,8 @@ from pathlib import Path
 
 import environ
 
+from config.mail import is_smtp, resolve_backend
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 env = environ.Env()
@@ -225,9 +227,9 @@ GOOGLE_CLIENT_ID = env("GOOGLE_CLIENT_ID", default="")
 
 # --- Email -------------------------------------------------------------------
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="jichcha <no-reply@localhost>")
-_mail_backend = env("MAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
+_mail_backend = resolve_backend(env("MAIL_BACKEND", default="console"))
 _mail_options = {}
-if _mail_backend.endswith("smtp.EmailBackend"):
+if is_smtp(_mail_backend):
     _mail_options = {
         "host": env("SMTP_HOST", default="localhost"),
         "port": env.int("SMTP_PORT", default=587),
