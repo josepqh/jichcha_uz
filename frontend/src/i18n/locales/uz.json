@@ -955,12 +955,6 @@
   "feedback": {
     "title": "Taklif va shikoyatlar",
     "intro": "Nima qoʻshish kerakligini, nima ishlamaganini yoki nima yoqmaganini yozing. Har bir xabarni oʻqiymiz.",
-    "kind": "Xabar nima haqida?",
-    "kinds": {
-      "suggestion": "Taklif",
-      "complaint": "Shikoyat",
-      "question": "Savol"
-    },
     "message": "Xabaringiz",
     "placeholder": "Masalan: PDF'dan Word qilish imkoniyatini qoʻshing…",
     "email": "Javob uchun email (ixtiyoriy)",

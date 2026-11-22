@@ -852,12 +852,6 @@
   "feedback": {
     "title": "Vorschläge und Beschwerden",
     "intro": "Sagen Sie uns, was fehlt, was nicht funktioniert hat oder was Sie gestört hat. Wir lesen jede Nachricht.",
-    "kind": "Worum geht es?",
-    "kinds": {
-      "suggestion": "Vorschlag",
-      "complaint": "Beschwerde",
-      "question": "Frage"
-    },
     "message": "Ihre Nachricht",
     "placeholder": "Zum Beispiel: Bitte PDF in Word hinzufügen…",
     "email": "E-Mail für eine Antwort (optional)",

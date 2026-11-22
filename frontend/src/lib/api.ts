@@ -182,7 +182,6 @@ export const auth = {
 };
 
 export interface FeedbackMessage {
-  kind: "suggestion" | "complaint" | "question";
   message: string;
   email: string;
   page: string;

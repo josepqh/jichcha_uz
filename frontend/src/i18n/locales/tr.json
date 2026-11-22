@@ -852,12 +852,6 @@
   "feedback": {
     "title": "Öneri ve şikâyetler",
     "intro": "Neyin eklenmesini istediğinizi, neyin çalışmadığını ya da sizi neyin rahatsız ettiğini yazın. Her mesajı okuyoruz.",
-    "kind": "Konu nedir?",
-    "kinds": {
-      "suggestion": "Öneri",
-      "complaint": "Şikâyet",
-      "question": "Soru"
-    },
     "message": "Mesajınız",
     "placeholder": "Örneğin: PDF'den Word'e dönüştürme ekleyin…",
     "email": "Yanıt için e-posta (isteğe bağlı)",

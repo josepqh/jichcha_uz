@@ -850,12 +850,6 @@
   "feedback": {
     "title": "建议与投诉",
     "intro": "告诉我们应该添加什么、哪里出了问题或哪里让你不满意。每条消息我们都会阅读。",
-    "kind": "关于什么？",
-    "kinds": {
-      "suggestion": "建议",
-      "complaint": "投诉",
-      "question": "问题"
-    },
     "message": "你的留言",
     "placeholder": "例如：请加入 PDF 转 Word…",
     "email": "用于回复的邮箱（可选）",

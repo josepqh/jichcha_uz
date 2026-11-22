@@ -956,12 +956,6 @@
   "feedback": {
     "title": "Suggestions and complaints",
     "intro": "Tell us what to add, what didn't work or what bothered you. We read every message.",
-    "kind": "What is it about?",
-    "kinds": {
-      "suggestion": "Suggestion",
-      "complaint": "Complaint",
-      "question": "Question"
-    },
     "message": "Your message",
     "placeholder": "For example: please add PDF to Word…",
     "email": "Email for a reply (optional)",

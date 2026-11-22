@@ -854,12 +854,6 @@
   "feedback": {
     "title": "Suggestions et réclamations",
     "intro": "Dites-nous quoi ajouter, ce qui n'a pas marché ou ce qui vous a gêné. Nous lisons chaque message.",
-    "kind": "De quoi s'agit-il ?",
-    "kinds": {
-      "suggestion": "Suggestion",
-      "complaint": "Réclamation",
-      "question": "Question"
-    },
     "message": "Votre message",
     "placeholder": "Par exemple : ajoutez PDF vers Word…",
     "email": "E-mail pour la réponse (facultatif)",

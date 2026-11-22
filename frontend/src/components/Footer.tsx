@@ -7,7 +7,6 @@ import { LogoMark, Wordmark } from "@/components/Logo";
 import { useLang } from "@/hooks/useLang";
 import { CONTACT_EMAIL, TELEGRAM_URL, TELEGRAM_USERNAME } from "@/lib/contacts";
 import { SECTION_SLUG, SECTIONS } from "@/lib/sections";
-import { POPULAR_CONVERSIONS, resolveConversion } from "@/lib/tools";
 import { useAuthStore } from "@/stores/auth";
 
 const BOT = import.meta.env.VITE_TELEGRAM_BOT_USERNAME ?? "";
@@ -16,16 +15,15 @@ const YEAR = new Date().getFullYear();
 const linkClass = "inline-flex min-h-10 items-center gap-2 text-muted underline-offset-4 transition-colors duration-150 hover:text-fg hover:underline";
 const headingClass = "font-mono text-xs font-medium tracking-wide text-fg uppercase";
 
-/** Site footer: the brand, every section, the most used conversions and the help pages. */
+/** Site footer: the brand, every section and the help pages. */
 export function Footer() {
   const { t } = useTranslation();
   const lang = useLang();
   const signedIn = useAuthStore((s) => s.status === "authed");
-  const conversions = POPULAR_CONVERSIONS.slice(0, 6).map((pair) => resolveConversion(pair)!);
 
   return (
     <footer className="mt-16 border-t border-border bg-surface/60">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 text-sm sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 text-sm sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr]">
         <div className="space-y-4">
           <Link to={`/${lang}`} className="inline-flex min-h-11 items-center gap-2.5" aria-label={`${t("meta.siteName")}, ${t("nav.home")}`}>
             <LogoMark className="size-7" />
@@ -65,21 +63,6 @@ export function Footer() {
                 <Link to={`/${lang}/${SECTION_SLUG[family]}`} className={linkClass}>
                   <FamilyIcon family={family} className="size-4" />
                   {t(`home.groups.${family}`)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="space-y-3">
-          <h2 className={headingClass}>
-            {t("home.popularHeading")}
-          </h2>
-          <ul>
-            {conversions.map((c) => (
-              <li key={c.pair}>
-                <Link to={`/${lang}/convert/${c.pair}`} className={linkClass}>
-                  {t("conversion.short", { from: c.from.toUpperCase(), to: c.to.toUpperCase() })}
                 </Link>
               </li>
             ))}

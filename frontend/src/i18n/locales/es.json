@@ -854,12 +854,6 @@
   "feedback": {
     "title": "Sugerencias y quejas",
     "intro": "Cuéntanos qué añadir, qué no funcionó o qué te molestó. Leemos todos los mensajes.",
-    "kind": "¿De qué se trata?",
-    "kinds": {
-      "suggestion": "Sugerencia",
-      "complaint": "Queja",
-      "question": "Pregunta"
-    },
     "message": "Tu mensaje",
     "placeholder": "Por ejemplo: añadid PDF a Word…",
     "email": "Correo para responderte (opcional)",

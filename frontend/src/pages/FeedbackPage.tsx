@@ -5,13 +5,12 @@ import { useTranslation } from "react-i18next";
 import { FormAlert, SubmitButton, TextField, focusFirstInvalid, validateEmail } from "@/components/forms";
 import { Turnstile } from "@/components/Turnstile";
 import { useLang } from "@/hooks/useLang";
-import { ApiError, api, type FeedbackMessage } from "@/lib/api";
+import { ApiError, api } from "@/lib/api";
 import { CONTACT_EMAIL, TELEGRAM_URL, TELEGRAM_USERNAME } from "@/lib/contacts";
 import { errorMessage } from "@/lib/errors";
 import { btn, card } from "@/lib/ui";
 import { useAuthStore } from "@/stores/auth";
 
-const KINDS = ["suggestion", "complaint", "question"] as const;
 const MIN_LENGTH = 10;
 
 /** Suggestions and complaints, emailed to the team; the direct contacts sit beside the form. */
@@ -20,9 +19,7 @@ export function FeedbackPage() {
   const lang = useLang();
   const userEmail = useAuthStore((s) => s.user?.email ?? "");
   const formRef = useRef<HTMLFormElement>(null);
-  const kindName = useId();
   const messageId = useId();
-  const [kind, setKind] = useState<FeedbackMessage["kind"]>("suggestion");
   const [errors, setErrors] = useState<{ message?: string; email?: string }>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [captcha, setCaptcha] = useState("");
@@ -47,7 +44,6 @@ export function FeedbackPage() {
     setBusy(true);
     try {
       await api.sendFeedback({
-        kind,
         message,
         email,
         page: document.referrer.startsWith(window.location.origin) ? document.referrer : "",
@@ -87,31 +83,6 @@ export function FeedbackPage() {
         ) : (
           <form ref={formRef} noValidate onSubmit={(e) => void onSubmit(e)} className={`${card} space-y-5 p-5 sm:p-6`}>
             <FormAlert message={formError} />
-            <fieldset>
-              <legend className="mb-2 text-sm font-semibold">{t("feedback.kind")}</legend>
-              <div className="flex flex-wrap gap-2">
-                {KINDS.map((value) => (
-                  <div key={value}>
-                    <input
-                      id={`${kindName}-${value}`}
-                      type="radio"
-                      name={kindName}
-                      value={value}
-                      checked={kind === value}
-                      onChange={() => setKind(value)}
-                      className="peer sr-only"
-                    />
-                    <label
-                      htmlFor={`${kindName}-${value}`}
-                      className="flex min-h-11 cursor-pointer items-center rounded-xl border border-border-strong bg-surface px-4 text-sm font-semibold transition-colors duration-150 peer-checked:border-primary peer-checked:bg-primary peer-checked:text-primary-fg peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-ring hover:bg-surface-muted peer-checked:hover:bg-primary-hover"
-                    >
-                      {t(`feedback.kinds.${value}`)}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </fieldset>
-
             <div className="space-y-1.5">
               <label htmlFor={messageId} className="block text-sm font-semibold">
                 {t("feedback.message")}

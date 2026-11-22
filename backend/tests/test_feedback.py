@@ -14,19 +14,19 @@ def send(payload, capture):
 
 def test_suggestion_is_emailed_with_reply_to(django_capture_on_commit_callbacks, settings):
     settings.FEEDBACK_EMAIL = "team@example.com"
-    payload = {"kind": "suggestion", "message": "Please add PDF to Word.", "email": "ali@example.com", "language": "uz"}
+    payload = {"message": "Please add PDF to Word.", "email": "ali@example.com", "language": "uz"}
     assert send(payload, django_capture_on_commit_callbacks).status_code == 202
     [message] = mail.outbox
     assert message.to == ["team@example.com"]
     assert message.reply_to == ["ali@example.com"]
-    assert message.subject == "jichcha: suggestion (uz)"
+    assert message.subject == "jichcha: feedback (uz)"
     assert "Please add PDF to Word." in message.body
 
 
 def test_default_address_and_anonymous_complaints(django_capture_on_commit_callbacks):
     assert (
         send(
-            {"kind": "complaint", "message": "The download did not start."}, django_capture_on_commit_callbacks
+            {"message": "The download did not start."}, django_capture_on_commit_callbacks
         ).status_code
         == 202
     )
@@ -37,9 +37,8 @@ def test_default_address_and_anonymous_complaints(django_capture_on_commit_callb
 @pytest.mark.parametrize(
     ("payload", "field"),
     [
-        ({"kind": "spam", "message": "long enough message"}, "kind"),
-        ({"kind": "question", "message": "short"}, "message"),
-        ({"kind": "question", "message": "long enough message", "email": "not-an-email"}, "email"),
+        ({"message": "short"}, "message"),
+        ({"message": "long enough message", "email": "not-an-email"}, "email"),
     ],
 )
 def test_validation(payload, field):
@@ -49,7 +48,7 @@ def test_validation(payload, field):
 
 
 def test_honeypot_looks_fine_but_sends_nothing(django_capture_on_commit_callbacks):
-    payload = {"kind": "question", "message": "Buy cheap things here", "website": "http://spam.example"}
+    payload = {"message": "Buy cheap things here", "website": "http://spam.example"}
     assert send(payload, django_capture_on_commit_callbacks).status_code == 202
     assert mail.outbox == []
 
@@ -59,6 +58,6 @@ def test_rate_limited_per_ip(monkeypatch):
 
     monkeypatch.setattr(FeedbackThrottle, "rate", "2/1h", raising=False)
     client = APIClient()
-    payload = {"kind": "question", "message": "a real question here"}
+    payload = {"message": "a real question here"}
     codes = [client.post(URL, payload, format="json").status_code for _ in range(3)]
     assert codes == [202, 202, 429]

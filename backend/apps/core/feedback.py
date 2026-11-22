@@ -17,9 +17,6 @@ from rest_framework.views import APIView
 from apps.users import turnstile
 from apps.users.throttles import AuthRateThrottle
 
-KINDS = ("suggestion", "complaint", "question")
-
-
 class FeedbackThrottle(AuthRateThrottle):
     """Per IP, same rate format as sign-in ("5/1h")."""
 
@@ -27,7 +24,6 @@ class FeedbackThrottle(AuthRateThrottle):
 
 
 class FeedbackSerializer(serializers.Serializer):
-    kind = serializers.ChoiceField(choices=KINDS)
     message = serializers.CharField(min_length=10, max_length=4000)
     email = serializers.EmailField(max_length=254, required=False, allow_blank=True)
     page = serializers.CharField(max_length=300, required=False, allow_blank=True)
@@ -37,9 +33,9 @@ class FeedbackSerializer(serializers.Serializer):
 
 
 @shared_task(ignore_result=True, autoretry_for=(OSError,), retry_backoff=True, max_retries=3)
-def send_feedback(kind: str, message: str, email: str, page: str, language: str) -> None:
-    subject = f"jichcha: {kind} ({language or '-'})"
-    body = f"{message}\n\n---\nKind: {kind}\nReply to: {email or '(not given)'}\nPage: {page or '-'}\n"
+def send_feedback(message: str, email: str, page: str, language: str) -> None:
+    subject = f"jichcha: feedback ({language or '-'})"
+    body = f"{message}\n\n---\nReply to: {email or '(not given)'}\nPage: {page or '-'}\n"
     EmailMessage(subject, body, None, [settings.FEEDBACK_EMAIL], reply_to=[email] if email else None).send()
 
 
@@ -55,6 +51,6 @@ class FeedbackView(APIView):
         if data.get("website"):
             return Response(status=status.HTTP_202_ACCEPTED)  # a bot: look successful, send nothing
         turnstile.require(request.data.get("captcha"), FeedbackThrottle().get_ident(request))
-        args = (data["kind"], data["message"], data.get("email", ""), data.get("page", ""), data.get("language", ""))
+        args = (data["message"], data.get("email", ""), data.get("page", ""), data.get("language", ""))
         transaction.on_commit(lambda: send_feedback.delay(*args))
         return Response(status=status.HTTP_202_ACCEPTED)

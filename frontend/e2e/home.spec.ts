@@ -35,7 +35,7 @@ test("each section under the header opens its menu and its page shows only its o
   await expect(page.getByRole("navigation", { name: "You are here" }).getByRole("link", { name: "Word" })).toBeVisible();
 });
 
-test("the footer links every section, popular conversions and the help pages", async ({ page }) => {
+test("the footer links every section and the help pages", async ({ page }) => {
   await page.goto("/en/faq");
   const footer = page.getByRole("contentinfo");
   for (const name of ["PDF", "Word", "Excel", "PowerPoint", "Photos", "Archives", "FAQ", "Privacy policy", "Terms of use", "Suggestions and complaints"]) {
@@ -43,8 +43,7 @@ test("the footer links every section, popular conversions and the help pages", a
   }
   await expect(footer.getByRole("link", { name: "@jichcha_info" })).toHaveAttribute("href", "https://t.me/jichcha_info");
   await expect(footer.getByRole("link", { name: "jichchainfo@gmail.com" })).toHaveAttribute("href", "mailto:jichchainfo@gmail.com");
-  await footer.getByRole("link", { name: "DOCX → PDF" }).click();
-  await expect(page).toHaveURL(/\/en\/convert\/docx-to-pdf$/);
+  await expect(footer.getByRole("link", { name: "DOCX → PDF" })).toHaveCount(0);
   await expect(footer).toContainText(`© ${new Date().getFullYear()} jichcha.`);
 });
 
@@ -70,7 +69,7 @@ test("a dropped file is recognised and handed to the chosen tool", async ({ page
 
 test("a suggestion is sent from the feedback page", async ({ page }) => {
   await page.goto("/en/feedback");
-  await page.getByText("Complaint", { exact: true }).click();
+  await expect(page.getByText("Complaint", { exact: true })).toHaveCount(0);
   await page.getByRole("button", { name: "Send" }).click();
   await expect(page.getByText("Fill in this field.")).toBeVisible();
   await page.getByLabel("Your message").fill("The download button did nothing on my phone.");
