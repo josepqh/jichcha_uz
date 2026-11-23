@@ -16,7 +16,7 @@ export const useThemeStore = create<ThemeState>()(
       theme: "system",
       cycle: () => set((s) => ({ theme: ORDER[(ORDER.indexOf(s.theme) + 1) % ORDER.length] ?? "system" })),
     }),
-    { name: "uv-theme", version: 1 },
+    { name: "jichcha-theme", version: 1 },
   ),
 );
 

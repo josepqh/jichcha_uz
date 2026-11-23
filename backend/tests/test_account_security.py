@@ -17,7 +17,7 @@ from tests.factories import UserFactory
 pytestmark = pytest.mark.django_db
 
 PASSWORD = "Str0ng-pass-123"
-COOKIE = "uv_refresh"
+COOKIE = "jichcha_refresh"
 
 
 def signed_in(user: User) -> APIClient:

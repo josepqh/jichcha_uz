@@ -640,8 +640,8 @@
         {
           "h": "Cookies et stockage du navigateur",
           "p": [
-            "uv_guest : affiche vos résultats dans ce navigateur quand vous n'êtes pas connecté. Il contient un jeton aléatoire ; le serveur ne garde que son empreinte.",
-            "uv_refresh : vous garde connecté pendant 7 jours.",
+            "jichcha_guest : affiche vos résultats dans ce navigateur quand vous n'êtes pas connecté. Il contient un jeton aléatoire ; le serveur ne garde que son empreinte.",
+            "jichcha_refresh : vous garde connecté pendant 7 jours.",
             "Le stockage du navigateur (localStorage) ne garde que votre choix de thème (clair ou sombre).",
             "Aucun cookie publicitaire, de suivi ou de mesure d'audience n'est utilisé."
           ]

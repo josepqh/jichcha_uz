@@ -1,7 +1,7 @@
 from aiogram.methods import AnswerCallbackQuery, SendDocument, SendMessage
 
-from universe_bot.backend import BackendError, Output, Result
-from universe_bot.storage import FileRef, Job
+from jichcha_bot.backend import BackendError, Output, Result
+from jichcha_bot.storage import FileRef, Job
 
 from .conftest import USER, document, photo
 
@@ -96,7 +96,7 @@ async def test_unknown_error_codes_get_a_generic_message(h):
 async def test_files_over_20_mb_get_a_website_link(h):
     await h.send(**document("katta.pdf", size=25 * MB))
     text = h.texts()[-1]
-    assert "25.0 MB" in text and "https://universe.test/uz/tools/pdf-compress" in text
+    assert "25.0 MB" in text and "https://jichcha.test/uz/tools/pdf-compress" in text
     assert not h.buttons()
 
 
@@ -133,11 +133,11 @@ async def test_mixed_album_is_refused(h):
 
 async def test_many_outputs_arrive_as_one_zip(h):
     pages = [Output(f"page-{i}.jpg", 1000, f"/api/v1/files/{i}/?t=x") for i in range(25)]
-    h.backend.result = Result(pages, Output("universe-pdf-to-images.zip", 9000, "/api/v1/files/zip/?t=x"))
+    h.backend.result = Result(pages, Output("jichcha-pdf-to-images.zip", 9000, "/api/v1/files/zip/?t=x"))
     await h.send(**document("a.pdf"))
     await h.press(h.buttons()[1][1])  # JPG
     [sent] = h.session.of(SendDocument)
-    assert sent.document.filename == "universe-pdf-to-images.zip"
+    assert sent.document.filename == "jichcha-pdf-to-images.zip"
 
 
 async def test_too_big_result_is_sent_as_a_link(h):
@@ -145,7 +145,7 @@ async def test_too_big_result_is_sent_as_a_link(h):
     await h.send(**document("a.pdf"))
     await h.press(h.buttons()[0][1])
     assert not h.session.of(SendDocument)
-    assert any("https://universe.test/api/v1/files/9/?t=sig" in t for t in h.texts())
+    assert any("https://jichcha.test/api/v1/files/9/?t=sig" in t for t in h.texts())
 
 
 async def test_group_chats_are_ignored(h):

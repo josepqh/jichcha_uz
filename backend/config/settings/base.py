@@ -204,7 +204,7 @@ SESSION_COOKIE_HTTPONLY = True
 # --- Auth cookies ------------------------------------------------------------
 # Refresh token lives only in an httpOnly cookie scoped to the auth endpoints;
 # the access token is kept in memory by the SPA.
-AUTH_REFRESH_COOKIE = "uv_refresh"
+AUTH_REFRESH_COOKIE = "jichcha_refresh"
 AUTH_REFRESH_COOKIE_PATH = "/api/v1/auth/"
 AUTH_COOKIE_SECURE = env.bool("AUTH_COOKIE_SECURE", default=True)
 
@@ -244,7 +244,7 @@ MAILERS = {"default": {"BACKEND": _mail_backend, "OPTIONS": _mail_options}}
 
 # --- App settings ----------------------------------------------------------
 # Guest identity: random id in a signed, httpOnly cookie.
-GUEST_COOKIE_NAME = "uv_guest"
+GUEST_COOKIE_NAME = "jichcha_guest"
 GUEST_COOKIE_MAX_AGE = 60 * 60 * 24 * 365
 GUEST_COOKIE_SECURE = env.bool("GUEST_COOKIE_SECURE", default=True)
 

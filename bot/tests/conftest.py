@@ -18,10 +18,10 @@ from aiogram.methods import (
 )
 from aiogram.types import File, Message, Update
 
-from universe_bot.app import build_dispatcher
-from universe_bot.backend import BackendError, Output, Result
-from universe_bot.config import Settings
-from universe_bot.storage import MemoryStore
+from jichcha_bot.app import build_dispatcher
+from jichcha_bot.backend import BackendError, Output, Result
+from jichcha_bot.config import Settings
+from jichcha_bot.storage import MemoryStore
 
 BOT_ID = 42
 USER = {"id": 1001, "is_bot": False, "first_name": "Ali", "language_code": "uz"}
@@ -106,7 +106,7 @@ class Harness:
         self.settings = Settings(
             bot_token="42:TEST",
             backend_url="http://backend:8000",
-            public_origin="https://universe.test",
+            public_origin="https://jichcha.test",
             bot_api_secret="s",
             redis_url="",
             webhook_url="",

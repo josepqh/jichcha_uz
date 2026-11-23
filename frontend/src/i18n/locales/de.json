@@ -638,8 +638,8 @@
         {
           "h": "Cookies und Browserspeicher",
           "p": [
-            "uv_guest: zeigt Ihre Ergebnisse in diesem Browser, wenn Sie nicht angemeldet sind. Es enthält ein zufälliges Token; der Server speichert nur dessen Hash.",
-            "uv_refresh: hält Sie 7 Tage lang angemeldet.",
+            "jichcha_guest: zeigt Ihre Ergebnisse in diesem Browser, wenn Sie nicht angemeldet sind. Es enthält ein zufälliges Token; der Server speichert nur dessen Hash.",
+            "jichcha_refresh: hält Sie 7 Tage lang angemeldet.",
             "Der Browserspeicher (localStorage) speichert nur Ihre Designwahl (hell oder dunkel).",
             "Es werden keine Werbe-, Tracking- oder Analyse-Cookies verwendet."
           ]

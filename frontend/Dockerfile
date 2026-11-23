@@ -23,7 +23,7 @@ RUN npm run build
 
 # ---- runtime: unprivileged nginx serves files and proxies the API ----
 FROM nginxinc/nginx-unprivileged:1.29-alpine AS runtime
-LABEL org.opencontainers.image.title="universe-web"
+LABEL org.opencontainers.image.title="jichcha-web"
 COPY --link nginx.conf /etc/nginx/conf.d/default.conf
 COPY --link --from=build /app/dist /usr/share/nginx/html
 EXPOSE 8080

@@ -5,7 +5,7 @@ import pytest
 from aiohttp import web
 from aiohttp.test_utils import TestServer
 
-from universe_bot.backend import BackendClient, BackendError
+from jichcha_bot.backend import BackendClient, BackendError
 
 SECRET = "bot-secret"
 

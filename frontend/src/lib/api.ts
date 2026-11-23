@@ -108,7 +108,7 @@ let refreshing: Promise<boolean> | null = null;
  */
 function withRefreshLock<T>(run: () => Promise<T>): Promise<T> {
   const locks = typeof navigator === "undefined" ? undefined : navigator.locks;
-  return locks ? locks.request("universe-auth-refresh", run) : run();
+  return locks ? locks.request("jichcha-auth-refresh", run) : run();
 }
 
 /** Exchanges the httpOnly refresh cookie for a new access token. Concurrent callers share one request. */

@@ -638,8 +638,8 @@
         {
           "h": "Çerezler ve tarayıcı depolaması",
           "p": [
-            "uv_guest: giriş yapmadığınızda sonuçlarınızı bu tarayıcıda gösterir. Rastgele bir belirteç tutar; sunucu yalnızca özetini saklar.",
-            "uv_refresh: 7 gün boyunca oturumunuzu açık tutar.",
+            "jichcha_guest: giriş yapmadığınızda sonuçlarınızı bu tarayıcıda gösterir. Rastgele bir belirteç tutar; sunucu yalnızca özetini saklar.",
+            "jichcha_refresh: 7 gün boyunca oturumunuzu açık tutar.",
             "Tarayıcı depolaması (localStorage) yalnızca tema seçiminizi (açık ya da koyu) tutar.",
             "Reklam, izleme ya da analiz çerezi kullanılmaz."
           ]

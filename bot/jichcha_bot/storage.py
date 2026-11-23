@@ -59,7 +59,7 @@ def new_token() -> str:
 
 
 class RedisStore:
-    def __init__(self, redis: Redis, prefix: str = "uvbot"):
+    def __init__(self, redis: Redis, prefix: str = "jichchabot"):
         self._r = redis
         self._p = prefix
 

@@ -33,7 +33,7 @@ def test_bot_acts_as_one_guest_per_telegram_user():
     assert resp.status_code == 202
     task = Task.objects.get(pk=resp.data["id"])
     assert task.user is None and task.guest_key == _hash("tg:111")
-    assert "uv_guest" not in resp.cookies  # the bot never gets a browser cookie
+    assert "jichcha_guest" not in resp.cookies  # the bot never gets a browser cookie
     assert bot(111).get(f"/api/v1/tasks/{task.pk}/").status_code == 200
     assert bot(222).get(f"/api/v1/tasks/{task.pk}/").status_code == 404  # another Telegram user
 

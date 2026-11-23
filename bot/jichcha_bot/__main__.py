@@ -1,4 +1,4 @@
-"""Run the bot: `python -m universe_bot`. Polling unless TELEGRAM_WEBHOOK_URL is set."""
+"""Run the bot: `python -m jichcha_bot`. Polling unless TELEGRAM_WEBHOOK_URL is set."""
 
 import asyncio
 import logging

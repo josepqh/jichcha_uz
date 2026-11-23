@@ -640,8 +640,8 @@
         {
           "h": "Cookies y almacenamiento del navegador",
           "p": [
-            "uv_guest: muestra tus resultados en este navegador cuando no has iniciado sesión. Contiene un token aleatorio; el servidor guarda solo su hash.",
-            "uv_refresh: mantiene tu sesión iniciada durante 7 días.",
+            "jichcha_guest: muestra tus resultados en este navegador cuando no has iniciado sesión. Contiene un token aleatorio; el servidor guarda solo su hash.",
+            "jichcha_refresh: mantiene tu sesión iniciada durante 7 días.",
             "El almacenamiento del navegador (localStorage) guarda solo el tema elegido (claro u oscuro).",
             "No se usan cookies de publicidad, seguimiento ni analítica."
           ]

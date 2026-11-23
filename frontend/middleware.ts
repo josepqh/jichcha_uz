@@ -20,7 +20,7 @@ export default function middleware(request: Request): Response {
   }
   const url = new URL(request.url);
   const headers = new Headers(request.headers);
-  headers.set("x-universe-edge", process.env.EDGE_SECRET ?? "");
+  headers.set("x-jichcha-edge", process.env.EDGE_SECRET ?? "");
   // ngrok's free plan shows a warning page to browsers unless this header is present.
   headers.set("ngrok-skip-browser-warning", "1");
   return rewrite(new URL(url.pathname + url.search, origin), { request: { headers } });

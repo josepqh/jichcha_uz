@@ -9,7 +9,7 @@ Buyruqlar Ubuntu 24.04 / Debian 13 uchun yozilgan.
 |---|---|
 | **Server qayerda** | "Shaxsga doir maʼlumotlar toʻgʻrisida"gi Qonunga koʻra Oʻzbekiston fuqarolarining shaxsiy maʼlumotlari (email, akkaunt) Oʻzbekistondagi serverlarda saqlanishi talab qilinadi. Hostingni shuni hisobga olib tanlang va yurist bilan tasdiqlang. |
 | **Server quvvati** | Kamida 4 vCPU, 8 GB RAM, 80 GB SSD. ClamAV ~1,5 GB, LibreOffice ishlayotganda 1–2 GB xotira oladi. |
-| **Domen** | `universe.uz` kabi domen va uning DNS'ida serverga qaratilgan `A` (va `AAAA`) yozuv. `www` ham kerak boʻlsa, unga ham yozuv qoʻshing. |
+| **Domen** | `jichcha.uz` kabi domen va uning DNS'ida serverga qaratilgan `A` (va `AAAA`) yozuv. `www` ham kerak boʻlsa, unga ham yozuv qoʻshing. |
 | **Email (SMTP)** | Parolni tiklash xatlari uchun SMTP xizmati (masalan, korporativ pochta yoki tranzaksion email xizmati). |
 | **Huquqiy maʼlumot** | Xizmat egasining nomi va aloqa emaili (`VITE_LEGAL_NAME`, `VITE_CONTACT_EMAIL`). Maxfiylik siyosati va shartlar matnini yurist koʻrib chiqsin. |
 | **Telegram bot tokeni** | Token chatda yoki boshqa joyda ochiq qolgan boʻlsa, BotFather'da `/revoke` qilib yangisini oling. |
@@ -29,14 +29,14 @@ Redis va ichki servislar tashqaridan koʻrinmaydi.
 ## 3. Sozlamalar
 
 ```bash
-git clone <repo-url> universe && cd universe
+git clone <repo-url> jichcha && cd jichcha
 cp .env.example .env
 cp backup.env.example backup.env   # tashqi zaxira uchun (tavsiya)
 ```
 
 `.env`da toʻldiriladiganlar:
 
-- `DOMAIN` — masalan `universe.uz`.
+- `DOMAIN` — masalan `jichcha.uz`.
 - `DJANGO_SECRET_KEY`, `POSTGRES_PASSWORD`, `BOT_API_SECRET`, `TELEGRAM_WEBHOOK_SECRET` — tasodifiy qiymatlar:
   `python3 -c "import secrets; print(secrets.token_urlsafe(64))"`.
 - `MAIL_BACKEND=smtp`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASSWORD`, `DEFAULT_FROM_EMAIL`.
@@ -98,7 +98,7 @@ Muammo boʻlsa bir marta, tuzalganda yana bir marta yozadi.
 
 ```bash
 docker compose -f compose.yaml -f compose.prod.yaml cp db-backup:/backups/<fayl>.dump .
-docker compose -f compose.yaml -f compose.prod.yaml exec -T db pg_restore --clean --if-exists -U universe -d universe < <fayl>.dump
+docker compose -f compose.yaml -f compose.prod.yaml exec -T db pg_restore --clean --if-exists -U jichcha -d jichcha < <fayl>.dump
 ```
 
 Foydalanuvchi fayllari ataylab zaxiralanmaydi: ular bir necha soatda oʻchadi.

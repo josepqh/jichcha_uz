@@ -1,6 +1,6 @@
 #!/bin/sh
 # Daily PostgreSQL backups: custom-format pg_dump into /backups, keeping BACKUP_KEEP_DAYS days.
-# With BACKUP_REMOTE set (an rclone remote such as "offsite:universe-backups"), each dump is also
+# With BACKUP_REMOTE set (an rclone remote such as "offsite:jichcha-backups"), each dump is also
 # copied off the server and remote copies older than BACKUP_REMOTE_KEEP_DAYS are removed.
 # Runs in the db-backup compose service. Restore: see README ("Backups").
 set -eu

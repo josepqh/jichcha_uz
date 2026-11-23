@@ -11,7 +11,7 @@ import hmac
 from django.conf import settings
 from django.http import HttpRequest, HttpResponse, JsonResponse
 
-HEADER = "HTTP_X_UNIVERSE_EDGE"
+HEADER = "HTTP_X_JICHCHA_EDGE"
 
 
 class EdgeSecretMiddleware:

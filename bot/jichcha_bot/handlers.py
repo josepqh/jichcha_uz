@@ -251,10 +251,10 @@ async def chat_id(message: Message) -> None:
 
 def make_router() -> Router:
     """A fresh router with every handler. Private chats only: in groups the bot stays silent."""
-    root = Router(name="universe-root")
+    root = Router(name="jichcha-root")
     # /id also answers in groups (that's where a team reads alerts); everything else is private-only.
     root.message.register(chat_id, Command("id"))
-    router = Router(name="universe")
+    router = Router(name="jichcha")
     root.include_router(router)
     router.message.filter(F.chat.type == ChatType.PRIVATE)
     router.callback_query.filter(F.message.chat.type == ChatType.PRIVATE)

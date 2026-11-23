@@ -9,13 +9,13 @@ check_env = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(check_env)
 
 GOOD = {
-    "DOMAIN": "universe.uz",
+    "DOMAIN": "jichcha.uz",
     "DJANGO_SECRET_KEY": "x" * 64,
     "POSTGRES_PASSWORD": "p" * 24,
     "MAIL_BACKEND": "smtp",
-    "SMTP_HOST": "smtp.universe.uz",
+    "SMTP_HOST": "smtp.jichcha.uz",
     "VITE_LEGAL_NAME": "jichcha MChJ",
-    "VITE_CONTACT_EMAIL": "support@universe.uz",
+    "VITE_CONTACT_EMAIL": "support@jichcha.uz",
 }
 
 

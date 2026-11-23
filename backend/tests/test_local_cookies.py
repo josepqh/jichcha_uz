@@ -25,12 +25,12 @@ def secure_cookies(settings):
 def test_plain_http_on_localhost_drops_secure_so_safari_keeps_the_cookie(secure_cookies, host):
     resp = create_task(APIClient(), HTTP_HOST=host)
     assert resp.status_code == 202
-    assert resp.cookies["uv_guest"]["secure"] == ""
+    assert resp.cookies["jichcha_guest"]["secure"] == ""
 
 
 def test_real_hosts_and_https_keep_secure(secure_cookies):
-    assert create_task(APIClient(), HTTP_HOST="jichcha.uz").cookies["uv_guest"]["secure"] is True
-    assert create_task(APIClient(), HTTP_HOST="localhost", secure=True).cookies["uv_guest"]["secure"] is True
+    assert create_task(APIClient(), HTTP_HOST="jichcha.uz").cookies["jichcha_guest"]["secure"] is True
+    assert create_task(APIClient(), HTTP_HOST="localhost", secure=True).cookies["jichcha_guest"]["secure"] is True
 
 
 def test_refresh_cookie_too(secure_cookies):
@@ -40,4 +40,4 @@ def test_refresh_cookie_too(secure_cookies):
         format="json",
         HTTP_HOST="localhost:8080",
     )
-    assert resp.cookies["uv_refresh"]["secure"] == ""
+    assert resp.cookies["jichcha_refresh"]["secure"] == ""

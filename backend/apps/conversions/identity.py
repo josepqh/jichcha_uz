@@ -19,7 +19,7 @@ from django.http import HttpRequest, HttpResponse
 
 from .models import LimitPolicy
 
-_SALT = "uv-guest-v1"
+_SALT = "jichcha-guest-v1"
 BOT_SECRET_HEADER = "HTTP_X_BOT_SECRET"  # noqa: S105 - a header name, not a secret
 BOT_USER_HEADER = "HTTP_X_TELEGRAM_USER_ID"
 _TELEGRAM_ID = re.compile(r"^[1-9][0-9]{0,15}$")

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Runs the LibreOffice tests inside the office worker image, offline, as uid 1001.
-# Usage: deploy/test-office-image.sh [image]   (default: universe-backend-office:dev)
+# Usage: deploy/test-office-image.sh [image]   (default: jichcha-backend-office:dev)
 set -euo pipefail
 
-IMAGE="${1:-universe-backend-office:dev}"
+IMAGE="${1:-jichcha-backend-office:dev}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DEV="$(mktemp -d)"
 trap 'rm -rf "$DEV"' EXIT

@@ -1,4 +1,4 @@
-name: universe
+name: jichcha
 
 # Every container keeps at most 3 x 10 MB of logs, so a chatty service cannot fill the disk.
 x-logging: &logging
@@ -9,12 +9,12 @@ x-logging: &logging
 
 x-backend: &backend
   # Built once by the `backend` service; the other services reuse the same image.
-  image: universe-backend:dev
+  image: jichcha-backend:dev
   pull_policy: never
   env_file: .env
   environment:
     DJANGO_SETTINGS_MODULE: config.settings.production
-    DATABASE_URL: postgres://${POSTGRES_USER:-universe}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-universe}
+    DATABASE_URL: postgres://${POSTGRES_USER:-jichcha}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-jichcha}
     REDIS_URL: redis://cache:6379/0
     DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS_DOCKER:-localhost,127.0.0.1,backend}
     CSRF_TRUSTED_ORIGINS: ${PUBLIC_ORIGIN:-http://localhost:8080}
@@ -46,8 +46,8 @@ services:
     restart: unless-stopped
     networks: [default, internal]
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-universe}
-      POSTGRES_USER: ${POSTGRES_USER:-universe}
+      POSTGRES_DB: ${POSTGRES_DB:-jichcha}
+      POSTGRES_USER: ${POSTGRES_USER:-jichcha}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
     volumes:
       # Postgres 18 images keep data under /var/lib/postgresql/<major>/docker
@@ -64,7 +64,7 @@ services:
     build:
       context: ./deploy
       dockerfile: backup.Dockerfile
-    image: universe-backup:dev
+    image: jichcha-backup:dev
     restart: unless-stopped
     # tini as PID 1: "docker compose stop/up" ends the container at once instead of killing it after
     # 10 s (a killed container mid-recreate left a renamed copy behind and blocked the next "up").
@@ -78,8 +78,8 @@ services:
         required: false
     environment:
       PGHOST: db
-      PGDATABASE: ${POSTGRES_DB:-universe}
-      PGUSER: ${POSTGRES_USER:-universe}
+      PGDATABASE: ${POSTGRES_DB:-jichcha}
+      PGUSER: ${POSTGRES_USER:-jichcha}
       PGPASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
       BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-7}
     volumes:
@@ -179,7 +179,7 @@ services:
   worker-office:
     logging: *logging
     <<: [*backend, *hardened]
-    image: universe-backend-office:dev
+    image: jichcha-backend-office:dev
     build:
       context: ./backend
       target: runtime-office
@@ -219,7 +219,7 @@ services:
     volumes: []
     environment:
       DJANGO_SETTINGS_MODULE: config.settings.production
-      DATABASE_URL: postgres://${POSTGRES_USER:-universe}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-universe}
+      DATABASE_URL: postgres://${POSTGRES_USER:-jichcha}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-jichcha}
       REDIS_URL: redis://cache:6379/0
       PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:8080}
       TMPDIR: /tmp
@@ -279,7 +279,7 @@ services:
     # Telegram bot. Opt-in: `docker compose --profile bot up -d` (needs TELEGRAM_BOT_TOKEN and BOT_API_SECRET).
     profiles: ["bot"]
     build: ./bot
-    image: universe-bot:dev
+    image: jichcha-bot:dev
     pull_policy: build
     restart: unless-stopped
     env_file: .env
@@ -313,7 +313,7 @@ services:
         VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-}
         VITE_TURNSTILE_SITE_KEY: ${VITE_TURNSTILE_SITE_KEY:-}
         SITE_URL: ${PUBLIC_ORIGIN:-http://localhost:8080}
-    image: universe-web:dev
+    image: jichcha-web:dev
     restart: unless-stopped
     ports:
       - "127.0.0.1:${WEB_PORT:-8080}:8080"

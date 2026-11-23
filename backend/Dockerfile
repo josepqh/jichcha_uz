@@ -14,7 +14,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 # ---- runtime ----
 FROM ${PYTHON_IMAGE} AS runtime
-LABEL org.opencontainers.image.title="universe-backend"
+LABEL org.opencontainers.image.title="jichcha-backend"
 ENV PATH="/opt/venv/bin:$PATH" \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \

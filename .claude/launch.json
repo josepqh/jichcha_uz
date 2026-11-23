@@ -46,7 +46,7 @@
       "runtimeExecutable": "bot/.venv/bin/python",
       "runtimeArgs": [
         "-c",
-        "import sys; sys.path.insert(0, 'bot'); from universe_bot.__main__ import main; main()"
+        "import sys; sys.path.insert(0, 'bot'); from jichcha_bot.__main__ import main; main()"
       ],
       "port": 3001
     }

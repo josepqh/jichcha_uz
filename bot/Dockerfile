@@ -13,7 +13,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 # ---- runtime ----
 FROM ${PYTHON_IMAGE} AS runtime
-LABEL org.opencontainers.image.title="universe-bot"
+LABEL org.opencontainers.image.title="jichcha-bot"
 ENV PATH="/opt/venv/bin:$PATH" \
     PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
@@ -21,8 +21,8 @@ RUN groupadd --system --gid 1001 app \
     && useradd --system --uid 1001 --gid app --no-create-home --shell /usr/sbin/nologin app
 WORKDIR /app
 COPY --link --from=build /opt/venv /opt/venv
-COPY --link --chown=1001:1001 universe_bot ./universe_bot
+COPY --link --chown=1001:1001 jichcha_bot ./jichcha_bot
 USER 1001:1001
 # Webhook mode listens here (nginx forwards /telegram/webhook); polling mode needs no port.
 EXPOSE 8081
-CMD ["python", "-m", "universe_bot"]
+CMD ["python", "-m", "jichcha_bot"]

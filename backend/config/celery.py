@@ -7,7 +7,7 @@ from celery.signals import worker_init, worker_process_init
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.development")
 
-app = Celery("universe")
+app = Celery("jichcha")
 app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 

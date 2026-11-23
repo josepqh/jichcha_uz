@@ -638,8 +638,8 @@
         {
           "h": "Cookies and browser storage",
           "p": [
-            "uv_guest: shows your results in this browser when you're not signed in. It holds a random token; the server stores only its hash.",
-            "uv_refresh: keeps you signed in for 7 days.",
+            "jichcha_guest: shows your results in this browser when you're not signed in. It holds a random token; the server stores only its hash.",
+            "jichcha_refresh: keeps you signed in for 7 days.",
             "Browser storage (localStorage) keeps only your theme choice (light or dark).",
             "No advertising, tracking or analytics cookies are used."
           ]

@@ -637,8 +637,8 @@
         {
           "h": "Cookie va brauzer xotirasi",
           "p": [
-            "uv_guest: akkauntsiz ishlaganda natijalaringizni shu brauzerda koʻrsatish uchun. Unda tasodifiy belgi saqlanadi, serverda esa faqat uning xeshi turadi.",
-            "uv_refresh: akkauntga kirgan holatni 7 kun saqlash uchun.",
+            "jichcha_guest: akkauntsiz ishlaganda natijalaringizni shu brauzerda koʻrsatish uchun. Unda tasodifiy belgi saqlanadi, serverda esa faqat uning xeshi turadi.",
+            "jichcha_refresh: akkauntga kirgan holatni 7 kun saqlash uchun.",
             "Brauzer xotirasida (localStorage) faqat tanlangan mavzu (yorugʻ yoki qorongʻi) saqlanadi.",
             "Reklama, kuzatuv yoki analitika cookie'lari ishlatilmaydi."
           ]

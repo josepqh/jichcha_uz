@@ -2,8 +2,8 @@ import re
 
 import pytest
 
-from universe_bot.actions import ACTIONS, ALBUM_ACTIONS, WEB_TOOL, actions_for, family_of
-from universe_bot.texts import LANGUAGES, TEXTS, error_text, pick_language, t
+from jichcha_bot.actions import ACTIONS, ALBUM_ACTIONS, WEB_TOOL, actions_for, family_of
+from jichcha_bot.texts import LANGUAGES, TEXTS, error_text, pick_language, t
 
 
 def test_every_language_has_every_key():

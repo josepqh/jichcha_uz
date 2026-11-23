@@ -10,7 +10,7 @@ from django.core import signing
 from django.urls import reverse
 from django.utils import timezone
 
-_SALT = "uv-download-v1"
+_SALT = "jichcha-download-v1"
 
 
 def signed_download_url(file_id, expires_at: datetime) -> str:

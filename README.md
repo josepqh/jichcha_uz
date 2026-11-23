@@ -144,7 +144,7 @@ Tools: `image-convert`, `image-compress`, `images-to-pdf`, `office-to-pdf`, `pdf
 
   ```bash
   cd bot && python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
-  .venv/bin/python -m universe_bot
+  .venv/bin/python -m jichcha_bot
   .venv/bin/pytest            # fake Telegram session and fake backend; no token needed
   ```
 
@@ -163,7 +163,7 @@ Tools: `image-convert`, `image-compress`, `images-to-pdf`, `office-to-pdf`, `pdf
   copy `backup.env.example` to `backup.env` and fill in an rclone remote (S3-compatible storage behind rclone's
   `crypt` layer: the dumps contain emails and password hashes). Each dump is then copied off the server and remote
   copies older than `BACKUP_REMOTE_KEEP_DAYS` (30) are removed. User files are never backed up by design.
-  Restore: `docker compose exec -T db pg_restore --clean --if-exists -U universe -d universe < universe-YYYYMMDD-HHMMSS.dump`
+  Restore: `docker compose exec -T db pg_restore --clean --if-exists -U jichcha -d jichcha < jichcha-YYYYMMDD-HHMMSS.dump`
   (copy the dump out with `docker compose cp db-backup:/backups/<file> .`).
 - **Alerts:** the `monitor` service checks the database, Redis, free disk, queue lengths, workers, ClamAV and the
   error rate every 5 minutes and posts to a Telegram chat: once when something breaks and once when it recovers.

@@ -19,7 +19,7 @@
       // Apply the saved theme before first paint to avoid a light/dark flash.
       (function () {
         try {
-          var raw = localStorage.getItem("uv-theme");
+          var raw = localStorage.getItem("jichcha-theme");
           var pref = raw ? JSON.parse(raw).state.theme : "system";
           var dark = pref === "dark" || (pref !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
           document.documentElement.classList.toggle("dark", dark);

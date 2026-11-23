@@ -34,7 +34,7 @@ def check(env: dict[str, str], root: Path) -> tuple[list[str], list[str]]:
 
     domain = get("DOMAIN", "")
     if not domain or "example" in domain or domain.startswith(("localhost", "127.")):
-        errors.append("DOMAIN: set the real domain (e.g. universe.uz).")
+        errors.append("DOMAIN: set the real domain (e.g. jichcha.uz).")
     if (
         len(get("DJANGO_SECRET_KEY", "")) < 50
         or "change" in get("DJANGO_SECRET_KEY", "").lower()

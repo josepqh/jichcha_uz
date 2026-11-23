@@ -41,8 +41,8 @@ class TestGuestFlow:
         resp = post_task(api_client, [png_upload("rasm.png")], capture=run_tasks)
 
         assert resp.status_code == 202
-        assert "uv_guest" in resp.cookies
-        assert resp.cookies["uv_guest"]["httponly"]
+        assert "jichcha_guest" in resp.cookies
+        assert resp.cookies["jichcha_guest"]["httponly"]
         task_id = resp.data["id"]
 
         detail = api_client.get(f"{TASKS_URL}{task_id}/")
@@ -66,7 +66,7 @@ class TestGuestFlow:
         resp = post_task(api_client, [png_upload("a.png"), png_upload("a.png")], capture=run_tasks)
         detail = api_client.get(f"{TASKS_URL}{resp.data['id']}/").data
         assert [o["name"] for o in detail["outputs"]] == ["a.jpg", "a (2).jpg"]
-        assert detail["bundle"]["name"] == "universe-image-convert.zip"
+        assert detail["bundle"]["name"] == "jichcha-image-convert.zip"
 
     def test_images_to_pdf(self, api_client, png_upload, run_tasks):
         resp = post_task(
@@ -117,7 +117,7 @@ class TestOwnership:
     def test_forged_cookie_is_ignored(self, api_client, png_upload):
         task_id = post_task(api_client, [png_upload()]).data["id"]
         forger = APIClient()
-        forger.cookies["uv_guest"] = "forged-value"
+        forger.cookies["jichcha_guest"] = "forged-value"
         assert forger.get(f"{TASKS_URL}{task_id}/").status_code == 404
 
     def test_user_cannot_access_guest_or_other_user_task(self, api_client, user_client, png_upload):

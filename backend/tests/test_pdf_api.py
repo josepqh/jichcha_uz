@@ -104,4 +104,4 @@ def test_pdf_to_images_bundles_pages(api_client, django_capture_on_commit_callba
     ).data
     detail = api_client.get(f"{URL}{task['id']}/").data
     assert [o["name"] for o in detail["outputs"]] == ["slayd-001.png", "slayd-002.png", "slayd-003.png"]
-    assert detail["bundle"]["name"] == "universe-pdf-to-images.zip"
+    assert detail["bundle"]["name"] == "jichcha-pdf-to-images.zip"

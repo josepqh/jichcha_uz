@@ -278,7 +278,7 @@ def _store_outputs(task: Task, outputs: list[OutputFile], workdir: Path) -> None
         tf = TaskFile(
             task=task,
             role=TaskFile.Role.BUNDLE,
-            original_name=f"universe-{task.tool}.zip",
+            original_name=f"jichcha-{task.tool}.zip",
             mime_type=ZIP_MIME,
             size_bytes=bundle.stat().st_size,
             position=len(outputs),
