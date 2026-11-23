@@ -61,7 +61,7 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements/dev.txt
 brew install --cask libreoffice               # optional: office -> PDF
 .venv/bin/python manage.py migrate
 .venv/bin/python manage.py runserver            # API on :8000
-.venv/bin/python -m celery -A config worker -Q light,office,maintenance -l info
+.venv/bin/python -m celery -A config worker -Q light,office,maintenance,mail -l info
 
 cd ../frontend
 npm ci --ignore-scripts

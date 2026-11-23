@@ -178,7 +178,7 @@ jobs:
           pip install -r requirements/base.txt
           python manage.py migrate --noinput
           nohup python manage.py runserver 127.0.0.1:8000 > ../backend.log 2>&1 &
-          nohup python -m celery -A config worker -Q light,office,maintenance -c 2 > ../worker.log 2>&1 &
+          nohup python -m celery -A config worker -Q light,office,maintenance,mail -c 2 > ../worker.log 2>&1 &
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:8000/api/v1/health/ && break; sleep 1; done
       - name: Install browser
         working-directory: frontend

@@ -17,6 +17,7 @@ from rest_framework.views import APIView
 from apps.users import turnstile
 from apps.users.throttles import AuthRateThrottle
 
+
 class FeedbackThrottle(AuthRateThrottle):
     """Per IP, same rate format as sign-in ("5/1h")."""
 

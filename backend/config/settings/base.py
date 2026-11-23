@@ -142,7 +142,9 @@ CELERY_TASK_TIME_LIMIT = 150
 CELERY_TASK_ROUTES = {
     "apps.conversions.tasks.run_conversion": {"queue": "light"},
     "apps.conversions.tasks.purge_expired": {"queue": "maintenance"},
-    "apps.users.tasks.*": {"queue": "maintenance"},
+    # Email goes out from the "mailer" service: the file workers have no route to the internet.
+    "apps.users.tasks.*": {"queue": "mail"},
+    "apps.core.feedback.send_feedback": {"queue": "mail"},
 }
 CELERY_BEAT_SCHEDULE = {
     "purge-expired-files": {

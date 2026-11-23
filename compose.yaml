@@ -210,6 +210,42 @@ services:
       clamav:
         condition: service_healthy
 
+  # Sends email (verification, password reset, feedback). It needs the internet for SMTP, so it
+  # sits on the default network, and it never handles user files: no media volume, read-only.
+  mailer:
+    logging: *logging
+    <<: *backend
+    command: ["celery", "-A", "config", "worker", "-Q", "mail", "--concurrency", "1", "--loglevel", "info"]
+    volumes: []
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.production
+      DATABASE_URL: postgres://${POSTGRES_USER:-universe}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@db:5432/${POSTGRES_DB:-universe}
+      REDIS_URL: redis://cache:6379/0
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:8080}
+      TMPDIR: /tmp
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    healthcheck:
+      test: ["CMD", "celery", "-A", "config", "inspect", "ping", "--timeout", "5"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          memory: 384m
+          cpus: "0.5"
+          pids: 128
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      cache:
+        condition: service_healthy
+
   monitor:
     logging: *logging
     # Alerts on Telegram (ALERT_TELEGRAM_CHAT_ID). On the default network: it needs the internet.
